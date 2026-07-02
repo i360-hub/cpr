@@ -1,0 +1,132 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import Icon from "@components/ui/Icon.astro";
+import { reviews as sharedReviews, reviewsSummary } from "@data/reviews";
+import type { Review } from "@data/reviews";
+
+interface Props {
+  title?: string;
+  sub?: string;
+  reviews?: Review[];
+  light?: boolean;
+}
+const {
+  title = "Trusted by Homeowners and Property Managers",
+  sub = `Rated 5 stars across ${reviewsSummary.count} reviews. From emergency water removal to full rebuilds, here is what people say about working with Carolina Pro Restoration.`,
+  reviews = sharedReviews,
+  light = false,
+} = Astro.props;
+---
+
+<section class:list={["cpr-section", { "cpr-section--light": light }, "reviews"]}>
+  <div class="cpr-section-inner">
+    <SectionHeader title={title} sub={sub} />
+
+    <ul class="reviews__grid" role="list">
+      {
+        reviews.map((r) => (
+          <li class="reviews__card">
+            <span class="reviews__tag">{r.tag}</span>
+            <div class="reviews__stars" role="img" aria-label={`${r.stars} out of 5 stars`}>
+              {Array.from({ length: r.stars }).map(() => (<Icon name="star" />))}
+            </div>
+            <p class="reviews__text">{r.text}</p>
+            <div class="reviews__author">
+              <span class="reviews__initial" aria-hidden="true">{r.name.charAt(0)}</span>
+              <span>
+                <span class="reviews__name">{r.name}</span>
+                <span class="reviews__source">{r.source}</span>
+              </span>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="reviews__foot">
+      <a href={reviewsSummary.readMoreHref} class="reviews__more">Read More Reviews <Icon name="arrow" /></a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--cpr-space-lg);
+  }
+  .reviews__card {
+    background: var(--cpr-white);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: var(--cpr-radius-lg);
+    box-shadow: var(--cpr-shadow-sm);
+    padding: var(--cpr-space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .reviews__tag {
+    align-self: flex-start;
+    background: rgba(211, 47, 47, 0.1);
+    color: var(--cpr-red-dark);
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--cpr-radius-pill);
+  }
+  .reviews__stars {
+    display: flex;
+    gap: 0.15rem;
+    color: #f5a623;
+    font-size: 1.05rem;
+  }
+  .reviews__text {
+    color: var(--cpr-slate);
+    line-height: 1.65;
+  }
+  .reviews__author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: auto;
+    padding-top: var(--cpr-space-md);
+  }
+  .reviews__initial {
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 50%;
+    background: var(--cpr-navy);
+    color: var(--cpr-white);
+    font-weight: 700;
+    flex: none;
+  }
+  .reviews__name {
+    display: block;
+    font-weight: 700;
+    color: var(--cpr-navy);
+  }
+  .reviews__source {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--cpr-slate-muted);
+  }
+  .reviews__foot {
+    margin-top: var(--cpr-space-xl);
+    text-align: center;
+  }
+  .reviews__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    color: var(--cpr-red);
+  }
+  .reviews__more :global(svg) {
+    width: 1.05em;
+    height: 1.05em;
+  }
+</style>

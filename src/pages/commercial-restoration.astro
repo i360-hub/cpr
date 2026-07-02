@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+---
+
+<BaseLayout
+  title="Commercial Restoration | Charlotte Area 24/7"
+  description="Carolina Pro Restoration offers 24/7 emergency restoration for water, fire, and mold damage in Charlotte, NC. Learn more and get help today!"
+  path="/commercial-restoration"
+>
+  <PageHeader
+    eyebrow="24/7 Emergency Commercial Restoration"
+    title="Fort Mill and Charlotte Area Commercial Restoration Services"
+    subtitle="A+ rated commercial property restoration across the Charlotte area. We minimize your downtime and work directly with your insurance — on-site within an hour."
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Request Help", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["commercial-restoration"]} />
+  <ServiceArea />
+  <FinalCta heading="Commercial Property Emergency? We Respond 24/7." />
+  <ContactForm heading="Get Commercial Restoration Help" formName="Commercial Restoration Contact" />
+</BaseLayout>

@@ -1,0 +1,76 @@
+---
+// Homepage urgency band (cpr-urgency).
+import Button from "@components/ui/Button.astro";
+import Icon from "@components/ui/Icon.astro";
+import { site } from "@data/site";
+
+interface Props {
+  title?: string;
+  sub?: string;
+  ctaNote?: string;
+}
+const {
+  title = "Water Moves Fast. We Move Faster.",
+  sub = "Every hour you wait, the damage gets worse and costs more to fix.",
+  ctaNote = "Do not wait for mold. Call now and we can be there today.",
+} = Astro.props;
+---
+
+<section class="urgency">
+  <div class="urgency__inner">
+    <div class="urgency__text">
+      <h2 class="urgency__title">{title}</h2>
+      <p class="urgency__sub">{sub}</p>
+    </div>
+    <div class="urgency__action">
+      <Button href={site.phoneHref} variant="ghost" size="lg">Call Now: {site.phoneDisplay}</Button>
+      <p class="urgency__note"><Icon name="clock" /> {ctaNote}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .urgency {
+    background: linear-gradient(120deg, var(--cpr-red) 0%, var(--cpr-red-dark) 100%);
+    color: var(--cpr-white);
+    padding: var(--cpr-space-2xl) var(--cpr-space-lg);
+  }
+  .urgency__inner {
+    max-width: var(--cpr-max-width);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cpr-space-xl);
+    flex-wrap: wrap;
+  }
+  .urgency__title {
+    color: var(--cpr-white);
+    font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  }
+  .urgency__sub {
+    margin-top: 0.4rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 40ch;
+  }
+  .urgency__action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .urgency__note {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  @media (max-width: 700px) {
+    .urgency__action {
+      align-items: stretch;
+      width: 100%;
+    }
+  }
+</style>

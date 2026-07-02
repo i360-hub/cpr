@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import Reviews from "@components/widgets/Reviews.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { site } from "@data/site";
+import { reviewsSummary } from "@data/reviews";
+---
+
+<BaseLayout
+  title="Reviews & Testimonials | Fort Mill SC"
+  description="Discover what clients say about Carolina Pro Restoration. Read feedback and testimonials. Serving Fort Mill, SC. Learn more today!"
+  path="/reviews-testimonials"
+>
+  <PageHeader
+    eyebrow="Reviews & Feedback From Our Customers"
+    title="Testimonials & Customer Reviews"
+    subtitle={`Rated ${reviewsSummary.stars} stars across ${reviewsSummary.count} reviews. From emergency water removal to full rebuilds, here's what homeowners, property managers, and HOAs say about working with us.`}
+    ctas={[
+      { label: `Call 24/7: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Read Reviews on Google", href: "https://www.google.com/search?q=Carolina+Pro+Restoration+Fort+Mill+reviews", variant: "outline" },
+    ]}
+  />
+
+  <Reviews
+    title="What Our Customers Say"
+    sub="Real reviews from homeowners, property managers, and HOAs across the Fort Mill and Charlotte area."
+  />
+
+  <FinalCta heading="Ready for Restoration You Can Review 5 Stars? Call Us." />
+  <ContactForm heading="Need Water Damage Help? Talk to Our Team" formName="Reviews Page Contact" />
+</BaseLayout>

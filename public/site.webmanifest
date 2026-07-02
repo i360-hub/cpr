@@ -1,0 +1,13 @@
+{
+  "name": "Carolina Pro Restoration",
+  "short_name": "CPR",
+  "description": "24/7 water damage restoration and full rebuild in Fort Mill, SC and the greater Charlotte metro.",
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#d32f2f",
+  "background_color": "#ffffff",
+  "display": "browser",
+  "start_url": "/"
+}

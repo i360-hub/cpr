@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+---
+
+<BaseLayout
+  title="Flooring Repair & Replacement in Charlotte & Fort Mill"
+  description="Expert flooring repair, refinishing, and subfloor solutions in Charlotte & Fort Mill. Contact Carolina Pro Restoration for a free estimate today!"
+  path="/flooring-repair"
+>
+  <PageHeader
+    eyebrow="Flooring Repair & Installation"
+    title="Flooring Repair & Installation in Fort Mill and Charlotte Area"
+    subtitle="Expert flooring repair, refinishing, and subfloor solutions — from water-damaged hardwood to full replacement. Get a free estimate."
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Free Estimate", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["flooring-repair"]} />
+  <ServiceArea />
+  <FinalCta heading="Damaged Floors? Get a Free Repair Estimate." />
+  <ContactForm heading="Request a Free Flooring Estimate" formName="Flooring Repair Contact" />
+</BaseLayout>

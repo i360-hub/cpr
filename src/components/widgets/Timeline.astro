@@ -1,0 +1,139 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import Button from "@components/ui/Button.astro";
+import { site } from "@data/site";
+
+interface Card {
+  badge: string;
+  title: string;
+  text: string;
+  resolve?: boolean; // the "Our Response" card, styled in brand red
+}
+interface Props {
+  title?: string;
+  sub?: string;
+  ctaLabel?: string;
+  cards?: Card[];
+}
+const {
+  title = "What Happens to Your Home After Water Damage",
+  sub = "Water damage isn't one event — it's a chain reaction. Here's what happens inside your walls and floors if it isn't stopped fast.",
+  ctaLabel = "The faster we start, the more we can save. Call anytime — we're here 24/7.",
+  cards = [
+    { badge: "0 – 60 Minutes", title: "Water Soaks In", text: "Water wicks into drywall about an inch an hour. Carpet pad soaks up many times its weight. Particleboard swells and falls apart on contact." },
+    { badge: "1 – 24 Hours", title: "Materials Start to Fail", text: "Drywall gets soft and sags. Wood floors cup and buckle as water comes up from below. Laminate splits at the seams, and metal parts start to rust." },
+    { badge: "24 – 48 Hours", title: "Mold Starts to Grow", text: "Mold takes hold on anything damp. It grows behind walls and under floors where the air is still. Cleanup costs jump at this point." },
+    { badge: "Our Response", title: "We Stop the Damage", text: "Our pumps pull out the standing water. Big dehumidifiers and fans dry every wet spot we find with thermal cameras. An antimicrobial spray stops mold before it can spread.", resolve: true },
+  ],
+} = Astro.props;
+---
+
+<section class="cpr-section timeline">
+  <div class="cpr-section-inner">
+    <SectionHeader title={title} sub={sub} />
+
+    <div class="timeline__scroll">
+      <ol class="timeline__grid" role="list">
+        {
+          cards.map((c) => (
+            <li class:list={["timeline__card", { "timeline__card--resolve": c.resolve }]}>
+              <span class="timeline__badge">{c.badge}</span>
+              <h3 class="timeline__title">{c.title}</h3>
+              <p class="timeline__text">{c.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+    <p class="timeline__swipe">Swipe to see the full timeline →</p>
+
+    <div class="timeline__cta">
+      <p set:html={ctaLabel} />
+      <Button href={site.phoneHref} variant="call" size="lg">Call Now: {site.phoneDisplay}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline__scroll {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    margin-inline: calc(-1 * var(--cpr-space-lg));
+    padding-inline: var(--cpr-space-lg);
+  }
+  .timeline__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(240px, 1fr));
+    gap: var(--cpr-space-lg);
+  }
+  .timeline__card {
+    scroll-snap-align: start;
+    background: var(--cpr-white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-top: 4px solid var(--cpr-slate-light);
+    border-radius: var(--cpr-radius-lg);
+    padding: var(--cpr-space-xl);
+    box-shadow: var(--cpr-shadow-sm);
+  }
+  .timeline__card--resolve {
+    border-top-color: var(--cpr-red);
+    background: var(--cpr-navy);
+    color: var(--cpr-white);
+  }
+  .timeline__badge {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--cpr-red);
+    margin-bottom: 0.75rem;
+  }
+  .timeline__card--resolve .timeline__badge {
+    color: #ff7a75;
+  }
+  .timeline__title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .timeline__card--resolve .timeline__title {
+    color: var(--cpr-white);
+  }
+  .timeline__text {
+    color: var(--cpr-slate);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  .timeline__card--resolve .timeline__text {
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .timeline__swipe {
+    display: none;
+    text-align: center;
+    color: var(--cpr-slate-muted);
+    font-size: 0.85rem;
+    margin-top: var(--cpr-space-md);
+  }
+  .timeline__cta {
+    margin-top: var(--cpr-space-2xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--cpr-space-md);
+  }
+  .timeline__cta p {
+    color: var(--cpr-slate);
+    font-weight: 600;
+    max-width: 40ch;
+  }
+  @media (max-width: 900px) {
+    .timeline__grid {
+      grid-template-columns: repeat(4, 78vw);
+    }
+    .timeline__swipe {
+      display: block;
+    }
+  }
+</style>

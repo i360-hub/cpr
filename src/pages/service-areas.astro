@@ -1,0 +1,131 @@
+---
+// Service-areas hub — lists all 21 city pages, grouped by state, from locations.ts.
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import Icon from "@components/ui/Icon.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { locationList } from "@data/locations";
+import { site } from "@data/site";
+
+const sc = locationList.filter((l) => l.state === "SC");
+const nc = locationList.filter((l) => l.state === "NC");
+const groups = [
+  { state: "South Carolina", cities: sc },
+  { state: "North Carolina", cities: nc },
+];
+---
+
+<BaseLayout
+  title="Water Damage Restoration Service Areas | Fort Mill SC"
+  description="Expert water damage & mold remediation services. Learn more! Fort Mill, SC."
+  path="/service-areas"
+>
+  <PageHeader
+    eyebrow="Serving the Carolinas 24/7"
+    title="Service Areas Near Charlotte"
+    subtitle="Carolina Pro Restoration has been helping our neighbors across North and South Carolina — ready 24/7 for water, flood, sewage, or mold damage. Based in Fort Mill, SC, we prioritize nearby calls first."
+    ctas={[{ label: `Call 24/7: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" }]}
+  />
+
+  <section class="cpr-section">
+    <div class="cpr-section-inner">
+      <SectionHeader
+        eyebrow="We Proudly Serve"
+        title="Find Your City"
+        sub="Pick your city for local response times, neighborhood details, and a crew that knows your area."
+      />
+      {
+        groups.map((g) => (
+          <div class="areas-group">
+            <h3 class="areas-group__state">{g.state}</h3>
+            <ul class="areas-grid" role="list">
+              {g.cities.map((c) => (
+                <li>
+                  <a href={`/water-damage-restoration-${c.slug}`} class="areas-card">
+                    <span class="areas-card__dot" aria-hidden="true" />
+                    <span class="areas-card__name">{c.name}, {c.state}</span>
+                    <Icon name="arrow" class="areas-card__arrow" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <ServiceArea />
+  <FinalCta heading="Not Sure If We Cover Your Area? Just Ask." />
+  <ContactForm heading="Get Local Water Damage Help" formName="Service Areas Contact" />
+</BaseLayout>
+
+<style>
+  .areas-group {
+    margin-bottom: var(--cpr-space-2xl);
+  }
+  .areas-group__state {
+    font-size: 1.3rem;
+    color: var(--cpr-navy);
+    padding-bottom: 0.6rem;
+    margin-bottom: var(--cpr-space-lg);
+    border-bottom: 2px solid var(--cpr-red);
+    display: inline-block;
+  }
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--cpr-space-md);
+  }
+  .areas-card {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--cpr-white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--cpr-radius-md);
+    padding: 0.9rem 1.1rem;
+    font-weight: 600;
+    color: var(--cpr-navy);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .areas-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--cpr-shadow-md);
+    border-color: var(--cpr-red);
+  }
+  .areas-card__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cpr-red);
+    flex: none;
+  }
+  .areas-card__name {
+    flex: 1;
+  }
+  .areas-card__arrow {
+    width: 1em;
+    height: 1em;
+    color: var(--cpr-red);
+    opacity: 0;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .areas-card:hover .areas-card__arrow {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+  @media (max-width: 900px) {
+    .areas-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 520px) {
+    .areas-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

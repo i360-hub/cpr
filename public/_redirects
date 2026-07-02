@@ -1,0 +1,35 @@
+# Cloudflare Pages redirects — preserve the old Duda URLs so inbound links,
+# backlinks, and existing search rankings don't break after launch.
+# All targets verified against the live carolinaprorestoration.com 301s.
+# Format: /source  /destination  [status]   (first match wins)
+
+# --- Home ---
+/home                                                              /                                  301
+
+# --- Old service-page slugs ---
+/mold-removal-old                                                  /mold-removal                      301
+/water-damage-restoration-old                                      /water-damage-restoration          301
+/water-damage-restoration-carolina                                 /water-damage-restoration          301
+/flood-damage-restoration-water-removal                            /storm-damage                      301
+/burst-frozen-pipes                                                /burst-pipe-repair                 301
+/crawlspace-issues                                                 /crawlspace                        301
+/water-proofing                                                    /waterproofing                     301
+/keep-your-home-dry-and-safe-with-waterproofing-services-in-charlotte-nc  /waterproofing               301
+/flooring-repair-and-replacement                                   /flooring-repair                   301
+
+# --- Blog ---
+/cpr-blog                                                          /blog                              301
+
+# --- Legacy /locations/ system: in-scope cities -> their city page ---
+/locations/fort_mill                                               /water-damage-restoration-fort-mill-sc     301
+/locations/rock_hill                                               /water-damage-restoration-rock-hill-sc     301
+/locations/gastonia                                                /water-damage-restoration-gastonia-nc      301
+/locations/matthews                                                /water-damage-restoration-matthews-nc      301
+/locations/mint_hill                                               /water-damage-restoration-mint-hill-nc     301
+/locations/monroe                                                  /water-damage-restoration-monroe-nc        301
+/locations/pineville                                               /water-damage-restoration-pineville-nc     301
+/locations/waxhaw                                                  /water-damage-restoration-waxhaw-nc        301
+
+# --- Any other /locations/* (out-of-scope cities) -> the service-areas hub ---
+/locations/*                                                       /service-areas                     301
+/locations                                                         /service-areas                     301

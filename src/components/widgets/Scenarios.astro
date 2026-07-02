@@ -1,0 +1,129 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import Icon from "@components/ui/Icon.astro";
+import Button from "@components/ui/Button.astro";
+import { site } from "@data/site";
+
+interface Scenario {
+  icon: string;
+  title: string;
+  text: string;
+  linkLabel: string;
+  href: string;
+}
+interface Props {
+  title?: string;
+  sub?: string;
+  ctaLabel?: string;
+  scenarios?: Scenario[];
+}
+const {
+  title = "What Happened? We Handle It All.",
+  sub = "It doesn't matter how the water got in. We pull it out, dry the structure, and rebuild what we tear out. Here's what we see every week.",
+  ctaLabel,
+  scenarios = [
+    { icon: "shield", title: "Burst Pipes & Supply Line Breaks", text: "A frozen or failed pipe can release hundreds of gallons fast. We stop the source, extract the water, and dry the structure before it spreads.", linkLabel: "Get help now", href: "/burst-pipe-repair" },
+    { icon: "clock", title: "Water Heater, Washer & Dishwasher Leaks", text: "Appliance leaks often go unnoticed until floors buckle. We find the moisture, dry it out, and rebuild the damage.", linkLabel: "Get help now", href: "#contact" },
+    { icon: "pin", title: "Storm & Flood Damage", text: "Heavy rain and storms push water in through doors, windows, and the foundation. We pump it out, set up full drying gear, and protect your belongings while the structure dries.", linkLabel: "Learn more", href: "/storm-damage" },
+    { icon: "x", title: "Sewage Backups", text: "Contaminated water needs safe, sanitized handling. We contain it, remove it, and disinfect every affected surface.", linkLabel: "Learn more", href: "/sewage-cleanup" },
+  ],
+} = Astro.props;
+---
+
+<section class="cpr-section cpr-section--light scenarios">
+  <div class="cpr-section-inner">
+    <SectionHeader title={title} sub={sub} />
+
+    <ul class="scenarios__grid" role="list">
+      {
+        scenarios.map((s) => (
+          <li class="scenarios__card">
+            <span class="scenarios__icon"><Icon name={s.icon} /></span>
+            <h3 class="scenarios__title">{s.title}</h3>
+            <p class="scenarios__text">{s.text}</p>
+            <a class="scenarios__link" href={s.href}>{s.linkLabel} <Icon name="arrow" /></a>
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      ctaLabel && (
+        <div class="scenarios__cta">
+          <p set:html={ctaLabel} />
+          <Button href={site.phoneHref} variant="call" size="lg">Call Now: {site.phoneDisplay}</Button>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .scenarios__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--cpr-space-lg);
+  }
+  .scenarios__card {
+    background: var(--cpr-white);
+    border-radius: var(--cpr-radius-lg);
+    box-shadow: var(--cpr-shadow-sm);
+    padding: var(--cpr-space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .scenarios__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--cpr-radius-md);
+    background: rgba(211, 47, 47, 0.1);
+    color: var(--cpr-red);
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .scenarios__title {
+    font-size: 1.2rem;
+  }
+  .scenarios__text {
+    color: var(--cpr-slate);
+    line-height: 1.6;
+  }
+  .scenarios__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: auto;
+    padding-top: var(--cpr-space-sm);
+    font-weight: 700;
+    color: var(--cpr-red);
+  }
+  .scenarios__link :global(svg) {
+    width: 1em;
+    height: 1em;
+    transition: transform 0.15s ease;
+  }
+  .scenarios__link:hover :global(svg) {
+    transform: translateX(3px);
+  }
+  .scenarios__cta {
+    margin-top: var(--cpr-space-2xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--cpr-space-md);
+  }
+  .scenarios__cta p {
+    color: var(--cpr-slate);
+    font-weight: 600;
+    max-width: 44ch;
+  }
+  @media (max-width: 720px) {
+    .scenarios__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

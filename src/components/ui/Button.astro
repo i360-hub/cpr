@@ -1,0 +1,94 @@
+---
+// Button / CTA link. Mirrors the live site's cpr-btn / wdr-hero-btn styles.
+// Variants: primary (red fill), call (red fill w/ phone icon), outline, ghost.
+import Icon from "./Icon.astro";
+
+interface Props {
+  href: string;
+  variant?: "primary" | "call" | "outline" | "ghost";
+  size?: "md" | "lg";
+  class?: string;
+  ariaLabel?: string;
+  rel?: string;
+  target?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  class: className = "",
+  ariaLabel,
+  rel,
+  target,
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={["cpr-btn", `cpr-btn--${variant}`, `cpr-btn--${size}`, className]}
+  aria-label={ariaLabel}
+  rel={rel}
+  target={target}
+>
+  {variant === "call" && <Icon name="phone" class="cpr-btn__icon" />}
+  <span><slot /></span>
+</a>
+
+<style>
+  .cpr-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: var(--cpr-radius-pill);
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      background 0.15s ease;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .cpr-btn--md {
+    padding: 0.85rem 1.5rem;
+    font-size: 1rem;
+  }
+  .cpr-btn--lg {
+    padding: 1.05rem 2rem;
+    font-size: 1.075rem;
+  }
+  .cpr-btn--primary,
+  .cpr-btn--call {
+    background: var(--cpr-red);
+    color: var(--cpr-white);
+    box-shadow: var(--cpr-shadow-red);
+  }
+  .cpr-btn--primary:hover,
+  .cpr-btn--call:hover {
+    background: var(--cpr-red-dark);
+    transform: translateY(-1px);
+  }
+  .cpr-btn--outline {
+    background: transparent;
+    color: var(--cpr-white);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+  }
+  .cpr-btn--outline:hover {
+    border-color: var(--cpr-white);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .cpr-btn--ghost {
+    background: var(--cpr-white);
+    color: var(--cpr-navy);
+    box-shadow: var(--cpr-shadow-md);
+  }
+  .cpr-btn--ghost:hover {
+    transform: translateY(-1px);
+  }
+  .cpr-btn__icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
+</style>

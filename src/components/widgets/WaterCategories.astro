@@ -1,0 +1,171 @@
+---
+import SectionHeader from "@components/ui/SectionHeader.astro";
+
+interface Category {
+  key: string;
+  number: string;
+  risk: string;
+  name: string;
+  desc?: string;
+  sources: string[];
+}
+interface Props {
+  title?: string;
+  sub?: string;
+  note?: string;
+  categories?: Category[];
+}
+const {
+  title = "Not All Water Is the Same",
+  sub = "The kind of water that got in decides how we treat it, what we can save, and how risky it is to your family. Here are the three categories.",
+  note = "When in doubt, treat it as the higher category. We test and document which one you're dealing with.",
+  categories = [
+    { key: "clean", number: "Category 1", risk: "Lowest Risk", name: "Clean Water", sources: ["Burst pipes", "Supply line breaks", "Overflowing tubs or sinks", "Rainwater", "Melting ice or snow"] },
+    { key: "grey", number: "Category 2", risk: "Health Hazard", name: "Grey Water", sources: ["Washing machine overflow", "Dishwasher leaks", "Toilet overflow (urine only)", "Sump pump failure", "Broken aquariums"] },
+    { key: "black", number: "Category 3", risk: "Severe Health Threat", name: "Black Water", sources: ["Sewage backups", "Flooding from rivers or streams", "Toilet overflow with waste", "Seawater", "Water that has sat over 48 hours"] },
+  ],
+} = Astro.props;
+---
+
+<section class="cpr-section cpr-section--light cats">
+  <div class="cpr-section-inner">
+    <SectionHeader title={title} sub={sub} />
+
+    <div class="cats__grid">
+      {
+        categories.map((c) => (
+          <article class:list={["cats__card", `cats__card--${c.key}`]}>
+            <div class="cats__bar" />
+            <div class="cats__body">
+              {c.number && <span class:list={["cats__badge", `cats__badge--${c.key}`]}>{c.number}</span>}
+              {c.risk && <span class:list={["cats__risk", `cats__risk--${c.key}`]}>{c.risk}</span>}
+              <h3 class="cats__name">{c.name}</h3>
+              {c.desc && <p class="cats__desc">{c.desc}</p>}
+              <p class="cats__srclabel">Common Sources</p>
+              <ul class="cats__sources">
+                {c.sources.map((s) => <li>{s}</li>)}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <p class="cats__note" set:html={note} />
+  </div>
+</section>
+
+<style>
+  .cats__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--cpr-space-lg);
+  }
+  .cats__card {
+    background: var(--cpr-white);
+    border-radius: var(--cpr-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--cpr-shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+  }
+  .cats__bar {
+    height: 6px;
+  }
+  .cats__card--clean .cats__bar {
+    background: #3b9ae1;
+  }
+  .cats__card--grey .cats__bar {
+    background: #c9a227;
+  }
+  .cats__card--black .cats__bar {
+    background: #1f2937;
+  }
+  .cats__body {
+    padding: var(--cpr-space-xl);
+  }
+  .cats__badge {
+    display: inline-block;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--cpr-radius-pill);
+    color: var(--cpr-white);
+  }
+  .cats__badge--clean {
+    background: #3b9ae1;
+  }
+  .cats__badge--grey {
+    background: #c9a227;
+  }
+  .cats__badge--black {
+    background: #1f2937;
+  }
+  .cats__risk {
+    display: block;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .cats__risk--clean {
+    color: #3b9ae1;
+  }
+  .cats__risk--grey {
+    color: #b9901f;
+  }
+  .cats__risk--black {
+    color: #1f2937;
+  }
+  .cats__name {
+    font-size: 1.4rem;
+    margin: 0.15rem 0 0.5rem;
+  }
+  .cats__desc {
+    color: var(--cpr-slate);
+    line-height: 1.55;
+    font-size: 0.92rem;
+    margin-bottom: var(--cpr-space-md);
+  }
+  .cats__srclabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--cpr-slate-muted);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .cats__sources {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    color: var(--cpr-slate);
+  }
+  .cats__sources li {
+    padding-left: 1.1rem;
+    position: relative;
+  }
+  .cats__sources li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cpr-slate-light);
+  }
+  .cats__note {
+    margin-top: var(--cpr-space-xl);
+    text-align: center;
+    color: var(--cpr-slate);
+    font-weight: 600;
+    max-width: 60ch;
+    margin-inline: auto;
+  }
+  @media (max-width: 820px) {
+    .cats__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

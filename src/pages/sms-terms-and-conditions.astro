@@ -1,0 +1,16 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import { standalonePages } from "@data/standalonePages";
+---
+
+<BaseLayout
+  title="SMS Terms & Conditions | Fort Mill SC"
+  description="Review Carolina Pro Restoration's SMS service terms for marketing notifications. Stay informed in Fort Mill, SC. Learn more!"
+  path="/sms-terms-and-conditions"
+  noindex={true}
+>
+  <PageHeader eyebrow="Legal" title="Carolina Pro Restoration SMS Terms & Conditions" />
+  <LocalContent blocks={standalonePages["sms-terms-and-conditions"]} />
+</BaseLayout>

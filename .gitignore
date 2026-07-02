@@ -1,0 +1,28 @@
+# build output
+dist/
+.astro/
+
+# deps
+node_modules/
+
+# env
+.env
+.env.production
+
+# os
+.DS_Store
+
+# migration source material (not part of the app)
+2026-07-02_98f5ac92/
+2026-07-02_98f5ac92.zip
+cpr-migration-content-final/
+cpr-migration-content-final.zip
+cpr-widget-content-harvest.zip
+widget_pages/
+.DS_Store
+
+# wrangler local state
+.wrangler/
+
+# local Claude settings
+.claude/settings.local.json

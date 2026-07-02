@@ -1,0 +1,110 @@
+---
+import Icon from "@components/ui/Icon.astro";
+import Button from "@components/ui/Button.astro";
+import { site } from "@data/site";
+
+interface Props {
+  title?: string;
+  desc?: string;
+  points?: string[];
+  ctaLabel?: string;
+}
+const {
+  title = "Your Insurance Claim, Handled From Day One",
+  desc,
+  points = [
+    "Damage photos taken when we arrive and every day after",
+    "Moisture readings logged daily at every point",
+    "Xactimate estimate written to match your adjuster",
+    "We talk to your adjuster directly — you stay out of the middle",
+    "We bill your insurance directly — zero out of pocket on covered work",
+  ],
+  ctaLabel = `Call Now: ${site.phoneDisplay}`,
+} = Astro.props;
+---
+
+<section class="cpr-section cpr-section--light ins">
+  <div class="cpr-section-inner ins__inner">
+    <div class="ins__card">
+      <span class="ins__eyebrow"><Icon name="shield" /> Insurance</span>
+      <h2 class="ins__title">{title}</h2>
+      {desc && <p class="ins__desc">{desc}</p>}
+      <ul class="ins__list" role="list">
+        {
+          points.map((p) => (
+            <li class="ins__item">
+              <span class="ins__check"><Icon name="check" /></span>
+              <span set:html={p} />
+            </li>
+          ))
+        }
+      </ul>
+      <Button href={site.phoneHref} variant="call" size="lg">{ctaLabel}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ins__card {
+    background: var(--cpr-navy);
+    color: var(--cpr-white);
+    border-radius: var(--cpr-radius-lg);
+    padding: var(--cpr-space-2xl);
+    max-width: 900px;
+    margin-inline: auto;
+    box-shadow: var(--cpr-shadow-dark);
+  }
+  .ins__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ff9a95;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--cpr-radius-pill);
+  }
+  .ins__title {
+    color: var(--cpr-white);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    margin: var(--cpr-space-md) 0 var(--cpr-space-md);
+    max-width: 20ch;
+  }
+  .ins__desc {
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.65;
+    margin-bottom: var(--cpr-space-lg);
+    max-width: 60ch;
+  }
+  .ins__list {
+    display: grid;
+    gap: var(--cpr-space-md);
+    margin-bottom: var(--cpr-space-xl);
+  }
+  .ins__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    line-height: 1.55;
+  }
+  .ins__check {
+    display: grid;
+    place-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background: var(--cpr-red);
+    color: var(--cpr-white);
+    font-size: 0.8rem;
+    flex: none;
+    margin-top: 0.1rem;
+  }
+  @media (max-width: 560px) {
+    .ins__card {
+      padding: var(--cpr-space-xl);
+    }
+  }
+</style>

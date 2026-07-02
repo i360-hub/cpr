@@ -1,0 +1,181 @@
+---
+// Contact page — redesigned with the site component library & design system.
+// Uses the live /contact-us page's own GHL form and copy.
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import Icon from "@components/ui/Icon.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import { site } from "@data/site";
+
+const { address } = site;
+
+const methods = [
+  {
+    icon: "phone",
+    label: "Call or Text 24/7",
+    value: site.phoneDisplay,
+    href: site.phoneHref,
+    note: "24/7 emergency response — we answer our own phone.",
+  },
+  {
+    icon: "mail",
+    label: "Email Us",
+    value: site.email,
+    href: `mailto:${site.email}`,
+    note: "For non-emergency questions and quotes.",
+  },
+  {
+    icon: "pin",
+    label: "Headquarters",
+    value: `${address.street}, ${address.city}, ${address.state} ${address.zip}`,
+    href: "https://www.google.com/maps/search/?api=1&query=Carolina+Pro+Restoration+Fort+Mill+SC",
+    note: "Locally owned and Fort Mill based.",
+  },
+  {
+    icon: "clock",
+    label: "Hours",
+    value: "Open 24/7",
+    note: "Every day, including holidays.",
+  },
+];
+
+const contactSchema = [
+  {
+    "@type": "ContactPage",
+    name: "Contact Carolina Pro Restoration",
+    description: "Reach Carolina Pro Restoration 24/7 for water damage and mold remediation in Fort Mill, SC and the greater Charlotte metro.",
+  },
+];
+---
+
+<BaseLayout
+  title="Contact Carolina Pro Restoration | Fort Mill SC 24/7"
+  description="Reach out for professional water damage and mold remediation services in Fort Mill, SC. Carolina Pro Restoration is ready to assist. Learn more!"
+  path="/contact-us"
+  schema={contactSchema}
+>
+  <PageHeader
+    eyebrow="Anytime, day or night, for any inquiries or service needs"
+    title="Contact Carolina Pro Restoration for Water Damage Help"
+    subtitle="Standing in water right now? Call us — we dispatch a local crew fast. For everything else, email us or send the form below."
+    ctas={[{ label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" }]}
+  />
+
+  <!-- Contact methods -->
+  <section class="cpr-section contact-methods">
+    <div class="cpr-section-inner">
+      <SectionHeader
+        eyebrow="Call Now, Chat, or Use Our Contact Form"
+        title="Contact Us 24/7 for Water Damage Help"
+        sub="One local team, ready around the clock. Reach us whichever way works best for you."
+      />
+      <ul class="cmethods" role="list">
+        {
+          methods.map((m) => {
+            const inner = (
+              <>
+                <span class="cmethods__icon"><Icon name={m.icon} /></span>
+                <span class="cmethods__label">{m.label}</span>
+                <span class="cmethods__value">{m.value}</span>
+                <span class="cmethods__note">{m.note}</span>
+              </>
+            );
+            return (
+              <li class="cmethods__card">
+                {m.href ? <a href={m.href} class="cmethods__link">{inner}</a> : <div class="cmethods__link">{inner}</div>}
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+
+  <ContactForm
+    heading="Send Us the Details"
+    description="Fill out this short form and our Fort Mill team will get right back to you. For emergencies, call us directly — we pick up 24/7."
+    cardTitle="Get in Touch"
+    cardSub="We typically respond within 30 minutes during the day."
+    formName="Contact Us Page"
+    formSrc={site.ghlContactFormSrc}
+    formId={site.ghlContactFormId}
+    trustItems={[
+      "We answer 24/7 and respond fast",
+      "No cost for the on-site inspection",
+      "No pressure, no obligation",
+      "We bill your insurance directly",
+    ]}
+  />
+
+  <ServiceArea />
+  <FinalCta heading="Water Damage Emergency? Talk to Our Team Right Now." />
+</BaseLayout>
+
+<style>
+  .cmethods {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--cpr-space-lg);
+  }
+  .cmethods__card {
+    background: var(--cpr-white);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: var(--cpr-radius-lg);
+    box-shadow: var(--cpr-shadow-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+  .cmethods__card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--cpr-shadow-md);
+    border-color: var(--cpr-red);
+  }
+  .cmethods__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    height: 100%;
+    padding: var(--cpr-space-xl);
+  }
+  .cmethods__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--cpr-red);
+    color: var(--cpr-white);
+    font-size: 1.3rem;
+    margin-bottom: var(--cpr-space-sm);
+  }
+  .cmethods__label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--cpr-slate-muted);
+  }
+  .cmethods__value {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--cpr-navy);
+  }
+  .cmethods__note {
+    color: var(--cpr-slate);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 0.15rem;
+  }
+  @media (max-width: 900px) {
+    .cmethods {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 520px) {
+    .cmethods {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

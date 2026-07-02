@@ -1,0 +1,73 @@
+---
+// Dynamic Tier-2 city page template. Renders the lighter city stack from
+// locations.ts. Produces /water-damage-restoration-fort-mill-sc, …-rock-hill-sc,
+// etc. at their exact live URLs. Titles/H1 are ranking-locked (verbatim).
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/widgets/Hero.astro";
+import StatStrip from "@components/widgets/StatStrip.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import Neighborhoods from "@components/widgets/Neighborhoods.astro";
+import Reviews from "@components/widgets/Reviews.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { locations } from "@data/locations";
+import heroImg from "@assets/images/hero-water-damage.jpg";
+
+export function getStaticPaths() {
+  return Object.keys(locations).map((city) => ({ params: { city } }));
+}
+
+const { city } = Astro.params;
+const loc = locations[city];
+
+// The neighborhoods chip grid renders mid-body (at the "hood" marker), matching
+// the live page order. Split the editorial body around it.
+const hoodIdx = loc.body.findIndex((b) => b.tag === "hood");
+const bodyBefore = hoodIdx >= 0 ? loc.body.slice(0, hoodIdx) : loc.body;
+const bodyAfter = hoodIdx >= 0 ? loc.body.slice(hoodIdx + 1) : [];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: loc.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={loc.title}
+  description={loc.metaDescription}
+  path={`/water-damage-restoration-${loc.slug}`}
+  schema={faqSchema}
+>
+  <Hero
+    emergencyTag={loc.heroTag}
+    h1Lines={[loc.h1]}
+    subtitle={loc.heroSub}
+    trustSignals={loc.heroTrust}
+    image={heroImg}
+    imageAlt={`Carolina Pro Restoration serving ${loc.name}, ${loc.state}`}
+  />
+  <StatStrip stats={loc.stats} />
+  <LocalContent blocks={bodyBefore} />
+  {loc.neighborhoods && <Neighborhoods city={loc.name} intro={loc.neighborhoods.intro} neighborhoods={loc.neighborhoods.items} />}
+  {bodyAfter.length > 0 && <LocalContent blocks={bodyAfter} />}
+  <Reviews title={loc.reviewsTitle} sub={loc.reviewsSub} />
+  <Faq title={loc.faqTitle} sub={loc.faqSub} items={loc.faq} />
+  <ServiceArea
+    title={loc.areaTitle}
+    sub={loc.areaSub}
+    infoHeading={loc.areaInfoHeading}
+    infoBlurb={loc.areaInfoBlurb}
+    cities={loc.nearby}
+    mapSrc={loc.mapSrc}
+  />
+  <FinalCta heading={loc.finalCta} />
+  <ContactForm heading={loc.contactHeading} description={loc.contactDesc} formName={`${loc.name} Water Damage Contact`} />
+</BaseLayout>

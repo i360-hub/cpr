@@ -1,0 +1,262 @@
+---
+// Contact section with the GoHighLevel form embed (kept as-is per spec).
+// The GHL form_embed.js handles auto-resize; iframe is lazy (below the fold).
+import { site } from "@data/site";
+import Icon from "@components/ui/Icon.astro";
+
+interface Props {
+  id?: string;
+  heading?: string;
+  description?: string;
+  cardTitle?: string;
+  cardSub?: string;
+  formName?: string;
+  trustItems?: string[];
+  /** Override the GHL form embed (e.g. the dedicated contact page's form). */
+  formSrc?: string;
+  formId?: string;
+}
+const {
+  id = "contact",
+  heading = "Get Water Damage Help Now",
+  description = "Water won't wait, and neither do we. Call or text for a fast response, or send us the details and we'll get right back to you.",
+  cardTitle = "Request a Free Assessment",
+  cardSub = "No cost, no pressure. We'll get right back to you.",
+  formName = "Contact",
+  trustItems = [
+    "We answer 24/7 and respond fast",
+    "Free on-site assessment",
+    "We bill your insurance directly",
+    "IICRC certified, licensed in SC & NC",
+    "One crew from cleanup to rebuild",
+  ],
+  formSrc = site.ghlFormSrc,
+  formId = site.ghlFormId,
+} = Astro.props;
+---
+
+<section id={id} class="cpr-section contact">
+  <div class="cpr-section-inner contact__inner">
+    <div class="contact__intro">
+      <h2 class="contact__heading">{heading}</h2>
+      <p class="contact__desc">{description}</p>
+
+      <a href={site.phoneHref} class="contact__phone">
+        <span class="contact__phone-icon"><Icon name="phone" /></span>
+        <span>
+          <span class="contact__phone-label">{site.hours}</span>
+          <span class="contact__phone-num">{site.phoneDisplay}</span>
+        </span>
+      </a>
+
+      <ul class="contact__trust">
+        {trustItems.map((t) => (<li><Icon name="check" /> <span set:html={t} /></li>))}
+      </ul>
+    </div>
+
+    <div class="contact__card">
+      <h3 class="contact__card-title">{cardTitle}</h3>
+      <p class="contact__card-sub">{cardSub}</p>
+      <!-- GHL form facade: the real iframe is injected by IntersectionObserver
+           just before it scrolls into view. Keeps the third-party form/cookie
+           out of the initial page load (Lighthouse-friendly) with no extra
+           click for real users. -->
+      <div
+        class="contact__formmount"
+        data-ghl-form
+        data-src={formSrc}
+        data-form-id={formId}
+        data-form-name={formName}
+      >
+        <div class="contact__facade">
+          <span class="contact__spinner" aria-hidden="true"></span>
+          <p>Loading secure form&hellip;</p>
+          <p class="contact__facade-alt">
+            Prefer to talk? <a href={site.phoneHref}>Call {site.phoneDisplay}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var mounts = document.querySelectorAll("[data-ghl-form]");
+    if (!mounts.length) return;
+    var embedLoaded = false;
+    function loadEmbed() {
+      if (embedLoaded) return;
+      embedLoaded = true;
+      var s = document.createElement("script");
+      s.src = "https://link.msgsndr.com/js/form_embed.js";
+      s.defer = true;
+      document.body.appendChild(s);
+    }
+    function activate(mount) {
+      if (mount.dataset.loaded) return;
+      mount.dataset.loaded = "1";
+      var f = document.createElement("iframe");
+      f.src = mount.dataset.src;
+      f.title = mount.dataset.formName || "Contact form";
+      f.id = "inline-" + mount.dataset.formId;
+      f.setAttribute("data-layout", "{'id':'INLINE'}");
+      f.setAttribute("data-form-id", mount.dataset.formId);
+      f.className = "contact__iframe";
+      mount.textContent = "";
+      mount.appendChild(f);
+      loadEmbed();
+    }
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              activate(e.target);
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { rootMargin: "250px" }
+      );
+      mounts.forEach(function (m) {
+        io.observe(m);
+      });
+    } else {
+      mounts.forEach(activate);
+    }
+  })();
+</script>
+
+<style>
+  .contact {
+    background: var(--cpr-bg-light);
+  }
+  .contact__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--cpr-space-2xl);
+    align-items: start;
+  }
+  .contact__heading {
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+  }
+  .contact__desc {
+    margin-top: var(--cpr-space-md);
+    font-size: 1.1rem;
+    color: var(--cpr-slate);
+    max-width: 46ch;
+  }
+  .contact__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: var(--cpr-space-xl);
+  }
+  .contact__phone-icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--cpr-red);
+    color: var(--cpr-white);
+    font-size: 1.35rem;
+  }
+  .contact__phone-label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--cpr-slate);
+    font-weight: 600;
+  }
+  .contact__phone-num {
+    display: block;
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--cpr-navy);
+  }
+  .contact__trust {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: var(--cpr-space-xl);
+    color: var(--cpr-slate);
+    font-weight: 600;
+  }
+  .contact__trust li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .contact__trust :global(svg) {
+    color: #16a34a;
+  }
+  .contact__card {
+    background: var(--cpr-white);
+    border-radius: var(--cpr-radius-lg);
+    box-shadow: var(--cpr-shadow-md);
+    padding: var(--cpr-space-xl);
+  }
+  .contact__card-title {
+    font-size: 1.4rem;
+  }
+  .contact__card-sub {
+    margin: 0.4rem 0 var(--cpr-space-md);
+    color: var(--cpr-slate-muted);
+  }
+  .contact__iframe {
+    width: 100%;
+    min-height: 492px;
+    border: none;
+    border-radius: 3px;
+    background: #f8fafc;
+  }
+  /* Reserve the form's height so injecting the iframe causes no layout shift. */
+  .contact__formmount {
+    min-height: 492px;
+  }
+  .contact__facade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    min-height: 492px;
+    border-radius: 3px;
+    background: #f8fafc;
+    color: var(--cpr-slate-muted);
+    text-align: center;
+    padding: var(--cpr-space-lg);
+  }
+  .contact__spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: var(--cpr-red);
+    border-radius: 50%;
+    animation: contact-spin 0.8s linear infinite;
+  }
+  .contact__facade-alt a {
+    color: var(--cpr-red-dark);
+    font-weight: 700;
+    text-decoration: underline;
+  }
+  @keyframes contact-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact__spinner {
+      animation: none;
+    }
+  }
+  @media (max-width: 860px) {
+    .contact__inner {
+      grid-template-columns: 1fr;
+      gap: var(--cpr-space-xl);
+    }
+  }
+</style>

@@ -1,0 +1,137 @@
+---
+// Homepage (/) — ranking-locked title + H1 (verbatim from services.ts homepage).
+// Section order matches the live site: Hero → Urgency → Process → Services →
+// Reviews → Differentiators → Insurance → FAQ → ServiceArea → FinalCTA → Contact.
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/widgets/Hero.astro";
+import UrgencyBand from "@components/widgets/UrgencyBand.astro";
+import Timeline from "@components/widgets/Timeline.astro";
+import ProcessSteps from "@components/widgets/ProcessSteps.astro";
+import ServicesGrid from "@components/widgets/ServicesGrid.astro";
+import Reviews from "@components/widgets/Reviews.astro";
+import Differentiators from "@components/widgets/Differentiators.astro";
+import InsuranceCard from "@components/widgets/InsuranceCard.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { homepage } from "@data/services";
+import heroImg from "@assets/images/hero-water-damage.jpg";
+
+const faq = [
+  { q: "Do you handle the rebuild after water damage or just the drying?", a: "Yes. Carolina Pro Restoration handles both. We do the emergency water removal, structural drying, and moisture monitoring. Then our own crew rebuilds everything we removed. That includes drywall, paint, trim, cabinets, flooring, and subfloors. You use one contractor from start to finish." },
+  { q: "How fast can you get to my house?", a: 'We are open 24 hours a day, 7 days a week. Our crew is based out of Fort Mill, SC and responds across a 20-mile radius including York County and the greater Charlotte area. Visit our <a href="/service-areas">service area pages</a> for response times to your specific location.' },
+  { q: "Do you bill my homeowners insurance directly?", a: "Yes. We work with all major insurance companies. We document the damage with photos and daily moisture readings, write the estimate in Xactimate (the same software your adjuster uses), and bill your insurance directly. You do not have to pay out of pocket for covered work." },
+  { q: "What should I do right now if a pipe bursts or my house is flooding?", a: "First, find your main water shut-off valve and turn off the water. If it is safe, turn off electricity to the wet rooms at the breaker box. Do not walk through standing water near electrical outlets. Then call us right away at (980) 277-3700. We will dispatch a crew immediately." },
+  { q: "How long does the drying process take after water damage?", a: "It depends on how much water entered the home, what materials were affected, and how fast we start. Most homes take 3 to 5 days of monitored drying. We check moisture levels every day and move equipment as things dry. We do not stop until the structure is verified dry." },
+  { q: "Will mold grow after water damage?", a: "Mold can start growing within 48 hours if wet materials are not dried properly. That is why fast water removal and professional drying are so important. If mold is already present, we contain the area, remove the mold safely, and clean the air with HEPA scrubbers." },
+  { q: "Do I need to hire a separate contractor to fix my walls and floors?", a: "No. That is what makes us different from most restoration companies. We dry your home and then our own crew rebuilds it. New drywall, paint, trim, flooring, cabinets, and subfloors. One project manager handles the whole job so you do not have to juggle multiple contractors." },
+  { q: "How much does water damage restoration cost?", a: "The cost depends on the size of the affected area, the type of water, and how much material needs to be removed and rebuilt. Most homeowners insurance policies cover water damage from sudden events like burst pipes and appliance leaks. We provide a free on-site assessment and handle the insurance paperwork for you." },
+];
+
+const homeCities = [
+  { label: "Fort Mill, SC", href: "/water-damage-restoration-fort-mill-sc" },
+  { label: "Charlotte, NC", href: "/water-damage-restoration-charlotte-nc" },
+  { label: "Rock Hill, SC", href: "/water-damage-restoration-rock-hill-sc" },
+  { label: "Pineville, NC", href: "/water-damage-restoration-pineville-nc" },
+  { label: "Indian Land, SC", href: "/water-damage-restoration-indian-land-sc" },
+  { label: "Ballantyne, NC", href: "/water-damage-restoration-ballantyne-nc" },
+  { label: "Tega Cay, SC", href: "/water-damage-restoration-tega-cay-sc" },
+  { label: "Clover, SC", href: "/water-damage-restoration-clover-sc" },
+];
+
+const processSteps = [
+  { title: "You Call, We Dispatch", text: "Call our 24/7 line. A local crew heads to your property right away. Our goal is to be on site within 60 minutes anywhere in our service area." },
+  { title: "We Inspect and Map the Moisture", text: "Our technicians use thermal cameras and moisture meters to find every wet area, even behind walls and under floors. We document everything from the start." },
+  { title: "Water Removal and Structural Drying", text: "We pull the water out fast with commercial extractors, then place air movers and dehumidifiers to dry the structure. We treat surfaces with antimicrobial solution to stop mold before it starts." },
+  { title: "Daily Moisture Checks and Documentation", text: "We log everything with photos and moisture readings your insurance company needs to process the claim. You get updates every step of the way." },
+  { title: "Full Rebuild and Final Walkthrough", text: "We rebuild drywall, paint, trim, cabinets, and flooring. The same project manager stays with your job until the final walkthrough is done and you are happy with the result." },
+];
+
+const damageTimeline = [
+  { badge: "In Minutes", title: "Water Spreads Fast", text: "Water soaks into carpet, furniture, and walls. It wicks up drywall like a sponge and ruins paint and baseboards right away." },
+  { badge: "Within 24 Hours", title: "Floors Start to Buckle", text: "Drywall gets soft and falls apart. Wood floors warp and cup. A musty smell fills the house as materials start to break down." },
+  { badge: "Within 48 Hours", title: "Mold Starts Growing", text: "Mold grows behind walls and under floors. The air becomes unhealthy to breathe. Cleanup costs go up fast at this point.", resolve: true },
+];
+
+const insurancePoints = [
+  "We take all the damage photos",
+  "We send daily moisture reports",
+  "We write the estimate in Xactimate",
+  "We talk to the adjuster for you",
+  "We bill them directly so you pay nothing out of pocket for covered work",
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+---
+
+<BaseLayout title={homepage.title} description={homepage.metaDescription} path="/" schema={faqSchema}>
+  <Hero
+    emergencyTag="🚨 24/7 Emergency Dispatch"
+    h1Lines={homepage.h1Lines}
+    subtitle="Standing in water? We dispatch certified crews across the greater Charlotte metro and surrounding Carolinas. Unlike 'tear-out only' franchises, we stop the damage and handle the entire rebuild with one dedicated team. We bill your insurance directly."
+    trustSignals={["Top-Rated Local Experts", "60-Min Response Goal", "Licensed, Insured & IICRC", "Direct Insurance Billing"]}
+    image={heroImg}
+    imageAlt="Carolina Pro Restoration emergency response van on site"
+    secondaryCta={{ label: "Request Inspection", href: "#contact" }}
+  />
+  <UrgencyBand />
+  <Timeline
+    title="What Waiting Costs You"
+    sub="Water damage is a chain reaction. The longer it sits, the more of your home it takes."
+    ctaLabel="The faster we start, the more we save. Call now — we're here 24/7."
+    cards={damageTimeline}
+  />
+  <ProcessSteps
+    title="What to Expect from Start to Finish"
+    sub="One project manager handles your entire job. Here is how it works from the first call to the final walkthrough."
+    steps={processSteps}
+    ctaLabel="One team. One project manager. One phone call."
+  />
+  <ServicesGrid />
+  <Reviews
+    title="What Our Customers Say"
+    sub="Real reviews from homeowners, property managers, and HOAs in the Fort Mill and Charlotte area."
+  />
+  <Differentiators
+    title="Why Homeowners Choose CPR Over the Competition"
+    sub="Most companies rip out your wet drywall and leave you to find your own painters, carpenters, and flooring guys. With CPR, you make one phone call and deal with one project manager. We handle everything."
+  />
+  <InsuranceCard
+    title="We Handle Your Insurance"
+    desc="We use Xactimate, the same software your insurance company uses, so there are no surprises and no delays on your claim."
+    points={insurancePoints}
+  />
+  <Faq
+    title="Water Damage Restoration FAQs"
+    sub="Clear answers for homeowners in the greater Charlotte metro and surrounding Carolinas."
+    items={faq}
+  />
+  <ServiceArea
+    title="Locally Owned. Serving the Greater Charlotte Metro."
+    sub="We are not a distant call center. We are locally owned and based right here in York County with crews across the region."
+    cities={homeCities}
+  />
+  <FinalCta heading="Water Damage Right Now? We Are Ready." />
+  <ContactForm
+    heading="Request a Free Inspection"
+    description="Fill out this short form and our team will call you back fast. For emergencies, call us directly — we pick up 24/7."
+    trustItems={[
+      "No cost for the on-site inspection",
+      "We respond to form requests within 30 minutes",
+      "No pressure, no obligation",
+      "We bring all the equipment on the first visit",
+      "Safe practices for families and pets",
+    ]}
+    formName="HomePage Short Contact"
+  />
+</BaseLayout>

@@ -1,0 +1,93 @@
+---
+// Per-city neighborhoods block (cpr-hood-block). Present on Fort Mill only on the
+// live site; data-driven so any city can opt in via locations.ts.
+import Icon from "@components/ui/Icon.astro";
+
+interface Props {
+  city: string;
+  intro?: string;
+  neighborhoods: string[];
+  viewAllHref?: string;
+}
+const {
+  city,
+  intro = `We respond to water damage calls across all of ${city}, including:`,
+  neighborhoods,
+  viewAllHref = "/service-areas",
+} = Astro.props;
+---
+
+<section class="cpr-section hood">
+  <div class="cpr-section-inner">
+    <h2 class="hood__title">{city} Neighborhoods We Serve</h2>
+    <p class="hood__intro">{intro}</p>
+
+    <ul class="hood__grid" role="list">
+      {
+        neighborhoods.map((n) => (
+          <li class="hood__item">
+            <span class="hood__dot" aria-hidden="true" />
+            {n}
+          </li>
+        ))
+      }
+    </ul>
+
+    <a href={viewAllHref} class="hood__all">View all service areas across Charlotte and York County <Icon name="arrow" /></a>
+  </div>
+</section>
+
+<style>
+  .hood__title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+  }
+  .hood__intro {
+    margin: 0.5rem 0 var(--cpr-space-xl);
+    color: var(--cpr-slate);
+    font-size: 1.05rem;
+  }
+  .hood__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-bottom: var(--cpr-space-xl);
+  }
+  .hood__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--cpr-bg-light);
+    border-radius: var(--cpr-radius-md);
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    color: var(--cpr-navy);
+  }
+  .hood__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--cpr-red);
+    flex: none;
+  }
+  .hood__all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    color: var(--cpr-red);
+  }
+  .hood__all :global(svg) {
+    width: 1em;
+    height: 1em;
+  }
+  @media (max-width: 900px) {
+    .hood__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .hood__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

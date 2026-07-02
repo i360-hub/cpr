@@ -1,0 +1,205 @@
+---
+// About page — redesigned with the site component library & design system.
+// Copy ported verbatim from the live /about-carolina-pro-restoration page.
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import Icon from "@components/ui/Icon.astro";
+import ResponsivePicture from "@components/ui/ResponsivePicture.astro";
+import Reviews from "@components/widgets/Reviews.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { site } from "@data/site";
+import storyImg from "@assets/images/hero-general.jpg";
+
+const story = [
+  "We're Carolina Pro Restoration LLC — the team our customers call CPR. We're headquartered at 3650 Centre Circle, Suite I, right here in Fort Mill, South Carolina, and most of our crew lives in the same York County and south Charlotte neighborhoods we work in every day.",
+  "We started this company because we saw the same problem over and over: a family has a water emergency, a franchise company shows up to rip out the wet drywall, and then leaves the homeowner to find their own painter, their own flooring guy, and their own contractor to put the house back together. Three companies, three schedules, three invoices, nobody in charge.",
+  "We do it differently. One phone call, one project manager, one team from the moment we pull the water out to the moment we finish the final coat of paint. We handle the emergency extraction, the structural drying, the mold prevention, and the full rebuild — and we document everything in Xactimate so your insurance claim moves fast with no surprises.",
+  "We're licensed in South Carolina and North Carolina (SC License #70177448), IICRC certified for water restoration and mold remediation, and we answer our own phone 24 hours a day, 7 days a week, including holidays. When you call (980) 277-3700, you get our Fort Mill team — not a call center, not a franchise switchboard, not another company with a similar name.",
+];
+
+const values = [
+  { icon: "check", title: "One Team, Start to Finish", text: "One phone call, one project manager, one crew — from emergency extraction to the final coat of paint." },
+  { icon: "shield", title: "Licensed in SC & NC", text: "Fully licensed and insured in both states. SC License #70177448." },
+  { icon: "star", title: "IICRC Certified", text: "Certified for water restoration and mold remediation, following industry standards on every job." },
+  { icon: "clock", title: "24/7 Local Answer", text: "We answer our own phone around the clock — our Fort Mill team, never a call center or franchise switchboard." },
+];
+
+const orgSchema = [
+  {
+    "@type": "AboutPage",
+    name: "About Carolina Pro Restoration",
+    description:
+      "Locally owned, Fort Mill based water damage restoration and full rebuild — one team from extraction to final rebuild, licensed in SC & NC, IICRC certified.",
+  },
+];
+---
+
+<BaseLayout
+  title="Carolina Pro Restoration | Fort Mill SC Available 24/7"
+  description="Explore eco-friendly restoration services with Carolina Pro Restoration in Fort Mill, SC. Committed to quality and the environment. Visit us today!"
+  path="/about-carolina-pro-restoration"
+  schema={orgSchema}
+>
+  <PageHeader
+    eyebrow="Charlotte Area's Best Restoration Company"
+    title="About Carolina Pro Restoration"
+    subtitle="One local team from the first phone call to the final coat of paint — licensed in SC &amp; NC, IICRC certified, and answering 24/7."
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Contact Us", href: "/contact-us", variant: "outline" },
+    ]}
+  />
+
+  <!-- Story -->
+  <section class="cpr-section about-story">
+    <div class="cpr-section-inner about-story__grid">
+      <div class="about-story__text">
+        <SectionHeader
+          align="left"
+          eyebrow="Who We Are"
+          title="Locally Owned. Fort Mill Based. Serving the Greater Charlotte Metro."
+        />
+        {story.map((p) => <p class="about-story__p">{p}</p>)}
+      </div>
+      <div class="about-story__media">
+        <ResponsivePicture
+          src={storyImg}
+          alt="Carolina Pro Restoration trucks at the Fort Mill office"
+          widths={[480, 768, 1024]}
+          sizes="(max-width: 900px) 100vw, 45vw"
+          pictureClass="about-story__pic"
+        />
+        <div class="about-story__badge">
+          <span class="about-story__badge-num">SC &amp; NC</span>
+          <span>Licensed &amp; Insured · {site.license}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="cpr-section cpr-section--light">
+    <div class="cpr-section-inner">
+      <SectionHeader
+        eyebrow="The CPR Difference"
+        title="Why Homeowners Trust Us With the Whole Job"
+        sub="Most restoration companies only do the emergency part. We handle everything — and we're accountable for the result."
+      />
+      <ul class="about-values" role="list">
+        {
+          values.map((v) => (
+            <li class="about-values__card">
+              <span class="about-values__icon"><Icon name={v.icon} /></span>
+              <h3 class="about-values__title">{v.title}</h3>
+              <p class="about-values__text">{v.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <Reviews
+    title="What Our Customers Say"
+    sub="Real reviews from homeowners, property managers, and HOAs in the Fort Mill and Charlotte area."
+  />
+  <ServiceArea />
+  <FinalCta heading="Have a Water Damage Emergency? We're Ready 24/7." />
+  <ContactForm heading="Get in Touch With Our Fort Mill Team" formName="About Page Contact" />
+</BaseLayout>
+
+<style>
+  .about-story__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--cpr-space-2xl);
+    align-items: start;
+  }
+  .about-story__p {
+    color: var(--cpr-slate);
+    line-height: 1.75;
+    margin-bottom: var(--cpr-space-md);
+    font-size: 1.03rem;
+  }
+  .about-story__media {
+    position: sticky;
+    top: calc(var(--cpr-header-h) + 1rem);
+  }
+  .about-story__media :global(.about-story__pic),
+  .about-story__media :global(img) {
+    width: 100%;
+    border-radius: var(--cpr-radius-lg);
+    box-shadow: var(--cpr-shadow-md);
+  }
+  .about-story__badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: var(--cpr-space-md);
+    background: var(--cpr-navy);
+    color: var(--cpr-white);
+    padding: 1rem 1.25rem;
+    border-radius: var(--cpr-radius-md);
+    font-size: 0.9rem;
+  }
+  .about-story__badge-num {
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: #ff9a95;
+    flex: none;
+  }
+
+  .about-values {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--cpr-space-lg);
+  }
+  .about-values__card {
+    background: var(--cpr-white);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: var(--cpr-radius-lg);
+    padding: var(--cpr-space-xl);
+    box-shadow: var(--cpr-shadow-sm);
+  }
+  .about-values__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--cpr-radius-md);
+    background: rgba(211, 47, 47, 0.1);
+    color: var(--cpr-red);
+    font-size: 1.35rem;
+    margin-bottom: var(--cpr-space-md);
+  }
+  .about-values__title {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+  }
+  .about-values__text {
+    color: var(--cpr-slate);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 900px) {
+    .about-story__grid {
+      grid-template-columns: 1fr;
+      gap: var(--cpr-space-xl);
+    }
+    .about-story__media {
+      position: static;
+    }
+    .about-values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 520px) {
+    .about-values {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

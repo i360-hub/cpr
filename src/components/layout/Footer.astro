@@ -1,0 +1,234 @@
+---
+import { Image } from "astro:assets";
+import { site } from "@data/site";
+import Icon from "@components/ui/Icon.astro";
+import bbb from "@assets/images/badge-bbb.png";
+import iicrc from "@assets/images/badge-iicrc.png";
+import ria from "@assets/images/badge-ria.jpg";
+
+const badges = [
+  { src: bbb, alt: "BBB Accredited Business" },
+  { src: iicrc, alt: "IICRC Certified" },
+  { src: ria, alt: "RIA Member" },
+];
+const { address } = site;
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <!-- Our Service Areas -->
+    <section class="site-footer__areas" aria-labelledby="footer-areas-h">
+      <h2 id="footer-areas-h" class="site-footer__h">Our Service Areas</h2>
+      <p class="site-footer__lede">
+        Locally owned and Fort Mill based. 24/7 emergency response across the Carolinas metro.
+      </p>
+      <ul class="site-footer__grid">
+        {
+          site.footerServiceAreas.map((a) => (
+            <li>
+              <a href={a.href}>{a.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+      <a href="/service-areas" class="site-footer__viewall">View All Service Areas <Icon name="arrow" /></a>
+    </section>
+
+    <div class="site-footer__cols">
+      <!-- Brand / NAP -->
+      <div class="site-footer__col">
+        <p class="site-footer__brand">{site.legalName}</p>
+        <address class="site-footer__nap">
+          <span class="site-footer__naplabel">Headquarters</span>
+          {address.street}<br />
+          {address.city}, {address.state} {address.zip}
+        </address>
+        <p class="site-footer__hours"><Icon name="clock" /> {site.hours}</p>
+        <a href={site.phoneHref} class="site-footer__phone">{site.phoneDisplay}</a>
+      </div>
+
+      <!-- Secondary nav -->
+      <nav class="site-footer__col" aria-label="Footer">
+        <span class="site-footer__naplabel">Company</span>
+        <ul class="site-footer__links">
+          {site.footerLinks.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+          <li><a href={site.paymentUrl} rel="noopener" target="_blank">Pay Now</a></li>
+        </ul>
+      </nav>
+
+      <!-- Trust + social -->
+      <div class="site-footer__col">
+        <span class="site-footer__naplabel">Certified & Accredited</span>
+        <div class="site-footer__badges">
+          {badges.map((b) => <Image src={b.src} alt={b.alt} height={44} loading="lazy" />)}
+        </div>
+        <div class="site-footer__social">
+          <a href={site.socials.facebook} aria-label="Facebook" rel="noopener" target="_blank"><Icon name="facebook" /></a>
+          <a href={site.socials.instagram} aria-label="Instagram" rel="noopener" target="_blank"><Icon name="instagram" /></a>
+          <a href={site.socials.linkedin} aria-label="LinkedIn" rel="noopener" target="_blank"><Icon name="linkedin" /></a>
+        </div>
+      </div>
+    </div>
+
+    <p class="site-footer__copy">
+      &copy; {site.copyrightYear} {site.copyright}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--cpr-navy);
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .site-footer__inner {
+    max-width: var(--cpr-max-width);
+    margin-inline: auto;
+    padding: var(--cpr-space-3xl) var(--cpr-space-lg) var(--cpr-space-xl);
+  }
+  .site-footer__h {
+    color: var(--cpr-white);
+    font-size: 1.6rem;
+  }
+  .site-footer__lede {
+    margin: 0.5rem 0 var(--cpr-space-lg);
+    max-width: 620px;
+  }
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+  }
+  .site-footer__grid a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--cpr-white);
+    color: var(--cpr-navy);
+    padding: 0.85rem 1.1rem;
+    border-radius: var(--cpr-radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .site-footer__grid a::after {
+    content: "→";
+    color: var(--cpr-red);
+    font-weight: 700;
+    margin-left: 0.5rem;
+  }
+  .site-footer__grid a:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--cpr-shadow-md);
+    border-color: var(--cpr-red);
+  }
+  .site-footer__viewall {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: var(--cpr-space-lg);
+    color: var(--cpr-white);
+    font-weight: 700;
+  }
+  .site-footer__viewall :global(svg) {
+    width: 1.1em;
+    height: 1.1em;
+    color: var(--cpr-red);
+  }
+
+  .site-footer__cols {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: var(--cpr-space-xl);
+    margin-top: var(--cpr-space-3xl);
+    padding-top: var(--cpr-space-xl);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .site-footer__naplabel {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cpr-slate-light);
+    margin-bottom: 0.75rem;
+  }
+  .site-footer__brand {
+    color: var(--cpr-white);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+  .site-footer__nap {
+    font-style: normal;
+    line-height: 1.7;
+    margin-bottom: var(--cpr-space-md);
+  }
+  .site-footer__hours {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.5rem;
+  }
+  .site-footer__hours :global(svg) {
+    color: var(--cpr-red);
+  }
+  .site-footer__phone {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cpr-white);
+  }
+  .site-footer__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .site-footer__links a:hover {
+    color: var(--cpr-white);
+  }
+  .site-footer__badges {
+    display: flex;
+    align-items: center;
+    gap: var(--cpr-space-md);
+    flex-wrap: wrap;
+    background: var(--cpr-white);
+    padding: 0.75rem 1rem;
+    border-radius: var(--cpr-radius-md);
+    width: fit-content;
+  }
+  .site-footer__social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: var(--cpr-space-lg);
+    font-size: 1.4rem;
+  }
+  .site-footer__social a {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .site-footer__social a:hover {
+    color: var(--cpr-white);
+  }
+  .site-footer__copy {
+    margin-top: var(--cpr-space-xl);
+    padding-top: var(--cpr-space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.85rem;
+    color: var(--cpr-slate-light);
+  }
+
+  @media (max-width: 960px) {
+    .site-footer__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .site-footer__cols {
+      grid-template-columns: 1fr;
+      gap: var(--cpr-space-xl);
+    }
+  }
+  @media (max-width: 600px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

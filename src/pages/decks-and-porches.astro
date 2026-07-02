@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+---
+
+<BaseLayout
+  title="Decks, Porches & More in Charlotte & Fort Mill"
+  description="Custom decks, porches, and more for your outdoor space in Charlotte & Fort Mill. Get a free estimate from Carolina Pro Restoration today!"
+  path="/decks-and-porches"
+>
+  <PageHeader
+    eyebrow="Outdoor Living & Rebuild"
+    title="Decks, Porches and Rails in Fort Mill and Charlotte Area"
+    subtitle="Custom decks, porches, and rails built to last — the same one-team craftsmanship we bring to every rebuild. Get a free estimate."
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Free Estimate", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["decks-and-porches"]} />
+  <ServiceArea />
+  <FinalCta heading="Ready to Build Your Outdoor Space? Let's Talk." />
+  <ContactForm heading="Request a Free Deck or Porch Estimate" formName="Decks & Porches Contact" />
+</BaseLayout>

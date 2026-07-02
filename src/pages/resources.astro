@@ -1,0 +1,25 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+---
+
+<BaseLayout
+  title="Mold & Water Damage Help | Carolina Pro Restoration"
+  description="Explore expert articles on mold prevention & cleanup. Learn more! Fort Mill, SC."
+  path="/resources"
+>
+  <PageHeader
+    eyebrow="Homeowner Resources"
+    title="Emergency Resources"
+    subtitle="Expert guides on water damage, mold, and what to do in the first hours of an emergency — from the Carolina Pro Restoration team."
+    ctas={[{ label: `Call 24/7: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" }]}
+  />
+  <LocalContent blocks={standalonePages["resources"]} />
+  <FinalCta heading="Have an Emergency Right Now? Don't Wait — Call Us." />
+  <ContactForm heading="Talk to Our Team" formName="Resources Page Contact" />
+</BaseLayout>

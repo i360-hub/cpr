@@ -1,0 +1,275 @@
+---
+// Blog article template — root URLs (/{slug}) matching the live blog post links.
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import Button from "@components/ui/Button.astro";
+import Icon from "@components/ui/Icon.astro";
+import { blogPosts, blogBySlug } from "@data/blogPosts";
+import { site } from "@data/site";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "../assets/images/blog/*.{jpg,jpeg,png,webp}",
+  { eager: true }
+);
+const imgFor = (slug: string) => {
+  const key = Object.keys(images).find((k) => k.includes(`/blog/${slug}.`));
+  return key ? images[key].default : undefined;
+};
+
+export function getStaticPaths() {
+  return blogPosts.map((p) => ({ params: { post: p.slug } }));
+}
+
+const { post } = Astro.params;
+const article = blogBySlug(post)!;
+const heroImg = imgFor(article.slug);
+
+const related = blogPosts.filter((p) => p.slug !== article.slug).slice(0, 3);
+
+const articleSchema = [
+  {
+    "@type": "BlogPosting",
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    keywords: article.tags.join(", "),
+    author: { "@type": "Organization", name: site.legalName },
+    publisher: { "@type": "Organization", name: site.legalName },
+  },
+];
+---
+
+<BaseLayout
+  title={`${article.title} | Carolina Pro Restoration`}
+  description={article.description}
+  path={`/${article.slug}`}
+  ogImage={heroImg?.src}
+  schema={articleSchema}
+>
+  <article class="post">
+    <!-- Header -->
+    <header class="post__header">
+      <div class="post__header-inner">
+        <a href="/blog" class="post__back"><Icon name="arrow" class="post__back-icon" /> All guides</a>
+        <p class="post__meta">
+          <span>{article.dateLabel}</span>
+          <span>· {article.readMinutes} min read</span>
+        </p>
+        <h1 class="post__title">{article.title}</h1>
+        <p class="post__lede">{article.description}</p>
+      </div>
+    </header>
+
+    {
+      heroImg && (
+        <div class="post__hero">
+          <Image src={heroImg} alt={article.title} widths={[640, 1024, 1440]} sizes="(max-width: 1000px) 100vw, 1000px" loading="eager" />
+        </div>
+      )
+    }
+
+    <!-- Body -->
+    <LocalContent blocks={article.body} />
+
+    <!-- Tags + CTA -->
+    <div class="post__foot">
+      {
+        article.tags.length > 0 && (
+          <ul class="post__tags" role="list">
+            {article.tags.map((t) => <li>{t}</li>)}
+          </ul>
+        )
+      }
+      <div class="post__cta">
+        <div>
+          <h2 class="post__cta-title">Dealing With Water Damage Right Now?</h2>
+          <p>Our Fort Mill team answers 24/7 and can be on site fast. One call, one crew, start to finish.</p>
+        </div>
+        <Button href={site.phoneHref} variant="call" size="lg">Call {site.phoneDisplay}</Button>
+      </div>
+    </div>
+  </article>
+
+  <!-- Related -->
+  <section class="cpr-section cpr-section--light">
+    <div class="cpr-section-inner">
+      <h2 class="related__title">More Guides From the CPR Team</h2>
+      <ul class="related__grid" role="list">
+        {
+          related.map((p) => {
+            const img = imgFor(p.slug);
+            return (
+              <li class="related__card">
+                <a href={`/${p.slug}`}>
+                  {img && (
+                    <div class="related__media">
+                      <Image src={img} alt={p.title} widths={[400, 640]} sizes="360px" loading="lazy" />
+                    </div>
+                  )}
+                  <div class="related__body">
+                    <p class="related__meta">{p.dateLabel} · {p.readMinutes} min</p>
+                    <h3 class="related__ctitle">{p.title}</h3>
+                  </div>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </section>
+
+  <FinalCta heading="Water Damage or Mold in Your Home? Talk to Our Team." />
+  <ContactForm heading="Get Fast, Local Help" formName={`Blog: ${article.slug}`} />
+</BaseLayout>
+
+<style>
+  .post__header {
+    padding: clamp(2.5rem, 6vw, 4rem) var(--cpr-space-lg) var(--cpr-space-lg);
+  }
+  .post__header-inner {
+    max-width: var(--cpr-max-width-narrow);
+    margin-inline: auto;
+  }
+  .post__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: 700;
+    color: var(--cpr-red);
+    font-size: 0.9rem;
+    margin-bottom: var(--cpr-space-md);
+  }
+  .post__back-icon {
+    width: 1em;
+    height: 1em;
+    transform: rotate(180deg);
+  }
+  .post__meta {
+    color: var(--cpr-slate-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+  .post__title {
+    font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .post__lede {
+    margin-top: var(--cpr-space-md);
+    font-size: 1.2rem;
+    color: var(--cpr-slate);
+    line-height: 1.6;
+  }
+  .post__hero {
+    max-width: var(--cpr-max-width);
+    margin: var(--cpr-space-lg) auto 0;
+    padding-inline: var(--cpr-space-lg);
+  }
+  .post__hero :global(img) {
+    width: 100%;
+    max-height: 460px;
+    object-fit: cover;
+    border-radius: var(--cpr-radius-lg);
+  }
+  /* tighten the prose column under the hero */
+  .post :global(.local) {
+    padding-top: var(--cpr-space-xl);
+    padding-bottom: var(--cpr-space-lg);
+  }
+
+  .post__foot {
+    max-width: var(--cpr-max-width-narrow);
+    margin: 0 auto var(--cpr-space-3xl);
+    padding-inline: var(--cpr-space-lg);
+  }
+  .post__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: var(--cpr-space-xl);
+  }
+  .post__tags li {
+    background: var(--cpr-bg-light);
+    color: var(--cpr-slate);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--cpr-radius-pill);
+  }
+  .post__cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--cpr-space-lg);
+    flex-wrap: wrap;
+    background: var(--cpr-navy);
+    color: var(--cpr-white);
+    border-radius: var(--cpr-radius-lg);
+    padding: var(--cpr-space-xl);
+  }
+  .post__cta-title {
+    color: var(--cpr-white);
+    font-size: 1.3rem;
+    margin-bottom: 0.3rem;
+  }
+  .post__cta p {
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 46ch;
+  }
+
+  .related__title {
+    font-size: 1.6rem;
+    margin-bottom: var(--cpr-space-xl);
+  }
+  .related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--cpr-space-lg);
+  }
+  .related__card {
+    background: var(--cpr-white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: var(--cpr-radius-lg);
+    overflow: hidden;
+    box-shadow: var(--cpr-shadow-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .related__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--cpr-shadow-md);
+  }
+  .related__media {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+  .related__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .related__body {
+    padding: var(--cpr-space-md) var(--cpr-space-lg) var(--cpr-space-lg);
+  }
+  .related__meta {
+    color: var(--cpr-slate-muted);
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+  }
+  .related__ctitle {
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+  @media (max-width: 800px) {
+    .related__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

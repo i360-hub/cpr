@@ -1,0 +1,91 @@
+---
+// Dynamic Tier-1 service page template. Renders the shared 16-section stack from
+// servicePages.ts (per-page copy) + services.ts (verbatim title/H1/meta).
+// Produces /water-damage-restoration, /storm-damage, … at their exact live URLs.
+import type { ImageMetadata } from "astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/widgets/Hero.astro";
+import ProofStrip from "@components/widgets/ProofStrip.astro";
+import Timeline from "@components/widgets/Timeline.astro";
+import WarningSigns from "@components/widgets/WarningSigns.astro";
+import Scenarios from "@components/widgets/Scenarios.astro";
+import ProcessSteps from "@components/widgets/ProcessSteps.astro";
+import WaterCategories from "@components/widgets/WaterCategories.astro";
+import Differentiators from "@components/widgets/Differentiators.astro";
+import InsuranceCard from "@components/widgets/InsuranceCard.astro";
+import Reviews from "@components/widgets/Reviews.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import CostTable from "@components/widgets/CostTable.astro";
+import { servicePages } from "@data/servicePages";
+import { serviceBySlug } from "@data/services";
+
+import heroWater from "@assets/images/hero-water-damage.jpg";
+import heroStorm from "@assets/images/hero-storm.jpg";
+import heroGeneral from "@assets/images/hero-general.jpg";
+
+const heroImages: Record<string, ImageMetadata> = {
+  "water-damage-restoration": heroWater,
+  "storm-damage": heroStorm,
+};
+
+export function getStaticPaths() {
+  return Object.keys(servicePages).map((service) => ({ params: { service } }));
+}
+
+const { service } = Astro.params;
+const data = servicePages[service];
+const svc = serviceBySlug(service)!;
+const heroImg = heroImages[service] ?? heroGeneral;
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: data.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+---
+
+<BaseLayout title={svc.title} description={svc.metaDescription} path={`/${service}`} schema={faqSchema}>
+  <Hero
+    emergencyTag={data.hero.emergencyTag}
+    h1Lines={svc.h1Lines}
+    subtitle={data.hero.subtitle}
+    trustSignals={data.hero.trustSignals}
+    image={heroImg}
+    imageAlt={`Carolina Pro Restoration — ${svc.gridTitle}`}
+    secondaryCta={{ label: data.hero.secondaryCta ?? "Request Free Inspection", href: "#contact" }}
+  />
+  <ProofStrip />
+  <Timeline title={data.timeline.title} sub={data.timeline.sub} ctaLabel={data.timeline.ctaLabel} cards={data.timeline.cards} />
+  <WarningSigns title={data.signs.title} sub={data.signs.sub} note={data.signs.note} signs={data.signs.signs} />
+  <Scenarios title={data.scenarios.title} sub={data.scenarios.sub} ctaLabel={data.scenarios.ctaLabel} scenarios={data.scenarios.scenarios} />
+  <ProcessSteps title={data.process.title} sub={data.process.sub} ctaLabel={data.process.ctaLabel} steps={data.process.steps} />
+  <WaterCategories
+    title={data.categories.title}
+    sub={data.categories.sub}
+    note={data.categories.note}
+    categories={data.categories.categories}
+  />
+  {data.cost && <CostTable title={data.cost.title} sub={data.cost.sub} note={data.cost.note} rows={data.cost.rows} />}
+  <Differentiators title={data.differentiators.title} sub={data.differentiators.sub} rows={data.differentiators.rows} />
+  <InsuranceCard title={data.insurance.title} desc={data.insurance.desc} points={data.insurance.points} />
+  <Reviews title={data.reviewsTitle} sub={data.reviewsSub} />
+  <Faq title={data.faqTitle} sub={data.faqSub} ctaLabel={data.faqCtaLabel} items={data.faq} />
+  <ServiceArea
+    title={data.areaTitle}
+    sub={data.areaSub}
+    infoHeading={data.areaInfoHeading}
+    infoBlurb={data.areaInfoBlurb}
+  />
+  <FinalCta heading={data.finalCta} />
+  <ContactForm heading={data.contactHeading} description={data.contactDesc} formName={`${svc.gridTitle} Contact`} />
+  <RelatedServices title={data.related.title} sub={data.related.sub} cards={data.related.cards} />
+</BaseLayout>

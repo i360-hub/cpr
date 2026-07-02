@@ -1,0 +1,101 @@
+---
+// "Signs of Water Damage" warning grid (live class: wp-signs). Tier-1 service pages.
+import SectionHeader from "@components/ui/SectionHeader.astro";
+import Button from "@components/ui/Button.astro";
+import Icon from "@components/ui/Icon.astro";
+
+interface Props {
+  title?: string;
+  sub?: string;
+  signs?: string[];
+  note?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+const {
+  title = "Signs of Water Damage",
+  sub = "Caught early, water damage is a quick fix. Left alone, it turns into mold and rot. If you spot any of these, call us.",
+  signs = [
+    "Water stains on ceilings or walls",
+    "Peeling or bubbling paint",
+    "Warped or buckling floors",
+    "Musty or damp smell",
+    "Soft or sagging drywall",
+    "Mold or mildew spots",
+  ],
+  note = "Not sure how bad it is? The inspection is free — we'll find every wet spot.",
+  ctaLabel = "Request a Free Inspection",
+  ctaHref = "#contact",
+} = Astro.props;
+---
+
+<section class="cpr-section signs">
+  <div class="cpr-section-inner">
+    <SectionHeader title={title} sub={sub} />
+
+    <ul class="signs__grid" role="list">
+      {
+        signs.map((s) => (
+          <li class="signs__item">
+            <span class="signs__icon"><Icon name="x" /></span>
+            <span set:html={s} />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="signs__foot">
+      <p class="signs__note" set:html={note} />
+      <Button href={ctaHref} variant="primary" size="lg">{ctaLabel}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .signs__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--cpr-space-md);
+  }
+  .signs__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: var(--cpr-white);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-left: 4px solid var(--cpr-red);
+    border-radius: var(--cpr-radius-md);
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    color: var(--cpr-navy);
+  }
+  .signs__icon {
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background: rgba(211, 47, 47, 0.12);
+    color: var(--cpr-red);
+    flex: none;
+    font-size: 0.9rem;
+  }
+  .signs__foot {
+    margin-top: var(--cpr-space-xl);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--cpr-space-md);
+  }
+  .signs__note {
+    color: var(--cpr-slate);
+    font-weight: 600;
+    max-width: 46ch;
+  }
+  @media (max-width: 780px) {
+    .signs__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
