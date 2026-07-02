@@ -1,0 +1,15 @@
+# Cloudflare Workers (Static Assets) config.
+# This project is a purely static Astro build — no Worker script (no `main`),
+# just the prebuilt `dist/` folder served as static assets at the edge.
+# `_redirects` and `_headers` inside dist/ are honored by Workers Static Assets.
+#
+# Build command:  npm run build   (produces ./dist)
+# Deploy command: npx wrangler deploy
+
+name = "cpr"
+compatibility_date = "2025-01-01"
+
+[assets]
+directory = "./dist"
+# not_found_handling serves our styled 404.html for unmatched routes
+not_found_handling = "404-page"
