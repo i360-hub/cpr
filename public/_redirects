@@ -33,3 +33,22 @@
 # --- Any other /locations/* (out-of-scope cities) -> the service-areas hub ---
 /locations/*                                                       /service-areas                     301
 /locations                                                         /service-areas                     301
+
+# --- Old landing pages & un-migrated blog posts still indexed in Google ---
+# (Discovered via Search Console: URLs with rankings that would otherwise 404.
+#  Each points to the closest topically-relevant live page.)
+/expert-contractor-for-water-damage-restoration-in-fort-mill                                                    /water-damage-restoration-fort-mill-sc   301
+/water-damage-restoration-in-fort-mill-charlotte-rapid-trusted-emergency-service-by-carolina-pro-restoration    /water-damage-restoration-fort-mill-sc   301
+/fast-trusted-water-damage-restoration-in-fort-mill-sc-24-7-emergency-response                                  /water-damage-restoration-fort-mill-sc   301
+/water-damage-restoration-rock-hill-sc-your-trusted-local-experts                                               /water-damage-restoration-rock-hill-sc   301
+/roof-repair---replacement                                                                                      /storm-damage                            301
+/decks--porches-and-more                                                                                        /decks-and-porches                       301
+/indian-land-hoa-communities-group-water-damage-prevention-planning                                             /water-damage-restoration-indian-land-sc 301
+/5-signs-your-fort-mill-home-s-air-ducts-are-making-you-sick                                                    /duct-cleaning                           301
+/best-crawl-space-dehumidifiers-installation-services                                                           /crawlspace                              301
+/understanding-water-damage-restoration-for-homeowners-a-practical-guide-to-cleanup-emergency-extraction-and-cost  /water-damage-restoration             301
+/understanding-common-sources-of-water-damage-in-properties                                                     /water-damage-restoration                301
+/best-family-events-in-rock-hill-this-fall                                                                      /blog                                    301
+/rock-hill-s-best-family-events-and-activities-your-local-guide                                                 /blog                                    301
+/fort-mill-summer-2025-how-local-events-and-weather-affect-your-home-s-air-quality-and-water-safety             /blog                                    301
+/fort-mill-family-neighborhoods-summer-break-water-damage-prevention                                            /blog                                    301

@@ -15,8 +15,10 @@ import Faq from "@components/widgets/Faq.astro";
 import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
 import { homepage } from "@data/services";
-import heroImg from "@assets/images/hero-water-damage.jpg";
+import heroImg from "@assets/images/hero-home.webp";
+import imgCrew from "@assets/images/organic/cpr-technician.jpg";
 
 const faq = [
   { q: "Do you handle the rebuild after water damage or just the drying?", a: "Yes. Carolina Pro Restoration handles both. We do the emergency water removal, structural drying, and moisture monitoring. Then our own crew rebuilds everything we removed. That includes drywall, paint, trim, cabinets, flooring, and subfloors. You use one contractor from start to finish." },
@@ -51,7 +53,8 @@ const processSteps = [
 const damageTimeline = [
   { badge: "In Minutes", title: "Water Spreads Fast", text: "Water soaks into carpet, furniture, and walls. It wicks up drywall like a sponge and ruins paint and baseboards right away." },
   { badge: "Within 24 Hours", title: "Floors Start to Buckle", text: "Drywall gets soft and falls apart. Wood floors warp and cup. A musty smell fills the house as materials start to break down." },
-  { badge: "Within 48 Hours", title: "Mold Starts Growing", text: "Mold grows behind walls and under floors. The air becomes unhealthy to breathe. Cleanup costs go up fast at this point.", resolve: true },
+  { badge: "Within 48 Hours", title: "Mold Starts Growing", text: "Mold grows behind walls and under floors. The air becomes unhealthy to breathe. Cleanup costs go up fast at this point." },
+  { badge: "Within 60 Minutes", title: "We Are at Your Door", text: "Our local crew arrives with truck-mounted extractors, dehumidifiers, and thermal cameras to stop the damage before it spreads.", resolve: true },
 ];
 
 const insurancePoints = [
@@ -81,7 +84,7 @@ const faqSchema = [
     subtitle="Standing in water? We dispatch certified crews across the greater Charlotte metro and surrounding Carolinas. Unlike 'tear-out only' franchises, we stop the damage and handle the entire rebuild with one dedicated team. We bill your insurance directly."
     trustSignals={["Top-Rated Local Experts", "60-Min Response Goal", "Licensed, Insured & IICRC", "Direct Insurance Billing"]}
     image={heroImg}
-    imageAlt="Carolina Pro Restoration emergency response van on site"
+    imageAlt="Carolina Pro Restoration branded truck and water-proofing van at the Fort Mill office"
     secondaryCta={{ label: "Request Inspection", href: "#contact" }}
   />
   <UrgencyBand />
@@ -105,6 +108,14 @@ const faqSchema = [
   <Differentiators
     title="Why Homeowners Choose CPR Over the Competition"
     sub="Most companies rip out your wet drywall and leave you to find your own painters, carpenters, and flooring guys. With CPR, you make one phone call and deal with one project manager. We handle everything."
+  />
+  <ActionShot
+    image={imgCrew}
+    alt="Carolina Pro Restoration technician beside a company van in Fort Mill, SC"
+    eyebrow="Locally owned, Fort Mill based"
+    heading="One local crew — from the first call to the final coat of paint"
+    text="We answer our own phone 24/7 and dispatch our own IICRC-certified technicians. Water removal, drying, mold, and the full rebuild — all handled by one team. No franchise call center, no subcontractor runaround."
+    flip={true}
   />
   <InsuranceCard
     title="We Handle Your Insurance"

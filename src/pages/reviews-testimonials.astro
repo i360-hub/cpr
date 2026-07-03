@@ -5,7 +5,7 @@ import Reviews from "@components/widgets/Reviews.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import { site } from "@data/site";
-import { reviewsSummary } from "@data/reviews";
+import { reviews, reviewsSummary } from "@data/reviews";
 ---
 
 <BaseLayout
@@ -19,11 +19,14 @@ import { reviewsSummary } from "@data/reviews";
     subtitle={`Rated ${reviewsSummary.stars} stars across ${reviewsSummary.count} reviews. From emergency water removal to full rebuilds, here's what homeowners, property managers, and HOAs say about working with us.`}
     ctas={[
       { label: `Call 24/7: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
-      { label: "Read Reviews on Google", href: "https://www.google.com/search?q=Carolina+Pro+Restoration+Fort+Mill+reviews", variant: "outline" },
+      { label: "Read Reviews on Google", href: site.googleReviewsUrl, variant: "outline" },
     ]}
   />
 
   <Reviews
+    reviews={reviews}
+    readMoreHref={site.googleReviewsUrl}
+    readMoreLabel="See All Reviews on Google"
     title="What Our Customers Say"
     sub="Real reviews from homeowners, property managers, and HOAs across the Fort Mill and Charlotte area."
   />

@@ -1,21 +1,26 @@
 ---
 import SectionHeader from "@components/ui/SectionHeader.astro";
 import Icon from "@components/ui/Icon.astro";
-import { reviews as sharedReviews, reviewsSummary } from "@data/reviews";
+import { featuredReviews, reviewsSummary } from "@data/reviews";
 import type { Review } from "@data/reviews";
 
 interface Props {
   title?: string;
   sub?: string;
   reviews?: Review[];
+  readMoreHref?: string;
+  readMoreLabel?: string;
   light?: boolean;
 }
 const {
   title = "Trusted by Homeowners and Property Managers",
   sub = `Rated 5 stars across ${reviewsSummary.count} reviews. From emergency water removal to full rebuilds, here is what people say about working with Carolina Pro Restoration.`,
-  reviews = sharedReviews,
+  reviews = featuredReviews,
+  readMoreHref = reviewsSummary.readMoreHref,
+  readMoreLabel = "Read More Reviews",
   light = false,
 } = Astro.props;
+const readMoreExternal = /^https?:/.test(readMoreHref);
 ---
 
 <section class:list={["cpr-section", { "cpr-section--light": light }, "reviews"]}>
@@ -44,7 +49,7 @@ const {
     </ul>
 
     <div class="reviews__foot">
-      <a href={reviewsSummary.readMoreHref} class="reviews__more">Read More Reviews <Icon name="arrow" /></a>
+      <a href={readMoreHref} class="reviews__more" {...(readMoreExternal ? { target: "_blank", rel: "noopener" } : {})}>{readMoreLabel} <Icon name="arrow" /></a>
     </div>
   </div>
 </section>

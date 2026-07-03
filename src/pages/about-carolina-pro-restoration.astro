@@ -11,7 +11,7 @@ import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import { site } from "@data/site";
-import storyImg from "@assets/images/hero-general.jpg";
+import storyImg from "@assets/images/organic/cpr-fleet.jpg";
 
 const story = [
   "We're Carolina Pro Restoration LLC — the team our customers call CPR. We're headquartered at 3650 Centre Circle, Suite I, right here in Fort Mill, South Carolina, and most of our crew lives in the same York County and south Charlotte neighborhoods we work in every day.",
@@ -23,7 +23,7 @@ const story = [
 const values = [
   { icon: "check", title: "One Team, Start to Finish", text: "One phone call, one project manager, one crew — from emergency extraction to the final coat of paint." },
   { icon: "shield", title: "Licensed in SC & NC", text: "Fully licensed and insured in both states. SC License #70177448." },
-  { icon: "star", title: "IICRC Certified", text: "Certified for water restoration and mold remediation, following industry standards on every job." },
+  { icon: "award", title: "IICRC Certified", text: "Certified for water restoration and mold remediation, following industry standards on every job." },
   { icon: "clock", title: "24/7 Local Answer", text: "We answer our own phone around the clock — our Fort Mill team, never a call center or franchise switchboard." },
 ];
 
@@ -128,9 +128,13 @@ const orgSchema = [
     position: sticky;
     top: calc(var(--cpr-header-h) + 1rem);
   }
+  .about-story__media :global(.about-story__pic) {
+    display: block;
+  }
   .about-story__media :global(.about-story__pic),
   .about-story__media :global(img) {
     width: 100%;
+    height: auto; /* keep the image's natural aspect ratio — no squish */
     border-radius: var(--cpr-radius-lg);
     box-shadow: var(--cpr-shadow-md);
   }

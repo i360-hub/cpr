@@ -5,6 +5,7 @@ import type { ImageMetadata } from "astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHeader from "@components/layout/PageHeader.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
 import Icon from "@components/ui/Icon.astro";
 import { blogPosts } from "@data/blogPosts";
 
@@ -85,6 +86,8 @@ const featImg = imgFor(featured.slug);
   </section>
 
   <FinalCta heading="Have a Water Damage Emergency? Don't Wait — Call Us." />
+
+  <ContactForm heading="Get Fast, Local Help" formName="Blog Index Contact" />
 </BaseLayout>
 
 <style>

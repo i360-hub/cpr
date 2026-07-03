@@ -20,16 +20,47 @@ import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import RelatedServices from "@components/widgets/RelatedServices.astro";
 import CostTable from "@components/widgets/CostTable.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import BeforeAfter from "@components/widgets/BeforeAfter.astro";
 import { servicePages } from "@data/servicePages";
 import { serviceBySlug } from "@data/services";
+import { reviewsFor } from "@data/reviews";
+import { site } from "@data/site";
 
-import heroWater from "@assets/images/hero-water-damage.jpg";
+import heroWaterDamage from "@assets/images/hero-water-damage-restoration.jpg";
 import heroStorm from "@assets/images/hero-storm.jpg";
+import heroSewage from "@assets/images/hero-sewage-cleanup.jpg";
+import heroBurstPipe from "@assets/images/hero-burst-pipe-repair.jpg";
+import heroBasement from "@assets/images/hero-basement-flooding.jpg";
+import heroMold from "@assets/images/hero-mold-removal.jpg";
+import heroDuct from "@assets/images/hero-duct-cleaning.jpg";
+import heroCrawlspace from "@assets/images/hero-crawlspace.jpg";
+import heroWaterproofing from "@assets/images/hero-waterproofing.jpg";
 import heroGeneral from "@assets/images/hero-general.jpg";
+// Real "on the job" photos (organic), per service.
+import imgWaterExtraction from "@assets/images/organic/water-extraction.jpg";
+import imgStormMuckout from "@assets/images/organic/storm-muckout.jpg";
+import imgFloodCrew from "@assets/images/organic/flood-cleanup-crew.jpg";
+import imgWaterRepair from "@assets/images/organic/water-repair-tech.jpg";
+import imgFloodTech from "@assets/images/organic/flood-damage-tech.jpg";
+import imgMoldPpe from "@assets/images/organic/mold-ppe.jpg";
+import imgDuct from "@assets/images/organic/duct-cleaning.jpg";
+import imgCrawlVapor from "@assets/images/organic/crawlspace-vapor-barrier.jpg";
+import imgCrawlFlood from "@assets/images/organic/crawlspace-flooding.jpg";
+import imgKitchenBefore from "@assets/images/organic/kitchen-before.jpg";
+import imgKitchenAfter from "@assets/images/organic/kitchen-after.jpg";
 
+// Distinct, topical hero per service. storm-damage keeps its organic photo.
 const heroImages: Record<string, ImageMetadata> = {
-  "water-damage-restoration": heroWater,
+  "water-damage-restoration": heroWaterDamage,
   "storm-damage": heroStorm,
+  "sewage-cleanup": heroSewage,
+  "burst-pipe-repair": heroBurstPipe,
+  "basement-flooding": heroBasement,
+  "mold-removal": heroMold,
+  "duct-cleaning": heroDuct,
+  "crawlspace": heroCrawlspace,
+  "waterproofing": heroWaterproofing,
 };
 
 export function getStaticPaths() {
@@ -41,6 +72,20 @@ const data = servicePages[service];
 const svc = serviceBySlug(service)!;
 const heroImg = heroImages[service] ?? heroGeneral;
 
+// Real on-the-job photo + blurb, per service.
+const actionShots: Record<string, { img: ImageMetadata; alt: string; heading: string; text: string }> = {
+  "water-damage-restoration": { img: imgWaterExtraction, alt: "Carolina Pro Restoration technician extracting water from a home in Fort Mill, SC", heading: "We pull the water out — then dry it right", text: "Truck-mounted extraction, commercial air movers and dehumidifiers, and daily moisture readings until the structure is verified dry." },
+  "storm-damage": { img: imgStormMuckout, alt: "Carolina Pro Restoration technicians in hard hats clearing flood debris from a storm-damaged building", heading: "When the storm hits hard, we show up", text: "Flood muck-outs, fallen-tree and wind damage, emergency tarping and board-up — then the full rebuild. One IICRC-certified crew from the first debris haul to the final coat of paint." },
+  "sewage-cleanup": { img: imgFloodCrew, alt: "Technician removing contaminated water and debris in protective gear", heading: "Biohazard-safe sewage cleanup", text: "We remove the contaminated water and ruined materials in full PPE, disinfect every surface, dry the space, and rebuild what we tear out." },
+  "burst-pipe-repair": { img: imgWaterRepair, alt: "Technician opening a wall to repair burst-pipe water damage", heading: "Find the water, dry it, fix the damage", text: "We open the wall, dry the cavity, and repair everything the burst pipe touched — drywall, cabinets, and flooring." },
+  "basement-flooding": { img: imgFloodTech, alt: "Technician working in a flooded lower level", heading: "Pumped out, dried, and rebuilt", text: "Submersible pumps, full structural drying, and mold-prevention treatment for flooded basements and lower levels." },
+  "mold-removal": { img: imgMoldPpe, alt: "Mold remediation specialist in full PPE treating a wall", heading: "IICRC-certified mold remediation", text: "Containment, HEPA air scrubbing, safe removal of affected materials, and fixing the moisture source so the mold does not come back." },
+  "duct-cleaning": { img: imgDuct, alt: "Technician cleaning HVAC ductwork", heading: "Cleaner air, whole-system clean", text: "We clean the full HVAC system and ductwork — not just one vent — to clear out mold, dust, pet dander, and allergens." },
+  "crawlspace": { img: imgCrawlVapor, alt: "Sealed crawl space with a heavy vapor barrier", heading: "A dry crawl space, sealed for good", text: "Standing water and debris removal, a heavy sealed vapor barrier, a right-sized dehumidifier, and mold and wood-rot treatment." },
+  "waterproofing": { img: imgCrawlFlood, alt: "Wet crawl space being waterproofed", heading: "Stop the water at the source", text: "We find exactly where water gets in and seal it — interior drains, sump pumps, crawl space sealing, and foundation waterproofing." },
+};
+const actionShot = actionShots[service];
+
 const faqSchema = [
   {
     "@type": "FAQPage",
@@ -51,9 +96,25 @@ const faqSchema = [
     })),
   },
 ];
+
+// Service node — this page's service, provided by the sitewide #business
+// (which carries the aggregateRating), served across our city list.
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}/${service}`;
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: svc.gridTitle,
+  name: svc.gridTitle,
+  url: pageUrl,
+  description: svc.metaDescription,
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+};
 ---
 
-<BaseLayout title={svc.title} description={svc.metaDescription} path={`/${service}`} schema={faqSchema}>
+<BaseLayout title={svc.title} description={svc.metaDescription} path={`/${service}`} schema={[serviceSchema, ...faqSchema]} breadcrumb={[{ name: svc.gridTitle, item: `${origin}/${service}` }]}>
   <Hero
     emergencyTag={data.hero.emergencyTag}
     h1Lines={svc.h1Lines}
@@ -68,6 +129,18 @@ const faqSchema = [
   <WarningSigns title={data.signs.title} sub={data.signs.sub} note={data.signs.note} signs={data.signs.signs} />
   <Scenarios title={data.scenarios.title} sub={data.scenarios.sub} ctaLabel={data.scenarios.ctaLabel} scenarios={data.scenarios.scenarios} />
   <ProcessSteps title={data.process.title} sub={data.process.sub} ctaLabel={data.process.ctaLabel} steps={data.process.steps} />
+  {actionShot && <ActionShot image={actionShot.img} alt={actionShot.alt} heading={actionShot.heading} text={actionShot.text} />}
+  {service === "water-damage-restoration" && (
+    <BeforeAfter
+      before={imgKitchenBefore}
+      after={imgKitchenAfter}
+      beforeAlt="Kitchen torn out during water damage restoration in Fort Mill, SC"
+      afterAlt="The same kitchen fully restored and rebuilt"
+      title="A Real Water Damage Rebuild"
+      sub="A Fort Mill kitchen — from tear-out and structural drying to a finished rebuild."
+      caption="Tear-out and drying (left) through complete rebuild (right) — Fort Mill, SC."
+    />
+  )}
   <WaterCategories
     title={data.categories.title}
     sub={data.categories.sub}
@@ -77,7 +150,7 @@ const faqSchema = [
   {data.cost && <CostTable title={data.cost.title} sub={data.cost.sub} note={data.cost.note} rows={data.cost.rows} />}
   <Differentiators title={data.differentiators.title} sub={data.differentiators.sub} rows={data.differentiators.rows} />
   <InsuranceCard title={data.insurance.title} desc={data.insurance.desc} points={data.insurance.points} />
-  <Reviews title={data.reviewsTitle} sub={data.reviewsSub} />
+  <Reviews reviews={reviewsFor(service)} title={data.reviewsTitle} sub={data.reviewsSub} />
   <Faq title={data.faqTitle} sub={data.faqSub} ctaLabel={data.faqCtaLabel} items={data.faq} />
   <ServiceArea
     title={data.areaTitle}

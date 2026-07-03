@@ -29,7 +29,6 @@ export interface Location {
   areaSub: string;
   areaInfoHeading: string;
   areaInfoBlurb: string;
-  mapSrc?: string;
   neighborhoods?: { intro: string; items: string[] };
 }
 
@@ -93,7 +92,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Fort Mill Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Fort Mill, Tega Cay, and the surrounding area.',
     finalCta: 'Water Damage in Fort Mill Right Now? We Are Ready.', contactHeading: 'Request a Free Fort Mill Inspection', contactDesc: 'Fill out this short form and our Fort Mill crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Fort Mill', areaSub: 'We are not a distant call center. We are locally owned and based right here in Fort Mill — 3650 Centre Circle, Suite I.', areaInfoHeading: 'Fast Response Across York County', areaInfoBlurb: 'Our trucks reach all of Fort Mill and surrounding cities in under 35 minutes. The rest of York County and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.04968846387!2d-80.95758248476296!3d35.00547008035697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8856a0289be5e85d%3A0x4fbcc746f299c91c!2sCarolina%20Pro%20Restoration!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
     neighborhoods: { intro: 'We respond to water damage calls across all of Fort Mill, including:', items: ['Baxter Village', 'Regent Park', 'Springfield', 'Kingsley', 'Massey', 'Catawba Plantation', 'Sutton Hall', 'Downtown Fort Mill'] },
   },
   "rock-hill-sc": {
@@ -130,7 +128,7 @@ export const locations: Record<string, Location> = {
       { number: '25-40 min', label: 'Response Time' },
       { number: '1,576', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: '', faqSub: 'Common questions from Rock Hill homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Rock Hill Water Damage FAQs', faqSub: 'Common questions from Rock Hill homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my Rock Hill home?', a: 'Our crews are based in Fort Mill, about 8 miles from Rock Hill. Most Rock Hill calls receive a technician within 25 to 40 minutes, 24/7.' },
       { q: 'My Rock Hill home was built in the early 2000s. Is the plumbing a risk?', a: 'Yes. Many homes built during the 2000s housing boom in subdivisions like Manchester Village, Massey, and India Hook used polybutylene or early PEX plumbing that is now entering the failure window after 15–20 years. We see pinhole leaks and fitting failures regularly. A thermal-camera scan can reveal hidden moisture before it becomes visible damage.' },
@@ -152,7 +150,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Rock Hill Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Rock Hill, Fort Mill, and York County.',
     finalCta: 'Water Damage in Rock Hill Right Now? We Are Ready.', contactHeading: 'Request a Free Rock Hill Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Rock Hill', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just 8 miles from Rock Hill.', areaInfoHeading: 'Fast Response Across Rock Hill & York County', areaInfoBlurb: 'Our trucks reach all of Rock Hill in under 40 minutes. Fort Mill, Tega Cay, Indian Land, and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3268.04968846387!2d-80.95758248476296!3d35.00547008035697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8856a0289be5e85d%3A0x4fbcc746f299c91c!2sCarolina%20Pro%20Restoration!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "tega-cay-sc": {
     slug: 'tega-cay-sc', name: 'Tega Cay', state: 'SC',
@@ -188,7 +185,7 @@ export const locations: Record<string, Location> = {
       { number: '20-30 min', label: 'Response Time' },
       { number: '520', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: '', faqSub: 'Common questions from Tega Cay homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Tega Cay Water Damage FAQs', faqSub: 'Common questions from Tega Cay homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my Tega Cay home?', a: 'Our crews are based in Fort Mill, about 10 minutes from the Tega Cay peninsula. Most Tega Cay calls receive a technician within 20 to 30 minutes, 24/7.' },
       { q: 'My Tega Cay home was built in the 1970s or 1980s. Is the plumbing a risk?', a: 'Yes. Many original Peninsula homes have galvanized steel or early copper supply lines that corrode over 40–50 years. We often see pinhole leaks and pipe bursts. A thermal-camera scan can reveal hidden moisture before it becomes visible damage.' },
@@ -210,7 +207,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Tega Cay Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Tega Cay, Lake Wylie, and York County.',
     finalCta: 'Water Damage in Tega Cay Right Now? We Are Ready.', contactHeading: 'Request a Free Tega Cay Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Tega Cay', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just 10 minutes from the Tega Cay peninsula.', areaInfoHeading: 'Fast Response Across the Lake Wylie Peninsula', areaInfoBlurb: 'Our trucks reach all of Tega Cay in under 30 minutes. Fort Mill, Rock Hill, Indian Land, and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Tega+Cay,+SC&center=35.0243,-81.0279&zoom=13',
   },
   "indian-land-sc": {
     slug: 'indian-land-sc', name: 'Indian Land', state: 'SC',
@@ -246,7 +242,7 @@ export const locations: Record<string, Location> = {
       { number: '20-35 min', label: 'Response Time' },
       { number: '12.7%', label: 'Population Growth Since 2020' }
     ],
-    faqTitle: '', faqSub: 'Common questions from Indian Land homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Indian Land Water Damage FAQs', faqSub: 'Common questions from Indian Land homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my Indian Land home?', a: 'Our crews are based in Fort Mill, just minutes from Indian Land. Most Indian Land calls receive a technician within 20 to 35 minutes, 24/7.' },
       { q: 'My Indian Land home was built in the last 10 years. Is the plumbing a risk?', a: 'Yes. Many newer homes in Indian Land communities like Sun City, Bridgemill, and Cheswick used builder-grade plumbing fittings and water heater connections that begin to fail after 7–15 years. We see supply line bursts, fitting failures, and water heater leaks regularly. A thermal-camera scan can reveal hidden moisture before it becomes visible damage.' },
@@ -268,7 +264,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Indian Land Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Indian Land, Fort Mill, and Lancaster County.',
     finalCta: 'Water Damage in Indian Land Right Now? We Are Ready.', contactHeading: 'Request a Free Indian Land Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Indian Land', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just minutes from Indian Land.', areaInfoHeading: 'Fast Response Across Indian Land & Lancaster County', areaInfoBlurb: 'Our trucks reach all of Indian Land in under 35 minutes. Fort Mill, Tega Cay, Rock Hill, and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Indian+Land,+SC&center=35.0016,-80.8558&zoom=13',
   },
   "clover-sc": {
     slug: 'clover-sc', name: 'Clover', state: 'SC',
@@ -304,7 +299,7 @@ export const locations: Record<string, Location> = {
       { number: '20–35 min', label: 'Response Time' },
       { number: '6.2%', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: '', faqSub: 'Common questions from Clover homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Clover Water Damage FAQs', faqSub: 'Common questions from Clover homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my Clover home?', a: 'Our crews are based in Fort Mill, about 22 miles from Clover via SC-55 and SC-274. Most calls receive a technician within 20 to 35 minutes, 24/7. Clover sits in northwestern York County and is a priority response zone for our team.' },
       { q: 'Why are Clover homes at risk for water damage?', a: 'Clover has two distinct risk profiles. Older homes along Main Street, Kings Mountain Street, and near downtown date from the 1950s through the 1980s with original galvanized and copper plumbing well past its lifespan — pinhole leaks and corroded fittings are common. Newer subdivisions along the Highway 321 corridor, including Shepherds Trace and Penley Place, were built from the mid-2000s through the 2020s and are now entering their first failure window for builder-grade PEX fittings, water heaters, and supply lines. Additionally, about 6.2% of Clover properties — around 205 — face meaningful flood risk, primarily along Crowders Creek and its tributaries.' },
@@ -326,7 +321,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Clover Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Clover, Lake Wylie, and York County.',
     finalCta: 'Water Damage in Clover Right Now? We Are Ready.', contactHeading: 'Request a Free Clover Inspection', contactDesc: 'Fill out this short form and our Clover crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Clover', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — about 22 miles from Clover.', areaInfoHeading: 'Fast Response Across Clover & Northwestern York County', areaInfoBlurb: 'Our trucks reach Clover in 20 to 35 minutes via SC-55 and SC-274. We cover the entire town and surrounding rural areas of northwestern York County from our Fort Mill headquarters.',
-    mapSrc: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Clover,+SC&center=35.1112,-81.2265&zoom=13',
   },
   "lancaster-sc": {
     slug: 'lancaster-sc', name: 'Lancaster', state: 'SC',
@@ -386,7 +380,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Lancaster Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Lancaster, Indian Land, and the surrounding area.',
     finalCta: 'Water Damage in Lancaster Right Now? We Are Ready.', contactHeading: 'Request a Free Lancaster Inspection', contactDesc: 'Fill out this short form and our Lancaster crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team Serving Lancaster', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — 3650 Centre Circle, Suite I — just 27 miles from downtown Lancaster.', areaInfoHeading: 'Fast Response Across Lancaster County', areaInfoBlurb: 'Our trucks reach all of Lancaster and surrounding cities in under 45 minutes. The rest of Lancaster County and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52432.04968846387!2d-80.80101817282186!3d34.72053964305655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8856b4a48679b0c9%3A0x680c5da8dd55e1aa!2sLancaster%2C%20SC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "york-sc": {
     slug: 'york-sc', name: 'York', state: 'SC',
@@ -422,7 +415,7 @@ export const locations: Record<string, Location> = {
       { number: '25–40 min', label: 'Response Time' },
       { number: '5%', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: '', faqSub: 'Common questions from York homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'York Water Damage FAQs', faqSub: 'Common questions from York homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my York home?', a: 'Our crews are based in Fort Mill, about 20 miles from York via SC-5. Most calls receive a technician within 25 to 40 minutes, 24/7. York is the county seat of York County and is a priority response zone for our team.' },
       { q: 'Why are York homes at risk for water damage?', a: 'York has two distinct risk profiles. Older homes in the downtown historic district along Congress Street, East Jefferson Street, and North Roosevelt Street date from the early 1900s through the 1970s with original galvanized, cast-iron, and copper plumbing well past its lifespan — pinhole leaks and corroded fittings are common. Newer subdivisions along the SC-5 and SC-161 corridors, including Glenmoor and Olde York Farms, were built from the 2000s through the 2020s and are now entering their first failure window for builder-grade PEX fittings, water heaters, and supply lines. Additionally, about 5% of York properties — around 217 — face meaningful flood risk, primarily along Turkey Creek and its tributaries.' },
@@ -444,7 +437,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What York Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in York, Clover, and York County.',
     finalCta: 'Water Damage in York Right Now? We Are Ready.', contactHeading: 'Request a Free York Inspection', contactDesc: 'Fill out this short form and our York crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in York', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — about 20 miles from York.', areaInfoHeading: 'Fast Response Across York & Central York County', areaInfoBlurb: 'Our trucks reach York in 25 to 40 minutes via SC-5. York is the county seat and we cover the entire city and surrounding rural areas of central York County from our Fort Mill headquarters.',
-    mapSrc: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=York,+SC&center=34.9943,-81.2421&zoom=13',
   },
   "lake-wylie-sc": {
     slug: 'lake-wylie-sc', name: 'Lake Wylie', state: 'SC',
@@ -480,7 +472,7 @@ export const locations: Record<string, Location> = {
       { number: '15–25 min', label: 'Response Time' },
       { number: '24.2%', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: '', faqSub: 'Common questions from Lake Wylie homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Lake Wylie Water Damage FAQs', faqSub: 'Common questions from Lake Wylie homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my Lake Wylie home?', a: 'Our crews are based in Fort Mill, about 11 miles from Lake Wylie. Most calls receive a technician within 15 to 25 minutes, 24/7. Lakefront properties along the Catawba River shoreline and the Tega Cay Highway corridor are within our fastest response zone.' },
       { q: 'Why are Lake Wylie homes at higher risk for water damage?', a: 'Lake Wylie has one of the highest flood-risk rates in the region — 24.2% of properties (nearly 1,400) face flood risk over the next 30 years. Many homes sit on sloped lakefront lots with crawlspaces at or below the seasonal water table. When Duke Energy adjusts the Catawba-Wateree dam system or heavy rain pushes lake levels above normal pool elevation, groundwater seeps into crawlspaces and saturates insulation, floor joists, and subfloor sheathing.' },
@@ -502,7 +494,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Lake Wylie Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Lake Wylie, Tega Cay, and York County.',
     finalCta: 'Water Damage in Lake Wylie Right Now? We Are Ready.', contactHeading: 'Request a Free Lake Wylie Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Lake Wylie', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just minutes from the Lake Wylie community.', areaInfoHeading: 'Fast Response Across Lake Wylie & York County', areaInfoBlurb: 'Our trucks reach all of Lake Wylie in under 25 minutes. Tega Cay, Clover, Fort Mill, Rock Hill, and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Lake+Wylie,+SC&center=35.1112,-81.0465&zoom=12',
   },
   "charlotte-nc": {
     slug: 'charlotte-nc', name: 'Charlotte', state: 'NC',
@@ -538,7 +529,7 @@ export const locations: Record<string, Location> = {
       { number: '25-45 min', label: 'Response Time' },
       { number: '~10%', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: '', faqSub: 'Common questions from Charlotte homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Charlotte Water Damage FAQs', faqSub: 'Common questions from Charlotte homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my Charlotte home?', a: 'Our crews are based in Fort Mill, about 19 miles south of Charlotte. Most south Charlotte calls receive a technician within 25 to 45 minutes, 24/7. We prioritize the south Charlotte, Ballantyne, Steele Creek, and Pineville corridors for fastest response.' },
       { q: 'My Charlotte home is older — is the plumbing a risk?', a: 'Yes. Charlotte has housing stock spanning nearly a century. Historic neighborhoods like Dilworth, Plaza Midwood, and NoDa have homes with galvanized and early copper plumbing decades past its lifespan. Mid-century homes in Cotswold and Montclaire carry original pipes prone to failure. Newer construction in Ballantyne and Steele Creek used builder-grade PEX fittings now entering their first failure window. A thermal-camera scan can reveal hidden moisture before it becomes visible damage.' },
@@ -560,7 +551,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Charlotte Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Charlotte, Pineville, and Mecklenburg County.',
     finalCta: 'Water Damage in Charlotte Right Now? We Are Ready.', contactHeading: 'Request a Free Charlotte Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Charlotte', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — about 19 miles south of Charlotte.', areaInfoHeading: 'Fast Response Across Charlotte & Mecklenburg County', areaInfoBlurb: 'Our trucks reach south Charlotte in under 30 minutes. Ballantyne, Steele Creek, Pineville, and the I-77 corridor are our fastest response zones. All of Charlotte proper in under 45 minutes.',
-    mapSrc: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Charlotte,+NC&center=35.2271,-80.8431&zoom=11',
   },
   "pineville-nc": {
     slug: 'pineville-nc', name: 'Pineville', state: 'NC',
@@ -596,7 +586,7 @@ export const locations: Record<string, Location> = {
       { number: '15–25 min', label: 'Response Time' },
       { number: '9%', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: '', faqSub: 'Common questions from Pineville homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Pineville Water Damage FAQs', faqSub: 'Common questions from Pineville homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my Pineville home?', a: 'Our crews are based in Fort Mill, about 8 miles from Pineville via I-77. Most calls receive a technician within 15 to 25 minutes, 24/7. Pineville sits right on the South Carolina state line and is one of our fastest response zones.' },
       { q: 'Why are Pineville homes at risk for water damage?', a: 'Pineville has two distinct risk profiles. Older homes along Pineville-Matthews Road and near downtown date from the 1970s and 1980s with original galvanized and copper plumbing well past its lifespan — pinhole leaks and corroded fittings are common. Newer townhome communities along the Highway 51 and Park Road corridors were built during the 2010s and are now entering their first failure window for builder-grade PEX fittings, water heaters, and supply lines. Additionally, about 9% of Pineville properties face meaningful flood risk, primarily along McAlpine Creek and its tributaries.' },
@@ -618,7 +608,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Pineville Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Pineville, Fort Mill, and Mecklenburg County.',
     finalCta: 'Water Damage in Pineville Right Now? We Are Ready.', contactHeading: 'Request a Free Pineville Inspection', contactDesc: 'Fill out this short form and our Pineville crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Pineville', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — about 8 miles from Pineville.', areaInfoHeading: 'Fast Response Across Pineville & Southern Mecklenburg County', areaInfoBlurb: 'Our trucks reach Pineville in 15 to 25 minutes via I-77. Pineville sits right on the state line and is one of our fastest response zones — the entire town is under 25 minutes from our Fort Mill headquarters.',
-    mapSrc: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Pineville,+NC&center=35.0882,-80.8923&zoom=13',
   },
   "ballantyne-nc": {
     slug: 'ballantyne-nc', name: 'Ballantyne', state: 'NC',
@@ -678,7 +667,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Ballantyne Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Ballantyne, south Charlotte, and the surrounding area.',
     finalCta: 'Water Damage in Ballantyne Right Now? We Are Ready.', contactHeading: 'Request a Free Ballantyne Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team Serving Ballantyne', areaSub: 'We dispatch from Fort Mill, SC — just 8 miles south via I-77. Our trucks reach Ballantyne in under 25 minutes, fully loaded and ready to work.', areaInfoHeading: 'Fast Response Across South Charlotte & the State Line', areaInfoBlurb: 'Our crews cover all of Ballantyne and the surrounding south Charlotte communities in under 25 minutes. The rest of the metro is within 45 minutes.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52300.12!2d-80.88!3d35.054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88569c1a4b90e72b%3A0x5e012a1e2e54e8a2!2sBallantyne%2C%20Charlotte%2C%20NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "belmont-nc": {
     slug: 'belmont-nc', name: 'Belmont', state: 'NC',
@@ -738,7 +726,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Belmont Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Belmont, Gaston County, and the surrounding area.',
     finalCta: 'Water Damage in Belmont Right Now? We Are Ready.', contactHeading: 'Request a Free Belmont Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team Serving Belmont', areaSub: 'We are based in Fort Mill, SC — about 25 miles southeast of Belmont. Our trucks reach your door in under 50 minutes, fully loaded and ready to work.', areaInfoHeading: 'Fast Response Across Gaston County', areaInfoBlurb: 'Our crews cover all of Belmont and the surrounding Gaston County communities in under 50 minutes. The rest of the west Charlotte metro is within an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52242.82671813289!2d-81.07031631406246!3d35.24305730000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8856e5a4d647c4c5%3A0x6f2a96762d10013a!2sBelmont%2C%20NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "matthews-nc": {
     slug: 'matthews-nc', name: 'Matthews', state: 'NC',
@@ -798,7 +785,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Matthews Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Matthews, Mint Hill, and the surrounding area.',
     finalCta: 'Water Damage in Matthews Right Now? We Are Ready.', contactHeading: 'Request a Free Matthews Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team Serving Matthews', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just 20 miles from Matthews. Our trucks reach you in under 40 minutes.', areaInfoHeading: 'Fast Response Across Mecklenburg County', areaInfoBlurb: 'Our trucks reach all of Matthews and surrounding cities in under 40 minutes. The rest of Mecklenburg County and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52287.67470842356!2d-80.7437!3d35.1168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8856a1fbb6e4b0f1%3A0x29d1753c9f534ce0!2sMatthews%2C%20NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "mint-hill-nc": {
     slug: 'mint-hill-nc', name: 'Mint Hill', state: 'NC',
@@ -858,7 +844,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Mint Hill Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Mint Hill, Matthews, and the surrounding area.',
     finalCta: 'Water Damage in Mint Hill Right Now? We Are Ready.', contactHeading: 'Request a Free Mint Hill Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team Serving Mint Hill', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just 33 miles from Mint Hill. Our trucks reach you in under 45 minutes.', areaInfoHeading: 'Fast Response Across East Mecklenburg', areaInfoBlurb: 'Our trucks reach all of Mint Hill and surrounding cities in under 45 minutes. The rest of Mecklenburg County and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52200.0!2d-80.6465!3d35.1793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88541e0b4459097f%3A0xf1649b3b5e54c0e2!2sMint%20Hill%2C%20NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "mount-holly-nc": {
     slug: 'mount-holly-nc', name: 'Mount Holly', state: 'NC',
@@ -918,7 +903,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Mount Holly Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Mount Holly, Gaston County, and the surrounding area.',
     finalCta: 'Water Damage in Mount Holly Right Now? We Are Ready.', contactHeading: 'Request a Free Mount Holly Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team Serving Mount Holly', areaSub: 'We dispatch from Fort Mill, SC — about 30 miles southeast. Our trucks reach Mount Holly in under 50 minutes, fully loaded and ready to start the job.', areaInfoHeading: 'Fast Response Across Gaston County', areaInfoBlurb: 'Our crews cover all of Mount Holly and the surrounding Gaston County communities in under 50 minutes. The rest of the Charlotte metro is within an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52124.97584827082!2d-81.03475088437501!3d35.31405430000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8856e38d1a1a6b11%3A0x40e6e6cfa0eaa60a!2sMount%20Holly%2C%20NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "monroe-nc": {
     slug: 'monroe-nc', name: 'Monroe', state: 'NC',
@@ -978,7 +962,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Monroe Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Monroe, Indian Trail, and the surrounding area.',
     finalCta: 'Water Damage in Monroe Right Now? We Are Ready.', contactHeading: 'Request a Free Monroe Inspection', contactDesc: 'Fill out this short form and our Monroe crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Monroe', areaSub: 'We are not a distant call center. We are locally owned and based right here in Fort Mill — 3650 Centre Circle, Suite I.', areaInfoHeading: 'Fast Response Across Union County', areaInfoBlurb: 'Our trucks reach all of Monroe and surrounding cities in under 45 minutes. The rest of Union County and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52200!2d-80.5595!3d34.9854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88541fc655dd4ec1%3A0x1cd1f4be04dfa00f!2sMonroe%2C+NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "stallings-nc": {
     slug: 'stallings-nc', name: 'Stallings', state: 'NC',
@@ -1038,7 +1021,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Stallings Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Stallings, Indian Trail, and the surrounding area.',
     finalCta: 'Water Damage in Stallings Right Now? We Are Ready.', contactHeading: 'Request a Free Stallings Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Stallings', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — 27 miles from Stallings with trucks on the road 24/7.', areaInfoHeading: 'Fast Response Across Union County', areaInfoBlurb: 'Our trucks reach all of Stallings and surrounding cities in under 45 minutes. The rest of Union County and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52200!2d-80.6862!3d35.0893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88569e7c1a2c1a3d%3A0x4d4e9e1234567890!2sStallings%2C%20NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "waxhaw-nc": {
     slug: 'waxhaw-nc', name: 'Waxhaw', state: 'NC',
@@ -1074,7 +1056,7 @@ export const locations: Record<string, Location> = {
       { number: '20–35 min', label: 'Response Time' },
       { number: '9.1%', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: '', faqSub: 'Common questions from Waxhaw homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Waxhaw Water Damage FAQs', faqSub: 'Common questions from Waxhaw homeowners dealing with water damage, mold, and insurance claims.',
     faq: [
       { q: 'How fast can Carolina Pro Restoration reach my Waxhaw home?', a: 'Our crews are based in Fort Mill, about 15 miles from Waxhaw via Highway 16 and Highway 75. Most calls receive a technician within 20 to 35 minutes, 24/7. Subdivisions along the Highway 75 corridor and western Waxhaw near Indian Land are within our fastest response zone.' },
       { q: 'Why are Waxhaw homes at risk for water damage?', a: 'Waxhaw experienced explosive growth between 2003 and 2020. The majority of homes were built on accelerated timelines during this boom, meaning entire streets have plumbing of the same age hitting the same failure window. Builder-grade water heaters, PEX fittings, and supply line connections are now 5 to 22 years old and entering their first major failure cycle. Additionally, 9.1% of Waxhaw properties (around 743) face meaningful flood risk, primarily along the Twelvemile Creek floodplain.' },
@@ -1096,7 +1078,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Waxhaw Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Waxhaw, Marvin, and Union County.',
     finalCta: 'Water Damage in Waxhaw Right Now? We Are Ready.', contactHeading: 'Request a Free Waxhaw Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Waxhaw', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — about 15 miles from Waxhaw.', areaInfoHeading: 'Fast Response Across Waxhaw & Union County', areaInfoBlurb: 'Our trucks reach Waxhaw in 20 to 35 minutes via Highway 16 and Highway 75. Western Waxhaw neighborhoods near Indian Land and subdivisions along the Highway 75 corridor are in our fastest response zone.',
-    mapSrc: 'https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Waxhaw,+NC&center=34.9246,-80.7434&zoom=13',
   },
   "weddington-nc": {
     slug: 'weddington-nc', name: 'Weddington', state: 'NC',
@@ -1156,7 +1137,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Weddington Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Weddington, Waxhaw, and the surrounding area.',
     finalCta: 'Water Damage in Weddington Right Now? We Are Ready.', contactHeading: 'Request a Free Weddington Inspection', contactDesc: 'Fill out this short form and our Weddington crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Weddington', areaSub: 'We are not a distant call center. We are locally owned and based right here in Fort Mill — 3650 Centre Circle, Suite I.', areaInfoHeading: 'Fast Response Across Union County', areaInfoBlurb: 'Our trucks reach all of Weddington and surrounding cities in under 35 minutes. The rest of Union County and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52073.94395048498!2d-80.79438565!3d35.02240045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88568e4f89d5dc27%3A0xd4736a60fbd0a90!2sWeddington%2C+NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "indian-trail-nc": {
     slug: 'indian-trail-nc', name: 'Indian Trail', state: 'NC',
@@ -1216,7 +1196,6 @@ export const locations: Record<string, Location> = {
     reviewsTitle: 'What Indian Trail Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Indian Trail, Stallings, and the surrounding area.',
     finalCta: 'Water Damage in Indian Trail Right Now? We Are Ready.', contactHeading: 'Request a Free Indian Trail Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
     areaTitle: 'Your Local Water Damage Team in Indian Trail', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — 29 miles from Indian Trail with trucks on the road 24/7.', areaInfoHeading: 'Fast Response Across Union County', areaInfoBlurb: 'Our trucks reach all of Indian Trail and surrounding cities in under 45 minutes. The rest of Union County and south Charlotte metro in under an hour.',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52200!2d-80.7192!3d35.0768!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8856a6c1872cc5eb%3A0x83ade26a4fa65e08!2sIndian%20Trail%2C%20NC!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus',
   },
   "gastonia-nc": {
     slug: 'gastonia-nc', name: 'Gastonia', state: 'NC',

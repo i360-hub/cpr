@@ -12,8 +12,98 @@ import Faq from "@components/widgets/Faq.astro";
 import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
 import { locations } from "@data/locations";
-import heroImg from "@assets/images/hero-water-damage.jpg";
+import { reviewsForCity } from "@data/reviews";
+import { site } from "@data/site";
+import type { ImageMetadata } from "astro";
+// City heroes: "local home-character" scenes, bucketed by each area's character.
+import heroLakefront from "@assets/images/hero-city-lakefront.jpg";
+import heroHistoric from "@assets/images/hero-city-historic.jpg";
+import heroSuburb from "@assets/images/hero-city-suburb.jpg";
+import heroMetro from "@assets/images/hero-city-metro.jpg";
+import imgCharlotte from "@assets/images/organic/cpr-van-jobsite.jpg";
+import imgFortMill from "@assets/images/organic/fortmill-drying-equipment.jpg";
+import imgRockHill from "@assets/images/organic/cpr-crew-onsite.jpg";
+import imgThermal from "@assets/images/organic/thermal-imaging.jpg";
+import imgCrawlEncap from "@assets/images/organic/crawlspace-encapsulation.jpg";
+import imgExtraction from "@assets/images/organic/carpet-extraction-job.jpg";
+import imgFoundation from "@assets/images/organic/foundation-waterproofing.jpg";
+
+// Per-city "on the job" bands. Keyed by slug; only these cities render one.
+// Object keys match ActionShot props so they can be spread directly.
+const cityActionShots: Record<string, { image: ImageMetadata; alt: string; eyebrow: string; heading: string; text: string; light: boolean }> = {
+  "charlotte-nc": {
+    image: imgCharlotte,
+    alt: "A Carolina Pro Restoration technician beside the branded company van on a job in the Charlotte, NC metro",
+    eyebrow: "Serving Charlotte & the metro",
+    heading: "A local crew across Charlotte and south Mecklenburg",
+    text: "From Ballantyne and SouthPark to Uptown, we respond fast for water damage, mold, and storm cleanup — and handle the full rebuild. Based just across the state line in Fort Mill.",
+    light: true,
+  },
+  "fort-mill-sc": {
+    image: imgFortMill,
+    alt: "Commercial air movers and dehumidifiers drying a Fort Mill, SC home after water damage",
+    eyebrow: "Based right here in Fort Mill",
+    heading: "Fort Mill's own water-damage crew",
+    text: "We're headquartered in Fort Mill, and our trucks roll out with commercial air movers and dehumidifiers to dry your home fast — then our own crew rebuilds everything we remove.",
+    light: true,
+  },
+  "rock-hill-sc": {
+    image: imgRockHill,
+    alt: "A Carolina Pro Restoration crew member in a hard hat on a storm-damage job site",
+    eyebrow: "Serving Rock Hill & York County",
+    heading: "Boots on the ground across Rock Hill",
+    text: "Our IICRC-certified crew responds across Rock Hill and York County for water, storm, and mold damage — then rebuilds what we tear out, all handled by one local team.",
+    light: true,
+  },
+  "tega-cay-sc": {
+    image: imgThermal,
+    alt: "A Carolina Pro Restoration technician using a thermal camera to find hidden moisture",
+    eyebrow: "Serving Tega Cay & the lake",
+    heading: "We find the water you can't see",
+    text: "Thermal cameras and moisture meters let us map every wet pocket behind walls and under floors in your Tega Cay home — so nothing gets missed and mold never gets a head start.",
+    light: true,
+  },
+  "lake-wylie-sc": {
+    image: imgCrawlEncap,
+    alt: "A sealed crawl space with a heavy black vapor barrier under a Lake Wylie area home",
+    eyebrow: "Serving Lake Wylie & the peninsula",
+    heading: "Dry crawl spaces for lake-country homes",
+    text: "Lake-area homes take on moisture from below. We clear out standing water and debris, seal the crawl space with a heavy vapor barrier, and set the right dehumidifier so wood rot and mold stay gone.",
+    light: true,
+  },
+  "indian-land-sc": {
+    image: imgExtraction,
+    alt: "A Carolina Pro Restoration technician extracting water from carpet in an Indian Land, SC home",
+    eyebrow: "Serving Indian Land & Lancaster County",
+    heading: "Fast water extraction across Indian Land",
+    text: "From burst pipes to appliance leaks in Indian Land's newer homes, we pull the water out fast, dry the structure, and rebuild whatever the water ruined — one crew, start to finish.",
+    light: true,
+  },
+  "ballantyne-nc": {
+    image: imgFoundation,
+    alt: "Exterior foundation waterproofing with a black membrane and drainage during a Ballantyne area job",
+    eyebrow: "Serving Ballantyne & south Charlotte",
+    heading: "Stop water before it reaches the house",
+    text: "We waterproof from the outside in — exterior membranes, footing drains, and sump systems — to keep Ballantyne basements and crawl spaces dry for good.",
+    light: true,
+  },
+};
+
+const cityHero: Record<string, ImageMetadata> = {
+  // Lakefront — Lake Wylie peninsula
+  "tega-cay-sc": heroLakefront, "lake-wylie-sc": heroLakefront, "clover-sc": heroLakefront,
+  // Historic / mill-town downtowns
+  "rock-hill-sc": heroHistoric, "gastonia-nc": heroHistoric, "mount-holly-nc": heroHistoric,
+  "york-sc": heroHistoric, "lancaster-sc": heroHistoric, "belmont-nc": heroHistoric, "monroe-nc": heroHistoric,
+  // Fast-growing new-build suburbs
+  "fort-mill-sc": heroSuburb, "indian-land-sc": heroSuburb, "waxhaw-nc": heroSuburb,
+  "weddington-nc": heroSuburb, "indian-trail-nc": heroSuburb, "stallings-nc": heroSuburb,
+  // Charlotte metro
+  "charlotte-nc": heroMetro, "ballantyne-nc": heroMetro, "pineville-nc": heroMetro,
+  "matthews-nc": heroMetro, "mint-hill-nc": heroMetro,
+};
 
 export function getStaticPaths() {
   return Object.keys(locations).map((city) => ({ params: { city } }));
@@ -21,6 +111,14 @@ export function getStaticPaths() {
 
 const { city } = Astro.params;
 const loc = locations[city];
+const heroImg = cityHero[city] ?? heroSuburb;
+
+// Map: Fort Mill shows the real branded HQ pin; every other city shows a
+// keyless, city-centered Google embed (no API key that can silently break).
+const cityMapSrc =
+  city === "fort-mill-sc"
+    ? site.mapEmbedSrc
+    : `https://maps.google.com/maps?q=${encodeURIComponent(`${loc.name}, ${loc.state}`)}&z=12&output=embed`;
 
 // The neighborhoods chip grid renders mid-body (at the "hood" marker), matching
 // the live page order. Split the editorial body around it.
@@ -38,13 +136,33 @@ const faqSchema = [
     })),
   },
 ];
+
+// City-specific Service node — "water damage restoration in {city}", provided by
+// the sitewide #business, areaServed narrowed to this one city.
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}/water-damage-restoration-${loc.slug}`;
+const cityServiceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Water Damage Restoration",
+  name: `Water Damage Restoration in ${loc.name}, ${loc.state}`,
+  url: pageUrl,
+  description: loc.metaDescription,
+  provider: { "@id": `${origin}/#business` },
+  areaServed: { "@type": "City", name: `${loc.name}, ${loc.state}` },
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+};
 ---
 
 <BaseLayout
   title={loc.title}
   description={loc.metaDescription}
   path={`/water-damage-restoration-${loc.slug}`}
-  schema={faqSchema}
+  schema={[cityServiceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Service Areas", item: `${origin}/service-areas` },
+    { name: `${loc.name}, ${loc.state}`, item: pageUrl },
+  ]}
 >
   <Hero
     emergencyTag={loc.heroTag}
@@ -58,7 +176,8 @@ const faqSchema = [
   <LocalContent blocks={bodyBefore} />
   {loc.neighborhoods && <Neighborhoods city={loc.name} intro={loc.neighborhoods.intro} neighborhoods={loc.neighborhoods.items} />}
   {bodyAfter.length > 0 && <LocalContent blocks={bodyAfter} />}
-  <Reviews title={loc.reviewsTitle} sub={loc.reviewsSub} />
+  {cityActionShots[city] && <ActionShot {...cityActionShots[city]} />}
+  <Reviews reviews={reviewsForCity(city)} title={loc.reviewsTitle} sub={loc.reviewsSub} />
   <Faq title={loc.faqTitle} sub={loc.faqSub} items={loc.faq} />
   <ServiceArea
     title={loc.areaTitle}
@@ -66,7 +185,7 @@ const faqSchema = [
     infoHeading={loc.areaInfoHeading}
     infoBlurb={loc.areaInfoBlurb}
     cities={loc.nearby}
-    mapSrc={loc.mapSrc}
+    mapSrc={cityMapSrc}
   />
   <FinalCta heading={loc.finalCta} />
   <ContactForm heading={loc.contactHeading} description={loc.contactDesc} formName={`${loc.name} Water Damage Contact`} />

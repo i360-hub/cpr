@@ -1,6 +1,9 @@
 ---
-// Contact section with the GoHighLevel form embed (kept as-is per spec).
-// The GHL form_embed.js handles auto-resize; iframe is lazy (below the fold).
+// Contact section with the GoHighLevel form embed. The iframe is injected on
+// approach (IntersectionObserver), then form_embed.js is loaded to auto-resize
+// it. Injecting-then-loading (rather than native loading="lazy") avoids the
+// init race that blanks the form, and keeps GHL's third-party code off the
+// critical path for a clean Best-Practices score.
 import { site } from "@data/site";
 import Icon from "@components/ui/Icon.astro";
 
@@ -57,25 +60,21 @@ const {
     <div class="contact__card">
       <h3 class="contact__card-title">{cardTitle}</h3>
       <p class="contact__card-sub">{cardSub}</p>
-      <!-- GHL form facade: the real iframe is injected by IntersectionObserver
-           just before it scrolls into view. Keeps the third-party form/cookie
-           out of the initial page load (Lighthouse-friendly) with no extra
-           click for real users. -->
+      <!-- GoHighLevel inline form, loaded on approach. The real iframe is
+           injected by IntersectionObserver ~400px before it scrolls into
+           view, then form_embed.js is loaded *after* injection. Order matters:
+           loading the resize helper only once the frame already exists avoids
+           the init race that blanks the form (the failure mode of native
+           loading="lazy"). Keeps GHL's third-party code off the critical path
+           for a clean Best-Practices score, with no click and no layout shift
+           (the mount reserves the height). -->
       <div
         class="contact__formmount"
         data-ghl-form
         data-src={formSrc}
         data-form-id={formId}
         data-form-name={formName}
-      >
-        <div class="contact__facade">
-          <span class="contact__spinner" aria-hidden="true"></span>
-          <p>Loading secure form&hellip;</p>
-          <p class="contact__facade-alt">
-            Prefer to talk? <a href={site.phoneHref}>Call {site.phoneDisplay}</a>
-          </p>
-        </div>
-      </div>
+      ></div>
     </div>
   </div>
 </section>
@@ -84,29 +83,47 @@ const {
   (function () {
     var mounts = document.querySelectorAll("[data-ghl-form]");
     if (!mounts.length) return;
-    var embedLoaded = false;
-    function loadEmbed() {
-      if (embedLoaded) return;
-      embedLoaded = true;
+
+    var embedRequested = false;
+    function loadEmbedScript() {
+      // form_embed.js drives the iframe auto-resize. Load it once, and only
+      // after a frame exists, so it never races an un-loaded iframe.
+      if (embedRequested) return;
+      embedRequested = true;
       var s = document.createElement("script");
       s.src = "https://link.msgsndr.com/js/form_embed.js";
-      s.defer = true;
       document.body.appendChild(s);
     }
+
     function activate(mount) {
       if (mount.dataset.loaded) return;
       mount.dataset.loaded = "1";
+      var frameId = "inline-" + mount.dataset.formId;
       var f = document.createElement("iframe");
       f.src = mount.dataset.src;
       f.title = mount.dataset.formName || "Contact form";
-      f.id = "inline-" + mount.dataset.formId;
-      f.setAttribute("data-layout", "{'id':'INLINE'}");
-      f.setAttribute("data-form-id", mount.dataset.formId);
+      f.id = frameId;
       f.className = "contact__iframe";
-      mount.textContent = "";
+      // A JS-injected element doesn't carry Astro's scoped-style attribute, so
+      // the scoped `.contact__iframe` CSS won't match it. Set the layout
+      // essentials inline — especially width: an iframe's intrinsic width is
+      // ~300px, which is what rendered the form too narrow.
+      f.style.cssText =
+        "display:block;width:100%;min-height:600px;border:none;border-radius:3px;background:#f8fafc";
+      // Faithful GHL inline-embed attributes (id === data-layout-iframe-id is
+      // the handshake form_embed.js uses to resize the frame to its content).
+      f.setAttribute("data-layout", "{'id':'INLINE'}");
+      f.setAttribute("data-trigger-type", "alwaysShow");
+      f.setAttribute("data-activation-type", "alwaysActivated");
+      f.setAttribute("data-deactivation-type", "neverDeactivate");
+      f.setAttribute("data-form-name", mount.dataset.formName || "");
+      f.setAttribute("data-height", "600");
+      f.setAttribute("data-layout-iframe-id", frameId);
+      f.setAttribute("data-form-id", mount.dataset.formId);
       mount.appendChild(f);
-      loadEmbed();
+      loadEmbedScript();
     }
+
     if ("IntersectionObserver" in window) {
       var io = new IntersectionObserver(
         function (entries) {
@@ -117,12 +134,15 @@ const {
             }
           });
         },
-        { rootMargin: "250px" }
+        // Start loading ~400px before the form reaches the viewport so it's
+        // ready by the time the visitor scrolls to it.
+        { rootMargin: "400px" }
       );
       mounts.forEach(function (m) {
         io.observe(m);
       });
     } else {
+      // No IntersectionObserver: just load them.
       mounts.forEach(activate);
     }
   })();
@@ -206,52 +226,23 @@ const {
     margin: 0.4rem 0 var(--cpr-space-md);
     color: var(--cpr-slate-muted);
   }
+  /* Reserve the form's height before the iframe is injected so loading it
+     causes no layout shift (keeps CLS at 0). */
+  .contact__formmount {
+    min-height: 600px;
+    border-radius: 3px;
+    background: #f8fafc;
+  }
   .contact__iframe {
+    display: block;
     width: 100%;
-    min-height: 492px;
+    /* Reserved height to minimize layout shift; form_embed.js resizes to the
+       real content height once loaded. */
+    height: 600px;
+    min-height: 600px;
     border: none;
     border-radius: 3px;
     background: #f8fafc;
-  }
-  /* Reserve the form's height so injecting the iframe causes no layout shift. */
-  .contact__formmount {
-    min-height: 492px;
-  }
-  .contact__facade {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    min-height: 492px;
-    border-radius: 3px;
-    background: #f8fafc;
-    color: var(--cpr-slate-muted);
-    text-align: center;
-    padding: var(--cpr-space-lg);
-  }
-  .contact__spinner {
-    width: 2rem;
-    height: 2rem;
-    border: 3px solid rgba(0, 0, 0, 0.1);
-    border-top-color: var(--cpr-red);
-    border-radius: 50%;
-    animation: contact-spin 0.8s linear infinite;
-  }
-  .contact__facade-alt a {
-    color: var(--cpr-red-dark);
-    font-weight: 700;
-    text-decoration: underline;
-  }
-  @keyframes contact-spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .contact__spinner {
-      animation: none;
-    }
   }
   @media (max-width: 860px) {
     .contact__inner {

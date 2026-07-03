@@ -5,8 +5,10 @@ import LocalContent from "@components/widgets/LocalContent.astro";
 import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
 import { standalonePages } from "@data/standalonePages";
 import { site } from "@data/site";
+import imgPorch from "@assets/images/organic/porch-rail-finished.jpg";
 ---
 
 <BaseLayout
@@ -24,6 +26,14 @@ import { site } from "@data/site";
     ]}
   />
   <LocalContent blocks={standalonePages["decks-and-porches"]} />
+  <ActionShot
+    image={imgPorch}
+    alt="A newly built pressure-treated wood railing and rebuilt stone steps on a Carolina Pro Restoration porch project"
+    eyebrow="On the job — outdoor builds"
+    heading="New rails, steps, and porches — built to last"
+    text="The same one-team craftsmanship we bring to every rebuild goes into our outdoor work: fresh pressure-treated framing, solid rails, and rebuilt steps, done right the first time."
+    flip={true}
+  />
   <ServiceArea />
   <FinalCta heading="Ready to Build Your Outdoor Space? Let's Talk." />
   <ContactForm heading="Request a Free Deck or Porch Estimate" formName="Decks & Porches Contact" />
