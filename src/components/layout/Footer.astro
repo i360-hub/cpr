@@ -70,6 +70,14 @@ const { address } = site;
       </div>
     </div>
 
+    <div class="site-footer__legal">
+      <span class="site-footer__license">{site.license}</span>
+      <nav class="site-footer__legal-links" aria-label="Legal">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/sms-terms-and-conditions">SMS Terms &amp; Conditions</a>
+      </nav>
+    </div>
+
     <p class="site-footer__copy">
       &copy; {site.copyrightYear} {site.copyright}
     </p>
@@ -209,10 +217,37 @@ const { address } = site;
   .site-footer__social a:hover {
     color: var(--cpr-white);
   }
-  .site-footer__copy {
+  .site-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.25rem;
     margin-top: var(--cpr-space-xl);
     padding-top: var(--cpr-space-lg);
     border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.85rem;
+    color: var(--cpr-slate-light);
+  }
+  .site-footer__license {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.82);
+    letter-spacing: 0.02em;
+  }
+  .site-footer__legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+  }
+  .site-footer__legal-links a {
+    color: var(--cpr-slate-light);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .site-footer__legal-links a:hover {
+    color: var(--cpr-white);
+  }
+  .site-footer__copy {
+    margin-top: var(--cpr-space-md);
     font-size: 0.85rem;
     color: var(--cpr-slate-light);
   }
