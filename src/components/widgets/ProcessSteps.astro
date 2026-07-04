@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import SectionHeader from "@components/ui/SectionHeader.astro";
 import Button from "@components/ui/Button.astro";
 import Icon from "@components/ui/Icon.astro";
@@ -9,6 +11,9 @@ interface Step {
   text: string;
   /** Optional differentiator caption (e.g. the FLIR thermal-imaging callout). */
   caption?: string;
+  /** Optional proof image for this step (e.g. the FLIR thermal-camera photo). */
+  image?: ImageMetadata;
+  imageAlt?: string;
 }
 interface Props {
   title?: string;
@@ -48,6 +53,16 @@ const {
                 <p class="process__caption">
                   <Icon name="check" /> <span set:html={s.caption} />
                 </p>
+              )}
+              {s.image && (
+                <Image
+                  class="process__img"
+                  src={s.image}
+                  alt={s.imageAlt ?? ""}
+                  widths={[320, 480]}
+                  sizes="(max-width: 560px) 88vw, 340px"
+                  loading="lazy"
+                />
               )}
             </div>
           </li>
@@ -118,6 +133,16 @@ const {
     height: 1.05em;
     color: var(--cpr-red);
     flex: none;
+  }
+  .process__img {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    margin-top: var(--cpr-space-md);
+    border-radius: var(--cpr-radius-md);
+    box-shadow: var(--cpr-shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
   .process__cta {
     margin-top: var(--cpr-space-2xl);
