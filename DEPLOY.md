@@ -54,12 +54,15 @@ npx wrangler pages deploy dist --project-name carolina-pro-restoration
    add `carolinaprorestoration.com` **and** `www.carolinaprorestoration.com`.
 2. If the domain's DNS is already on Cloudflare, it wires the CNAME automatically.
    Otherwise point DNS at the Pages target Cloudflare shows.
-3. Decide the canonical host (the site's canonical tags use
-   `https://www.carolinaprorestoration.com`). Add a redirect rule
-   `carolinaprorestoration.com/* → https://www.carolinaprorestoration.com/:splat`
-   (apex → www) so both resolve to one host.
+3. Canonical host is `https://www.carolinaprorestoration.com`. **`worker.js`
+   already performs the apex → www and http → https 301s in code** (path
+   preserved), so no Cloudflare redirect rule is required — BUT both hostnames
+   must route to the Worker for it to fire: add **both** `carolinaprorestoration.com`
+   **and** `www.carolinaprorestoration.com` as custom domains/routes on the
+   Worker. (A dashboard redirect rule + "Always Use HTTPS" are fine as
+   redundant belt-and-suspenders; they simply run before the Worker.)
 4. **Cut over only after verifying the deploy** on the temporary
-   `*.pages.dev` URL (see checklist). DNS TTL means a brief propagation window.
+   `*.workers.dev` URL (see checklist). DNS TTL means a brief propagation window.
 
 > Heads-up: the GoHighLevel form domains are allow-listed by referrer in GHL.
 > If the forms show a domain error post-launch, add the production domain to the
