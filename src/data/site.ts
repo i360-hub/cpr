@@ -1,5 +1,6 @@
 // Sitewide constants — NAP, phone, GHL form, nav, socials, trust badges.
 // Ported verbatim from the live carolinaprorestoration.com chrome.
+import { mapEmbed, mapsLink } from "./maps";
 
 export const site = {
   name: "Carolina Pro Restoration",
@@ -38,11 +39,16 @@ export const site = {
   googleReviewsUrl: "https://search.google.com/local/reviews?placeid=ChIJkR37bWkm7CoRu6bfEb_xhZc",
   googleWriteReviewUrl: "https://search.google.com/local/writereview?placeid=ChIJkR37bWkm7CoRu6bfEb_xhZc",
 
-  // Google Maps embed for the Fort Mill HQ (default for ServiceArea). Keyless
-  // query by business name + exact address so it always pins the real location
-  // — no Maps Embed API key that can silently break.
-  mapEmbedSrc:
-    "https://maps.google.com/maps?q=Carolina+Pro+Restoration,+3650+Centre+Cir+Ste+I,+Fort+Mill,+SC+29715&z=15&output=embed",
+  // Google Maps embed for the Fort Mill HQ (default for ServiceArea). Built via
+  // the Maps Embed API (mapEmbed) — the legacy keyless output=embed format was
+  // deprecated by Google and no longer frames. The business name + exact
+  // address pins the real location.
+  mapEmbedSrc: mapEmbed(
+    "Carolina Pro Restoration, 3650 Centre Cir Ste I, Fort Mill, SC 29715",
+    15,
+  ),
+  // Plain (keyless) Google Maps link for the HQ — fallback / "view larger map".
+  mapLink: mapsLink("Carolina Pro Restoration, 3650 Centre Cir Ste I, Fort Mill, SC 29715"),
 
   socials: {
     facebook: "https://www.facebook.com/carolinaprorestorationllc/",

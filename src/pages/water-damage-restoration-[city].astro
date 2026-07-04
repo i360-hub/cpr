@@ -16,6 +16,7 @@ import ActionShot from "@components/widgets/ActionShot.astro";
 import { locations } from "@data/locations";
 import { reviewsForCity } from "@data/reviews";
 import { site } from "@data/site";
+import { mapEmbed, mapsLink } from "@data/maps";
 import type { ImageMetadata } from "astro";
 // City heroes: "local home-character" scenes, bucketed by each area's character.
 import heroLakefront from "@assets/images/hero-city-lakefront.jpg";
@@ -118,7 +119,9 @@ const heroImg = cityHero[city] ?? heroSuburb;
 const cityMapSrc =
   city === "fort-mill-sc"
     ? site.mapEmbedSrc
-    : `https://maps.google.com/maps?q=${encodeURIComponent(`${loc.name}, ${loc.state}`)}&z=12&output=embed`;
+    : mapEmbed(`${loc.name}, ${loc.state}`, 12);
+const cityMapLink =
+  city === "fort-mill-sc" ? site.mapLink : mapsLink(`${loc.name}, ${loc.state}`);
 
 // The neighborhoods chip grid renders mid-body (at the "hood" marker), matching
 // the live page order. Split the editorial body around it.
@@ -187,6 +190,7 @@ const cityServiceSchema = {
     infoBlurb={loc.areaInfoBlurb}
     cities={loc.nearby}
     mapSrc={cityMapSrc}
+    mapLink={cityMapLink}
   />
   <FinalCta heading={loc.finalCta} />
   <ContactForm heading={loc.contactHeading} description={loc.contactDesc} formName={`${loc.name} Water Damage Contact`} />
