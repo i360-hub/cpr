@@ -5,6 +5,7 @@ import Header from "@components/layout/Header.astro";
 import Footer from "@components/layout/Footer.astro";
 import MobileStickyCall from "@components/layout/MobileStickyCall.astro";
 import Breadcrumbs from "@components/layout/Breadcrumbs.astro";
+import Analytics from "@components/layout/Analytics.astro";
 
 interface Props {
   title: string;
@@ -175,6 +176,9 @@ const jsonLd = {
     <link rel="manifest" href="/site.webmanifest" />
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Marketing/analytics tags (GA4, Google Ads, Meta Pixel) — production-host only -->
+    <Analytics />
   </head>
   <body class={bodyClass}>
     <Header />

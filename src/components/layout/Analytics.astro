@@ -1,0 +1,64 @@
+---
+// Sitewide marketing/analytics tags — mirrored 1:1 from the live Duda site's
+// head (carolinaprorestoration.com), verified 2026-07-04:
+//   • Meta (Facebook) Pixel   821915420060205   — init + PageView
+//   • Google Analytics 4      G-XQJRRDCR3Q
+//   • Google Ads              AW-16639866068, AW-16710106121  (conversion)
+//   • GHL / LeadConnector — the lead forms themselves (already embedded in
+//     ContactForm.astro) carry their own conversion tracking; nothing to add.
+//
+// Intentionally NOT included: Microsoft Clarity — the live site's own
+// "Body-end HTML (v5)" note records it as removed and no clarity.ms script
+// loads; and the legacy `_gaq` / Universal-Analytics remnant (UA was sunset by
+// Google in 2023 and no longer collects data).
+//
+// Hostname guard: these only fire on the production domain
+// (*.carolinaprorestoration.com). On the *.workers.dev preview and on
+// localhost nothing loads, so pre-launch/dev traffic never pollutes the
+// client's real Analytics or fires phantom Google Ads conversions. This keys
+// off the request hostname exactly like the noindex guard in worker.js — no
+// manual flag to flip at go-live. To also load on preview for testing, relax
+// the regex below.
+---
+<script is:inline>
+  (function () {
+    if (!/(^|\.)carolinaprorestoration\.com$/.test(location.hostname)) return;
+
+    /* Google gtag.js — GA4 + Google Ads (single loader, three configs) */
+    var g = document.createElement("script");
+    g.async = true;
+    g.src = "https://www.googletagmanager.com/gtag/js?id=G-XQJRRDCR3Q";
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", "G-XQJRRDCR3Q");
+    gtag("config", "AW-16639866068");
+    gtag("config", "AW-16710106121");
+
+    /* Meta (Facebook) Pixel base code */
+    !(function (f, b, e, v, n, t, s) {
+      if (f.fbq) return;
+      n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n;
+      n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+      t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s);
+    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+    fbq("init", "821915420060205");
+    fbq("track", "PageView");
+  })();
+</script>
+<noscript>
+  <img
+    height="1"
+    width="1"
+    style="display:none"
+    alt=""
+    src="https://www.facebook.com/tr?id=821915420060205&ev=PageView&noscript=1"
+  />
+</noscript>
