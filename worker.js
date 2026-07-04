@@ -40,14 +40,26 @@ export default {
 
     const res = await env.ASSETS.fetch(request);
 
-    // 2. Suppress indexing on the *.workers.dev preview host only.
-    if (host.endsWith(".workers.dev")) {
-      // Clone so headers are mutable, then tell crawlers to stay away.
-      const guarded = new Response(res.body, res);
-      guarded.headers.set("X-Robots-Tag", "noindex, nofollow");
-      return guarded;
-    }
+    const isHtml = (res.headers.get("content-type") || "").includes("text/html");
+    const isPreview = host.endsWith(".workers.dev");
 
-    return res;
+    // Fast path: real (immutable, content-hashed) assets on production pass
+    // through untouched so their long-lived caching is preserved.
+    if (!isHtml && !isPreview) return res;
+
+    const out = new Response(res.body, res);
+
+    // 2. Never let the edge serve stale HTML. Pages are served at extensionless
+    //    URLs so they can't be targeted by _headers globs; the default
+    //    "max-age=0, must-revalidate" still let Cloudflare cache + serve a stale
+    //    copy after a deploy (the content-hashed /_astro assets are unaffected).
+    //    no-store keeps every HTML response fresh — important at every deploy
+    //    and at cutover.
+    if (isHtml) out.headers.set("Cache-Control", "no-store, must-revalidate");
+
+    // 3. Suppress indexing on the *.workers.dev preview host only.
+    if (isPreview) out.headers.set("X-Robots-Tag", "noindex, nofollow");
+
+    return out;
   },
 };
