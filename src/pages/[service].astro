@@ -29,6 +29,7 @@ import { site } from "@data/site";
 
 import heroWaterDamage from "@assets/images/hero-water-damage-restoration.jpg";
 import heroStorm from "@assets/images/hero-storm.jpg";
+import imgThermal from "@assets/images/organic/thermal-imaging.jpg";
 import heroSewage from "@assets/images/hero-sewage-cleanup.jpg";
 import heroBurstPipe from "@assets/images/hero-burst-pipe-repair.jpg";
 import heroBasement from "@assets/images/hero-basement-flooding.jpg";
@@ -86,6 +87,23 @@ const actionShots: Record<string, { img: ImageMetadata; alt: string; heading: st
 };
 const actionShot = actionShots[service];
 
+// Attach the FLIR thermal-camera proof photo to the moisture-mapping step on
+// the water-damage-restoration page — reinforces the differentiator on the
+// highest-intent service page (same treatment as the homepage step 2).
+const processSteps =
+  service === "water-damage-restoration"
+    ? data.process.steps.map((st) =>
+        /Find Every Wet Spot/.test(st.title)
+          ? {
+              ...st,
+              image: imgThermal,
+              imageAlt:
+                "FLIR thermal imaging camera used by Carolina Pro Restoration to detect hidden moisture during a water damage inspection",
+            }
+          : st
+      )
+    : data.process.steps;
+
 const faqSchema = [
   {
     "@type": "FAQPage",
@@ -128,7 +146,7 @@ const serviceSchema = {
   <Timeline title={data.timeline.title} sub={data.timeline.sub} ctaLabel={data.timeline.ctaLabel} cards={data.timeline.cards} />
   <WarningSigns title={data.signs.title} sub={data.signs.sub} note={data.signs.note} signs={data.signs.signs} />
   <Scenarios title={data.scenarios.title} sub={data.scenarios.sub} ctaLabel={data.scenarios.ctaLabel} scenarios={data.scenarios.scenarios} />
-  <ProcessSteps title={data.process.title} sub={data.process.sub} ctaLabel={data.process.ctaLabel} steps={data.process.steps} />
+  <ProcessSteps title={data.process.title} sub={data.process.sub} ctaLabel={data.process.ctaLabel} steps={processSteps} />
   {actionShot && <ActionShot image={actionShot.img} alt={actionShot.alt} heading={actionShot.heading} text={actionShot.text} />}
   {service === "water-damage-restoration" && (
     <BeforeAfter
