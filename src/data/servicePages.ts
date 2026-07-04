@@ -42,7 +42,7 @@ export const servicePages: Record<string, ServicePageData> = {
     ] },
     process: { title: 'How Professional Water Damage Restoration Works', sub: 'Every job follows the same proven steps. Here\'s what our IICRC-certified crew does at each stage — and why it matters for your home and your insurance claim.', ctaLabel: 'Every step is documented. Every reading is logged. Your claim stays on track from day one.', steps: [
       { title: 'Stop the Source First', text: 'Before we pull out a single gallon, we stop the water. If it\'s a burst pipe, we shut the supply. If it\'s a roof leak, we tarp it. Stopping the source keeps the area from re-flooding while we dry it.' },
-      { title: 'Find Every Wet Spot', text: 'We scan the walls, floors, and ceilings with thermal cameras and moisture meters to map exactly where the water went. That map guides where we place the gear — and it gives your adjuster the proof they need to approve the claim.' },
+      { title: 'Find Every Wet Spot', text: 'We scan the walls, floors, and ceilings with FLIR thermal imaging cameras and moisture meters to map exactly where the water went — spotting moisture behind walls without cutting a single hole. That map guides where we place the gear — and it gives your adjuster the proof they need to approve the claim.' },
       { title: 'Pull Out the Water and Dry It', text: 'We use truck-mounted extractors that move over 200 gallons an hour, then set commercial dehumidifiers and fans based on the moisture map. Every wet room gets the right airflow and drying — not guesswork.' },
       { title: 'Daily Checks and Insurance Photos', text: 'We come back every day to log the moisture readings. Those daily logs, plus time-stamped photos, give your insurance company the proof they need to process the claim without delays or denials.' },
       { title: 'Tear Out, Rebuild, and Verify', text: 'Once the structure hits target dryness, we remove what\'s damaged and rebuild it. Drywall, paint, trim, cabinets, flooring, subfloors — our own crew does all of it. We take final readings to confirm it\'s dry before we close the job.' }
@@ -57,7 +57,7 @@ export const servicePages: Record<string, ServicePageData> = {
       { feature: 'Structural drying with daily monitoring', others: 'sometimes', cpr: 'yes' },
       { feature: 'Drywall, paint, trim & flooring rebuild', others: 'no', cpr: 'yes' },
       { feature: 'IICRC certified technicians', others: 'sometimes', cpr: 'yes' },
-      { feature: 'Thermal imaging on every job', others: 'no', cpr: 'yes' },
+      { feature: 'FLIR thermal imaging on every job', others: 'no', cpr: 'yes' },
       { feature: 'Direct insurance billing (Xactimate)', others: 'sometimes', cpr: 'yes' },
       { feature: 'One dedicated project manager', others: 'no', cpr: 'yes' },
       { feature: 'Licensed in SC and NC', others: 'sometimes', cpr: 'yes' },
@@ -347,7 +347,7 @@ export const servicePages: Record<string, ServicePageData> = {
     ] },
     process: { title: 'How Professional Mold Remediation Works', sub: 'Killing surface mold is not enough. Our IICRC-certified crew follows a proven, health-first process — safely removing the mold, cleaning the air, and fixing the moisture that caused it.', ctaLabel: 'A free inspection is the first step toward cleaner air and a healthier home. We find the cause, not just the mold.', steps: [
       { title: 'Inspect and Test the Mold', text: 'We start by finding where the mold is and how far it has spread. We check bathrooms, basements, crawl spaces, attics, and behind walls. Testing tells us what we are dealing with so we build the right plan for your home.' },
-      { title: 'Find the Moisture Source', text: 'Mold needs water to grow. We use moisture meters and thermal cameras to track the leak, humidity, or hidden damp spot feeding it. Find the water and you stop the mold from coming back.' },
+      { title: 'Find the Moisture Source', text: 'Mold needs water to grow. We use moisture meters and FLIR thermal imaging cameras to track the leak, humidity, or hidden damp spot feeding it — finding moisture behind walls without demolition. Find the water and you stop the mold from coming back.' },
       { title: 'Seal Off the Area', text: 'We build containment with plastic sheeting and run negative air machines. This keeps mold spores from spreading to clean rooms while we work. HEPA air scrubbers clean the air so you and your family breathe easier.' },
       { title: 'Remove Mold and Treat Surfaces', text: 'We safely take out drywall, insulation, and other materials too damaged to save. Then we HEPA vacuum and apply an antimicrobial treatment to stop new growth. Bleach does not reach mold inside porous materials — proper removal does.' },
       { title: 'Repair the Source and Verify', text: 'We fix the leak or damp problem so the mold cannot return. Then we rebuild what we removed — drywall, paint, trim, and flooring. A final check confirms the area is clean, dry, and safe before we close the job.' }
@@ -528,7 +528,7 @@ export const servicePages: Record<string, ServicePageData> = {
       { icon: 'droplet', title: 'Window Wells & Egress Leaks', text: 'Basement windows and window wells fill with water and leak at the frame. We add well drains, liners, and sealing so they stop letting water in.', linkLabel: 'Get a free inspection', href: '/contact-us' }
     ] },
     process: { title: 'How Professional Waterproofing Works', sub: 'Every job follows the same proven steps. Here is what our crew does at each stage — and why a lasting fix always starts with finding the real source.', ctaLabel: 'Every system is built for your home, and the inspection is always free.', steps: [
-      { title: 'Full Moisture & Foundation Inspection', text: 'Before we quote a price, we find the source. We check the foundation walls, slab, and crawl space inside, plus the slope and downspouts outside. Moisture meters show us exactly where water gets in. A good fix starts here.' },
+      { title: 'Full Moisture & Foundation Inspection', text: 'Before we quote a price, we find the source. We check the foundation walls, slab, and crawl space inside, plus the slope and downspouts outside. Moisture meters and FLIR thermal imaging cameras show us exactly where water gets in, even behind finished walls and under insulation. A good fix starts here.' },
       { title: 'Interior Drainage System Installation', text: 'For most wet basements and crawl spaces, we put a drain along the base of the wall. It catches water before it reaches the floor and sends it to one spot. That takes the pressure off your walls.' },
       { title: 'Sump Pump & Battery Backup', text: 'The water flows to a sealed sump pit and gets pumped out, away from the house. We size the pump to your home and add a battery backup, so it keeps working when a storm knocks out the power.' },
       { title: 'Vapor Barrier & Crawlspace Encapsulation', text: 'In crawl spaces, we seal the floor and walls with a heavy liner, add insulation where needed, and run a dehumidifier. The space stays clean and dry — so no more damp air feeds the home above.' },

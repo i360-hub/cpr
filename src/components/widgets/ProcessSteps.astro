@@ -1,11 +1,14 @@
 ---
 import SectionHeader from "@components/ui/SectionHeader.astro";
 import Button from "@components/ui/Button.astro";
+import Icon from "@components/ui/Icon.astro";
 import { site } from "@data/site";
 
 interface Step {
   title: string;
   text: string;
+  /** Optional differentiator caption (e.g. the FLIR thermal-imaging callout). */
+  caption?: string;
 }
 interface Props {
   title?: string;
@@ -41,6 +44,11 @@ const {
             <div class="process__content">
               <h3 class="process__title">{s.title}</h3>
               <p class="process__text">{s.text}</p>
+              {s.caption && (
+                <p class="process__caption">
+                  <Icon name="check" /> <span set:html={s.caption} />
+                </p>
+              )}
             </div>
           </li>
         ))
@@ -91,6 +99,25 @@ const {
   .process__text {
     color: var(--cpr-slate);
     line-height: 1.6;
+  }
+  .process__caption {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(211, 47, 47, 0.08);
+    border-radius: var(--cpr-radius-md);
+    color: var(--cpr-red-dark, var(--cpr-red));
+    font-weight: 600;
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+  .process__caption :global(svg) {
+    width: 1.05em;
+    height: 1.05em;
+    color: var(--cpr-red);
+    flex: none;
   }
   .process__cta {
     margin-top: var(--cpr-space-2xl);
