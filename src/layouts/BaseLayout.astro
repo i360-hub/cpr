@@ -20,6 +20,10 @@ interface Props {
   bodyClass?: string;
   /** noindex,nofollow — for pages like thank-you that shouldn't be indexed. */
   noindex?: boolean;
+  /** The named testimonials rendered on THIS page (via the Reviews widget).
+   *  Emitted as individual Review nodes on the business node — only reviews
+   *  actually visible on the page, so nothing is marked up that a user can't see. */
+  reviews?: { name: string; text: string; stars: number }[];
 }
 
 const {
@@ -31,6 +35,7 @@ const {
   breadcrumb,
   bodyClass,
   noindex = false,
+  reviews = [],
 } = Astro.props;
 
 const canonical = new URL(path.replace(/\/$/, "") || "/", Astro.site).href;
@@ -101,11 +106,25 @@ const business = {
     "Basement waterproofing", "Water damage reconstruction", "Insurance claims (Xactimate)",
   ],
   hasCredential: [
+    { "@type": "EducationalOccupationalCredential", credentialCategory: "license", name: "South Carolina Contractor License #70177448" },
     { "@type": "EducationalOccupationalCredential", credentialCategory: "certification", name: "IICRC Certified — Water Restoration & Mold Remediation" },
-    { "@type": "EducationalOccupationalCredential", credentialCategory: "license", name: site.license },
   ],
   memberOf: { "@type": "Organization", name: "Restoration Industry Association (RIA)" },
   sameAs: [...Object.values(site.socials), s.mapUrl],
+  // Individual Review nodes for the testimonials visible on this page (if any).
+  // Real Google reviews (a subset of the 38 counted in aggregateRating) — never
+  // fabricated, and only emitted where the Reviews widget actually renders them.
+  ...(reviews.length
+    ? {
+        review: reviews.map((r) => ({
+          "@type": "Review",
+          author: { "@type": "Person", name: r.name },
+          reviewRating: { "@type": "Rating", ratingValue: String(r.stars), bestRating: "5", worstRating: "1" },
+          reviewBody: r.text,
+          publisher: { "@type": "Organization", name: "Google" },
+        })),
+      }
+    : {}),
 };
 
 // Sitewide WebSite node.

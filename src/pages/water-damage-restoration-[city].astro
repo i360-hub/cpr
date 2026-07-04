@@ -163,6 +163,7 @@ const cityServiceSchema = {
     { name: "Service Areas", item: `${origin}/service-areas` },
     { name: `${loc.name}, ${loc.state}`, item: pageUrl },
   ]}
+  reviews={reviewsForCity(city)}
 >
   <Hero
     emergencyTag={loc.heroTag}

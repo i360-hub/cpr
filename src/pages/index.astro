@@ -9,6 +9,7 @@ import Timeline from "@components/widgets/Timeline.astro";
 import ProcessSteps from "@components/widgets/ProcessSteps.astro";
 import ServicesGrid from "@components/widgets/ServicesGrid.astro";
 import Reviews from "@components/widgets/Reviews.astro";
+import { featuredReviews } from "@data/reviews";
 import Differentiators from "@components/widgets/Differentiators.astro";
 import InsuranceCard from "@components/widgets/InsuranceCard.astro";
 import Faq from "@components/widgets/Faq.astro";
@@ -77,7 +78,7 @@ const faqSchema = [
 ];
 ---
 
-<BaseLayout title={homepage.title} description={homepage.metaDescription} path="/" schema={faqSchema}>
+<BaseLayout title={homepage.title} description={homepage.metaDescription} path="/" schema={faqSchema} reviews={featuredReviews}>
   <Hero
     emergencyTag="🚨 24/7 Emergency Dispatch"
     h1Lines={homepage.h1Lines}

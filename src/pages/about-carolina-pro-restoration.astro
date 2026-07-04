@@ -7,6 +7,7 @@ import SectionHeader from "@components/ui/SectionHeader.astro";
 import Icon from "@components/ui/Icon.astro";
 import ResponsivePicture from "@components/ui/ResponsivePicture.astro";
 import Reviews from "@components/widgets/Reviews.astro";
+import { featuredReviews } from "@data/reviews";
 import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
@@ -42,6 +43,7 @@ const orgSchema = [
   description="Explore eco-friendly restoration services with Carolina Pro Restoration in Fort Mill, SC. Committed to quality and the environment. Visit us today!"
   path="/about-carolina-pro-restoration"
   schema={orgSchema}
+  reviews={featuredReviews}
 >
   <PageHeader
     eyebrow="Charlotte Area's Best Restoration Company"

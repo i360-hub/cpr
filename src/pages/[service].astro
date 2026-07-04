@@ -114,7 +114,7 @@ const serviceSchema = {
 };
 ---
 
-<BaseLayout title={svc.title} description={svc.metaDescription} path={`/${service}`} schema={[serviceSchema, ...faqSchema]} breadcrumb={[{ name: svc.gridTitle, item: `${origin}/${service}` }]}>
+<BaseLayout title={svc.title} description={svc.metaDescription} path={`/${service}`} schema={[serviceSchema, ...faqSchema]} breadcrumb={[{ name: svc.gridTitle, item: `${origin}/${service}` }]} reviews={reviewsFor(service)}>
   <Hero
     emergencyTag={data.hero.emergencyTag}
     h1Lines={svc.h1Lines}
