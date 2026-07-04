@@ -11,7 +11,17 @@ interface Props {
   blocks: Block[];
   light?: boolean;
 }
-const { blocks, light = false } = Astro.props;
+const { blocks: rawBlocks, light = false } = Astro.props;
+
+// Defensive guard: the Duda export left some inline anchors with an empty
+// target (href="" / href="<>"), which render as dead links. All body prose on
+// the site flows through this single component, so sanitizing here guarantees
+// no empty-href anchor can ever reach the page — real targets are set in the
+// content data; this is the last-resort net so a future export can't regress.
+const blocks = rawBlocks.map((b) => ({
+  ...b,
+  html: b.html.replace(/href=(""|"<>"|'')/g, 'href="/"'),
+}));
 
 // Group consecutive <li> blocks into a single list.
 type Node = { tag: "h2" | "h3" | "p"; html: string } | { tag: "ul"; items: string[] };

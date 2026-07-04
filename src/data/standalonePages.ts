@@ -197,7 +197,7 @@ export const standalonePages: Record<string, Block[]> = {
     { tag: 'p', html: 'Data Usage: We respect your privacy. Your personal information and mobile number will be used only to deliver the content you\'ve requested and will not be shared with third parties without your explicit consent, except as necessary to provide the service or as required by law.' },
     { tag: 'p', html: 'Warranty: Carolina Pro Restoration does not guarantee that messages will be delivered and will not be liable for missed messages. Delivery is subject to effective transmission from your mobile service provider and is outside of our control.' },
     { tag: 'p', html: 'Changes to Terms and Conditions : We reserve the right to change these terms or cancel the service at any time. Please check our website regularly for any changes.' },
-    { tag: 'p', html: 'Contact Us : If you have any questions about these terms, please contact us at <a href="" rel="noreferrer" target="_blank" runtime_url="" style="display: initial;">info@carolinaprorestoration.com</a> or call 980-277-3700.' },
+    { tag: 'p', html: 'Contact Us : If you have any questions about these terms, please contact us at <a href="mailto:info@carolinaprorestoration.com" style="display: initial;">info@carolinaprorestoration.com</a> or call 980-277-3700.' },
     { tag: 'p', html: 'By subscribing to our SMS service, you agree to these terms and conditions. We look forward to keeping you informed and connected!' },
     { tag: 'p', html: 'Also see <a href="/privacy" style="display: initial;" runtime_url="/privacy" type="page">Privacy Policy</a> .' }
   ],
