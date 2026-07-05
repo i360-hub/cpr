@@ -19,10 +19,50 @@
  * must be routed to this Worker at cutover (see DEPLOY.md). Cloudflare's
  * "Always Use HTTPS" is a fine belt-and-suspenders for #1's scheme redirect.
  */
+// Legacy Duda /locations/<slug> -> city-page 301s. These live in the Worker
+// (not _redirects) because the static-assets layer proved unreliable here in
+// production: its edge cache kept serving stale/wildcard 301 targets for these
+// paths, while worker-generated redirects are computed fresh on every request.
+// Targets verified against the live Duda site's own 301s (2026-07-06).
+const LOCATION_REDIRECTS = {
+  fort_mill: "/water-damage-restoration-fort-mill-sc",
+  1: "/water-damage-restoration-fort-mill-sc",
+  rock_hill: "/water-damage-restoration-rock-hill-sc",
+  gastonia: "/water-damage-restoration-gastonia-nc",
+  matthews: "/water-damage-restoration-matthews-nc",
+  mint_hill: "/water-damage-restoration-mint-hill-nc",
+  monroe: "/water-damage-restoration-monroe-nc",
+  pineville: "/water-damage-restoration-pineville-nc",
+  waxhaw: "/water-damage-restoration-waxhaw-nc",
+  ballantyne: "/water-damage-restoration-ballantyne-nc",
+  belmont: "/water-damage-restoration-belmont-nc",
+  charlotte: "/water-damage-restoration-charlotte-nc",
+  clover: "/water-damage-restoration-clover-sc",
+  indian_land: "/water-damage-restoration-indian-land-sc",
+  indian_trail: "/water-damage-restoration-indian-trail-nc",
+  lancaster: "/water-damage-restoration-lancaster-sc",
+  lake_wylie: "/water-damage-restoration-lake-wylie-sc",
+  mount_holly: "/water-damage-restoration-mount-holly-nc",
+  stallings: "/water-damage-restoration-stallings-nc",
+  tega_cay: "/water-damage-restoration-tega-cay-sc",
+  weddington: "/water-damage-restoration-weddington-nc",
+  york: "/water-damage-restoration-york-sc",
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const host = url.hostname;
+
+    // Legacy /locations family: exact slugs -> city pages, anything else
+    // (including bare /locations) -> the service-areas hub.
+    const locMatch = url.pathname.match(/^\/locations(?:\/([^/]+)\/?)?$/);
+    if (locMatch) {
+      const slug = (locMatch[1] || "").toLowerCase();
+      url.pathname = LOCATION_REDIRECTS[slug] || "/service-areas";
+      url.search = "";
+      return Response.redirect(url.toString(), 301);
+    }
     const isProdDomain =
       host === "carolinaprorestoration.com" || host.endsWith(".carolinaprorestoration.com");
 
