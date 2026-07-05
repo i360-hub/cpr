@@ -20,7 +20,9 @@
 # --- Blog ---
 /cpr-blog                                                          /blog                              301
 
-# --- Legacy /locations/ system: in-scope cities -> their city page ---
+# --- Legacy /locations/ system -> each city's page ---
+# (All verified against live Duda 301s on 2026-07-06; lake_wylie added for
+#  consistency even though Duda 404s it.)
 /locations/fort_mill                                               /water-damage-restoration-fort-mill-sc     301
 /locations/rock_hill                                               /water-damage-restoration-rock-hill-sc     301
 /locations/gastonia                                                /water-damage-restoration-gastonia-nc      301
@@ -29,6 +31,22 @@
 /locations/monroe                                                  /water-damage-restoration-monroe-nc        301
 /locations/pineville                                               /water-damage-restoration-pineville-nc     301
 /locations/waxhaw                                                  /water-damage-restoration-waxhaw-nc        301
+/locations/ballantyne                                              /water-damage-restoration-ballantyne-nc    301
+/locations/belmont                                                 /water-damage-restoration-belmont-nc       301
+/locations/charlotte                                               /water-damage-restoration-charlotte-nc     301
+/locations/clover                                                  /water-damage-restoration-clover-sc        301
+/locations/indian_land                                             /water-damage-restoration-indian-land-sc   301
+/locations/indian_trail                                            /water-damage-restoration-indian-trail-nc  301
+/locations/lancaster                                               /water-damage-restoration-lancaster-sc     301
+/locations/lake_wylie                                              /water-damage-restoration-lake-wylie-sc    301
+/locations/mount_holly                                             /water-damage-restoration-mount-holly-nc   301
+/locations/stallings                                               /water-damage-restoration-stallings-nc     301
+/locations/tega_cay                                                /water-damage-restoration-tega-cay-sc      301
+/locations/weddington                                              /water-damage-restoration-weddington-nc    301
+/locations/york                                                    /water-damage-restoration-york-sc          301
+
+# --- Review/survey funnel (external tool on the survey subdomain) ---
+/survey                                                            https://survey.carolinaprorestoration.com/ 301
 
 # --- Any other /locations/* (out-of-scope cities) -> the service-areas hub ---
 /locations/*                                                       /service-areas                     301
