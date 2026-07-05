@@ -5,9 +5,23 @@
 
 # --- Home ---
 /home                                                              /                                  301
+/home-old                                                          /                                  301
+/coming-soon-landing                                               /                                  301
+/aboutf7b260e9                                                     /about-carolina-pro-restoration    301
 
 # --- Old service-page slugs ---
 /mold-removal-old                                                  /mold-removal                      301
+/mold-removal-draft                                                /mold-removal                      301
+/wdr                                                               /water-damage-restoration          301
+/leak-detection                                                    /water-damage-restoration          301
+/asheville                                                         /service-areas                     301
+
+# --- Old /services/ prefix (Duda-era) -> current root slugs ---
+/services/mold-removal                                             /mold-removal                      301
+/services/crawlspace-issues                                        /crawlspace                        301
+/services/flooring-repair-and-replacement                          /flooring-repair                   301
+/services/decks-porches-and-more                                   /decks-and-porches                 301
+/services/*                                                        /:splat                            301
 /water-damage-restoration-old                                      /water-damage-restoration          301
 /water-damage-restoration-carolina                                 /water-damage-restoration          301
 /flood-damage-restoration-water-removal                            /storm-damage                      301
@@ -19,11 +33,15 @@
 
 # --- Blog ---
 /cpr-blog                                                          /blog                              301
+# Old /blog/<slug> URLs -> the same slug at root (where all posts now live).
+# /blog itself is the live hub page and static rules beat splats, so it's safe.
+/blog/*                                                            /:splat                            301
 
 # --- Legacy /locations/ system -> each city's page ---
 # (All verified against live Duda 301s on 2026-07-06; lake_wylie added for
 #  consistency even though Duda 404s it.)
 /locations/fort_mill                                               /water-damage-restoration-fort-mill-sc     301
+/locations/1                                                       /water-damage-restoration-fort-mill-sc     301
 /locations/rock_hill                                               /water-damage-restoration-rock-hill-sc     301
 /locations/gastonia                                                /water-damage-restoration-gastonia-nc      301
 /locations/matthews                                                /water-damage-restoration-matthews-nc      301
