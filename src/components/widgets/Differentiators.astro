@@ -35,12 +35,14 @@ const {
   ],
 } = Astro.props;
 
+// "yes"/"no" render as icons (unambiguous); "sometimes" renders as the word
+// "Varies" — a bare dash forces the reader to guess what it means.
 const cell = (v: Cell) =>
   v === "yes"
-    ? { icon: "check", cls: "is-yes", label: "Yes" }
+    ? { icon: "check", cls: "is-yes", label: "Included" }
     : v === "no"
-      ? { icon: "x", cls: "is-no", label: "No" }
-      : { icon: "minus", cls: "is-maybe", label: "Sometimes" };
+      ? { icon: "x", cls: "is-no", label: "Typically not offered" }
+      : { icon: null, cls: "is-maybe", label: "Varies by company" };
 ---
 
 <section class="cpr-section diff">
@@ -65,10 +67,18 @@ const cell = (v: Cell) =>
                 <tr>
                   <th scope="row" class="diff__feat" set:html={r.feature} />
                   <td>
-                    <span class:list={["diff__mark", o.cls]} title={o.label}><Icon name={o.icon} /></span>
+                    {o.icon ? (
+                      <span class:list={["diff__mark", o.cls]} role="img" aria-label={o.label} title={o.label}><Icon name={o.icon} /></span>
+                    ) : (
+                      <span class:list={["diff__pill", o.cls]} title={o.label}>Varies</span>
+                    )}
                   </td>
                   <td class="diff__cpr">
-                    <span class:list={["diff__mark", c.cls]} title={c.label}><Icon name={c.icon} /></span>
+                    {c.icon ? (
+                      <span class:list={["diff__mark", c.cls]} role="img" aria-label={c.label} title={c.label}><Icon name={c.icon} /></span>
+                    ) : (
+                      <span class:list={["diff__pill", c.cls]} title={c.label}>Varies</span>
+                    )}
                   </td>
                 </tr>
               );
@@ -105,7 +115,9 @@ const cell = (v: Cell) =>
     color: var(--cpr-white);
     font-size: 0.95rem;
   }
-  .diff__feat {
+  /* Scoped under .diff__table so this wins over the `.diff__table th` centering
+     rule above (higher specificity) — feature labels must be left-aligned. */
+  .diff__table .diff__feat {
     text-align: left;
     font-weight: 600;
     color: var(--cpr-navy);
@@ -131,13 +143,25 @@ const cell = (v: Cell) =>
     background: rgba(22, 163, 74, 0.12);
     color: #16a34a;
   }
+  /* "No" is the strongest claim in the table — give it assertive weight
+     (dark slate), not the faintest mark. */
   .diff__mark.is-no {
-    background: rgba(148, 163, 184, 0.18);
-    color: var(--cpr-slate-muted);
+    background: rgba(51, 65, 85, 0.14);
+    color: #334155;
   }
-  .diff__mark.is-maybe {
-    background: rgba(245, 166, 35, 0.15);
-    color: #d18700;
+  /* "Varies" is the softest state — a quiet amber pill of literal text, so
+     nobody has to guess what a bare dash means. */
+  .diff__pill.is-maybe {
+    display: inline-block;
+    padding: 0.28rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: rgba(180, 83, 9, 0.1);
+    color: #b45309;
+    white-space: nowrap;
   }
   .diff__table tbody tr:last-child th,
   .diff__table tbody tr:last-child td {
