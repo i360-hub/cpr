@@ -8,6 +8,17 @@
 
 name = "cpr"
 compatibility_date = "2025-01-01"
+# Keep the *.workers.dev preview URL alive (it's my verification URL; the
+# worker.js noindex logic keeps it out of search regardless).
+workers_dev = true
+
+# Production custom domains — both apex + www routed to this Worker so the
+# worker.js apex->www + https redirects fire. Wrangler provisions the proxied
+# DNS records + SSL. www is canonical; apex 301s to it.
+routes = [
+  { pattern = "www.carolinaprorestoration.com", custom_domain = true },
+  { pattern = "carolinaprorestoration.com", custom_domain = true },
+]
 
 # Thin Worker wrapper (worker.js) that adds X-Robots-Tag: noindex ONLY on the
 # *.workers.dev preview host, so the pre-launch preview stays out of search
