@@ -63,8 +63,9 @@
 /locations/weddington                                              /water-damage-restoration-weddington-nc    301
 /locations/york                                                    /water-damage-restoration-york-sc          301
 
-# --- Review/survey funnel (external tool on the survey subdomain) ---
-/survey                                                            https://survey.carolinaprorestoration.com/ 301
+# --- Retired survey funnel (survey subdomain decommissioned 2026-07-06).
+#     Point /survey at the on-site reviews page so old links/QR codes still land. ---
+/survey                                                            /reviews-testimonials              301
 
 # --- Any other /locations/* (out-of-scope cities) -> the service-areas hub ---
 /locations/*                                                       /service-areas                     301
