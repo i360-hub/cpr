@@ -1,6 +1,6 @@
 ---
 // Blog index (hub) — /blog. Lists all posts newest-first from blogPosts.ts.
-import { Image } from "astro:assets";
+import ResponsivePicture from "@components/ui/ResponsivePicture.astro";
 import type { ImageMetadata } from "astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHeader from "@components/layout/PageHeader.astro";
@@ -39,7 +39,7 @@ const featImg = imgFor(featured.slug);
       <a href={`/${featured.slug}`} class="blog-feat">
         {featImg && (
           <div class="blog-feat__media">
-            <Image src={featImg} alt={featured.title} widths={[480, 768, 1024]} sizes="(max-width: 900px) 100vw, 55vw" />
+            <ResponsivePicture src={featImg} alt={featured.title} widths={[480, 768, 1024]} sizes="(max-width: 900px) 100vw, 55vw" priority={true} />
           </div>
         )}
         <div class="blog-feat__body">
@@ -64,7 +64,7 @@ const featImg = imgFor(featured.slug);
                 <a href={`/${p.slug}`}>
                   {img && (
                     <div class="blog-card__media">
-                      <Image src={img} alt={p.title} widths={[400, 640]} sizes="(max-width: 700px) 100vw, 360px" loading="lazy" />
+                      <ResponsivePicture src={img} alt={p.title} widths={[400, 640]} sizes="(max-width: 700px) 100vw, 360px" />
                     </div>
                   )}
                   <div class="blog-card__body">
@@ -149,6 +149,11 @@ const featImg = imgFor(featured.slug);
     aspect-ratio: 16 / 11;
     overflow: hidden;
   }
+  .blog-feat__media :global(picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
   .blog-feat__media :global(img) {
     width: 100%;
     height: 100%;
@@ -197,6 +202,11 @@ const featImg = imgFor(featured.slug);
   .blog-card__media {
     aspect-ratio: 16 / 10;
     overflow: hidden;
+  }
+  .blog-card__media :global(picture) {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
   .blog-card__media :global(img) {
     width: 100%;
