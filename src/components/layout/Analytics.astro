@@ -2,55 +2,74 @@
 // Sitewide marketing/analytics tags — mirrored 1:1 from the live Duda site's
 // head (carolinaprorestoration.com), verified 2026-07-04:
 //   • Meta (Facebook) Pixel   821915420060205   — init + PageView
-//   • Google Analytics 4      G-JTWV3MYGXT
+//   • Google Analytics 4      G-JTWV3MYGXT       (fresh stream; old G-XQJRRDCR3Q
+//                                                 was deprovisioned — 404/ORB)
 //   • Google Ads              AW-16639866068, AW-16710106121  (conversion)
 //   • GHL / LeadConnector — the lead forms themselves (already embedded in
 //     ContactForm.astro) carry their own conversion tracking; nothing to add.
 //
-// Intentionally NOT included: Microsoft Clarity — the live site's own
-// "Body-end HTML (v5)" note records it as removed and no clarity.ms script
-// loads; and the legacy `_gaq` / Universal-Analytics remnant (UA was sunset by
-// Google in 2023 and no longer collects data).
+// DEFERRED LOAD: none of these fire until the first user interaction OR browser
+// idle (whichever comes first, with a load+timeout fallback). Keeps the gtag /
+// Ads / Pixel request-chain off the critical path so it doesn't inflate LCP/TBT
+// (real users are still captured — the idle/load fallback fires even on a bounce
+// with no interaction). This is why PageSpeed sees a fast page despite 4 tags.
 //
 // Hostname guard: these only fire on the production domain
-// (*.carolinaprorestoration.com). On the *.workers.dev preview and on
-// localhost nothing loads, so pre-launch/dev traffic never pollutes the
-// client's real Analytics or fires phantom Google Ads conversions. This keys
-// off the request hostname exactly like the noindex guard in worker.js — no
-// manual flag to flip at go-live. To also load on preview for testing, relax
-// the regex below.
+// (*.carolinaprorestoration.com). On the *.workers.dev preview and on localhost
+// nothing loads, so pre-launch/dev traffic never pollutes real Analytics or
+// fires phantom Google Ads conversions. Keys off the request hostname exactly
+// like the noindex guard in worker.js — no manual flag to flip at go-live.
 ---
 <script is:inline>
   (function () {
     if (!/(^|\.)carolinaprorestoration\.com$/.test(location.hostname)) return;
 
-    /* Google gtag.js — GA4 + Google Ads (single loader, three configs) */
-    var g = document.createElement("script");
-    g.async = true;
-    g.src = "https://www.googletagmanager.com/gtag/js?id=G-JTWV3MYGXT";
-    document.head.appendChild(g);
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag("js", new Date());
-    gtag("config", "G-JTWV3MYGXT");
-    gtag("config", "AW-16639866068");
-    gtag("config", "AW-16710106121");
+    var started = false;
+    function boot() {
+      if (started) return;
+      started = true;
 
-    /* Meta (Facebook) Pixel base code */
-    !(function (f, b, e, v, n, t, s) {
-      if (f.fbq) return;
-      n = f.fbq = function () {
-        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-      };
-      if (!f._fbq) f._fbq = n;
-      n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
-      t = b.createElement(e); t.async = !0;
-      t.src = v; s = b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t, s);
-    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
-    fbq("init", "821915420060205");
-    fbq("track", "PageView");
+      /* Google gtag.js — GA4 + Google Ads (single loader, three configs) */
+      var g = document.createElement("script");
+      g.async = true;
+      g.src = "https://www.googletagmanager.com/gtag/js?id=G-JTWV3MYGXT";
+      document.head.appendChild(g);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", "G-JTWV3MYGXT");
+      gtag("config", "AW-16639866068");
+      gtag("config", "AW-16710106121");
+
+      /* Meta (Facebook) Pixel base code */
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+        t = b.createElement(e); t.async = !0;
+        t.src = v; s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+      fbq("init", "821915420060205");
+      fbq("track", "PageView");
+    }
+
+    /* Fire on first interaction (most engaged users) … */
+    var evs = ["scroll", "pointerdown", "keydown", "touchstart"];
+    function onFirst() {
+      boot();
+      evs.forEach(function (e) { window.removeEventListener(e, onFirst); });
+    }
+    evs.forEach(function (e) {
+      window.addEventListener(e, onFirst, { once: true, passive: true });
+    });
+    /* … or when the browser goes idle, so bounces with no interaction still count. */
+    if ("requestIdleCallback" in window) requestIdleCallback(boot, { timeout: 4000 });
+    else window.addEventListener("load", function () { setTimeout(boot, 2500); });
   })();
 </script>
 <noscript>
