@@ -1,5 +1,6 @@
 ---
 // Blog article template — root URLs (/{slug}) matching the live blog post links.
+import { getImage } from "astro:assets";
 import ResponsivePicture from "@components/ui/ResponsivePicture.astro";
 import type { ImageMetadata } from "astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -32,7 +33,14 @@ const related = blogPosts.filter((p) => p.slug !== article.slug).slice(0, 3);
 
 const origin = Astro.site!.toString().replace(/\/$/, "");
 const postUrl = `${origin}/${article.slug}`;
-const articleImg = heroImg ? new URL(heroImg.src, Astro.site).href : `${origin}/og-default.jpg`;
+// Purpose-built 1200x630 JPEG for og/twitter/schema instead of the raw source
+// image (the sources are multi-MB PNGs — a 2MB og:image is bad for social
+// unfurls, and referencing heroImg.src would also ship the full PNG in the build).
+const ogImg = heroImg
+  ? await getImage({ src: heroImg, width: 1200, height: 630, format: "jpeg" })
+  : null;
+const ogImagePath = ogImg?.src ?? "/og-default.jpg";
+const articleImg = new URL(ogImagePath, Astro.site).href;
 const articleSchema = [
   {
     "@type": "BlogPosting",
@@ -60,7 +68,7 @@ const articleSchema = [
   title={`${article.title} | Carolina Pro Restoration`}
   description={article.description}
   path={`/${article.slug}`}
-  ogImage={heroImg?.src}
+  ogImage={ogImagePath}
   schema={articleSchema}
   breadcrumb={[{ name: "Blog", item: `${origin}/blog` }, { name: article.title, item: postUrl }]}
 >

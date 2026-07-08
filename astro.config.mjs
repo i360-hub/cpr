@@ -23,6 +23,10 @@ export default defineConfig({
     // `trailingSlash: 'never'`, our canonicals/sitemap, and the live site's URLs.
     // With 'directory', CF would 308-redirect /mold-removal -> /mold-removal/.
     format: 'file',
+    // Inline all CSS into the HTML (total is ~27KB site-wide) so there are no
+    // render-blocking stylesheet requests — the homepage LCP is gated by CSS
+    // load, not image bytes, and this takes those requests off the critical path.
+    inlineStylesheets: 'always',
   },
   image: {
     // Global default output formats for <Image>/<Picture>.
