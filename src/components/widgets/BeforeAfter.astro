@@ -13,6 +13,14 @@ interface Props {
   sub?: string;
   caption?: string;
   light?: boolean;
+  /** Shared frame ratio for BOTH photos, e.g. "3 / 4" (portrait) or "1 / 1".
+      Pick to match the source photos — a landscape frame on portrait photos
+      crops the subject out entirely. */
+  ratio?: string;
+  /** object-position per photo, e.g. "center 70%" to bias a crop toward the
+      lower part of a portrait photo (where counters/floors are). */
+  beforePos?: string;
+  afterPos?: string;
 }
 const {
   before, after, beforeAlt, afterAlt,
@@ -20,6 +28,9 @@ const {
   sub,
   caption,
   light = true,
+  ratio = "4 / 3",
+  beforePos = "center",
+  afterPos = "center",
 } = Astro.props;
 ---
 
@@ -27,13 +38,13 @@ const {
   <div class="cpr-section-inner">
     <SectionHeader title={title} sub={sub} />
     <div class="ba__grid">
-      <figure class="ba__item">
+      <figure class="ba__item" style={`aspect-ratio:${ratio}`}>
         <span class="ba__badge ba__badge--before">Before</span>
-        <ResponsivePicture src={before} alt={beforeAlt} widths={[420, 700, 960]} sizes="(max-width: 760px) 92vw, 480px" class="ba__img" />
+        <ResponsivePicture src={before} alt={beforeAlt} widths={[420, 700, 960]} sizes="(max-width: 760px) 92vw, 480px" class="ba__img" objectPosition={beforePos} />
       </figure>
-      <figure class="ba__item">
+      <figure class="ba__item" style={`aspect-ratio:${ratio}`}>
         <span class="ba__badge ba__badge--after">After</span>
-        <ResponsivePicture src={after} alt={afterAlt} widths={[420, 700, 960]} sizes="(max-width: 760px) 92vw, 480px" class="ba__img" />
+        <ResponsivePicture src={after} alt={afterAlt} widths={[420, 700, 960]} sizes="(max-width: 760px) 92vw, 480px" class="ba__img" objectPosition={afterPos} />
       </figure>
     </div>
     {caption && <p class="ba__caption">{caption}</p>}
@@ -52,16 +63,21 @@ const {
     border-radius: var(--cpr-radius-lg);
     overflow: hidden;
     box-shadow: var(--cpr-shadow-md);
-    /* The 4:3 box lives on the container so both columns are identical regardless
-       of source aspect ratio; the <picture> and <img> just fill it. */
-    aspect-ratio: 4 / 3;
+    /* The frame ratio lives on the container (set inline from the `ratio` prop)
+       so both columns are identical; the <picture> and <img> fill it. */
   }
   .ba__item :global(picture) {
     display: block;
     width: 100%;
     height: 100%;
   }
-  .ba__img {
+  /* NOTE: must be a descendant :global(img) selector — a scoped `.ba__img` rule
+     compiles to `.ba__img[data-astro-cid-…]`, and the img inside the
+     ResponsivePicture child component never receives this component's scope
+     attribute, so that rule silently never matches. (That was the original bug:
+     the img rendered height:auto, top-aligned — a top slice of each photo.)
+     object-position comes from the inline style ResponsivePicture sets. */
+  .ba__item :global(img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
