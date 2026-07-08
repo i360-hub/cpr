@@ -1,6 +1,6 @@
 ---
 // Side-by-side before/after from a real job, each with a labeled badge.
-import { Image } from "astro:assets";
+import ResponsivePicture from "@components/ui/ResponsivePicture.astro";
 import type { ImageMetadata } from "astro";
 import SectionHeader from "@components/ui/SectionHeader.astro";
 
@@ -29,11 +29,11 @@ const {
     <div class="ba__grid">
       <figure class="ba__item">
         <span class="ba__badge ba__badge--before">Before</span>
-        <Image src={before} alt={beforeAlt} widths={[420, 700, 960]} sizes="(max-width: 760px) 92vw, 480px" loading="lazy" class="ba__img" />
+        <ResponsivePicture src={before} alt={beforeAlt} widths={[420, 700, 960]} sizes="(max-width: 760px) 92vw, 480px" class="ba__img" />
       </figure>
       <figure class="ba__item">
         <span class="ba__badge ba__badge--after">After</span>
-        <Image src={after} alt={afterAlt} widths={[420, 700, 960]} sizes="(max-width: 760px) 92vw, 480px" loading="lazy" class="ba__img" />
+        <ResponsivePicture src={after} alt={afterAlt} widths={[420, 700, 960]} sizes="(max-width: 760px) 92vw, 480px" class="ba__img" />
       </figure>
     </div>
     {caption && <p class="ba__caption">{caption}</p>}
@@ -52,6 +52,10 @@ const {
     border-radius: var(--cpr-radius-lg);
     overflow: hidden;
     box-shadow: var(--cpr-shadow-md);
+  }
+  .ba__item :global(picture) {
+    display: block;
+    width: 100%;
   }
   .ba__img {
     width: 100%;
