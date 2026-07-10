@@ -93,9 +93,19 @@ export default {
     //    URLs so they can't be targeted by _headers globs; the default
     //    "max-age=0, must-revalidate" still let Cloudflare cache + serve a stale
     //    copy after a deploy (the content-hashed /_astro assets are unaffected).
-    //    no-store keeps every HTML response fresh — important at every deploy
-    //    and at cutover.
-    if (isHtml) out.headers.set("Cache-Control", "no-store, must-revalidate");
+    //
+    //    Split by cache layer, because one header can't say both things:
+    //      • CDN-Cache-Control: no-store — Cloudflare's edge never holds HTML,
+    //        which is the staleness this originally fixed.
+    //      • Cache-Control: no-cache — the *browser* may store the response but
+    //        must revalidate before reusing it, so pages are still never stale.
+    //        Crucially this is NOT `no-store`: `no-store` disqualifies a page
+    //        from the back/forward cache, which made every Back press a full
+    //        re-download and re-render. `no-cache` keeps bfcache eligible.
+    if (isHtml) {
+      out.headers.set("Cache-Control", "no-cache");
+      out.headers.set("CDN-Cache-Control", "no-store");
+    }
 
     // 3. Suppress indexing on the *.workers.dev preview host only.
     if (isPreview) out.headers.set("X-Robots-Tag", "noindex, nofollow");
