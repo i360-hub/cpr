@@ -26,6 +26,7 @@ import { servicePages } from "@data/servicePages";
 import { serviceBySlug } from "@data/services";
 import { reviewsFor } from "@data/reviews";
 import { site } from "@data/site";
+import { heroPreload } from "@lib/images";
 
 import heroWaterDamage from "@assets/images/hero-water-damage-restoration.jpg";
 import heroStorm from "@assets/images/hero-storm.jpg";
@@ -132,7 +133,7 @@ const serviceSchema = {
 };
 ---
 
-<BaseLayout title={svc.title} description={svc.metaDescription} path={`/${service}`} schema={[serviceSchema, ...faqSchema]} breadcrumb={[{ name: svc.gridTitle, item: `${origin}/${service}` }]} reviews={reviewsFor(service)}>
+<BaseLayout title={svc.title} description={svc.metaDescription} path={`/${service}`} schema={[serviceSchema, ...faqSchema]} breadcrumb={[{ name: svc.gridTitle, item: `${origin}/${service}` }]} reviews={reviewsFor(service)} preloadImage={heroPreload(heroImg)}>
   <Hero
     emergencyTag={data.hero.emergencyTag}
     h1Lines={svc.h1Lines}

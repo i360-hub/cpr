@@ -31,6 +31,11 @@ const heroImg = imgFor(article.slug);
 
 const related = blogPosts.filter((p) => p.slug !== article.slug).slice(0, 3);
 
+// The article hero is this page's LCP element. Shared by the head preload and
+// the <ResponsivePicture> below — keep them pointing at the same object.
+const POST_HERO_WIDTHS = [640, 1024, 1440];
+const POST_HERO_SIZES = "(max-width: 1000px) 100vw, 1000px";
+
 const origin = Astro.site!.toString().replace(/\/$/, "");
 const postUrl = `${origin}/${article.slug}`;
 // Purpose-built 1200x630 JPEG for og/twitter/schema instead of the raw source
@@ -71,6 +76,7 @@ const articleSchema = [
   ogImage={ogImagePath}
   schema={articleSchema}
   breadcrumb={[{ name: "Blog", item: `${origin}/blog` }, { name: article.title, item: postUrl }]}
+  preloadImage={heroImg && { src: heroImg, widths: POST_HERO_WIDTHS, sizes: POST_HERO_SIZES }}
 >
   <article class="post">
     <!-- Header -->
@@ -89,7 +95,7 @@ const articleSchema = [
     {
       heroImg && (
         <div class="post__hero">
-          <ResponsivePicture src={heroImg} alt={article.title} widths={[640, 1024, 1440]} sizes="(max-width: 1000px) 100vw, 1000px" priority={true} />
+          <ResponsivePicture src={heroImg} alt={article.title} widths={POST_HERO_WIDTHS} sizes={POST_HERO_SIZES} priority={true} />
         </div>
       )
     }

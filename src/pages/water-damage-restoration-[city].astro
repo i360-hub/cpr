@@ -30,6 +30,7 @@ import imgThermal from "@assets/images/organic/thermal-imaging.jpg";
 import imgCrawlEncap from "@assets/images/organic/crawlspace-encapsulation.jpg";
 import imgExtraction from "@assets/images/organic/carpet-extraction-job.jpg";
 import imgFoundation from "@assets/images/organic/foundation-waterproofing.jpg";
+import { heroPreload } from "@lib/images";
 
 // Per-city "on the job" bands. Keyed by slug; only these cities render one.
 // Object keys match ActionShot props so they can be spread directly.
@@ -167,6 +168,7 @@ const cityServiceSchema = {
     { name: `${loc.name}, ${loc.state}`, item: pageUrl },
   ]}
   reviews={reviewsForCity(city)}
+  preloadImage={heroPreload(heroImg)}
 >
   <Hero
     emergencyTag={loc.heroTag}

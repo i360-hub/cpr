@@ -4,6 +4,7 @@ import ResponsivePicture from "@components/ui/ResponsivePicture.astro";
 import Button from "@components/ui/Button.astro";
 import Icon from "@components/ui/Icon.astro";
 import { site } from "@data/site";
+import { HERO_WIDTHS, HERO_SIZES } from "@lib/images";
 
 interface Cta {
   label: string;
@@ -42,11 +43,14 @@ const isCall = primaryCta.href.startsWith("tel:");
        through the avif/webp pipeline with fetchpriority=high — replaces the
        live site's CSS background-image. -->
   <div class="hero__bg" aria-hidden="true">
+    <!-- widths/sizes must stay in lockstep with the BaseLayout `preloadImage`
+         the page passes (see heroPreload()), or the hero downloads twice. -->
     <ResponsivePicture
       src={image}
       alt={imageAlt}
       priority={true}
-      sizes="100vw"
+      widths={HERO_WIDTHS}
+      sizes={HERO_SIZES}
       pictureClass="hero__pic"
       objectPosition={focalPoint}
     />

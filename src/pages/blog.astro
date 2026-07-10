@@ -20,12 +20,18 @@ const imgFor = (slug: string) => {
 
 const [featured, ...rest] = blogPosts;
 const featImg = imgFor(featured.slug);
+
+// The featured image is this page's LCP element. Shared by the head preload and
+// the <ResponsivePicture> below — keep them pointing at the same object.
+const FEAT_WIDTHS = [480, 768, 1024];
+const FEAT_SIZES = "(max-width: 900px) 100vw, 55vw";
 ---
 
 <BaseLayout
   title="Water Damage & Mold Remediation Blog | Carolina Pro Restoration | Fort Mill SC"
   description="Get expert water damage & mold remediation guides. Ensure your home is safe & dry. Tips from the Carolina Pro Restoration team in Fort Mill, SC."
   path="/blog"
+  preloadImage={featImg && { src: featImg, widths: FEAT_WIDTHS, sizes: FEAT_SIZES }}
 >
   <PageHeader
     eyebrow="From the CPR Team"
@@ -39,7 +45,7 @@ const featImg = imgFor(featured.slug);
       <a href={`/${featured.slug}`} class="blog-feat">
         {featImg && (
           <div class="blog-feat__media">
-            <ResponsivePicture src={featImg} alt={featured.title} widths={[480, 768, 1024]} sizes="(max-width: 900px) 100vw, 55vw" priority={true} />
+            <ResponsivePicture src={featImg} alt={featured.title} widths={FEAT_WIDTHS} sizes={FEAT_SIZES} priority={true} />
           </div>
         )}
         <div class="blog-feat__body">

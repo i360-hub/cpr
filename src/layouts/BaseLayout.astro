@@ -6,10 +6,17 @@ import Footer from "@components/layout/Footer.astro";
 import MobileStickyCall from "@components/layout/MobileStickyCall.astro";
 import Breadcrumbs from "@components/layout/Breadcrumbs.astro";
 import Analytics from "@components/layout/Analytics.astro";
+import { avifPreloadSrcset, type PreloadImage } from "@lib/images";
 
 interface Props {
   title: string;
   description: string;
+  /** The page's LCP image (hero / featured). Emits an AVIF <link rel=preload>
+   *  high in <head>, ahead of the JSON-LD and the inlined stylesheet, so the
+   *  browser starts fetching it without waiting to parse ~57KB of HTML down to
+   *  the <picture>. Widths/sizes MUST match the ResponsivePicture that renders
+   *  it, or the image is downloaded twice. */
+  preloadImage?: PreloadImage;
   /** Path only, e.g. "/water-damage-restoration". Canonical is built from site. */
   path?: string;
   ogImage?: string;
@@ -36,7 +43,12 @@ const {
   bodyClass,
   noindex = false,
   reviews = [],
+  preloadImage,
 } = Astro.props;
+
+const preloadSrcset = preloadImage
+  ? await avifPreloadSrcset(preloadImage.src, preloadImage.widths)
+  : undefined;
 
 const canonical = new URL(path.replace(/\/$/, "") || "/", Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
@@ -174,6 +186,21 @@ const jsonLd = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- LCP image, first thing after the viewport meta (imagesizes needs it). -->
+    {
+      preloadSrcset && (
+        <link
+          rel="preload"
+          as="image"
+          type="image/avif"
+          imagesrcset={preloadSrcset}
+          imagesizes={preloadImage!.sizes ?? "100vw"}
+          fetchpriority="high"
+        />
+      )
+    }
+
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}

@@ -19,6 +19,7 @@ import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import ActionShot from "@components/widgets/ActionShot.astro";
 import { homepage } from "@data/services";
+import { heroPreload } from "@lib/images";
 import heroImg from "@assets/images/hero-home.webp";
 import imgCrew from "@assets/images/organic/cpr-technician.jpg";
 
@@ -79,7 +80,7 @@ const faqSchema = [
 ];
 ---
 
-<BaseLayout title={homepage.title} description={homepage.metaDescription} path="/" schema={faqSchema} reviews={featuredReviews}>
+<BaseLayout title={homepage.title} description={homepage.metaDescription} path="/" schema={faqSchema} reviews={featuredReviews} preloadImage={heroPreload(heroImg)}>
   <Hero
     emergencyTag="🚨 24/7 Emergency Dispatch"
     h1Lines={homepage.h1Lines}
