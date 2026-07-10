@@ -1,9 +1,33 @@
 ---
 // Sitewide marketing/analytics tags:
 //   • Google tag  GT-K5LVS96N  → delivers to GA4 property G-XQJRRDCR3Q
-//   • Meta (Facebook) Pixel  821915420060205  — init + PageView
 //   • GHL / LeadConnector — the lead forms themselves (already embedded in
 //     ContactForm.astro) carry their own conversion tracking; nothing to add.
+//
+// META PIXEL REMOVED 2026-07-10 — the client is not running Facebook/Instagram
+// ads. It was the page's heaviest third party: 155KB transfer (55KB of it unused)
+// and ~197ms of main-thread time, more than gtag itself. To re-add, drop this
+// back inside boot(), after the gtag block, and restore the <noscript> pixel:
+//
+//   !(function (f, b, e, v, n, t, s) {
+//     if (f.fbq) return;
+//     n = f.fbq = function () {
+//       n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+//     };
+//     if (!f._fbq) f._fbq = n;
+//     n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
+//     t = b.createElement(e); t.async = !0;
+//     t.src = v; s = b.getElementsByTagName(e)[0];
+//     s.parentNode.insertBefore(t, s);
+//   })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+//   fbq("init", "821915420060205");
+//   fbq("track", "PageView");
+//
+//   <noscript><img height="1" width="1" style="display:none" alt=""
+//     src="https://www.facebook.com/tr?id=821915420060205&ev=PageView&noscript=1" /></noscript>
+//
+// Pixel ID 821915420060205. It keeps collecting nothing while absent; no data is
+// lost by leaving it out, and Meta rebuilds the audience from the day it returns.
 //
 // LOAD THE TAG, NOT THE DESTINATION. `gtag/js?id=…` only serves *tag* ids
 // (GT-…/AW-…). A GA4 measurement id like G-XQJRRDCR3Q is a *destination* of a
@@ -21,21 +45,25 @@
 // This file used to load id=G-JTWV3MYGXT and then config three ids — three tags,
 // 497KB, ~700ms of main-thread work. It is now one loader, ~176KB.
 //
-// AW-16639866068 is still a destination inside GT-K5LVS96N, so Ads remarketing
-// pings (and their 3rd-party cookies, the only thing failing Best Practices)
-// still fire. Not running Ads: unlink it under Google tag GT-K5LVS96N →
-// destinations. Do NOT "fix" that by deleting a config line here — G-XQJRRDCR3Q
-// rides the same tag and would go silent with it.
+// AW-16639866068 used to be a second destination on GT-K5LVS96N, so loading the
+// tag also fired Ads remarketing pings (whose 3rd-party cookies were the only
+// thing failing Best Practices). On 2026-07-10 it was moved, in the Google tag
+// admin, onto a new tag "Dormant CPR Ads" that nothing installs. GT-K5LVS96N now
+// has exactly one destination: G-XQJRRDCR3Q. Note Google will not let you delete
+// a destination, only reassign it to another tag.
+//   ⚠ Do NOT try to remove Ads by deleting a config line here. Before that move,
+//     G-XQJRRDCR3Q rode the AW tag and would have gone silent with it.
 //
 // AW-16710106121 (tag GT-MQJVTX68) was dropped 2026-07-10: no Ads running, and
 // nothing else rode on that tag. G-JTWV3MYGXT likewise — G-XQJRRDCR3Q is the
-// property of record (it holds the Duda-era history).
+// property of record (it holds the Duda-era history). Both were feeding separate
+// data streams on the SAME property, i.e. every pageview was counted twice.
 //
-// DEFERRED LOAD: none of these fire until the first user interaction OR browser
-// idle (whichever comes first, with a load+timeout fallback). Keeps the gtag /
-// Pixel request-chain off the critical path so it doesn't inflate LCP/TBT
-// (real users are still captured — the idle/load fallback fires even on a bounce
-// with no interaction). This is why PageSpeed sees a fast page despite the tags.
+// DEFERRED LOAD: the tag doesn't fire until the first user interaction OR browser
+// idle (whichever comes first, with a load+timeout fallback). Keeps the gtag
+// request-chain off the critical path so it doesn't inflate LCP/TBT (real users
+// are still captured — the idle/load fallback fires even on a bounce with no
+// interaction). This is why PageSpeed sees a fast page despite the tag.
 //
 // Hostname guard: these only fire on the production domain
 // (*.carolinaprorestoration.com). On the *.workers.dev preview and on localhost
@@ -63,21 +91,6 @@
       window.gtag = gtag;
       gtag("js", new Date());
       gtag("config", "GT-K5LVS96N");
-
-      /* Meta (Facebook) Pixel base code */
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n; n.loaded = !0; n.version = "2.0"; n.queue = [];
-        t = b.createElement(e); t.async = !0;
-        t.src = v; s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
-      fbq("init", "821915420060205");
-      fbq("track", "PageView");
     }
 
     /* Fire on first interaction (most engaged users) … */
@@ -94,12 +107,3 @@
     else window.addEventListener("load", function () { setTimeout(boot, 2500); });
   })();
 </script>
-<noscript>
-  <img
-    height="1"
-    width="1"
-    style="display:none"
-    alt=""
-    src="https://www.facebook.com/tr?id=821915420060205&ev=PageView&noscript=1"
-  />
-</noscript>
