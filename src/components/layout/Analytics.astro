@@ -1,6 +1,9 @@
 ---
 // Sitewide marketing/analytics tags:
 //   • Google tag  GT-K5LVS96N  → delivers to GA4 property G-XQJRRDCR3Q
+//   • tel_click → GA4 event on any tel: tap (phone calls are the primary
+//     conversion; star it as a key event in the GA UI once it shows up)
+//   • Microsoft Clarity (project nvxprayvfj) → heatmaps + session recordings
 //   • GHL / LeadConnector — the lead forms themselves (already embedded in
 //     ContactForm.astro) carry their own conversion tracking; nothing to add.
 //
@@ -91,6 +94,15 @@
       window.gtag = gtag;
       gtag("js", new Date());
       gtag("config", "GT-K5LVS96N");
+
+      /* Microsoft Clarity (project nvxprayvfj) — heatmaps + session recordings.
+         Inside boot() so it inherits the same defer + hostname guard as gtag:
+         never fires on the *.workers.dev preview or on localhost. */
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "nvxprayvfj");
     }
 
     /* Fire on first interaction (most engaged users) … */
@@ -105,5 +117,18 @@
     /* … or when the browser goes idle, so bounces with no interaction still count. */
     if ("requestIdleCallback" in window) requestIdleCallback(boot, { timeout: 4000 });
     else window.addEventListener("load", function () { setTimeout(boot, 2500); });
+
+    /* Primary conversion: a tap on any tel: link (header button, sticky call bar,
+       inline links). boot() guarantees the tag is loaded, then tel_click is sent
+       to GA4. The event queues in dataLayer even if gtag.js is still in flight. */
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
+      if (!a) return;
+      boot();
+      window.gtag && window.gtag("event", "tel_click", {
+        link_text: (a.textContent || "").trim().slice(0, 60),
+        page_path: location.pathname,
+      });
+    });
   })();
 </script>
