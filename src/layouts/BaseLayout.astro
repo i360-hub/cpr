@@ -273,9 +273,15 @@ const jsonLd = {
           },
           { rootMargin: "0px 0px -8% 0px" }
         );
-        kids.forEach(function (el) {
+        // Batch ALL layout reads before ANY writes. Interleaving them (measure,
+        // add class, measure, add class…) invalidates layout each pass and forces
+        // a reflow per element — PageSpeed flagged ~29ms of forced reflow here.
+        var tops = kids.map(function (el) {
+          return el.getBoundingClientRect().top;
+        });
+        kids.forEach(function (el, i) {
           // Already in/near view on load -> leave visible (no flash, no LCP hit).
-          if (el.getBoundingClientRect().top < vh * 0.85) return;
+          if (tops[i] < vh * 0.85) return;
           el.classList.add("cpr-reveal");
           io.observe(el);
         });
