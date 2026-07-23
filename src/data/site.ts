@@ -55,6 +55,13 @@ export const site = {
     instagram: "https://instagram.com/carolinaproresto/",
     tiktok: "https://tiktok.com/@carolina.pro.rest",
     linkedin: "https://www.linkedin.com/in/carolina-pro-restoration-llc-2a4914326/",
+    // Third-party profiles that already rank on our own brand SERP. Included in
+    // sameAs as entity anchors — they help Google keep us distinct from the
+    // similarly-named "Carolina Pro Reconstruction" (Gastonia, NC) and
+    // "Carolina Restoration Pro" (Concord, NC), both of which currently appear
+    // on our brand query.
+    yelp: "https://www.yelp.com/biz/carolina-pro-restoration-fort-mill",
+    bbb: "https://www.bbb.org/us/sc/fort-mill/profile/water-damage-restoration/carolina-pro-restoration-0473-92036064",
   },
 
   // Structured-data facts — sourced from the live Google Business Profile
@@ -76,9 +83,11 @@ export const site = {
     // Google Business Profile identifiers.
     placeId: "ChIJkR37bWkm7CoRu6bfEb_xhZc",
     mapUrl: "https://maps.google.com/maps?cid=10918398674570553019",
-    // Aggregate rating — live GBP value (4.87★ over 38 reviews, 2026-07-03).
+    // Aggregate rating — live GBP value (4.9★ over 43 reviews, verified against
+    // the local pack on 2026-07-23). Keep in sync as reviews grow; a count that
+    // disagrees with GBP is an inaccurate claim and weakens the entity.
     ratingValue: "4.9",
-    reviewCount: "38",
+    reviewCount: "43",
     // Approximate service radius from the Fort Mill HQ (meters). ~30 mi, matching
     // the GBP service area (reaches Gastonia/Monroe). Emitted as a GeoCircle.
     serviceRadiusMeters: 48000,
@@ -175,6 +184,19 @@ export const nav: NavItem[] = [
       { label: "Duct Cleaning", href: "/duct-cleaning" },
       { label: "Crawlspace Issues", href: "/crawlspace" },
       { label: "Waterproofing", href: "/waterproofing" },
+    ],
+  },
+  {
+    label: "Rebuild",
+    children: [
+      { label: "Reconstruction & Remodeling", href: "/reconstruction" },
+      { label: "Insurance Reconstruction", href: "/insurance-reconstruction" },
+      { label: "Bathroom Remodeling", href: "/bathroom-remodeling" },
+      { label: "Kitchen Remodeling", href: "/kitchen-remodeling" },
+      { label: "Flooring Installation & Repair", href: "/flooring-repair" },
+      { label: "Drywall Repair", href: "/drywall-repair" },
+      { label: "Interior Painting", href: "/interior-painting" },
+      { label: "Carpentry & Trim", href: "/carpentry-trim" },
     ],
   },
   {

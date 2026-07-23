@@ -1,0 +1,112 @@
+---
+// Reconstruction Hub (pillar). Links down to every rebuild "spoke" and up from
+// each spoke, building the topical cluster for reconstruction / remodeling
+// keywords. De-duped: flooring, commercial, and storm reuse existing pages.
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import BeforeAfter from "@components/widgets/BeforeAfter.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+import imgKitchenBefore from "@assets/images/organic/kitchen-before.jpg";
+import imgKitchenAfter from "@assets/images/organic/kitchen-after.jpg";
+
+const path = "/reconstruction";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const faq = [
+  {
+    q: "Do you do the cleanup and the rebuild, or just one?",
+    a: 'We do both. Carolina Pro Restoration handles the emergency cleanup and the full reconstruction with one crew, so you are not managing two contractors. Learn more about <a href="/insurance-reconstruction">insurance reconstruction</a>.',
+  },
+  {
+    q: "Do I need an insurance claim to hire you for a remodel?",
+    a: "No. We take on standalone remodels and repair projects — bathroom and kitchen remodels, new flooring, interior renovations, and general home improvement — with no claim required.",
+  },
+  {
+    q: "Which trades do you self-perform?",
+    a: "We self-perform most of our reconstruction work, including drywall, interior and exterior painting, flooring, tile, finish and general carpentry, subfloor repair, and siding. We subcontract only plumbing, electrical, and roofing to licensed trade partners.",
+  },
+  {
+    q: "Do you handle commercial reconstruction too?",
+    a: 'Yes. We rebuild homes and commercial properties — offices, retail, multifamily, and HOAs. See our <a href="/commercial-restoration">commercial restoration</a> page.',
+  },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Reconstruction and Remodeling",
+  name: "Reconstruction & Remodeling",
+  url: pageUrl,
+  description:
+    "Full-service reconstruction and remodeling in Fort Mill & Charlotte — one team from cleanup through the finished rebuild. Insurance and standalone projects.",
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+};
+---
+
+<BaseLayout
+  title="Reconstruction & Remodeling | Fort Mill & Charlotte | Carolina Pro"
+  description="Full reconstruction and remodeling in Fort Mill & Charlotte — one team from cleanup through the finished rebuild. Insurance rebuilds and standalone remodels. Call (980) 277-3700."
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[{ name: "Reconstruction & Remodeling", item: pageUrl }]}
+>
+  <PageHeader
+    eyebrow="Reconstruction & Remodeling"
+    title="From Cleanup to the Finished Rebuild — One Team, Start to Finish"
+    subtitle="We do the restoration and the reconstruction. One crew, one point of contact, one accountable team — for insurance rebuilds and standalone remodels across Fort Mill and Charlotte."
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Start Your Rebuild", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["reconstruction"]} />
+  <BeforeAfter
+    before={imgKitchenBefore}
+    after={imgKitchenAfter}
+    beforeAlt="A kitchen gutted to the studs during a Carolina Pro Restoration reconstruction project"
+    afterAlt="The same kitchen rebuilt with new cabinets, counters, and flooring"
+    title="From Gutted to Finished Kitchen"
+    sub="A Fort Mill and Charlotte area home rebuilt by one crew — demolition through the finished kitchen, cabinets, counters, and flooring."
+    caption="The same kitchen, torn out (left) through the finished rebuild (right)."
+    ratio="4 / 3"
+  />
+  <RelatedServices
+    title="Explore Our Reconstruction Services"
+    sub="Every rebuild trade, handled in-house. Standalone or as part of an insurance claim."
+    cards={[
+      { title: "Insurance Reconstruction", text: "One contractor for the whole claim — cleanup and rebuild, billed to your carrier.", href: "/insurance-reconstruction" },
+      { title: "Flooring Installation & Repair", text: "LVP, hardwood, tile, and subfloor — installed or replaced after damage.", href: "/flooring-repair" },
+      { title: "Commercial Reconstruction", text: "Offices, retail, and multifamily rebuilt with minimal downtime.", href: "/commercial-restoration" },
+      { title: "Storm Damage Repairs", text: "Emergency tarping and board-up through the complete structural rebuild.", href: "/storm-damage" },
+    ]}
+  />
+  <Faq
+    title="Reconstruction & Remodeling Questions"
+    sub="Plain answers about how we handle the rebuild — for insurance claims and standalone projects."
+    items={faq}
+  />
+  <ServiceArea />
+  <FinalCta heading="Ready to Rebuild? Talk to One Accountable Team." />
+  <ContactForm heading="Start Your Reconstruction Project" formName="Reconstruction Contact" />
+</BaseLayout>

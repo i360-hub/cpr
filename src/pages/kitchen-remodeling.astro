@@ -1,0 +1,105 @@
+---
+// Kitchen Remodeling — Reconstruction Hub spoke. Links up to /reconstruction and
+// laterally to sibling trades. Real project photography (no stock).
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+import img0 from "@assets/images/organic/kitchen-remodel-finished-fort-mill-sc.jpg";
+import img1 from "@assets/images/organic/kitchen-tile-floor-finished-fort-mill-sc.jpg";
+
+const path = "/kitchen-remodeling";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const faq = [
+  { q: "Do you rebuild kitchens after a water or fire loss?", a: "Yes. Kitchen reconstruction after a covered loss is core work for us, and we bill your carrier directly." },
+  { q: "Do you do remodels without a claim?", a: "Yes. Standalone kitchen remodels are welcome \u2014 no insurance claim needed." },
+  { q: "Do you replace cabinets or just reinstall them?", a: "Both, depending on condition. If cabinet boxes absorbed water they get replaced; if they are sound we can pull and reset them." },
+  { q: "Do you handle the flooring too?", a: "Yes \u2014 see <a href=\"/flooring-repair\">flooring installation and repair</a>. Most kitchen rebuilds include new flooring and subfloor work." },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Kitchen Remodeling",
+  name: "Kitchen Remodeling",
+  url: pageUrl,
+  description: "Kitchen remodeling and reconstruction in Fort Mill & Charlotte. Cabinets, counters, flooring, and full rebuilds after water or fire damage. Call (980) 277-3700.",
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  isRelatedTo: { "@id": `${origin}/reconstruction#service` },
+};
+---
+
+<BaseLayout
+  title={"Kitchen Remodeling & Rebuilds | Fort Mill & Charlotte"}
+  description={"Kitchen remodeling and reconstruction in Fort Mill & Charlotte. Cabinets, counters, flooring, and full rebuilds after water or fire damage. Call (980) 277-3700."}
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Kitchen Remodeling", item: pageUrl },
+  ]}
+>
+  <PageHeader
+    eyebrow={"Kitchen Remodeling"}
+    title={"Kitchen Remodeling &amp; Rebuilds"}
+    subtitle={"Full kitchen reconstruction after water or fire damage, and standalone remodels. Cabinets, counters, flooring, and finishes."}
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Free Kitchen Estimate", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["kitchen-remodeling"]} />
+  <ActionShot
+    image={img0}
+    alt={"A finished kitchen by Carolina Pro Restoration with white cabinets, new counters, and recessed lighting"}
+    eyebrow={"The finished room"}
+    heading={"Rebuilt, not patched"}
+    text={"Cabinets, counters, lighting, and flooring brought back together so the kitchen reads as one finished room."}
+    light={true}
+  />
+  <ActionShot
+    image={img1}
+    alt={"A kitchen with newly installed tile flooring during a Carolina Pro Restoration rebuild"}
+    eyebrow={"Flooring and cabinets"}
+    heading={"We check what is under the cabinets"}
+    text={"Cabinets and flooring hide moisture. We open it up, confirm the base is dry, and rebuild from there."}
+    flip={true}
+  />
+
+  <RelatedServices
+    title="Related Reconstruction Services"
+    sub="Other trades we handle in-house, standalone or as part of a claim."
+    cards={[
+      { title: "Insurance Reconstruction", text: "One contractor for the cleanup and the rebuild.", href: "/insurance-reconstruction" },
+      { title: "Flooring Installation & Repair", text: "LVP, tile, hardwood, and subfloor replacement.", href: "/flooring-repair" },
+      { title: "Carpentry & Trim", text: "Cabinet, trim, and finish carpentry work.", href: "/carpentry-trim" },
+      { title: "Reconstruction & Remodeling", text: "Every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq title={"Kitchen Remodeling Questions"} sub={"Plain answers about scope, timeline, and how the work gets done."} items={faq} />
+  <ServiceArea />
+  <FinalCta heading={"Ready to Get Started? Talk to One Accountable Team."} />
+  <ContactForm heading={"Request a Free Kitchen Remodeling Estimate"} formName={"Kitchen Remodeling Contact"} />
+</BaseLayout>

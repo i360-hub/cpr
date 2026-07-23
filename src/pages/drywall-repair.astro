@@ -1,0 +1,105 @@
+---
+// Drywall Repair — Reconstruction Hub spoke. Links up to /reconstruction and
+// laterally to sibling trades. Real project photography (no stock).
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+import img0 from "@assets/images/organic/drywall-patch-repair-fort-mill-sc.jpg";
+import img1 from "@assets/images/organic/drywall-repair-finished-fort-mill-sc.jpg";
+
+const path = "/drywall-repair";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const faq = [
+  { q: "Do you dry the wall before repairing it?", a: "Always. We take moisture readings and confirm the cavity is dry first. Closing up a wet wall grows mold inside it within weeks." },
+  { q: "Can you match my ceiling texture?", a: "Yes. We match common wall and ceiling textures so a patch does not stand out." },
+  { q: "Do you paint after the repair?", a: "Yes \u2014 most drywall jobs finish with <a href=\"/interior-painting\">interior painting</a> so the whole wall matches." },
+  { q: "Do you do full rooms or just patches?", a: "Both \u2014 from a single nail pop to full-room drywall after demolition or mold removal." },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Drywall Repair",
+  name: "Drywall Repair",
+  url: pageUrl,
+  description: "Drywall repair and installation in Fort Mill & Charlotte. Water-damaged ceilings and walls replaced, taped, textured, and finished paint-ready. Call (980) 277-3700.",
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  isRelatedTo: { "@id": `${origin}/reconstruction#service` },
+};
+---
+
+<BaseLayout
+  title={"Drywall Repair & Installation | Fort Mill & Charlotte"}
+  description={"Drywall repair and installation in Fort Mill & Charlotte. Water-damaged ceilings and walls replaced, taped, textured, and finished paint-ready. Call (980) 277-3700."}
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Drywall Repair", item: pageUrl },
+  ]}
+>
+  <PageHeader
+    eyebrow={"Drywall Repair"}
+    title={"Drywall Repair &amp; Installation"}
+    subtitle={"Water-damaged ceilings and walls cut out, replaced, and finished so the repair disappears. Dried and verified before we close anything up."}
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Free Drywall Estimate", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["drywall-repair"]} />
+  <ActionShot
+    image={img0}
+    alt={"A drywall patch taped and coated with joint compound during a Carolina Pro Restoration repair"}
+    eyebrow={"Taped and coated"}
+    heading={"Feathered so it disappears"}
+    text={"We cut back to solid board, tape the joint, and feather the compound wide so the patch does not telegraph through the paint."}
+    light={true}
+  />
+  <ActionShot
+    image={img1}
+    alt={"A finished and repainted wall after Carolina Pro Restoration completed a drywall repair"}
+    eyebrow={"Finished and painted"}
+    heading={"You should not be able to find it"}
+    text={"Sanded flat, textured to match, primed, and painted \u2014 the repair blends into the existing wall."}
+    flip={true}
+  />
+
+  <RelatedServices
+    title="Related Reconstruction Services"
+    sub="Other trades we handle in-house, standalone or as part of a claim."
+    cards={[
+      { title: "Interior Painting", text: "The finish coat that makes a repair invisible.", href: "/interior-painting" },
+      { title: "Water Damage Restoration", text: "Drying and extraction before the rebuild starts.", href: "/water-damage-restoration" },
+      { title: "Mold Removal", text: "Containment and removal before walls go back up.", href: "/mold-removal" },
+      { title: "Reconstruction & Remodeling", text: "Every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq title={"Drywall Repair Questions"} sub={"Plain answers about scope, timeline, and how the work gets done."} items={faq} />
+  <ServiceArea />
+  <FinalCta heading={"Ready to Get Started? Talk to One Accountable Team."} />
+  <ContactForm heading={"Request a Free Drywall Repair Estimate"} formName={"Drywall Repair Contact"} />
+</BaseLayout>

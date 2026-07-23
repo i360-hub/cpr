@@ -1,0 +1,105 @@
+---
+// Interior Painting — Reconstruction Hub spoke. Links up to /reconstruction and
+// laterally to sibling trades. Real project photography (no stock).
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+import img0 from "@assets/images/organic/interior-painting-ceiling-prep-fort-mill-sc.jpg";
+import img1 from "@assets/images/organic/interior-painting-finished-room-fort-mill-sc.jpg";
+
+const path = "/interior-painting";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const faq = [
+  { q: "Do you paint after drywall repair?", a: "Yes. Most of our painting follows our own <a href=\"/drywall-repair\">drywall repair</a> so the whole wall matches." },
+  { q: "Can you cover water stains?", a: "Yes, but they need a stain-blocking primer first. Painting straight over a water stain lets it bleed back through." },
+  { q: "Do you paint trim and doors?", a: "Yes \u2014 walls, ceilings, trim, baseboards, doors, and crown molding." },
+  { q: "Do you protect furniture and floors?", a: "Yes. We mask floors and furniture and contain dust, the same way we do on restoration jobs." },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Interior Painting",
+  name: "Interior Painting",
+  url: pageUrl,
+  description: "Interior painting in Fort Mill & Charlotte. Walls, ceilings, trim, and full repaints after drywall or water damage repair. Call (980) 277-3700.",
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  isRelatedTo: { "@id": `${origin}/reconstruction#service` },
+};
+---
+
+<BaseLayout
+  title={"Interior Painting | Fort Mill & Charlotte | Carolina Pro Restoration"}
+  description={"Interior painting in Fort Mill & Charlotte. Walls, ceilings, trim, and full repaints after drywall or water damage repair. Call (980) 277-3700."}
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Interior Painting", item: pageUrl },
+  ]}
+>
+  <PageHeader
+    eyebrow={"Interior Painting"}
+    title={"Interior Painting"}
+    subtitle={"Walls, ceilings, and trim \u2014 painted after a repair or just because the room is due. Prep done properly so the finish lasts."}
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Free Painting Estimate", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["interior-painting"]} />
+  <ActionShot
+    image={img0}
+    alt={"A room masked and taped in preparation for interior painting by Carolina Pro Restoration"}
+    eyebrow={"Prep and masking"}
+    heading={"The job is mostly prep"}
+    text={"Floors covered, edges taped, repairs sanded, and bare drywall primed. Water stains get a stain-blocking primer or they bleed straight back through."}
+    light={true}
+  />
+  <ActionShot
+    image={img1}
+    alt={"A freshly painted room with new flooring after a Carolina Pro Restoration rebuild"}
+    eyebrow={"Finished room"}
+    heading={"Clean lines, even coverage"}
+    text={"When we leave, the only thing different should be the paint."}
+    flip={true}
+  />
+
+  <RelatedServices
+    title="Related Reconstruction Services"
+    sub="Other trades we handle in-house, standalone or as part of a claim."
+    cards={[
+      { title: "Drywall Repair", text: "Walls and ceilings repaired and finished paint-ready.", href: "/drywall-repair" },
+      { title: "Carpentry & Trim", text: "Baseboards, casing, and crown molding.", href: "/carpentry-trim" },
+      { title: "Bathroom Remodeling", text: "Full bathroom rebuilds and remodels.", href: "/bathroom-remodeling" },
+      { title: "Reconstruction & Remodeling", text: "Every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq title={"Interior Painting Questions"} sub={"Plain answers about scope, timeline, and how the work gets done."} items={faq} />
+  <ServiceArea />
+  <FinalCta heading={"Ready to Get Started? Talk to One Accountable Team."} />
+  <ContactForm heading={"Request a Free Interior Painting Estimate"} formName={"Interior Painting Contact"} />
+</BaseLayout>

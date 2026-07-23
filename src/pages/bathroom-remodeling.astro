@@ -1,0 +1,105 @@
+---
+// Bathroom Remodeling — Reconstruction Hub spoke. Links up to /reconstruction and
+// laterally to sibling trades. Real project photography (no stock).
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+import img0 from "@assets/images/organic/bathroom-remodel-finished-fort-mill-sc.jpg";
+import img1 from "@assets/images/organic/bathroom-demo-subfloor-fort-mill-sc.jpg";
+
+const path = "/bathroom-remodeling";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const faq = [
+  { q: "Do you rebuild bathrooms after water damage?", a: "Yes. Bathroom reconstruction after a water or mold loss is one of our most common jobs. We handle the cleanup and the rebuild on one claim \u2014 see <a href=\"/insurance-reconstruction\">insurance reconstruction</a>." },
+  { q: "Can I hire you for a remodel with no insurance claim?", a: "Yes. We take standalone bathroom remodels with no claim involved." },
+  { q: "Do you replace the subfloor?", a: "When it needs it, yes. Tiling over a soft or wet subfloor guarantees the job fails. We check moisture and structure before any finish work goes in." },
+  { q: "How long does a bathroom take?", a: "A refresh can be about a week. A full gut with tile and subfloor work takes longer. We give you a schedule once the scope is set." },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Bathroom Remodeling",
+  name: "Bathroom Remodeling",
+  url: pageUrl,
+  description: "Bathroom remodeling and reconstruction in Fort Mill & Charlotte. Water-damage rebuilds, tub and shower replacement, tile, vanities, and subfloor repair. Call (980) 277-3700.",
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  isRelatedTo: { "@id": `${origin}/reconstruction#service` },
+};
+---
+
+<BaseLayout
+  title={"Bathroom Remodeling & Reconstruction | Fort Mill & Charlotte"}
+  description={"Bathroom remodeling and reconstruction in Fort Mill & Charlotte. Water-damage rebuilds, tub and shower replacement, tile, vanities, and subfloor repair. Call (980) 277-3700."}
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Bathroom Remodeling", item: pageUrl },
+  ]}
+>
+  <PageHeader
+    eyebrow={"Bathroom Remodeling"}
+    title={"Bathroom Remodeling &amp; Reconstruction"}
+    subtitle={"Full bathroom rebuilds after water damage, and straight remodels for bathrooms that are simply due. Subfloor to fixtures, one crew."}
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Free Bathroom Estimate", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["bathroom-remodeling"]} />
+  <ActionShot
+    image={img0}
+    alt={"A finished bathroom remodel by Carolina Pro Restoration with a new vanity, mirror, light fixture, and waterproof plank flooring"}
+    eyebrow={"The finished room"}
+    heading={"Finished bathroom"}
+    text={"New vanity, fixtures, lighting, trim, and waterproof flooring \u2014 rebuilt and ready to use."}
+    light={true}
+  />
+  <ActionShot
+    image={img1}
+    alt={"A bathroom stripped to the subfloor during a Carolina Pro Restoration water damage rebuild"}
+    eyebrow={"Down to the subfloor"}
+    heading={"We fix what is under the tile"}
+    text={"When water gets under a bathroom floor, tile alone will not fix it. We strip to the subfloor, replace what is damaged, and build back on a dry, solid base."}
+    flip={true}
+  />
+
+  <RelatedServices
+    title="Related Reconstruction Services"
+    sub="Other trades we handle in-house, standalone or as part of a claim."
+    cards={[
+      { title: "Insurance Reconstruction", text: "Rebuilding after a covered loss \u2014 billed to your carrier.", href: "/insurance-reconstruction" },
+      { title: "Flooring Installation & Repair", text: "Waterproof plank, tile, and subfloor replacement.", href: "/flooring-repair" },
+      { title: "Drywall Repair", text: "Walls and ceilings replaced and finished paint-ready.", href: "/drywall-repair" },
+      { title: "Reconstruction & Remodeling", text: "Every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq title={"Bathroom Remodeling Questions"} sub={"Plain answers about scope, timeline, and how the work gets done."} items={faq} />
+  <ServiceArea />
+  <FinalCta heading={"Ready to Get Started? Talk to One Accountable Team."} />
+  <ContactForm heading={"Request a Free Bathroom Remodeling Estimate"} formName={"Bathroom Remodeling Contact"} />
+</BaseLayout>

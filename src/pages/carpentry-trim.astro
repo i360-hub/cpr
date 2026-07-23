@@ -1,0 +1,105 @@
+---
+// Carpentry and Trim — Reconstruction Hub spoke. Links up to /reconstruction and
+// laterally to sibling trades. Real project photography (no stock).
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+import img0 from "@assets/images/organic/carpentry-trim-baseboard-install-fort-mill-sc.jpg";
+import img1 from "@assets/images/organic/carpentry-trim-finished-hallway-fort-mill-sc.jpg";
+
+const path = "/carpentry-trim";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const faq = [
+  { q: "Do you do structural repairs or just trim?", a: "Both. Rotted joists, soft subfloor, and damaged framing get repaired before any finish work goes back." },
+  { q: "Can you match my existing trim profile?", a: "Yes. Matching the existing profile is the point \u2014 a repaired wall should not stand out from the rest of the house." },
+  { q: "Do you handle exterior carpentry?", a: "Yes, including siding and exterior repairs." },
+  { q: "Do you install doors?", a: "Yes \u2014 interior and exterior door installation, including casing and hardware." },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Carpentry and Trim",
+  name: "Carpentry and Trim",
+  url: pageUrl,
+  description: "Carpentry and trim in Fort Mill & Charlotte. Baseboards, casing, crown molding, doors, framing, subfloor, and siding repair. Call (980) 277-3700.",
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  isRelatedTo: { "@id": `${origin}/reconstruction#service` },
+};
+---
+
+<BaseLayout
+  title={"Carpentry & Trim Work | Fort Mill & Charlotte | Carolina Pro"}
+  description={"Carpentry and trim in Fort Mill & Charlotte. Baseboards, casing, crown molding, doors, framing, subfloor, and siding repair. Call (980) 277-3700."}
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Carpentry & Trim", item: pageUrl },
+  ]}
+>
+  <PageHeader
+    eyebrow={"Carpentry & Trim"}
+    title={"Carpentry &amp; Trim Work"}
+    subtitle={"The framing that holds a room up and the finish work that makes it look like nothing happened. Structural repairs through final trim."}
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Free Carpentry Estimate", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["carpentry-trim"]} />
+  <ActionShot
+    image={img0}
+    alt={"New baseboard and trim staged for installation over new flooring on a Carolina Pro Restoration rebuild"}
+    eyebrow={"Trim going in"}
+    heading={"Matched to what is already there"}
+    text={"Most of our carpentry replaces part of a room, not all of it. We match existing profiles so new trim disappears into the old."}
+    light={true}
+  />
+  <ActionShot
+    image={img1}
+    alt={"A finished hallway with new flooring and trim after a Carolina Pro Restoration rebuild"}
+    eyebrow={"Finished detail"}
+    heading={"Where a rebuild stops looking like a repair"}
+    text={"Clean returns, tight joints, and consistent reveals \u2014 the details that separate finished work from patched work."}
+    flip={true}
+  />
+
+  <RelatedServices
+    title="Related Reconstruction Services"
+    sub="Other trades we handle in-house, standalone or as part of a claim."
+    cards={[
+      { title: "Interior Painting", text: "The finish coat over new trim and carpentry.", href: "/interior-painting" },
+      { title: "Flooring Installation & Repair", text: "Subfloor repair and new flooring.", href: "/flooring-repair" },
+      { title: "Storm Damage Repairs", text: "Structural and exterior rebuilds after a storm.", href: "/storm-damage" },
+      { title: "Reconstruction & Remodeling", text: "Every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq title={"Carpentry and Trim Questions"} sub={"Plain answers about scope, timeline, and how the work gets done."} items={faq} />
+  <ServiceArea />
+  <FinalCta heading={"Ready to Get Started? Talk to One Accountable Team."} />
+  <ContactForm heading={"Request a Free Carpentry and Trim Estimate"} formName={"Carpentry and Trim Contact"} />
+</BaseLayout>

@@ -1,0 +1,116 @@
+---
+// Insurance Reconstruction — the keystone spoke of the Reconstruction Hub.
+// Bridges the restoration side (mitigation) to the rebuild side under one claim,
+// so it cross-links widely to both. Xactimate / direct-billing / one-contact.
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PageHeader from "@components/layout/PageHeader.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { standalonePages } from "@data/standalonePages";
+import { site } from "@data/site";
+import imgRepairTech from "@assets/images/organic/water-repair-tech.jpg";
+
+const path = "/insurance-reconstruction";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const faq = [
+  {
+    q: "Does my homeowners insurance cover reconstruction?",
+    a: "In most covered claims, yes. When a sudden, accidental event like a burst pipe, appliance leak, fire, or storm damages your home, your policy generally pays to restore it to its prior condition. You are typically responsible for your deductible.",
+  },
+  {
+    q: "Do you bill my insurance directly?",
+    a: "Yes. We prepare a detailed Xactimate estimate, document the damage for your file, and bill your carrier directly so you are not paying out of pocket beyond your deductible.",
+  },
+  {
+    q: "Can you do both the cleanup and the rebuild?",
+    a: 'Yes — that is the point. We handle the mitigation and the full reconstruction under one claim, so there is no gap between two contractors. See our <a href="/reconstruction">reconstruction services</a>.',
+  },
+  {
+    q: "What is Xactimate?",
+    a: "Xactimate is the estimating software most insurance adjusters use to price a claim. Because we write our estimates in the same system, our scope and your adjuster's line up — which helps your rebuild get approved faster.",
+  },
+  {
+    q: "How long does an insurance rebuild take?",
+    a: "It depends on the size of the loss. Because the same team that dried or cleaned your home also rebuilds it, there is no handoff delay — which typically shortens the overall timeline. We give you a clear schedule once the scope is approved.",
+  },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Insurance Reconstruction",
+  name: "Insurance Reconstruction",
+  url: pageUrl,
+  description:
+    "Insurance reconstruction in Fort Mill & Charlotte — one contractor for the whole claim. Cleanup and rebuild, Xactimate estimates, billed directly to your carrier.",
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+};
+---
+
+<BaseLayout
+  title="Insurance Reconstruction | One Claim, Cleanup to Rebuild | Carolina Pro"
+  description="Insurance reconstruction in Fort Mill & Charlotte — one contractor for the whole claim. Xactimate estimates, direct insurance billing, cleanup through full rebuild. Call (980) 277-3700."
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Insurance Reconstruction", item: pageUrl },
+  ]}
+>
+  <PageHeader
+    eyebrow="Insurance Reconstruction"
+    title="One Contractor for the Whole Claim — Cleanup and Rebuild"
+    subtitle="We handle the mitigation and the full reconstruction under a single claim. Xactimate estimates, direct insurance billing, and one accountable team from the loss to the finished home."
+    ctas={[
+      { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
+      { label: "Start Your Claim Rebuild", href: "#contact", variant: "outline" },
+    ]}
+  />
+  <LocalContent blocks={standalonePages["insurance-reconstruction"]} />
+  <ActionShot
+    image={imgRepairTech}
+    alt="A Carolina Pro Restoration technician rebuilding a wall during an insurance reconstruction project"
+    eyebrow="On the job — the rebuild"
+    heading="The same team that cleaned it up rebuilds it"
+    text="No handoff between a cleanup crew and a rebuild crew. From demolition and drywall to flooring, tile, trim, and paint, one IICRC-certified team puts your home back the way it was — and we document every step for your claim."
+    light={true}
+  />
+  <RelatedServices
+    title="Restoration + Rebuild, Under One Claim"
+    sub="We start with the emergency mitigation and finish with the reconstruction."
+    cards={[
+      { title: "Water Damage Restoration", text: "Emergency extraction and structural drying — the first phase of most claims.", href: "/water-damage-restoration" },
+      { title: "Storm Damage Repairs", text: "Tarping and board-up through the complete structural rebuild.", href: "/storm-damage" },
+      { title: "Mold Removal", text: "Containment and removal before we rebuild the affected areas.", href: "/mold-removal" },
+      { title: "Reconstruction & Remodeling", text: "See every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq
+    title="Insurance Reconstruction Questions"
+    sub="Plain answers about coverage, Xactimate, direct billing, and timelines."
+    items={faq}
+  />
+  <ServiceArea />
+  <FinalCta heading="Filed a Claim? Let One Team Handle the Rebuild." />
+  <ContactForm heading="Get Help With Your Insurance Rebuild" formName="Insurance Reconstruction Contact" />
+</BaseLayout>
