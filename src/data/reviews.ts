@@ -5,6 +5,8 @@
 // Fort Mill reviews on the Fort Mill page, etc. Text is trimmed to
 // testimonial length but kept faithful to the customer's words.
 
+import { locations } from "./locations";
+
 export interface Review {
   tag: string;
   name: string;
@@ -174,24 +176,30 @@ export function reviewsFor(service: string, count = 3): Review[] {
   return [...matched, ...general].slice(0, count);
 }
 
-// Cities in/around Fort Mill where a Fort-Mill review reads as a local
-// neighbor (same York County / immediate south-Charlotte border). The far
-// Union- and Gaston-County towns are intentionally excluded — a "I'm in Fort
-// Mill" review would look out of place there.
-const FORT_MILL_AREA = new Set([
-  "fort-mill-sc", "tega-cay-sc", "rock-hill-sc", "indian-land-sc",
-  "clover-sc", "lake-wylie-sc", "pineville-nc", "ballantyne-nc", "charlotte-nc",
-]);
+// Stable town ordering (insertion order of the locations map) used to rotate
+// the generic fill reviews so neighboring towns don't all show the same set.
+const CITY_ORDER = Object.keys(locations);
 
-/** Reviews for a city slug (local/nearby ones first), padded with a diverse set. */
+/**
+ * Reviews for a city slug. Only reviews that explicitly name THIS city count as
+ * local — a review is never borrowed from a nearby town. (It used to be: any
+ * `city: "fort-mill-sc"` review was treated as local for every town in a Fort
+ * Mill allowlist, which pushed "I'm in Fort Mill" / "Fort Mill folks!" text onto
+ * Rock Hill, Tega Cay, Indian Land, Pineville, and more.)
+ *
+ * The remainder is filled from generic reviews that name no city, rotated by the
+ * city's position in the locations map so adjacent towns get different sets.
+ */
 export function reviewsForCity(city: string, count = 3): Review[] {
-  const local = reviews.filter(
-    (r) => r.city === city || (r.city === "fort-mill-sc" && FORT_MILL_AREA.has(city))
-  );
-  // Fill only from reviews that don't name a city, so a "I'm in Fort Mill"
-  // review never surfaces on a non-adjacent town. Shorter ones read cleaner.
-  const rest = reviews.filter((r) => !r.city && !local.includes(r) && r.text.length < 260);
-  return [...local, ...rest].slice(0, count);
+  const local = reviews.filter((r) => r.city === city);
+
+  // Generic fill: reviews that name no city and are short enough to read cleanly.
+  const fill = reviews.filter((r) => !r.city && r.text.length < 260);
+  const idx = CITY_ORDER.indexOf(city);
+  const offset = fill.length ? ((idx < 0 ? 0 : idx) % fill.length) : 0;
+  const rotated = [...fill.slice(offset), ...fill.slice(0, offset)];
+
+  return [...local, ...rotated].slice(0, count);
 }
 
 export const reviewsSummary = {
