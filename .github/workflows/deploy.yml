@@ -36,6 +36,12 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # Pin Wrangler 4. The action bundles 3.90.0, and v3 silently ignores
+          # the v4-only `[assets] run_worker_first` field ("Unexpected fields
+          # found in assets field"), so the Worker only runs on asset MISSES —
+          # apex->www + security headers + legacy redirects on real pages never
+          # fire. Local deploys already use v4; this makes CI match.
+          wranglerVersion: '4'
           command: deploy
 
       - name: Smoke-check production
