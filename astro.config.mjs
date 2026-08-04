@@ -1,8 +1,32 @@
 // @ts-check
+import { copyFile } from 'node:fs/promises';
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 const SITE = 'https://www.carolinaprorestoration.com';
+
+// @astrojs/sitemap only emits sitemap-index.xml + sitemap-0.xml, so the bare
+// /sitemap.xml — the URL the old Duda site served, and the one crawlers, SEO
+// tools and AI bots probe by convention — 404s. Copy the freshly-written index
+// to /sitemap.xml after every build: it's a valid sitemap index at that URL
+// (all <loc>s inside are absolute), returns 200 rather than a redirect, and
+// can't drift out of sync the way a hand-written alias file would.
+// Must be listed AFTER sitemap() so its astro:build:done hook runs first.
+function sitemapXmlAlias() {
+  return {
+    name: 'sitemap-xml-alias',
+    hooks: {
+      'astro:build:done': async ({ dir, logger }) => {
+        try {
+          await copyFile(new URL('sitemap-index.xml', dir), new URL('sitemap.xml', dir));
+          logger.info('Aliased sitemap-index.xml -> sitemap.xml');
+        } catch (err) {
+          logger.warn(`Could not write sitemap.xml alias: ${err}`);
+        }
+      },
+    },
+  };
+}
 
 // Static (SSG) build for Cloudflare Pages. No adapter needed — all content is
 // prebuilt HTML. Images run through astro:assets (sharp) with avif/webp output.
@@ -16,6 +40,7 @@ export default defineConfig({
     sitemap({
       filter: (page) => !page.includes("/thank-you") && !page.includes("/privacy"),
     }),
+    sitemapXmlAlias(),
   ],
   build: {
     // Emit `page.html` (not `page/index.html`) so Cloudflare Pages serves each
