@@ -26,3 +26,6 @@ widget_pages/
 
 # local Claude settings
 .claude/settings.local.json
+
+# editor/backup artifacts
+*.bak

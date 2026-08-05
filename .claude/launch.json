@@ -4,8 +4,44 @@
     {
       "name": "astro-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "4333"],
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "4333"
+      ],
       "port": 4333,
+      "autoPort": false
+    },
+    {
+      "name": "iron-eagle",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/admin/Documents/Websites/IronEagleMoving/site",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "4344"
+      ],
+      "port": 4344,
+      "autoPort": false
+    },
+    {
+      "name": "iron-eagle-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/admin/Documents/Websites/IronEagleMoving/site",
+        "run",
+        "preview",
+        "--",
+        "--port",
+        "4355"
+      ],
+      "port": 4355,
       "autoPort": false
     }
   ]
