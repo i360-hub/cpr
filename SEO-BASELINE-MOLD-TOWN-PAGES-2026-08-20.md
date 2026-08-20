@@ -1,6 +1,7 @@
 # CPR SEO Baseline — 2026-08-20 (PRE mold town-page publish)
 
 Snapshot taken immediately **before** publishing the five mold-removal town pages
+(all five shipped 2026-08-20)
 (`/mold-removal-rock-hill-sc`, `/mold-removal-pineville-nc`,
 `/mold-removal-fort-mill-sc`, `/mold-removal-indian-land-sc`,
 `/mold-removal-tega-cay-sc`).
@@ -49,10 +50,20 @@ The handoff's own mitigations still hold and are already implemented:
   (once in body, once in the Lake Wylie mold FAQ);
 - **no redirect** was created — the water page ranks on its own terms.
 
-**Recommendation:** keep Tega Cay in the **final** publish wave (as §9 already schedules),
-and re-run this exact query 14 days after it goes live. If the water page drops below
-absolute 4 without the mold page taking a top-3 organic slot, pull the second (FAQ)
-internal link and re-evaluate before the 20 Oct re-audit.
+**What was actually done.** The staged three-wave rollout in §9 was collapsed by owner
+decision on 2026-08-20: all five pages went live the same day, Tega Cay included.
+
+Consequence for the ~20 Oct re-audit — **Tega Cay was not isolated.** If
+`/water-damage-restoration-tega-cay-sc` moves off organic #1 for this query, that
+movement cannot be cleanly attributed to the new mold page as opposed to cluster-wide
+effects from publishing five pages at once. The pre-launch numbers above still make
+displacement *measurable*; they no longer make it *isolable*.
+
+**Still to do:** re-run this exact query on **~2026-09-03** (14 days post-launch). If
+`/water-damage-restoration-tega-cay-sc` has dropped below absolute 4 **and**
+`/mold-removal-tega-cay-sc` has not taken a top-3 organic slot, remove the second
+internal link — the one in the Lake Wylie mold FAQ in `src/data/locations.ts` — leaving
+only the in-body link, and re-check before the 20 Oct audit.
 
 ### AI Overview note
 

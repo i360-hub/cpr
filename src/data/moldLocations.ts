@@ -1077,18 +1077,30 @@ export const moldLocationList = Object.values(moldLocations);
 // this file from day one; only the slugs listed here are BUILT, so the rest
 // are absent from the site and the sitemap until their wave lands.
 //
-// To publish the next wave: add its slugs here and push. That is the whole
-// change — routes, sitemap, the hub's "Mold Removal by Town" block, the
-// /service-areas grid, and the sibling links on each town page all follow
-// automatically, and prose links to a not-yet-live town fall back to the
-// /mold-removal hub rather than 404ing.
+// To publish a town: add its slug here and push. That is the whole change —
+// routes, sitemap, the hub's "Mold Removal by Town" block, the /service-areas
+// grid, and the sibling links on each town page all follow automatically, and
+// prose links to a not-yet-live town fall back to the /mold-removal hub rather
+// than 404ing. The mechanism stays in place for any future town.
 //
 //   Wave 1 — 2026-08-20: Rock Hill, Pineville   (the two shutout markets)
-//   Wave 2 — ~2026-08-30: Fort Mill, Indian Land
-//   Wave 3 — ~2026-09-09: Tega Cay              (last, by design — it has to
-//            displace our own organic #1; see SEO-BASELINE-MOLD-TOWN-PAGES-2026-08-20.md)
+//   Wave 2 — 2026-08-20: Fort Mill, Indian Land, Tega Cay
+//
+// All five went live the same day by owner decision, collapsing the planned
+// three-wave rollout. Consequence to remember when reading the ~20 Oct re-audit:
+// Tega Cay was NOT isolated, so if /water-damage-restoration-tega-cay-sc moves
+// off organic #1 for `mold removal tega cay sc`, that movement cannot be
+// cleanly attributed to the new mold page versus cluster-wide effects. The
+// pre-launch baseline is still logged, so displacement remains measurable —
+// just not isolable. See SEO-BASELINE-MOLD-TOWN-PAGES-2026-08-20.md.
 // ---------------------------------------------------------------------------
-export const publishedMoldTowns: string[] = ["rock-hill-sc", "pineville-nc"];
+export const publishedMoldTowns: string[] = [
+  "rock-hill-sc",
+  "pineville-nc",
+  "fort-mill-sc",
+  "indian-land-sc",
+  "tega-cay-sc",
+];
 
 export const isMoldTownPublished = (slug: string) => publishedMoldTowns.includes(slug);
 
