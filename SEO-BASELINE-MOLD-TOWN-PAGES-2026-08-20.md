@@ -1,10 +1,9 @@
 # CPR SEO Baseline — 2026-08-20 (PRE mold town-page publish)
 
-Snapshot taken immediately **before** publishing the five mold-removal town pages
-(all five shipped 2026-08-20)
-(`/mold-removal-rock-hill-sc`, `/mold-removal-pineville-nc`,
-`/mold-removal-fort-mill-sc`, `/mold-removal-indian-land-sc`,
-`/mold-removal-tega-cay-sc`).
+Snapshot taken immediately **before** publishing the five mold-removal town pages —
+`/mold-removal-rock-hill-sc`, `/mold-removal-pineville-nc`, `/mold-removal-fort-mill-sc`,
+`/mold-removal-indian-land-sc`, `/mold-removal-tega-cay-sc` — all of which shipped
+on 2026-08-20.
 
 Re-run against the 50-check mold matrix on ~20 Oct 2026 and diff against this file.
 
