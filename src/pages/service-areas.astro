@@ -8,6 +8,7 @@ import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import { locationList } from "@data/locations";
+import { publishedMoldLocationList } from "@data/moldLocations";
 import { site } from "@data/site";
 
 const sc = locationList.filter((l) => l.state === "SC");
@@ -55,6 +56,29 @@ const groups = [
           </div>
         ))
       }
+    </div>
+  </section>
+
+  <section class="cpr-section cpr-section--light">
+    <div class="cpr-section-inner">
+      <SectionHeader
+        eyebrow="Moisture & Air Quality"
+        title="Mold Removal by Town"
+        sub="Dedicated mold removal pages for the towns we serve most — what causes mold there, what removal costs, and the free inspection."
+      />
+      <div class="areas-group">
+        <ul class="areas-grid" role="list">
+          {publishedMoldLocationList.map((c) => (
+            <li>
+              <a href={`/mold-removal-${c.slug}`} class="areas-card">
+                <span class="areas-card__dot" aria-hidden="true" />
+                <span class="areas-card__name">{c.name}, {c.state}</span>
+                <Icon name="arrow" class="areas-card__arrow" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 

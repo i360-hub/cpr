@@ -5,12 +5,15 @@ import Icon from "@components/ui/Icon.astro";
 
 interface Props {
   city: string;
+  /** Override the section heading (mold town pages use "Boots on the Ground…"). */
+  title?: string;
   intro?: string;
   neighborhoods: string[];
   viewAllHref?: string;
 }
 const {
   city,
+  title = `${Astro.props.city} Neighborhoods We Serve`,
   intro = `We respond to water damage calls across all of ${city}, including:`,
   neighborhoods,
   viewAllHref = "/service-areas",
@@ -19,7 +22,7 @@ const {
 
 <section class="cpr-section hood">
   <div class="cpr-section-inner">
-    <h2 class="hood__title">{city} Neighborhoods We Serve</h2>
+    <h2 class="hood__title">{title}</h2>
     <p class="hood__intro">{intro}</p>
 
     <ul class="hood__grid" role="list">

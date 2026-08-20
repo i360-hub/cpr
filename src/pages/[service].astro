@@ -26,6 +26,7 @@ import { servicePages } from "@data/servicePages";
 import { serviceBySlug } from "@data/services";
 import { reviewsFor } from "@data/reviews";
 import { site } from "@data/site";
+import { isMoldTownPublished } from "@data/moldLocations";
 import { heroPreload } from "@lib/images";
 
 import heroWaterDamage from "@assets/images/hero-water-damage-restoration.jpg";
@@ -105,6 +106,12 @@ const processSteps =
       )
     : data.process.steps;
 
+// Town-page cards (mold-removal only), minus any town whose publish wave
+// hasn't landed yet.
+const townLinks = (data.townLinks ?? []).filter((t) =>
+  isMoldTownPublished(t.href.replace("/mold-removal-", "")),
+);
+
 const faqSchema = [
   {
     "@type": "FAQPage",
@@ -173,6 +180,13 @@ const serviceSchema = {
   <InsuranceCard title={data.insurance.title} desc={data.insurance.desc} points={data.insurance.points} />
   <Reviews reviews={reviewsFor(service)} title={data.reviewsTitle} sub={data.reviewsSub} />
   <Faq title={data.faqTitle} sub={data.faqSub} ctaLabel={data.faqCtaLabel} items={data.faq} />
+  {townLinks.length > 0 && (
+    <RelatedServices
+      title="Mold Removal by Town"
+      sub="Local mold removal pages for the towns we serve most — each one covers what actually causes mold in that town, what it costs, and the free inspection."
+      cards={townLinks}
+    />
+  )}
   <ServiceArea
     title={data.areaTitle}
     sub={data.areaSub}

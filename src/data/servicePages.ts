@@ -20,6 +20,10 @@ export interface ServicePageData {
   finalCta: string; contactHeading: string; contactDesc: string;
   areaTitle: string; areaSub: string; areaInfoHeading: string; areaInfoBlurb: string;
   cost?: { title: string; sub: string; note: string; rows: { name: string; range: string }[] };
+  /** Town-page link block (mold-removal only). Renders as a RelatedServices grid
+   *  above the service-area map — the parent→child signal for the five
+   *  /mold-removal-{town} pages, which are NOT nested under this URL. */
+  townLinks?: { title: string; text: string; href: string }[];
 }
 
 export const servicePages: Record<string, ServicePageData> = {
@@ -386,6 +390,13 @@ export const servicePages: Record<string, ServicePageData> = {
       { title: 'Crawl Space Encapsulation', text: 'Seal a damp crawl space so mold cannot return.', href: '/crawlspace' },
       { title: 'Air Duct Cleaning', text: 'Clear mold and spores out of your HVAC ducts and air.', href: '/duct-cleaning' }
     ] },
+    townLinks: [
+      { title: 'Mold Removal in Rock Hill, SC', text: 'York County clay, damp crawl spaces, and boom-era plumbing failures.', href: '/mold-removal-rock-hill-sc' },
+      { title: 'Mold Removal in Fort Mill, SC', text: 'Black mold under the house and Dura-PEX leaks behind the wall. We are based here.', href: '/mold-removal-fort-mill-sc' },
+      { title: 'Mold Removal in Tega Cay, SC', text: 'Lake Wylie humidity, a high water table, and crawl spaces that never dry.', href: '/mold-removal-tega-cay-sc' },
+      { title: 'Mold Removal in Indian Land, SC', text: 'Newer builds, tight envelopes, and HVAC condensation you cannot see.', href: '/mold-removal-indian-land-sc' },
+      { title: 'Mold Removal in Pineville, NC', text: 'Creek flooding, 1970s crawl space homes, and Highway 51 townhomes.', href: '/mold-removal-pineville-nc' }
+    ],
     reviewsTitle: 'Trusted by Homeowners and Property Managers', reviewsSub: 'Rated 5 stars across 40+ reviews. From mold inspections to safe removal and cleaner air, here is what people say about working with Carolina Pro Restoration.',
     finalCta: 'Worried About Mold? Get a Professional Inspection.', contactHeading: 'Get Mold Removal Help', contactDesc: 'Worried about mold in your home? The sooner you act, the better. Call or text us, or send the details and we\'ll get right back to you with next steps.',
     areaTitle: 'We Serve the Charlotte Metro and Carolinas', areaSub: 'Based in Fort Mill, SC, with IICRC-certified mold crews across York County and the south Charlotte area. Pick your city below for local details.', areaInfoHeading: 'Mold Inspections and Remediation Nearby', areaInfoBlurb: 'We cover most of York County and south Charlotte for mold testing, removal, and moisture repair.',

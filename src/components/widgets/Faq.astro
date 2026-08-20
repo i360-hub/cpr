@@ -1,5 +1,6 @@
 ---
 import SectionHeader from "@components/ui/SectionHeader.astro";
+import { gateMoldTownLinks } from "@data/moldLocations";
 import Icon from "@components/ui/Icon.astro";
 import Button from "@components/ui/Button.astro";
 import { site } from "@data/site";
@@ -39,7 +40,7 @@ const {
                 <span set:html={item.q} />
                 <Icon name="chevron" class="faq__caret" />
               </summary>
-              <div class="faq__a" set:html={item.a} />
+              <div class="faq__a" set:html={gateMoldTownLinks(item.a)} />
             </details>
           </li>
         ))

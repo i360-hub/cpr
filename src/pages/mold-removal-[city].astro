@@ -1,0 +1,194 @@
+---
+// Dynamic mold-removal town page. Renders the town stack from moldLocations.ts
+// at /mold-removal-{town}-{state} — flat slugs matching the water-damage city
+// convention, deliberately NOT nested under /mold-removal.
+//
+// These are children of the /mold-removal hub in meaning, not in URL: same
+// 5-step process, same free-inspection offer, same technical claims. The hub
+// stays metro-level ("Fort Mill & Charlotte") so nothing here cannibalizes it.
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/widgets/Hero.astro";
+import StatStrip from "@components/widgets/StatStrip.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ProcessSteps from "@components/widgets/ProcessSteps.astro";
+import CostTable from "@components/widgets/CostTable.astro";
+import InsuranceCard from "@components/widgets/InsuranceCard.astro";
+import Neighborhoods from "@components/widgets/Neighborhoods.astro";
+import Reviews from "@components/widgets/Reviews.astro";
+import Faq from "@components/widgets/Faq.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import { moldLocations, publishedMoldTowns, isMoldTownPublished } from "@data/moldLocations";
+import { reviewsForCity } from "@data/reviews";
+import { site } from "@data/site";
+import { mapEmbed, mapsLink } from "@data/maps";
+import type { ImageMetadata } from "astro";
+import heroMold from "@assets/images/hero-mold-removal.jpg";
+import imgMoldPpe from "@assets/images/organic/mold-ppe.jpg";
+import imgCrawlEncap from "@assets/images/organic/crawlspace-encapsulation.jpg";
+import imgCrawlFlood from "@assets/images/organic/crawlspace-flooding.jpg";
+import imgCrawlVapor from "@assets/images/organic/crawlspace-vapor-barrier.jpg";
+import imgThermal from "@assets/images/organic/thermal-imaging.jpg";
+import { heroPreload } from "@lib/images";
+
+// Per-town "on the job" band. Each town gets a different photo so the five
+// pages don't read as one template — the image matches that town's mold angle.
+const townActionShots: Record<string, { image: ImageMetadata; alt: string; eyebrow: string; heading: string; text: string; light: boolean }> = {
+  "rock-hill-sc": {
+    image: imgCrawlEncap,
+    alt: "A sealed crawl space with a heavy vapor barrier under a Rock Hill, SC home",
+    eyebrow: "Serving Rock Hill & York County",
+    heading: "York County clay is why the mold came back",
+    text: "Remediating a Rock Hill crawl space without sealing it is a temporary fix. We clear the growth, then seal the space with a heavy vapor barrier and a right-sized dehumidifier so the red clay stops feeding it.",
+    light: true,
+  },
+  "pineville-nc": {
+    image: imgCrawlFlood,
+    alt: "A wet crawl space with standing water under a home near Pineville, NC",
+    eyebrow: "Serving Pineville & southern Mecklenburg",
+    heading: "Pumped out is not the same as dried out",
+    text: "Every Pineville crawl space that took on creek water and never got properly dried is a mold job now. We dry it to a verified standard, treat the framing, and fix what let the water in.",
+    light: true,
+  },
+  "fort-mill-sc": {
+    image: imgMoldPpe,
+    alt: "A mold remediation specialist in full PPE treating a wall in a Fort Mill, SC home",
+    eyebrow: "Based right here in Fort Mill",
+    heading: "Black mold, handled the right way",
+    text: "Full PPE, sealed containment, negative air, and HEPA scrubbing on every job — then we remove the contaminated material instead of painting over it. We're headquartered in Fort Mill, minutes from your door.",
+    light: true,
+  },
+  "indian-land-sc": {
+    image: imgThermal,
+    alt: "A technician using a thermal imaging camera to find hidden moisture in an Indian Land, SC home",
+    eyebrow: "Serving Indian Land & Lancaster County",
+    heading: "We find the moisture you can't see",
+    text: "New Indian Land builds hide their moisture well — tight envelopes, quiet slab leaks, condensation on ductwork. Thermal imaging and moisture meters map every damp cavity before anyone opens a wall.",
+    light: true,
+  },
+  "tega-cay-sc": {
+    image: imgCrawlVapor,
+    alt: "A heavy vapor barrier sealing the crawl space of a Tega Cay, SC lake-area home",
+    eyebrow: "Serving Tega Cay & the lake",
+    heading: "Lake air, dry crawl space",
+    text: "Tega Cay homes sit in humid air over a high water table. We remove the mold, then seal the crawl space and control the humidity so the shoreline stops working against your framing.",
+    light: true,
+  },
+};
+
+// Only towns whose publish wave has landed are built (see publishedMoldTowns).
+// The other towns' content stays in moldLocations.ts, absent from the site and
+// the sitemap, until their slug is added there.
+export function getStaticPaths() {
+  return publishedMoldTowns.map((city) => ({ params: { city } }));
+}
+
+const { city } = Astro.params;
+const loc = moldLocations[city];
+
+// Sibling town links, minus any town that isn't live yet.
+const nearby = loc.nearby.filter(
+  (n) => !n.href.startsWith("/mold-removal-") || isMoldTownPublished(n.href.replace("/mold-removal-", "")),
+);
+
+// Same map treatment as the water city pages: the Fort Mill page shows the real
+// branded HQ pin, every other town shows a keyless, town-centered embed.
+const townMapSrc =
+  city === "fort-mill-sc" ? site.mapEmbedSrc : mapEmbed(`${loc.name}, ${loc.state}`, 12);
+const townMapLink =
+  city === "fort-mill-sc" ? site.mapLink : mapsLink(`${loc.name}, ${loc.state}`);
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: loc.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+// Town-specific Service node — "mold removal in {town}", provided by the
+// sitewide #business, areaServed narrowed to this one town.
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}/mold-removal-${loc.slug}`;
+const townServiceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Mold Removal",
+  name: `Mold Removal in ${loc.name}, ${loc.state}`,
+  url: pageUrl,
+  description: loc.metaDescription,
+  provider: { "@id": `${origin}/#business` },
+  areaServed: { "@type": "City", name: `${loc.name}, ${loc.state}` },
+  isRelatedTo: { "@id": `${origin}/mold-removal#service` },
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+};
+---
+
+<BaseLayout
+  title={loc.title}
+  description={loc.metaDescription}
+  path={`/mold-removal-${loc.slug}`}
+  schema={[townServiceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Service Areas", item: `${origin}/service-areas` },
+    { name: `${loc.name}, ${loc.state}`, item: `${origin}/water-damage-restoration-${loc.slug}` },
+    { name: "Mold Removal", item: pageUrl },
+  ]}
+  reviews={reviewsForCity(city)}
+  preloadImage={heroPreload(heroMold)}
+>
+  <Hero
+    emergencyTag={loc.heroTag}
+    h1Lines={[loc.h1]}
+    subtitle={loc.heroSub}
+    trustSignals={loc.heroTrust}
+    image={heroMold}
+    imageAlt={`Carolina Pro Restoration mold removal crew serving ${loc.name}, ${loc.state}`}
+    secondaryCta={{ label: "Request a Free Inspection", href: "#contact" }}
+  />
+  <StatStrip stats={loc.stats} />
+  <LocalContent blocks={loc.body} />
+  <ProcessSteps title={loc.process.title} sub={loc.process.sub} ctaLabel={loc.process.ctaLabel} steps={loc.process.steps} />
+  {townActionShots[city] && <ActionShot {...townActionShots[city]} />}
+  <CostTable title={loc.cost.title} sub={loc.cost.sub} note={loc.cost.note} rows={loc.cost.rows} />
+  <LocalContent blocks={loc.costDetail} light />
+  <InsuranceCard title={loc.inspection.title} desc={loc.inspection.desc} points={loc.inspection.points} />
+  <Neighborhoods
+    title={loc.neighborhoods.title}
+    city={loc.name}
+    intro={loc.neighborhoods.intro}
+    neighborhoods={loc.neighborhoods.items}
+  />
+  <Reviews reviews={reviewsForCity(city)} title={loc.reviewsTitle} sub={loc.reviewsSub} />
+  <Faq title={loc.faqTitle} sub={loc.faqSub} items={loc.faq} />
+  <RelatedServices title={loc.related.title} sub={loc.related.sub} cards={loc.related.cards} />
+  <ServiceArea
+    title={loc.areaTitle}
+    sub={loc.areaSub}
+    infoHeading={loc.areaInfoHeading}
+    infoBlurb={loc.areaInfoBlurb}
+    citiesLabel="Mold Removal by Town"
+    cities={nearby}
+    mapSrc={townMapSrc}
+    mapLink={townMapLink}
+  />
+  <FinalCta heading={loc.finalCta} secondaryLabel="Request a Free Inspection" />
+  <ContactForm
+    heading={loc.contactHeading}
+    description={loc.contactDesc}
+    cardTitle="Request a Free Mold Inspection"
+    formName={`${loc.name} Mold Removal Contact`}
+    trustItems={[
+      "Free mold inspection — no cost, no pressure",
+      "IICRC-certified remediation crews",
+      "Containment, negative air, and HEPA scrubbing on every job",
+      "We fix the moisture source and rebuild what we remove",
+    ]}
+  />
+</BaseLayout>

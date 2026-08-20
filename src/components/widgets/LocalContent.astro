@@ -2,6 +2,7 @@
 // Renders the per-city editorial body (rich local-SEO prose) — an ordered list
 // of h2/h3/p blocks extracted from the live page. Inline links are preserved.
 import Icon from "@components/ui/Icon.astro";
+import { gateMoldTownLinks } from "@data/moldLocations";
 
 interface Block {
   tag: string;
@@ -20,7 +21,9 @@ const { blocks: rawBlocks, light = false } = Astro.props;
 // content data; this is the last-resort net so a future export can't regress.
 const blocks = rawBlocks.map((b) => ({
   ...b,
-  html: b.html.replace(/href=(""|"<>"|'')/g, 'href="/"'),
+  // Same last-resort net, plus: links to a mold town page whose publish wave
+  // hasn't landed yet fall back to the /mold-removal hub instead of 404ing.
+  html: gateMoldTownLinks(b.html.replace(/href=(""|"<>"|'')/g, 'href="/"')),
 }));
 
 // Group consecutive <li> blocks into a single list.
