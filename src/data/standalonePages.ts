@@ -30,7 +30,7 @@ export const standalonePages: Record<string, Block[]> = {
     { tag: 'p', html: 'Reconstruction: Our crews handle demolition, structural and subfloor repairs, drywall, flooring, tile, carpentry, and paint.' },
     { tag: 'p', html: 'Final walkthrough: We review the finished work with you and make sure every detail is right before we call it done.' },
     { tag: 'h2', html: 'Serving Fort Mill, Charlotte, and the Surrounding Area' },
-    { tag: 'p', html: 'We rebuild homes and commercial properties across Fort Mill, Rock Hill, Tega Cay, Indian Land, Lake Wylie, and the greater Charlotte area. With 40+ five-star reviews and an A+ BBB rating, our neighbors trust us to put their properties back together the right way.' },
+    { tag: 'p', html: 'We rebuild homes and commercial properties across Fort Mill, Rock Hill, Tega Cay, Indian Land, Lake Wylie, and the greater Charlotte area. With 40+ Google reviews and BBB accreditation, our neighbors trust us to put their properties back together the right way.' },
     { tag: 'p', html: 'Start your rebuild today: <a href="tel:9802773700" style="font-weight:bold;">(980) 277-3700</a>' }
   ],
   "insurance-reconstruction": [
@@ -54,7 +54,7 @@ export const standalonePages: Record<string, Block[]> = {
     { tag: 'p', html: 'Call us 24/7: <a href="tel:9802773700" style="font-weight:bold;">(980) 277-3700</a>' },
     { tag: 'h2', html: 'From the Loss to the Finished Home' },
     { tag: 'p', html: 'Because we handle both the restoration and the reconstruction, the handoff that usually slows a claim down simply does not happen. The same team that dried your home or cleared the fire damage is the team that rebuilds it. That means a faster timeline, one accountable contractor, and a finished result that matches the rest of your home.' },
-    { tag: 'p', html: 'We handle insurance reconstruction for homeowners and commercial property owners across Fort Mill, Charlotte, Rock Hill, Tega Cay, Indian Land, and the surrounding area — backed by 40+ five-star reviews and an A+ BBB rating.' }
+    { tag: 'p', html: 'We handle insurance reconstruction for homeowners and commercial property owners across Fort Mill, Charlotte, Rock Hill, Tega Cay, Indian Land, and the surrounding area — backed by 40+ Google reviews and BBB accreditation.' }
   ],
   "bathroom-remodeling": [
     { tag: 'h2', html: 'Bathroom Remodeling & Reconstruction in Fort Mill and Charlotte' },
@@ -144,7 +144,7 @@ export const standalonePages: Record<string, Block[]> = {
     { tag: 'p', html: 'We handle carpentry and trim across Fort Mill, Rock Hill, Tega Cay, Indian Land, and the Charlotte area. Call <a href="tel:9802773700" style="font-weight:bold;">(980) 277-3700</a> for a free estimate.' }
   ],
   "commercial-restoration": [
-    { tag: 'p', html: 'Providing A+ Rated Commercial Property Restoration Services Across the Charlotte Area' },
+    { tag: 'p', html: 'Providing BBB-Accredited Commercial Property Restoration Services Across the Charlotte Area' },
     { tag: 'h2', html: 'Commercial Restoration Services' },
     { tag: 'p', html: 'Expert Help: <a href="tel:980-277-3700" type="call" class="font-size-24 m-font-size-19" style="display: unset; font-weight: bold;" runtime_url="tel:980-277-3700">980-277-3700</a>' },
     { tag: 'h3', html: 'Benefits of Choosing Carolina Pro Restoration:' },
@@ -177,7 +177,7 @@ export const standalonePages: Record<string, Block[]> = {
     { tag: 'p', html: 'Expert Help: <a href="tel:980-277-3700" type="call" class="font-size-24 m-font-size-19" style="display: unset; font-weight: bold;" runtime_url="tel:980-277-3700">980-277-3700</a>' },
     { tag: 'li', html: '24/7 Emergency Response' },
     { tag: 'li', html: '100% Guaranteed Results' },
-    { tag: 'li', html: 'A+ Rating w/ Better Business Bureau' },
+    { tag: 'li', html: 'BBB Accredited Business' },
     { tag: 'li', html: '5-Star Rated on Yelp & Google' },
     { tag: 'li', html: 'Fully Licensed, Insured and Experienced' },
     { tag: 'li', html: 'We Work with Your Insurance' },
@@ -227,7 +227,7 @@ export const standalonePages: Record<string, Block[]> = {
     { tag: 'p', html: 'Expert Help: <a href="tel:980-277-3700" type="call" class="font-size-24 m-font-size-19" style="display: unset; font-weight: bold;" runtime_url="tel:980-277-3700">980-277-3700</a>' },
     { tag: 'li', html: '24/7 Emergency Response' },
     { tag: 'li', html: '100% Guaranteed Results' },
-    { tag: 'li', html: 'A+ Rating w/ Better Business Bureau' },
+    { tag: 'li', html: 'BBB Accredited Business' },
     { tag: 'li', html: '5-Star Rated on Yelp & Google' },
     { tag: 'li', html: 'Fully Licensed, Insured and Experienced' },
     { tag: 'li', html: 'We Work with Your Insurance' },

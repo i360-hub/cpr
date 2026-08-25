@@ -83,11 +83,13 @@ export const site = {
     // Google Business Profile identifiers.
     placeId: "ChIJkR37bWkm7CoRu6bfEb_xhZc",
     mapUrl: "https://maps.google.com/maps?cid=10918398674570553019",
-    // Aggregate rating — live GBP value (4.9★ over 43 reviews, verified against
+    // Aggregate rating — live GBP value (4.9★ over 47 reviews, verified 2026-08-25).
+    // GOOGLE ONLY. Never fold Yelp/BBB/Facebook counts in here: Google reconciles
+    // this against the GBP, and a cross-platform total cannot be verified against
     // the local pack on 2026-07-23). Keep in sync as reviews grow; a count that
     // disagrees with GBP is an inaccurate claim and weakens the entity.
     ratingValue: "4.9",
-    reviewCount: "43",
+    reviewCount: "47",
     // Approximate service radius from the Fort Mill HQ (meters). ~30 mi, matching
     // the GBP service area (reaches Gastonia/Monroe). Emitted as a GeoCircle.
     serviceRadiusMeters: 48000,

@@ -124,7 +124,7 @@ const business = {
   memberOf: { "@type": "Organization", name: "Restoration Industry Association (RIA)" },
   sameAs: [...Object.values(site.socials), s.mapUrl],
   // Individual Review nodes for the testimonials visible on this page (if any).
-  // Real Google reviews (a subset of the 38 counted in aggregateRating) — never
+  // Real Google reviews (a subset of the count in aggregateRating) — never
   // fabricated, and only emitted where the Reviews widget actually renders them.
   ...(reviews.length
     ? {
