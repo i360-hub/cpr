@@ -7,6 +7,7 @@ export const standalonePages: Record<string, Block[]> = {
     { tag: 'p', html: 'Talk to our rebuild team: <a href="tel:9802773700" style="font-weight:bold;">(980) 277-3700</a>' },
     { tag: 'h3', html: 'Why Homeowners Choose Us for the Rebuild:' },
     { tag: 'li', html: 'We self-perform most trades — drywall, paint, flooring, tile, carpentry, and finish work' },
+    { tag: 'li', html: 'Plumbing, electrical, and roofing run through licensed subcontractors; North Carolina projects that require a general contractor license are performed under a licensed NC general contractor' },
     { tag: 'li', html: 'One point of contact from demolition through final walkthrough' },
     { tag: 'li', html: 'Licensed and insured, IICRC certified' },
     { tag: 'li', html: 'We work directly with your insurance and document every step' },

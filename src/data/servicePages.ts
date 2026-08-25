@@ -557,7 +557,7 @@ export const servicePages: Record<string, ServicePageData> = {
       { feature: 'Full crawlspace encapsulation', others: 'no', cpr: 'yes' },
       { feature: 'Exterior excavation & membrane', others: 'no', cpr: 'yes' },
       { feature: 'BBB-accredited business', others: 'sometimes', cpr: 'yes' },
-      { feature: 'One crew — no subcontractors', others: 'no', cpr: 'yes' },
+      { feature: 'One crew self-performs most trades', others: 'no', cpr: 'yes' },
       { feature: 'IICRC certified and fully insured', others: 'sometimes', cpr: 'yes' },
       { feature: 'Written workmanship guarantee', others: 'sometimes', cpr: 'yes' },
       { feature: 'Locally owned & operated', others: 'sometimes', cpr: 'yes' }

@@ -33,7 +33,7 @@ const RULES = [
     name: 'North Carolina licensing claim',
     re: /licen[sc]ed?[^.]{0,40}(?:North Carolina|NC\b)|(?:North Carolina|NC)[^.]{0,40}requires?[^.]{0,30}licen|SC\s*&\s*NC\s*Licensed/gi,
     why: 'CPR holds no North Carolina licence. NC does not license water damage restoration or mold remediation as their own trades — IICRC certification is the operative credential there. Say "licensed in South Carolina (#70177448) and insured for work in both Carolinas". NOTE: NC DOES require a General Contractor licence for construction projects of $40,000 or more (NC Gen. Stat. Ch. 87, Art. 1) — do not advertise NC reconstruction above that threshold without confirming licensure.',
-    allow: /does not license|not licensed as its own trade|insured for the work|no state card|no NC restoration/i,
+    allow: /does not license|not licensed as its own trade|insured for the work|no state card|no NC restoration|under a licensed (?:North Carolina|NC) general contractor|licensed NC general contractor|general contractor licen[sc]e for construction projects/i,
   },
   {
     name: 'fixed 20-mile service radius',
