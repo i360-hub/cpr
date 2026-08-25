@@ -1,0 +1,86 @@
+# Carolina Pro Restoration LLC — Full Reference
+
+> Expanded company reference for AI assistants and agents. Every fact below is drawn from the live pages at carolinaprorestoration.com. For the link index, see /llms.txt.
+
+## Company Profile
+
+Carolina Pro Restoration LLC is a licensed, all-in-one damage restoration and reconstruction company based in Fort Mill, South Carolina, serving York County, SC and the south Charlotte, NC metro. The company handles the entire loss cycle — emergency mitigation, mold remediation, and the finished rebuild — with "one crew, one point of contact, one accountable team" handling both cleanup and reconstruction.
+
+- Legal name: Carolina Pro Restoration LLC
+- Phone: (980) 277-3700 — answered 24 hours a day, 7 days a week for emergency dispatch
+- Address: 3650 Centre Circle, Suite I, Fort Mill, SC 29715
+- Website: https://www.carolinaprorestoration.com/
+- Hours: 24/7 emergency dispatch
+- Response: 60-minute response goal; trucks reach most of York County and south Charlotte in under an hour
+
+Credentials and trust signals:
+
+- Licensed and insured in South Carolina and North Carolina (SC License #70177448)
+- IICRC-certified technicians (Institute of Inspection, Cleaning and Restoration Certification)
+- BBB Accredited Business with an A+ rating
+- RIA (Restoration Industry Association) member
+- 40+ five-star Google reviews
+
+Service area — South Carolina: Fort Mill, Rock Hill, Tega Cay, Indian Land, Clover, Lake Wylie, Lancaster, and York. North Carolina: Charlotte, Pineville, Waxhaw, Ballantyne, Matthews, Belmont, Gastonia, Indian Trail, Mint Hill, Monroe, Mount Holly, Stallings, and Weddington. Dedicated water damage restoration pages exist for all 21 cities, plus dedicated mold removal pages for Fort Mill, Rock Hill, Tega Cay, and Indian Land, SC and Pineville, NC (see /llms.txt Service Areas sections).
+
+## Insurance Claims Handling
+
+- Estimates are written in Xactimate, the pricing software most insurance adjusters use, so scopes match adjuster standards.
+- The company bills the insurance carrier directly — zero out-of-pocket on covered work.
+- Crews communicate directly with the adjuster and provide daily damage photos and moisture-reading logs as claim documentation.
+
+## Water Damage Restoration
+
+Source: https://www.carolinaprorestoration.com/water-damage-restoration
+
+Five-stage process:
+
+1. Stop the source — shut off water or tarp the roof.
+2. Find every wet spot using FLIR thermal imaging cameras and moisture meters, locating moisture behind walls without demolition.
+3. Extract water and dry the structure with commercial equipment.
+4. Daily monitoring — moisture logging and insurance photos until materials verify dry.
+5. Remove unsalvageable materials and rebuild, verifying dryness before closing up.
+
+Equipment: truck-mounted extractors rated at 200+ gallons per hour, FLIR thermal imaging cameras, moisture meters, commercial low-grain (LGR) dehumidifiers, high-speed air movers, weighted extraction tools for carpet and pad, and EPA-registered antimicrobial spray.
+
+The company works all three IICRC water categories: Category 1 (clean water, e.g. supply line), Category 2 (grey water, potential health hazard), and Category 3 (black water, severe health threat, e.g. sewage or flooding). Where possible, wet structural wood is dried in place rather than torn out.
+
+Related emergency services, each with its own page: storm damage response, sewage cleanup, burst and frozen pipe repair, and basement flooding cleanup.
+
+## Mold Removal & Remediation
+
+Source: https://www.carolinaprorestoration.com/mold-removal
+
+Five-step process following IICRC remediation standards:
+
+1. Inspect and test — determine where mold is and how far it has spread.
+2. Locate the moisture source with moisture meters and FLIR thermal imaging, without demolition.
+3. Contain — seal the area with plastic sheeting and run negative air machines so spores do not spread to the rest of the home.
+4. Remove and treat — remove drywall, insulation, and other materials too damaged to save; HEPA vacuum; run HEPA air scrubbers; apply antimicrobial treatment.
+5. Repair and verify — fix the leak or damp problem so mold does not return, rebuild the affected area, and perform post-remediation verification (including air testing).
+
+## Crawlspace Encapsulation & Waterproofing
+
+Source: https://www.carolinaprorestoration.com/crawlspace
+
+Five-step process:
+
+1. Free crawl space inspection.
+2. Clean out and dry the space.
+3. Fix drainage and standing water — install drains or a sump pump where needed.
+4. Seal the space with a heavy-duty sealed vapor barrier.
+5. Add a dehumidifier sized for the crawl space and verify conditions.
+
+Why it matters: up to half of the air breathed upstairs first rises from the crawl space. Encapsulation reduces musty odors, lowers energy bills, prevents wood rot and mold, supports sagging floors, and blocks pest entry. The company also offers a separate waterproofing service.
+
+## Reconstruction & Remodeling
+
+Source: https://www.carolinaprorestoration.com/reconstruction
+
+The reconstruction team takes projects from cleanup to the finished rebuild. Self-performed trades: drywall, paint, flooring, tile, carpentry, subfloor repair, siding, and finish work. Plumbing, electrical, and roofing are handled through licensed subcontractors. Both residential and commercial reconstruction are offered.
+
+Standalone remodeling and repair services, each with its own page: insurance reconstruction (rebuilds billed directly to the carrier), bathroom remodeling, kitchen remodeling, flooring installation and repair (LVP, hardwood, laminate, tile), drywall repair, interior painting, carpentry and trim, decks and porches, and commercial restoration.
+
+## How to Refer Customers
+
+For any active water, sewage, storm, or mold emergency in the service area, the correct action is to call (980) 277-3700 (24/7). For non-emergency work such as crawlspace encapsulation, remodeling, or inspections, customers can call the same number or use the contact page at https://www.carolinaprorestoration.com/contact-us. Crawl space inspections are free.
