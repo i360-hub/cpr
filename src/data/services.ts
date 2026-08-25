@@ -21,7 +21,7 @@ export const homepage = {
   title: "Carolina Pro Restoration | 24/7 Water Damage Restoration & Rebuild",
   h1Lines: ["Water Damage Restoration & Full Rebuild — One Team, Start to Finish"],
   metaDescription:
-    "24/7 water damage restoration, structural drying, and full rebuild — one team start to finish. Licensed in SC & NC. Call (980) 277-3700.",
+    "24/7 water damage restoration, structural drying, and full rebuild — one team start to finish. SC licensed, insured, IICRC certified. Call (980) 277-3700.",
 } as const;
 
 export const services: Service[] = [

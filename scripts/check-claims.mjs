@@ -30,6 +30,12 @@ const RULES = [
     why: 'The deductible applies to the claim. Say "you pay your deductible and nothing beyond it" — the wording /insurance-reconstruction already used.',
   },
   {
+    name: 'North Carolina licensing claim',
+    re: /licen[sc]ed?[^.]{0,40}(?:North Carolina|NC\b)|(?:North Carolina|NC)[^.]{0,40}requires?[^.]{0,30}licen|SC\s*&\s*NC\s*Licensed/gi,
+    why: 'CPR holds no North Carolina licence. NC does not license water damage restoration or mold remediation as their own trades — IICRC certification is the operative credential there. Say "licensed in South Carolina (#70177448) and insured for work in both Carolinas". NOTE: NC DOES require a General Contractor licence for construction projects of $40,000 or more (NC Gen. Stat. Ch. 87, Art. 1) — do not advertise NC reconstruction above that threshold without confirming licensure.',
+    allow: /does not license|not licensed as its own trade|insured for the work|no state card|no NC restoration/i,
+  },
+  {
     name: 'fixed 20-mile service radius',
     re: /20[-\s]mile\s+radius/gi,
     why: 'Contradicts the published service area, which reaches Monroe, Gastonia and Pine-Bluff-side towns well beyond 20 miles.',
@@ -55,8 +61,12 @@ for (const rule of RULES) {
   const hits = [];
   for (const page of pages) {
     const body = text(readFileSync(join(DIST, page), 'utf8'));
-    const found = body.match(rule.re);
-    if (found) hits.push(`${page} (${found.length}×: "${found[0]}")`);
+    const found = (body.match(rule.re) || []).filter((hit) => {
+      if (!rule.allow) return true;
+      const at = body.indexOf(hit);
+      return !rule.allow.test(body.slice(Math.max(0, at - 130), at + hit.length + 130));
+    });
+    if (found.length) hits.push(`${page} (${found.length}×: "${found[0]}")`);
   }
   if (hits.length) {
     violations += hits.length;

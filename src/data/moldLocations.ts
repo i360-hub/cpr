@@ -64,7 +64,7 @@ export const moldLocations: Record<string, MoldLocation> = {
     heroTag: "🛡️ Free Mold Inspection — Rock Hill, SC",
     heroSub:
       "Musty crawl space, a dark patch on the drywall, or allergies that only flare up at home? We inspect for free, seal off the area, remove the mold safely, and fix the moisture feeding it — then rebuild what we take out. IICRC-certified crews, 8 miles up I-77 from our Fort Mill shop.",
-    heroTrust: ["Free Mold Inspection", "IICRC Certified", "BBB Accredited", "Licensed in SC & NC"],
+    heroTrust: ["Free Mold Inspection", "IICRC Certified", "BBB Accredited", "SC Licensed & Fully Insured"],
     stats: [
       { number: "47 in", label: "Rain Per Year" },
       { number: "24-48 hrs", label: "For Mold to Take Hold" },
