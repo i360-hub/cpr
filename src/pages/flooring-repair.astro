@@ -1,21 +1,71 @@
 ---
+// Flooring Repair & Installation — Reconstruction Hub spoke. Rebuilt onto the
+// same pattern as /drywall-repair and /carpentry-trim: breadcrumb + Service +
+// FAQPage schema, an FAQ that matches the visible page, and lateral links into
+// the cluster. Real project photography (no stock).
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHeader from "@components/layout/PageHeader.astro";
 import LocalContent from "@components/widgets/LocalContent.astro";
+import BeforeAfter from "@components/widgets/BeforeAfter.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
 import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
-import BeforeAfter from "@components/widgets/BeforeAfter.astro";
 import { standalonePages } from "@data/standalonePages";
 import { site } from "@data/site";
 import imgFloorBefore from "@assets/images/organic/floor-tearout-before.jpg";
 import imgFloorAfter from "@assets/images/organic/floor-finished-after.jpg";
+
+const path = "/flooring-repair";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const description =
+  "Flooring repair and installation in Fort Mill & Charlotte. LVP, hardwood, laminate, tile, and subfloor repair after water damage. Call (980) 277-3700.";
+
+const faq = [
+  { q: "Can you replace just the damaged section of floor?", a: "Often, yes. With LVP, laminate, and tile we cut back to a clean line and blend the repair in, as long as the product is still available. Hardwood blends the easiest — we weave in new boards and refinish the area so the repair disappears." },
+  { q: "Does the subfloor have to be replaced after water damage?", a: "Only where it has lost strength. We take moisture readings and check the decking for softness and delamination. Plywood that dried out sound stays; particleboard that swelled almost never does." },
+  { q: "How long does the floor have to dry before you install?", a: "Until the readings say it is dry — usually three to five days with drying equipment running. Installing over a wet subfloor traps the moisture underneath and the new floor fails." },
+  { q: "Do the baseboards come off?", a: "Usually. New flooring changes the height at the wall, so trim comes off and goes back on as part of the job — that is <a href=\"/carpentry-trim\">carpentry and trim</a> work we do ourselves." },
+  { q: "Do you take flooring jobs with no insurance claim?", a: "Yes. Plenty of our flooring work has nothing to do with damage — worn-out floors, a material change, or one room that never matched the rest of the house." },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Flooring Repair and Installation",
+  name: "Flooring Repair & Installation",
+  url: pageUrl,
+  description,
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  isRelatedTo: { "@id": `${origin}/reconstruction#service` },
+};
 ---
 
 <BaseLayout
-  title="Flooring Repair & Replacement in Charlotte & Fort Mill"
-  description="Expert flooring repair, refinishing, and subfloor solutions in Charlotte & Fort Mill. Contact Carolina Pro Restoration for a free estimate today!"
-  path="/flooring-repair"
+  title={"Flooring Repair & Installation | Fort Mill & Charlotte"}
+  description={description}
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Flooring Repair", item: pageUrl },
+  ]}
 >
   <PageHeader
     eyebrow="Flooring Repair & Installation"
@@ -37,6 +87,17 @@ import imgFloorAfter from "@assets/images/organic/floor-finished-after.jpg";
     caption="Damaged flooring torn out to the subfloor (left) through the finished new-floor install (right)."
     ratio="3 / 4"
   />
+  <RelatedServices
+    title="Related Reconstruction Services"
+    sub="Other trades we handle in-house, standalone or as part of a claim."
+    cards={[
+      { title: "Carpentry & Trim", text: "Baseboards and thresholds back on after the floor goes down.", href: "/carpentry-trim" },
+      { title: "Drywall Repair", text: "Wall repairs the tear-out exposes, taped and finished.", href: "/drywall-repair" },
+      { title: "Water Damage Restoration", text: "Extraction and structural drying before the floor goes back.", href: "/water-damage-restoration" },
+      { title: "Reconstruction & Remodeling", text: "Every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq title={"Flooring Repair Questions"} sub={"Plain answers about scope, timeline, and how the work gets done."} items={faq} />
   <ServiceArea />
   <FinalCta heading="Damaged Floors? Get a Free Repair Estimate." />
   <ContactForm heading="Request a Free Flooring Estimate" formName="Flooring Repair Contact" />

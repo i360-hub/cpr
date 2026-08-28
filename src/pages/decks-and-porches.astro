@@ -1,20 +1,71 @@
 ---
+// Decks, Porches & Rails — Reconstruction Hub spoke. Rebuilt onto the same
+// pattern as /drywall-repair and /carpentry-trim: breadcrumb + Service +
+// FAQPage schema, an FAQ that matches the visible page, and lateral links into
+// the cluster. Was a full orphan (0 in, 0 out) holding 7 referring domains
+// inherited via the /decks--porches-and-more 301. Real project photography.
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHeader from "@components/layout/PageHeader.astro";
 import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
 import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
-import ActionShot from "@components/widgets/ActionShot.astro";
 import { standalonePages } from "@data/standalonePages";
 import { site } from "@data/site";
 import imgPorch from "@assets/images/organic/porch-rail-finished.jpg";
+
+const path = "/decks-and-porches";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const description =
+  "Deck, porch, and rail repair and rebuilds in Fort Mill & Charlotte. Storm damage, rot repair, and new construction. Call (980) 277-3700.";
+
+const faq = [
+  { q: "Can my deck be repaired, or does it need replacing?", a: "It depends on where the rot is. Surface boards and rails are a repair. Once the joists, posts, or the ledger board against the house have gone soft, the structure is what failed and a rebuild is the honest answer." },
+  { q: "A tree came down on my deck — is that covered?", a: "Storm damage to a deck or porch is usually handled under the same homeowners policy as the house, though coverage is your carrier's call. We document the damage, write the estimate, and handle the <a href=\"/storm-damage\">storm damage repair</a> and the rebuild together." },
+  { q: "Do you build with composite as well as wood?", a: "Yes — pressure-treated lumber, composite, and vinyl. Composite costs more up front and asks less of you afterward; pressure-treated is cheaper to build and needs sealing on a schedule." },
+  { q: "Do you replace just the railings?", a: "Yes, and it is one of the more common jobs we take. Rails loosen at the post connections long before the deck itself is worn out, and a rail that moves when you lean on it is the failure that actually hurts somebody." },
+  { q: "How long does a deck rebuild take?", a: "A rail or stair replacement is usually a day or two. A full deck or porch rebuild runs longer depending on size, footings, and material lead times — we give you the schedule with the written estimate." },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Deck and Porch Construction and Repair",
+  name: "Decks, Porches & Rails",
+  url: pageUrl,
+  description,
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  isRelatedTo: { "@id": `${origin}/reconstruction#service` },
+};
 ---
 
 <BaseLayout
-  title="Decks, Porches & More in Charlotte & Fort Mill"
-  description="Custom decks, porches, and more for your outdoor space in Charlotte & Fort Mill. Get a free estimate from Carolina Pro Restoration today!"
-  path="/decks-and-porches"
+  title={"Decks, Porches & Rails | Fort Mill & Charlotte"}
+  description={description}
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Decks, Porches & Rails", item: pageUrl },
+  ]}
 >
   <PageHeader
     eyebrow="Outdoor Living & Rebuild"
@@ -34,6 +85,17 @@ import imgPorch from "@assets/images/organic/porch-rail-finished.jpg";
     text="The same one-team craftsmanship we bring to every rebuild goes into our outdoor work: fresh pressure-treated framing, solid rails, and rebuilt steps, done right the first time."
     flip={true}
   />
+  <RelatedServices
+    title="Related Reconstruction Services"
+    sub="Other trades we handle in-house, standalone or as part of a claim."
+    cards={[
+      { title: "Storm Damage Repairs", text: "Tree and limb damage cleared, then the structure rebuilt.", href: "/storm-damage" },
+      { title: "Carpentry & Trim", text: "The framing and finish carpentry behind every outdoor build.", href: "/carpentry-trim" },
+      { title: "Interior Painting", text: "Walls, ceilings, and trim finished after the rebuild.", href: "/interior-painting" },
+      { title: "Reconstruction & Remodeling", text: "Every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq title={"Deck and Porch Questions"} sub={"Plain answers about scope, materials, and how the work gets done."} items={faq} />
   <ServiceArea />
   <FinalCta heading="Ready to Build Your Outdoor Space? Let's Talk." />
   <ContactForm heading="Request a Free Deck or Porch Estimate" formName="Decks & Porches Contact" />

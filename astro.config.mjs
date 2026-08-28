@@ -46,6 +46,7 @@ function sitemapPostBuild() {
 
           for (const loc of index.match(/<loc>[^<]+<\/loc>/g) ?? []) {
             const name = loc.replace(/<\/?loc>/g, '').split('/').pop();
+            if (!name) continue;
             const childUrl = new URL(name, dir);
             const child = await readFile(childUrl, 'utf8');
             const patched = child.replaceAll(`<loc>${SITE}</loc>`, `<loc>${SITE}/</loc>`);
@@ -93,7 +94,8 @@ export default defineConfig({
           console.warn(`[sitemap] no lastmod source for ${pathname}`);
           return { ...item, url };
         }
-        return { ...item, url, ...meta };
+        // changefreq is a plain string here; the sitemap types want their enum.
+        return /** @type {typeof item} */ ({ ...item, url, ...meta });
       },
     }),
     sitemapPostBuild(),

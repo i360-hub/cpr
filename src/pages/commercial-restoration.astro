@@ -1,25 +1,75 @@
 ---
+// Commercial Restoration — Reconstruction Hub spoke. Rebuilt onto the same
+// pattern as /drywall-repair and /carpentry-trim: breadcrumb + Service +
+// FAQPage schema, an FAQ that matches the visible page, and lateral links into
+// the cluster. Real project photography (no stock).
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHeader from "@components/layout/PageHeader.astro";
 import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import Faq from "@components/widgets/Faq.astro";
 import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
-import ActionShot from "@components/widgets/ActionShot.astro";
 import { standalonePages } from "@data/standalonePages";
 import { site } from "@data/site";
 import imgCommercial from "@assets/images/organic/commercial-muckout.jpg";
+
+const path = "/commercial-restoration";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const description =
+  "Commercial restoration in Fort Mill & Charlotte. 24/7 water, fire, and mold response for offices, retail, HOAs, and multifamily. Call (980) 277-3700.";
+
+const faq = [
+  { q: "Can we stay open while you work?", a: "Usually some of the building can. We contain the work zone with barriers and negative air, sequence the job around your hours where the scope allows, and keep tenants, staff, and customers out of the affected area." },
+  { q: "How fast can you get to a commercial loss?", a: "We answer the phone 24/7 and aim to have a crew on site within the hour across the Charlotte metro. Larger losses get staged crews and additional drying equipment as the scope becomes clear." },
+  { q: "Do you work with property managers and HOAs?", a: "Yes. Common areas, multiple affected units, and shared building systems all go into one scope and one set of documentation, so a board or a manager is not reconciling several contractors' paperwork." },
+  { q: "Do you handle the rebuild, or only the cleanup?", a: "Both. We self-perform the build-back — demolition through finished space — so drying and <a href=\"/reconstruction\">reconstruction</a> run under one contract instead of two." },
+  { q: "Who do you bill?", a: "Your carrier, directly. We write the estimate in Xactimate, the same pricing software your adjuster uses, and send documentation straight to them. You pay your deductible and nothing beyond it on covered work." },
+];
+
+const faqSchema = [
+  {
+    "@type": "FAQPage",
+    mainEntity: faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Commercial Restoration",
+  name: "Commercial Restoration",
+  url: pageUrl,
+  description,
+  provider: { "@id": `${origin}/#business` },
+  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+  isRelatedTo: { "@id": `${origin}/reconstruction#service` },
+};
 ---
 
 <BaseLayout
-  title="Commercial Restoration | Charlotte Area 24/7"
-  description="Carolina Pro Restoration offers 24/7 emergency restoration for water, fire, and mold damage in Charlotte, NC. Learn more and get help today!"
-  path="/commercial-restoration"
+  title={"Commercial Restoration | Fort Mill & Charlotte | 24/7"}
+  description={description}
+  path={path}
+  schema={[serviceSchema, ...faqSchema]}
+  breadcrumb={[
+    { name: "Reconstruction & Remodeling", item: `${origin}/reconstruction` },
+    { name: "Commercial Restoration", item: pageUrl },
+  ]}
 >
   <PageHeader
     eyebrow="24/7 Emergency Commercial Restoration"
     title="Fort Mill and Charlotte Area Commercial Restoration Services"
-    subtitle="BBB-accredited commercial property restoration across the Charlotte area. We minimize your downtime and work directly with your insurance — on-site within an hour."
+    subtitle="BBB-accredited commercial property restoration across the Charlotte area. We contain the damage, minimize your downtime, and work directly with your insurance — crews aim to be on site within the hour."
     ctas={[
       { label: `Call Now: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" },
       { label: "Request Help", href: "#contact", variant: "outline" },
@@ -34,6 +84,17 @@ import imgCommercial from "@assets/images/organic/commercial-muckout.jpg";
     text="From storm and flood muck-outs to fire and water damage, we mobilize fast for commercial properties — demo, drying, and the full rebuild — so you reopen sooner. We document everything for your insurance."
     light={true}
   />
+  <RelatedServices
+    title="Related Reconstruction Services"
+    sub="Other trades we handle in-house, standalone or as part of a claim."
+    cards={[
+      { title: "Storm Damage Repairs", text: "Board-up and roof tarping through the structural rebuild.", href: "/storm-damage" },
+      { title: "Water Damage Restoration", text: "Extraction and structural drying, sized to the building.", href: "/water-damage-restoration" },
+      { title: "Mold Removal", text: "Containment and remediation before anything is closed up.", href: "/mold-removal" },
+      { title: "Reconstruction & Remodeling", text: "Every rebuild trade we handle in-house.", href: "/reconstruction" },
+    ]}
+  />
+  <Faq title={"Commercial Restoration Questions"} sub={"Plain answers about response, downtime, and how the claim is handled."} items={faq} />
   <ServiceArea />
   <FinalCta heading="Commercial Property Emergency? We Respond 24/7." />
   <ContactForm heading="Get Commercial Restoration Help" formName="Commercial Restoration Contact" />
