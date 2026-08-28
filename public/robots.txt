@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.carolinaprorestoration.com/sitemap-index.xml
+Sitemap: https://www.carolinaprorestoration.com/sitemap-legacy.xml

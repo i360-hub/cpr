@@ -18,7 +18,7 @@ export interface Service {
 
 export const homepage = {
   slug: "",
-  title: "Carolina Pro Restoration | 24/7 Water Damage Restoration & Rebuild",
+  title: "24/7 Water Damage Restoration & Rebuild | Carolina Pro",
   h1Lines: ["Water Damage Restoration & Full Rebuild — One Team, Start to Finish"],
   metaDescription:
     "24/7 water damage restoration, structural drying, and full rebuild — one team start to finish. SC licensed, insured, IICRC certified. Call (980) 277-3700.",
@@ -80,7 +80,7 @@ export const services: Service[] = [
     navLabel: "Mold Removal",
     gridTitle: "Mold Removal",
     group: "moisture",
-    title: "Mold Removal & Remediation | Inspection to Rebuild | Carolina Pro",
+    title: "Mold Removal & Remediation | Fort Mill & Charlotte",
     h1Lines: ["Mold Removal in Fort Mill & Charlotte"],
     metaDescription:
       "Full containment, HEPA air scrubbing, post-remediation air testing & complete rebuild. IICRC certified. Fort Mill & Charlotte 24/7. (980) 277-3700.",

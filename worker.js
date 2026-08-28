@@ -59,8 +59,6 @@ const LOCATION_REDIRECTS = {
 // Exact-match legacy redirects, ported from public/_redirects. First match wins,
 // and this table is consulted BEFORE the /services/* and /blog/* splats below,
 // so the four /services/* overrides here take precedence over the generic splat.
-// (/roof-repair---replacement is intentionally omitted — no live destination yet,
-// pending a roofing-page decision.)
 const REDIRECTS = {
   // --- Home ---
   "/home": "/",
@@ -89,6 +87,12 @@ const REDIRECTS = {
   "/water-proofing": "/waterproofing",
   "/keep-your-home-dry-and-safe-with-waterproofing-services-in-charlotte-nc": "/waterproofing",
   "/flooring-repair-and-replacement": "/flooring-repair",
+  // Hard 404 since 15 Aug with 7 referring domains pointing at it, and it sits
+  // inside the submitted sitemap-legacy.xml — a live error in a file we are
+  // asking Google to crawl. /reconstruction is the closest live destination:
+  // roofing itself is subcontracted and has no page of its own. The URL stays
+  // in the legacy sitemap; the redirect is the fix.
+  "/roof-repair---replacement": "/reconstruction",
 
   // --- Blog ---
   "/cpr-blog": "/blog",

@@ -21,6 +21,11 @@ jobs:
       CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history: the sitemap's <lastmod> values are resolved from git
+          # commit dates at build time (scripts/lastmod.mjs). A shallow clone
+          # would silently ship a sitemap with no freshness signal at all.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
