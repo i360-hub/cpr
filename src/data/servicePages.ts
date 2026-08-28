@@ -20,6 +20,12 @@ export interface ServicePageData {
   finalCta: string; contactHeading: string; contactDesc: string;
   areaTitle: string; areaSub: string; areaInfoHeading: string; areaInfoBlurb: string;
   cost?: { title: string; sub: string; note: string; rows: { name: string; range: string }[] };
+  /** H3-level prose under the cost table — what moves the number on this page.
+   *  Same slot the mold town pages use (moldLocations.costDetail). */
+  costDetail?: { tag: string; html: string }[];
+  /** Actionable prose rendered high on the page, above the timeline — the
+   *  "what do I do right now / who do I call" answer. */
+  guide?: { tag: string; html: string }[];
   /** Town-page link block (mold-removal only). Renders as a RelatedServices grid
    *  above the service-area map — the parent→child signal for the five
    *  /mold-removal-{town} pages, which are NOT nested under this URL. */
@@ -311,8 +317,60 @@ export const servicePages: Record<string, ServicePageData> = {
       { feature: 'Locally owned & operated', others: 'sometimes', cpr: 'yes' }
     ] },
     insurance: { title: 'Your Basement Flooding Claim, Handled From Day One', desc: 'A burst pipe in your basement is usually covered. Groundwater and surface flooding often need a separate flood policy. We help you sort out what applies, then write the claim the way your adjuster expects. Adjusters use Xactimate to price every job, so we write every line in Xactimate from the start — no back-and-forth that delays your payout.', points: ['Damage photos taken when we arrive and every day after', 'Moisture readings logged daily on walls, floors, and framing', 'Xactimate estimate written to match your adjuster', 'We talk to your adjuster directly — you stay out of the middle', 'We bill your insurance directly — you pay your deductible, not the balance'] },
+    guide: [
+      { tag: 'h2', html: 'Who to Call When Your Basement Floods' },
+      { tag: 'p', html: 'Call a water damage restoration company \u2014 not a plumber, and not a general contractor. A plumber fixes the pipe. A contractor rebuilds the room. Neither one owns the part that decides how bad this gets: pulling the water out and drying the structure before mold starts, which is a 24-to-48-hour window. A restoration company shows up with extraction equipment, commercial dehumidifiers, and moisture meters, and it is the only one of the three that bills your insurance carrier directly for the mitigation.' },
+      { tag: 'p', html: 'If water is still rising, or if there is any chance it is sewage, call before you go down there. We answer 24 hours a day at <a href="tel:9802773700" style="font-weight:bold;">(980) 277-3700</a>.' },
+      { tag: 'h3', html: 'Use one company for both halves of the job' },
+      { tag: 'p', html: 'Most basement floods end in demolition \u2014 wet drywall and insulation come out, and something has to go back in. Companies that only do mitigation dry the space and hand you off to find a contractor, and that handoff is where weeks disappear. We do the cleanup and the <a href="/reconstruction">rebuild</a> under one contract, so the crew that pulls the water out is the crew that puts the basement back.' },
+      { tag: 'p', html: 'We reach flooded basements across <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>, <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>. If your home sits on a crawl space rather than a basement, see <a href="/crawlspace">crawl space water damage</a> instead.' },
+      { tag: 'h2', html: 'What to Do in the First 24 Hours' },
+      { tag: 'h3', html: 'The first hour' },
+      { tag: 'li', html: 'Kill power to the basement at the breaker before anyone goes down the stairs. If the panel is in the basement and you would have to stand in water to reach it, call the utility or an electrician \u2014 not worth it.' },
+      { tag: 'li', html: 'Stop the source if you can reach it safely: the main shutoff for a supply line, the breaker for a sump pump that has failed on.' },
+      { tag: 'li', html: 'Stay out of the water entirely if it is discolored, smells, or has any chance of being sewage.' },
+      { tag: 'li', html: 'Get what you can up off the floor. Cardboard wicks water upward within minutes, and anything absorbent sitting in it is on a clock.' },
+      { tag: 'li', html: 'Photograph and video everything before you move more than you have to. Your adjuster wants to see it as found.' },
+      { tag: 'h3', html: 'The first 24 hours' },
+      { tag: 'li', html: 'Get the standing water out. A shop vac handles a puddle; more than an inch or two needs a pump and a truck-mounted extractor.' },
+      { tag: 'li', html: 'Pull up wet carpet and pad. Pad is a sponge and almost never comes back. Carpet sometimes does, if it is lifted fast.' },
+      { tag: 'li', html: 'Open the wall cavities where water wicked up. Water climbs drywall about an inch an hour, so a wall that feels dry at eye level can be soaked behind the baseboard.' },
+      { tag: 'li', html: 'Run dehumidification, not just fans. Fans push wet air around a closed basement; a dehumidifier takes the water out of it.' },
+      { tag: 'li', html: 'Do not close anything back up until moisture readings say the framing and subfloor are actually dry.' },
+      { tag: 'p', html: 'Key takeaway: the first day decides whether this is a drying job or a demolition and a rebuild. Mold starts in 24 to 48 hours on anything still damp.' },
+    ],
+    cost: {
+      title: 'What a Flooded Basement Costs to Fix',
+      sub: 'Typical Carolinas ranges to help you plan \u2014 not a quote. Your exact price comes after the free inspection, in writing, before any work starts.',
+      note: 'These are typical ranges, not a quote. The three things that move the number most are whether the basement is finished, how contaminated the water is, and how high we have to cut the drywall. Insurance usually covers a sudden failure inside the house and generally does not cover groundwater coming in from outside. Financing is available.',
+      rows: [
+        { name: 'Emergency assessment with moisture mapping', range: 'Free' },
+        { name: 'Water extraction and structural drying \u2014 unfinished basement, clean water, caught early', range: '$2,000\u2013$5,000' },
+        { name: 'Reconstruction after drying \u2014 drywall, insulation, trim, paint, flooring', range: '$1,500\u2013$4,000' },
+        { name: 'Finished basement, multiple rooms, or Category 2 water \u2014 cleanup and rebuild together', range: '$5,000\u2013$15,000' },
+        { name: 'Whole-basement loss, sewage (Category 3), or water that sat for days', range: '$15,000\u2013$30,000 and up' },
+        { name: 'Mold remediation where growth has already started', range: '$6,000\u2013$15,000' },
+        { name: 'Sump pump replacement with battery backup', range: '$1,200\u2013$3,500' },
+        { name: 'Interior perimeter drainage so it does not happen again', range: '$4,000\u2013$12,000' },
+        { name: 'Foundation crack repair', range: '$400\u2013$1,500 per crack' },
+      ],
+    },
+    costDetail: [
+      { tag: 'h3', html: 'What actually moves the number' },
+      { tag: 'p', html: 'Three things, in order of how much they matter.' },
+      { tag: 'p', html: 'Finished versus unfinished. An unfinished basement is a slab, block walls, and mechanicals \u2014 usually extraction and drying, and often nothing else. A finished basement adds drywall, insulation, trim, flooring, and sometimes cabinets, nearly all of which absorb water and most of which come out. The same volume of water costs two to three times more in a finished space, and almost all of that gap is the rebuild, not the drying.' },
+      { tag: 'p', html: 'The water category. Clean water from a supply line is Category 1, and most materials can be dried in place. Water that has picked up contaminants \u2014 a washing machine discharge, a sump pump pulling from the drain tile \u2014 is Category 2, and porous materials start coming out. Sewage is Category 3, and everything porous it touched leaves the building: drywall, insulation, carpet, and pad. See <a href="/sewage-cleanup">sewage cleanup</a> for what that involves.' },
+      { tag: 'p', html: 'How high the flood cut goes. This is the one homeowners underestimate. We cut to the height the moisture actually reached, not to a standard line \u2014 commonly two feet, sometimes four, occasionally the full wall where water wicked that far. Every extra foot is more board, more insulation, more tape and texture, and more paint.' },
+      { tag: 'h3', html: 'What does not move it' },
+      { tag: 'p', html: 'The hour you call. Our rates are the same at 2am, on a Sunday, and on a holiday. Waiting until Monday does change the number, because Monday is on the far side of the mold window.' },
+      { tag: 'h3', html: 'Where insurance lands' },
+      { tag: 'p', html: 'A sudden, accidental failure inside the house \u2014 a burst supply line, a failed water heater, a washing machine hose \u2014 is usually covered, and we bill your carrier directly so you pay your deductible and nothing beyond it. Groundwater and surface flooding entering from outside generally are not covered by a standard homeowners policy and need separate flood coverage. Sump pump failure sits between the two and depends on whether you carry that endorsement. We tell you which one you are looking at during the free inspection, before any work starts \u2014 and if the way water is getting in needs its own fix, that is <a href="/waterproofing">basement waterproofing</a>, quoted separately.' },
+    ],
     faqTitle: 'Understanding Basement Flooding', faqSub: 'Plain answers to the questions homeowners ask most about flooded basements, drying, mold, and insurance.', faqCtaLabel: 'Have a question we did not cover? Call us — we are available 24/7.',
     faq: [
+      { q: 'Who should I call when my basement floods \u2014 a plumber or a restoration company?', a: 'A restoration company, first. A plumber stops the leak but does not dry the structure, and a general contractor rebuilds but does not do the mitigation or bill the carrier for it. We handle extraction, drying, and the rebuild, and we will tell you if you also need a plumber for the source.' },
+      { q: 'What does it cost to clean up a flooded basement?', a: 'An unfinished basement with clean water caught early is usually $2,000 to $5,000 for extraction and drying. A finished basement with multiple rooms affected typically runs $5,000 to $15,000 for cleanup and rebuild together. Sewage, or water that sat for days, starts around $15,000. The cost table above breaks the ranges out, and the inspection that produces your firm number is free.' },
+      { q: 'Is it cheaper if my basement is unfinished?', a: 'Considerably. An unfinished basement is mostly a drying job. A finished one means drywall, insulation, trim, and flooring come out and go back, and that rebuild is where two to three times the cost comes from \u2014 not the drying.' },
       { q: 'Does insurance cover a flooded basement?', a: 'It depends on the cause. A sudden burst pipe or a failed appliance is almost always covered by your homeowners policy. Groundwater seepage, heavy rain that floods from outside, or a rising creek usually needs a separate flood policy. Sump pump failure and sewer backup are often covered only if you added that rider. We document the source with photos and a written scope so your claim is clear, and we file it for you. See our <a href="/water-damage-restoration">water damage restoration</a> page for more on the claims process.' },
       { q: 'What should I do first when my basement floods?', a: 'Stay safe first. If water is near outlets, the panel, or the furnace, do not step in. Shut off power to the basement at the breaker only if you can reach it without touching water. Then find the source if you can, like a main water valve for a burst pipe. Move small items up off the floor, take a few photos for your claim, and call us. We are available 24/7 and start pulling out water as soon as we arrive.' },
       { q: 'Is flood water in my basement a health risk?', a: 'It can be. Clean water from a supply line is low risk at first. But groundwater, storm water, and sewer backup carry bacteria and waste that can make you sick. Any water that sits more than a day or two also grows mold fast. We treat the basement as unsafe until we know the source, wear proper gear, and use an EPA-registered antimicrobial. If sewage is involved, see our <a href="/sewage-cleanup">sewage cleanup</a> service.' },

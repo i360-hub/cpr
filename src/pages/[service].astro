@@ -20,6 +20,7 @@ import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import RelatedServices from "@components/widgets/RelatedServices.astro";
 import CostTable from "@components/widgets/CostTable.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
 import ActionShot from "@components/widgets/ActionShot.astro";
 import BeforeAfter from "@components/widgets/BeforeAfter.astro";
 import { servicePages } from "@data/servicePages";
@@ -151,6 +152,9 @@ const serviceSchema = {
     secondaryCta={{ label: data.hero.secondaryCta ?? "Request Free Inspection", href: "#contact" }}
   />
   <ProofStrip />
+  {/* Actionable "what do I do right now / who do I call" prose, deliberately high
+      on the page. Only pages that define `guide` render it. */}
+  {data.guide && <LocalContent blocks={data.guide} />}
   <Timeline title={data.timeline.title} sub={data.timeline.sub} ctaLabel={data.timeline.ctaLabel} cards={data.timeline.cards} />
   <WarningSigns title={data.signs.title} sub={data.signs.sub} note={data.signs.note} signs={data.signs.signs} />
   <Scenarios title={data.scenarios.title} sub={data.scenarios.sub} ctaLabel={data.scenarios.ctaLabel} scenarios={data.scenarios.scenarios} />
@@ -176,6 +180,7 @@ const serviceSchema = {
     categories={data.categories.categories}
   />
   {data.cost && <CostTable title={data.cost.title} sub={data.cost.sub} note={data.cost.note} rows={data.cost.rows} />}
+  {data.costDetail && <LocalContent blocks={data.costDetail} light />}
   <Differentiators title={data.differentiators.title} sub={data.differentiators.sub} rows={data.differentiators.rows} />
   <InsuranceCard title={data.insurance.title} desc={data.insurance.desc} points={data.insurance.points} />
   <Reviews reviews={reviewsFor(service)} title={data.reviewsTitle} sub={data.reviewsSub} />
