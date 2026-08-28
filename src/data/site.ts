@@ -11,7 +11,14 @@ export const site = {
   phoneHref: "tel:9802773700",
 
   address: {
-    street: "3650 Centre Circle, Suite I",
+    // Verbatim from the Google Business Profile address_lines (place
+    // ChIJkR37bWkm7CoRu6bfEb_xhZc, re-verified 2026-08-28). This string is the
+    // citation-grade NAP: it renders in the footer block and the ServiceArea
+    // panel, and it is the PostalAddress.streetAddress in the sitewide JSON-LD.
+    // Keep it character-identical to the GBP so Google has nothing to reconcile.
+    // Body prose that spells the address out ("3650 Centre Circle, Suite I") is
+    // a brand mention, not a citation, and is left reading naturally.
+    street: "3650 Centre Cir Ste I",
     city: "Fort Mill",
     state: "SC",
     zip: "29715",
