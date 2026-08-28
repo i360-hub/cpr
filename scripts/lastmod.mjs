@@ -69,6 +69,28 @@ function keyedBlocks(path, open = '{') {
   return out;
 }
 
+/** Tier-1 title/H1/meta entries in services.ts, keyed by slug ("" = homepage).
+ *  Dated per entry rather than per file: services.ts feeds all ten Tier-1 pages,
+ *  so a whole-file date reports every one of them as modified whenever a single
+ *  title changes. */
+function serviceMetaBlocks() {
+  const path = `${DATA}/services.ts`;
+  if (!existsSync(path)) return new Map();
+  const lines = readFileSync(path, 'utf8').split('\n');
+  const starts = [];
+  lines.forEach((line, i) => {
+    if (/^export const homepage\s*=/.test(line)) starts.push({ slug: '', line: i + 1 });
+    const m = line.match(/^\s{4}slug:\s*"([a-z0-9-]*)"/);
+    if (m) starts.push({ slug: m[1], line: i + 1 });
+  });
+  const out = new Map();
+  starts.forEach((s, i) => {
+    // The homepage entry is bounded by the next marker like any other.
+    if (!out.has(s.slug)) out.set(s.slug, [s.line, (starts[i + 1]?.line ?? lines.length + 1) - 1]);
+  });
+  return out;
+}
+
 /** Blog entries: slug, publish date, and the line range of the entry. */
 function blogBlocks() {
   const path = `${DATA}/blogPosts.ts`;
@@ -129,7 +151,12 @@ export function buildSitemapMeta() {
   const standalone = keyedBlocks(`${DATA}/standalonePages.ts`, '[');
   const blog = blogBlocks();
 
-  const servicesMeta = fileDate(`${DATA}/services.ts`); // titles/H1/meta for the Tier-1 pages
+  // Titles/H1/meta for the Tier-1 pages, dated per entry (see serviceMetaBlocks).
+  const meta = serviceMetaBlocks();
+  const metaDate = (slug) => {
+    const r = meta.get(slug);
+    return r ? blockDate(`${DATA}/services.ts`, r[0], r[1]) : fileDate(`${DATA}/services.ts`);
+  };
 
   // 1. Blog posts — publish date from the post itself.
   for (const [slug, { date }] of blog) put(`/${slug}`, 'blogPost', date);
@@ -138,7 +165,7 @@ export function buildSitemapMeta() {
   // 2. Tier-1 service pages — [service].astro + services.ts + the page's own block.
   const serviceRoute = fileDate(`${PAGES}/[service].astro`);
   for (const [slug, [a, b]] of servicePages) {
-    put(`/${slug}`, 'service', newest(serviceRoute, servicesMeta, blockDate(`${DATA}/servicePages.ts`, a, b)));
+    put(`/${slug}`, 'service', newest(serviceRoute, metaDate(slug), blockDate(`${DATA}/servicePages.ts`, a, b)));
   }
 
   // 3. Tier-2 water city pages.
@@ -155,7 +182,7 @@ export function buildSitemapMeta() {
 
   // 5. Pages with their own component: /foo -> src/pages/foo.astro, plus the
   //    editorial body block in standalonePages.ts where the page has one.
-  put('/', 'home', newest(fileDate(`${PAGES}/index.astro`), servicesMeta));
+  put('/', 'home', newest(fileDate(`${PAGES}/index.astro`), metaDate('')));
   for (const [name, [a, b]] of standalone) {
     const kind = HUBS.has(name) ? 'hub' : UTILITY.has(name) ? 'utility' : 'cluster';
     put(`/${name}`, kind, newest(fileDate(`${PAGES}/${name}.astro`), blockDate(`${DATA}/standalonePages.ts`, a, b)));
