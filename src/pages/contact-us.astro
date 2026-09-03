@@ -9,6 +9,7 @@ import ContactForm from "@components/widgets/ContactForm.astro";
 import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import { site } from "@data/site";
+import { waterCta } from "@data/ctaCopy";
 
 const { address } = site;
 
@@ -111,7 +112,7 @@ const contactSchema = [
   />
 
   <ServiceArea />
-  <FinalCta heading="Water Damage Emergency? Talk to Our Team Right Now." />
+  <FinalCta heading="Water Damage Emergency? Talk to Our Team Right Now." secondaryLabel={waterCta.assessment} />
 </BaseLayout>
 
 <style>

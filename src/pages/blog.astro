@@ -8,6 +8,7 @@ import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import Icon from "@components/ui/Icon.astro";
 import { blogPosts } from "@data/blogPosts";
+import { waterCta } from "@data/ctaCopy";
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "../assets/images/blog/*.{jpg,jpeg,png,webp}",
@@ -91,9 +92,15 @@ const FEAT_SIZES = "(max-width: 900px) 100vw, 55vw";
     </div>
   </section>
 
-  <FinalCta heading="Have a Water Damage Emergency? Don't Wait — Call Us." />
+  <FinalCta heading="Have a Water Damage Emergency? Don't Wait — Call Us." secondaryLabel={waterCta.assessment} />
 
-  <ContactForm heading="Get Fast, Local Help" formName="Blog Index Contact" />
+  <ContactForm
+    heading="Get Fast, Local Help"
+    cardTitle={waterCta.assessment}
+    cardSub={waterCta.cardSub}
+    trustItems={waterCta.trustItems}
+    formName="Blog Index Contact"
+  />
 </BaseLayout>
 
 <style>

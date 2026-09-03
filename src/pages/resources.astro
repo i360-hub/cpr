@@ -6,6 +6,7 @@ import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import { standalonePages } from "@data/standalonePages";
 import { site } from "@data/site";
+import { waterCta } from "@data/ctaCopy";
 ---
 
 <BaseLayout
@@ -20,6 +21,12 @@ import { site } from "@data/site";
     ctas={[{ label: `Call 24/7: ${site.phoneDisplay}`, href: site.phoneHref, variant: "call" }]}
   />
   <LocalContent blocks={standalonePages["resources"]} />
-  <FinalCta heading="Have an Emergency Right Now? Don't Wait — Call Us." />
-  <ContactForm heading="Talk to Our Team" formName="Resources Page Contact" />
+  <FinalCta heading="Have an Emergency Right Now? Don't Wait — Call Us." secondaryLabel={waterCta.assessment} />
+  <ContactForm
+    heading="Talk to Our Team"
+    cardTitle={waterCta.assessment}
+    cardSub={waterCta.cardSub}
+    trustItems={waterCta.trustItems}
+    formName="Resources Page Contact"
+  />
 </BaseLayout>

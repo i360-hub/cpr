@@ -10,6 +10,7 @@ import ContactForm from "@components/widgets/ContactForm.astro";
 import { locationList } from "@data/locations";
 import { publishedMoldLocationList } from "@data/moldLocations";
 import { site } from "@data/site";
+import { waterCta } from "@data/ctaCopy";
 
 const sc = locationList.filter((l) => l.state === "SC");
 const nc = locationList.filter((l) => l.state === "NC");
@@ -83,8 +84,14 @@ const groups = [
   </section>
 
   <ServiceArea />
-  <FinalCta heading="Not Sure If We Cover Your Area? Just Ask." />
-  <ContactForm heading="Get Local Water Damage Help" formName="Service Areas Contact" />
+  <FinalCta heading="Not Sure If We Cover Your Area? Just Ask." secondaryLabel={waterCta.assessment} />
+  <ContactForm
+    heading="Get Local Water Damage Help"
+    cardTitle={waterCta.assessment}
+    cardSub={waterCta.cardSub}
+    trustItems={waterCta.trustItems}
+    formName="Service Areas Contact"
+  />
 </BaseLayout>
 
 <style>

@@ -13,6 +13,7 @@ import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import { site } from "@data/site";
 import storyImg from "@assets/images/organic/cpr-fleet.jpg";
+import { waterCta } from "@data/ctaCopy";
 
 const story = [
   "We're Carolina Pro Restoration LLC — the team our customers call CPR. We're headquartered at 3650 Centre Circle, Suite I, right here in Fort Mill, South Carolina, and most of our crew lives in the same York County and south Charlotte neighborhoods we work in every day.",
@@ -109,8 +110,14 @@ const orgSchema = [
     sub="Real reviews from homeowners, property managers, and HOAs in the Fort Mill and Charlotte area."
   />
   <ServiceArea />
-  <FinalCta heading="Have a Water Damage Emergency? We're Ready 24/7." />
-  <ContactForm heading="Get in Touch With Our Fort Mill Team" formName="About Page Contact" />
+  <FinalCta heading="Have a Water Damage Emergency? We're Ready 24/7." secondaryLabel={waterCta.assessment} />
+  <ContactForm
+    heading="Get in Touch With Our Fort Mill Team"
+    cardTitle={waterCta.assessment}
+    cardSub={waterCta.cardSub}
+    trustItems={waterCta.trustItems}
+    formName="About Page Contact"
+  />
 </BaseLayout>
 
 <style>

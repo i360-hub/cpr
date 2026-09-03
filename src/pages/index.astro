@@ -22,6 +22,7 @@ import { homepage } from "@data/services";
 import { heroPreload } from "@lib/images";
 import heroImg from "@assets/images/hero-home.webp";
 import imgCrew from "@assets/images/organic/cpr-technician.jpg";
+import { waterCta } from "@data/ctaCopy";
 
 const faq = [
   { q: "Do you handle the rebuild after water damage or just the drying?", a: "Yes. Carolina Pro Restoration handles both. We do the emergency water removal, structural drying, and moisture monitoring. Then our own crew rebuilds everything we removed. That includes drywall, paint, trim, cabinets, flooring, and subfloors. You use one contractor from start to finish." },
@@ -31,7 +32,7 @@ const faq = [
   { q: "How long does the drying process take after water damage?", a: "It depends on how much water entered the home, what materials were affected, and how fast we start. Most homes take 3 to 5 days of monitored drying. We check moisture levels every day and move equipment as things dry. We do not stop until the structure is verified dry." },
   { q: "Will mold grow after water damage?", a: "Mold can start growing within 48 hours if wet materials are not dried properly. That is why fast water removal and professional drying are so important. If mold is already present, we contain the area, remove the mold safely, and clean the air with HEPA scrubbers." },
   { q: "Do I need to hire a separate contractor to fix my walls and floors?", a: "No. That is what makes us different from most restoration companies. We dry your home and then our own crew rebuilds it. New drywall, paint, trim, flooring, cabinets, and subfloors. One project manager handles the whole job so you do not have to juggle multiple contractors." },
-  { q: "How much does water damage restoration cost?", a: "The cost depends on the size of the affected area, the type of water, and how much material needs to be removed and rebuilt. Most homeowners insurance policies cover water damage from sudden events like burst pipes and appliance leaks. We provide a free on-site assessment and handle the insurance paperwork for you." },
+  { q: "How much does water damage restoration cost?", a: "The cost depends on the size of the affected area, the type of water, and how much material needs to be removed and rebuilt. Most homeowners insurance policies cover water damage from sudden events like burst pipes and appliance leaks. We provide an on-site assessment and handle the insurance paperwork for you." },
 ];
 
 const homeCities = [
@@ -135,9 +136,11 @@ const faqSchema = [
     sub="We are not a distant call center. We are locally owned and based right here in York County with crews across the region."
     cities={homeCities}
   />
-  <FinalCta heading="Water Damage Right Now? We Are Ready." />
+  <FinalCta heading="Water Damage Right Now? We Are Ready." secondaryLabel={waterCta.assessment} />
   <ContactForm
-    heading="Request a Free Inspection"
+    heading={waterCta.inspection}
+    cardTitle={waterCta.assessment}
+    cardSub={waterCta.cardSub}
     description="Fill out this short form and our team will call you back fast. For emergencies, call us directly — we pick up 24/7."
     trustItems={[
       "No cost for the on-site inspection",

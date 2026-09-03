@@ -31,6 +31,7 @@ import imgCrawlEncap from "@assets/images/organic/crawlspace-encapsulation.jpg";
 import imgExtraction from "@assets/images/organic/carpet-extraction-job.jpg";
 import imgFoundation from "@assets/images/organic/foundation-waterproofing.jpg";
 import { heroPreload } from "@lib/images";
+import { waterCta } from "@data/ctaCopy";
 
 // Per-city "on the job" bands. Keyed by slug; only these cities render one.
 // Object keys match ActionShot props so they can be spread directly.
@@ -177,7 +178,7 @@ const cityServiceSchema = {
     trustSignals={loc.heroTrust}
     image={heroImg}
     imageAlt={`Carolina Pro Restoration serving ${loc.name}, ${loc.state}`}
-    secondaryCta={{ label: "Request an Inspection", href: "#contact" }}
+    secondaryCta={{ label: waterCta.inspection, href: "#contact" }}
   />
   <StatStrip stats={loc.stats} />
   <LocalContent blocks={bodyBefore} />
@@ -195,19 +196,13 @@ const cityServiceSchema = {
     mapSrc={cityMapSrc}
     mapLink={cityMapLink}
   />
-  <FinalCta heading={loc.finalCta} secondaryLabel="Request an Assessment" />
+  <FinalCta heading={loc.finalCta} secondaryLabel={waterCta.assessment} />
   <ContactForm
     heading={loc.contactHeading}
     description={loc.contactDesc}
-    cardTitle="Request an Assessment"
-    cardSub="No pressure. We'll get right back to you."
-    trustItems={[
-      "We answer 24/7 and respond fast",
-      "On-site assessment with a written scope",
-      "We bill your insurance directly",
-      "IICRC certified, SC licensed & insured",
-      "One crew from cleanup to rebuild",
-    ]}
+    cardTitle={waterCta.assessment}
+    cardSub={waterCta.cardSub}
+    trustItems={waterCta.trustItems}
     formName={`${loc.name} Water Damage Contact`}
   />
 </BaseLayout>
