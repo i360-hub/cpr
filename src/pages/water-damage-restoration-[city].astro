@@ -177,6 +177,7 @@ const cityServiceSchema = {
     trustSignals={loc.heroTrust}
     image={heroImg}
     imageAlt={`Carolina Pro Restoration serving ${loc.name}, ${loc.state}`}
+    secondaryCta={{ label: "Request an Inspection", href: "#contact" }}
   />
   <StatStrip stats={loc.stats} />
   <LocalContent blocks={bodyBefore} />
@@ -194,6 +195,19 @@ const cityServiceSchema = {
     mapSrc={cityMapSrc}
     mapLink={cityMapLink}
   />
-  <FinalCta heading={loc.finalCta} />
-  <ContactForm heading={loc.contactHeading} description={loc.contactDesc} formName={`${loc.name} Water Damage Contact`} />
+  <FinalCta heading={loc.finalCta} secondaryLabel="Request an Assessment" />
+  <ContactForm
+    heading={loc.contactHeading}
+    description={loc.contactDesc}
+    cardTitle="Request an Assessment"
+    cardSub="No pressure. We'll get right back to you."
+    trustItems={[
+      "We answer 24/7 and respond fast",
+      "On-site assessment with a written scope",
+      "We bill your insurance directly",
+      "IICRC certified, SC licensed & insured",
+      "One crew from cleanup to rebuild",
+    ]}
+    formName={`${loc.name} Water Damage Contact`}
+  />
 </BaseLayout>

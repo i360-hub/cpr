@@ -26,6 +26,14 @@ export interface ServicePageData {
   /** Actionable prose rendered high on the page, above the timeline — the
    *  "what do I do right now / who do I call" answer. */
   guide?: { tag: string; html: string }[];
+  /** Page-scoped overrides for copy that otherwise falls back to the shared
+   *  widget defaults (WarningSigns / FinalCta / ContactForm). Used where a page
+   *  must not carry the default wording. */
+  signsCtaLabel?: string;
+  finalCtaSecondaryLabel?: string;
+  contactCardTitle?: string;
+  contactCardSub?: string;
+  contactTrustItems?: string[];
   /** Town-page link block (mold-removal only). Renders as a RelatedServices grid
    *  above the service-area map — the parent→child signal for the five
    *  /mold-removal-{town} pages, which are NOT nested under this URL. */
@@ -34,14 +42,14 @@ export interface ServicePageData {
 
 export const servicePages: Record<string, ServicePageData> = {
   "water-damage-restoration": {
-    hero: { emergencyTag: '🚨 24/7 Emergency Water Damage Response', subtitle: 'Burst pipe, flooded basement, or storm damage? We pull out the water, dry the structure, and rebuild what we tear out — one certified crew from start to finish. We bill your insurance directly, so you pay your deductible and nothing beyond it.', trustSignals: ['40+ 5-Star Google Reviews', 'SC Licensed & Fully Insured', 'IICRC Certified Technicians', 'Direct Insurance Billing'], secondaryCta: 'Request Free Assessment' },
+    hero: { emergencyTag: '🚨 24/7 Emergency Water Damage Response', subtitle: 'Burst pipe, flooded basement, or storm damage? We pull out the water, dry the structure, and rebuild what we tear out — one certified crew from start to finish. We bill your insurance directly, so you pay your deductible and nothing beyond it.', trustSignals: ['40+ 5-Star Google Reviews', 'SC Licensed & Fully Insured', 'IICRC Certified Technicians', 'Direct Insurance Billing'], secondaryCta: 'Request an Assessment' },
     timeline: { title: 'What Happens to Your Home After Water Damage', sub: 'Water damage isn\'t one event — it\'s a chain reaction. Here\'s what happens inside your walls and floors if it isn\'t stopped fast.', ctaLabel: 'The faster we start, the more we can save. Call anytime — we\'re here 24/7.', cards: [
       { badge: '0 – 60 Minutes', title: 'Water Soaks In', text: 'Water wicks into drywall about an inch an hour. Carpet pad soaks up many times its weight. Particleboard swells and falls apart on contact.' },
       { badge: '1 – 24 Hours', title: 'Materials Start to Fail', text: 'Drywall gets soft and sags. Wood floors cup and buckle as water comes up from below. Laminate splits at the seams, and metal parts start to rust.' },
       { badge: '24 – 48 Hours', title: 'Mold Starts to Grow', text: 'Mold takes hold on anything damp. It grows behind walls and under floors where the air is still. Cleanup costs jump at this point.' },
       { badge: 'Our Response', title: 'We Stop the Damage', text: 'Our pumps pull out the standing water. Big dehumidifiers and fans dry every wet spot we find with thermal cameras. An antimicrobial spray stops mold before it can spread.', resolve: true }
     ] },
-    signs: { title: 'Signs of Water Damage', sub: 'Caught early, water damage is a quick fix. Left alone, it turns into mold and rot. If you spot any of these, call us.', note: 'Not sure how bad it is? The inspection is free — we\'ll find every wet spot.', signs: ['Water stains on ceilings or walls', 'Peeling or bubbling paint', 'Warped or buckling floors', 'Musty or damp smell', 'Soft or sagging drywall', 'Mold or mildew spots', 'A water bill that jumped', 'Dark or discolored patches', 'Active drips or leaks', 'Standing water anywhere', 'A sagging spot in the ceiling', 'Heavy condensation or humidity'] },
+    signs: { title: 'Signs of Water Damage', sub: 'Caught early, water damage is a quick fix. Left alone, it turns into mold and rot. If you spot any of these, call us.', note: 'Not sure how bad it is? We inspect with thermal imaging — we\'ll find every wet spot.', signs: ['Water stains on ceilings or walls', 'Peeling or bubbling paint', 'Warped or buckling floors', 'Musty or damp smell', 'Soft or sagging drywall', 'Mold or mildew spots', 'A water bill that jumped', 'Dark or discolored patches', 'Active drips or leaks', 'Standing water anywhere', 'A sagging spot in the ceiling', 'Heavy condensation or humidity'] },
     scenarios: { title: 'What Happened? We Handle It All.', sub: 'It doesn\'t matter how the water got in. We pull it out, dry the structure, and rebuild what we tear out. Here\'s what we see every week.', ctaLabel: 'Water in your home right now? Don\'t wait — the damage doubles every day.', scenarios: [
       { icon: 'droplet', title: 'Burst Pipes & Supply Line Breaks', text: 'A burst pipe can dump hundreds of gallons in minutes. We pull out the water, strip the wet materials, and dry the structure before mold starts. Most policies cover this — and we handle the claim for you.', linkLabel: 'Get help now', href: '/contact-us' },
       { icon: 'droplet', title: 'Water Heater, Washer & Dishwasher Leaks', text: 'Appliance leaks flood kitchens, laundry rooms, and basements with no warning. Water soaks into cabinets, subfloors, and walls fast. We pull out what\'s wet, dry the cavity, and rebuild it — cabinets, flooring, drywall, all of it.', linkLabel: 'Get help now', href: '/contact-us' },
@@ -81,7 +89,7 @@ export const servicePages: Record<string, ServicePageData> = {
       { q: 'What equipment do you use to dry it out?', a: 'Truck-mounted extractors for fast water removal, weighted tools for carpet and pad, low-grain dehumidifiers, high-speed air movers, thermal cameras to find hidden water, and moisture meters to track drying each day. It is all commercial-grade gear, not rental-store units.' },
       { q: 'How do you stop mold after water damage?', a: 'Speed. We start pulling out water within an hour of your call. Once the standing water is gone, we spray an EPA-registered antimicrobial on the framing and subfloor, then run dehumidifiers to keep humidity under 50 percent. We log readings daily, and if anything cannot be dried in time, we remove it. Not sure if you already have a hidden problem? See our guide to the <a href="/7-signs-hidden-water-damage-fort-mill-rock-hill-sc">7 signs of hidden water damage</a> Fort Mill and Rock Hill homeowners most often miss.' },
       { q: 'What does Xactimate have to do with my claim?', a: 'Xactimate is the pricing software almost every adjuster uses. When we write the estimate in that same software, the line items match and the claim moves faster. We build it on site with current local pricing, attach the daily logs and photos, and send it straight to your adjuster, which cuts out the back-and-forth that stalls most claims.' },
-      { q: 'Should I file a claim or pay out of pocket?', a: 'If the damage is sudden and accidental, like a burst pipe, an appliance failure, or a storm, your homeowners policy almost always covers it. Filing makes sense once the repairs pass your deductible, which they usually do once drywall and flooring are involved. We give you a free on-site assessment with a written scope so you can see the cost before you decide. If you file, we handle every step of the claim.' },
+      { q: 'Should I file a claim or pay out of pocket?', a: 'If the damage is sudden and accidental, like a burst pipe, an appliance failure, or a storm, your homeowners policy almost always covers it. Filing makes sense once the repairs pass your deductible, which they usually do once drywall and flooring are involved. We give you an on-site assessment with a written scope so you can see the cost before you decide. If you file, we handle every step of the claim.' },
       { q: 'How do I know when my house is really dry?', a: 'We measure the moisture every day at several points: framing, subfloor, drywall, and concrete. It is done when every reading is back to the normal level for that material, usually within a point or two of the dry areas in your home. You get a final drying report with every reading before we start the rebuild.' },
       { q: 'What is the difference between mitigation and restoration?', a: 'Mitigation is the emergency part: pulling out the water, removing what cannot be saved, drying the structure, and treating for mold. Restoration is the rebuild: new drywall, paint, <a href="/flooring-repair">flooring</a>, cabinets, and trim — plus exterior structures like <a href="/decks-and-porches">decks and porches</a> when the water or storm reached them. Most companies only do mitigation and hand you off to a general contractor for the rebuild. We do both with one crew and one project manager, which keeps the job on schedule.' }
     ],
@@ -94,6 +102,17 @@ export const servicePages: Record<string, ServicePageData> = {
     reviewsTitle: 'Trusted by Homeowners and Property Managers', reviewsSub: 'Rated 4.9 stars across 40+ Google reviews. From emergency water removal to full rebuilds, here is what people say about working with Carolina Pro Restoration.',
     finalCta: 'Need Water Damage Help? Talk to Our Team Now.', contactHeading: 'Get Water Damage Help Now', contactDesc: 'Water won\'t wait, and neither do we. Call or text for a fast response, or send us the details and we\'ll get right back to you.',
     areaTitle: 'We Respond Across the Charlotte Metro and Carolinas', areaSub: 'Based in Fort Mill, SC, with crews across York County and the south Charlotte area. Pick your city below for local details.', areaInfoHeading: 'Fast Response Across the Region', areaInfoBlurb: 'Our trucks reach most of York County and south Charlotte in under an hour.',
+    signsCtaLabel: 'Request an Inspection',
+    finalCtaSecondaryLabel: 'Request an Assessment',
+    contactCardTitle: 'Request an Assessment',
+    contactCardSub: 'No pressure. We\'ll get right back to you.',
+    contactTrustItems: [
+      'We answer 24/7 and respond fast',
+      'On-site assessment with a written scope',
+      'We bill your insurance directly',
+      'IICRC certified, SC licensed & insured',
+      'One crew from cleanup to rebuild',
+    ],
   },
   "storm-damage": {
     hero: { emergencyTag: '🚨 24/7 Emergency Storm Damage Response', subtitle: 'Fallen trees, roof and wind damage, hail, or flooding and water in your home? We tarp and board up fast, then handle the full rebuild — one crew from emergency response to finish. We work directly with your insurance, so the claim is one less thing to worry about.', trustSignals: ['40+ 5-Star Google Reviews', 'SC Licensed & Fully Insured', 'IICRC Certified Technicians', 'Insurance Claims Approved'], secondaryCta: 'Request a Free Assessment' },

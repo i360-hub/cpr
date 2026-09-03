@@ -92,6 +92,10 @@ const { address } = site;
     <p class="site-footer__copy">
       &copy; {site.copyrightYear} {site.copyright}
     </p>
+
+    <p class="site-footer__credit">
+      Smart Site by <a href="https://impact360media.com" rel="noopener" target="_blank">Impact 360 Media</a>
+    </p>
   </div>
 </footer>
 
@@ -261,6 +265,19 @@ const { address } = site;
     margin-top: var(--cpr-space-md);
     font-size: 0.85rem;
     color: var(--cpr-slate-light);
+  }
+  .site-footer__credit {
+    margin-top: 0.35rem;
+    font-size: 0.85rem;
+    color: var(--cpr-slate-light);
+  }
+  .site-footer__credit a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .site-footer__credit a:hover {
+    color: var(--cpr-white);
   }
 
   @media (max-width: 960px) {

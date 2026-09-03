@@ -156,7 +156,7 @@ const serviceSchema = {
       on the page. Only pages that define `guide` render it. */}
   {data.guide && <LocalContent blocks={data.guide} />}
   <Timeline title={data.timeline.title} sub={data.timeline.sub} ctaLabel={data.timeline.ctaLabel} cards={data.timeline.cards} />
-  <WarningSigns title={data.signs.title} sub={data.signs.sub} note={data.signs.note} signs={data.signs.signs} />
+  <WarningSigns title={data.signs.title} sub={data.signs.sub} note={data.signs.note} signs={data.signs.signs} ctaLabel={data.signsCtaLabel} />
   <Scenarios title={data.scenarios.title} sub={data.scenarios.sub} ctaLabel={data.scenarios.ctaLabel} scenarios={data.scenarios.scenarios} />
   <ProcessSteps title={data.process.title} sub={data.process.sub} ctaLabel={data.process.ctaLabel} steps={processSteps} />
   {actionShot && <ActionShot image={actionShot.img} alt={actionShot.alt} heading={actionShot.heading} text={actionShot.text} />}
@@ -198,7 +198,14 @@ const serviceSchema = {
     infoHeading={data.areaInfoHeading}
     infoBlurb={data.areaInfoBlurb}
   />
-  <FinalCta heading={data.finalCta} />
-  <ContactForm heading={data.contactHeading} description={data.contactDesc} formName={`${svc.gridTitle} Contact`} />
+  <FinalCta heading={data.finalCta} secondaryLabel={data.finalCtaSecondaryLabel} />
+  <ContactForm
+    heading={data.contactHeading}
+    description={data.contactDesc}
+    cardTitle={data.contactCardTitle}
+    cardSub={data.contactCardSub}
+    trustItems={data.contactTrustItems}
+    formName={`${svc.gridTitle} Contact`}
+  />
   <RelatedServices title={data.related.title} sub={data.related.sub} cards={data.related.cards} />
 </BaseLayout>
