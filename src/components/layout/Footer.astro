@@ -90,11 +90,10 @@ const { address } = site;
     </div>
 
     <p class="site-footer__copy">
-      &copy; {site.copyrightYear} {site.copyright}
-    </p>
-
-    <p class="site-footer__credit">
-      Smart Site by <a href="https://impact360media.com" rel="noopener" target="_blank">Impact 360 Media</a>
+      &copy; {site.copyrightYear} {site.copyright} <span class="site-footer__sep" aria-hidden="true">&middot;</span> <span
+        class="site-footer__credit"
+        >Smart Site by <a href="https://impact360media.com" rel="noopener" target="_blank">Impact 360 Media</a></span
+      >
     </p>
   </div>
 </footer>
@@ -266,10 +265,9 @@ const { address } = site;
     font-size: 0.85rem;
     color: var(--cpr-slate-light);
   }
-  .site-footer__credit {
-    margin-top: 0.35rem;
-    font-size: 0.85rem;
-    color: var(--cpr-slate-light);
+  .site-footer__sep {
+    opacity: 0.55;
+    margin-inline: 0.15rem;
   }
   .site-footer__credit a {
     color: inherit;
