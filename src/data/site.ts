@@ -59,9 +59,7 @@ export const site = {
 
   socials: {
     facebook: "https://www.facebook.com/carolinaprorestorationllc/",
-    instagram: "https://instagram.com/carolinaproresto/",
-    tiktok: "https://tiktok.com/@carolina.pro.rest",
-    linkedin: "https://www.linkedin.com/in/carolina-pro-restoration-llc-2a4914326/",
+    linkedin: "https://www.linkedin.com/company/carolina-pro-restoration-llc/people/",
     // Third-party profiles that already rank on our own brand SERP. Included in
     // sameAs as entity anchors — they help Google keep us distinct from the
     // similarly-named "Carolina Pro Reconstruction" (Gastonia, NC) and

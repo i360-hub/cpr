@@ -33,7 +33,9 @@ const readMoreExternal = /^https?:/.test(readMoreHref);
           <li class="reviews__card">
             <span class="reviews__tag">{r.tag}</span>
             <div class="reviews__stars" role="img" aria-label={`${r.stars} out of 5 stars`}>
-              {Array.from({ length: r.stars }).map(() => (<Icon name="star" />))}
+              {/* Round, then clamp to 1-5: Array.from truncates a fractional
+                  length, so a 4.9 would silently render only four stars. */}
+              {Array.from({ length: Math.min(5, Math.max(1, Math.round(r.stars))) }).map(() => (<Icon name="star" />))}
             </div>
             <p class="reviews__text">{r.text}</p>
             <div class="reviews__author">
