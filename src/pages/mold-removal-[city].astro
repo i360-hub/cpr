@@ -137,7 +137,8 @@ const townServiceSchema = {
   schema={[townServiceSchema, ...faqSchema]}
   breadcrumb={[
     { name: "Service Areas", item: `${origin}/service-areas` },
-    { name: `${loc.name}, ${loc.state}`, item: `${origin}/water-damage-restoration-${loc.slug}` },
+    // Fort Mill's water damage page is the homepage (old URL 301s there).
+    { name: `${loc.name}, ${loc.state}`, item: city === "fort-mill-sc" ? `${origin}/` : `${origin}/water-damage-restoration-${loc.slug}` },
     { name: "Mold Removal", item: pageUrl },
   ]}
   reviews={reviewsForCity(city)}

@@ -30,10 +30,11 @@
 
 // Legacy Duda /locations/<slug> -> city-page 301s. Targets verified against the
 // live Duda site's own 301s (2026-07-06). Object keys are strings ("1" matches
-// the numeric /locations/1 slug).
+// the numeric /locations/1 slug). Fort Mill points straight at / (not at the
+// retired Fort Mill page) so these never become a two-hop chain.
 const LOCATION_REDIRECTS = {
-  fort_mill: "/water-damage-restoration-fort-mill-sc",
-  1: "/water-damage-restoration-fort-mill-sc",
+  fort_mill: "/",
+  1: "/",
   rock_hill: "/water-damage-restoration-rock-hill-sc",
   gastonia: "/water-damage-restoration-gastonia-nc",
   matthews: "/water-damage-restoration-matthews-nc",
@@ -65,6 +66,11 @@ const REDIRECTS = {
   "/home-old": "/",
   "/coming-soon-landing": "/",
   "/aboutf7b260e9": "/about-carolina-pro-restoration",
+
+  // --- Fort Mill page merged into the homepage (2026-09-13) ---
+  // Google had already picked / for the Fort Mill queries; the two URLs were
+  // splitting them. Any other redirect that used to land here targets / directly.
+  "/water-damage-restoration-fort-mill-sc": "/",
 
   // --- Old service-page slugs ---
   "/mold-removal-old": "/mold-removal",
@@ -101,9 +107,9 @@ const REDIRECTS = {
   "/survey": "/reviews-testimonials",
 
   // --- Old landing pages & un-migrated blog posts still indexed in Google ---
-  "/expert-contractor-for-water-damage-restoration-in-fort-mill": "/water-damage-restoration-fort-mill-sc",
-  "/water-damage-restoration-in-fort-mill-charlotte-rapid-trusted-emergency-service-by-carolina-pro-restoration": "/water-damage-restoration-fort-mill-sc",
-  "/fast-trusted-water-damage-restoration-in-fort-mill-sc-24-7-emergency-response": "/water-damage-restoration-fort-mill-sc",
+  "/expert-contractor-for-water-damage-restoration-in-fort-mill": "/",
+  "/water-damage-restoration-in-fort-mill-charlotte-rapid-trusted-emergency-service-by-carolina-pro-restoration": "/",
+  "/fast-trusted-water-damage-restoration-in-fort-mill-sc-24-7-emergency-response": "/",
   "/water-damage-restoration-rock-hill-sc-your-trusted-local-experts": "/water-damage-restoration-rock-hill-sc",
   "/decks--porches-and-more": "/decks-and-porches",
   "/indian-land-hoa-communities-group-water-damage-prevention-planning": "/water-damage-restoration-indian-land-sc",

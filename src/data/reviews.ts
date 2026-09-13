@@ -178,7 +178,9 @@ export function reviewsFor(service: string, count = 3): Review[] {
 
 // Stable town ordering (insertion order of the locations map) used to rotate
 // the generic fill reviews so neighboring towns don't all show the same set.
-const CITY_ORDER = Object.keys(locations);
+// "fort-mill-sc" stays pinned at the front after its page merged into the
+// homepage — dropping it would shift every other town's rotation by one.
+const CITY_ORDER = ["fort-mill-sc", ...Object.keys(locations)];
 
 /**
  * Reviews for a city slug. Only reviews that explicitly name THIS city count as

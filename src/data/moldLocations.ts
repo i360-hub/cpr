@@ -484,7 +484,7 @@ export const moldLocations: Record<string, MoldLocation> = {
       },
       {
         tag: "p",
-        html: 'Fort Mill takes about 44 inches of rain a year onto York County clay that will not drain, and a large share of its housing stock went up in a single decade with plumbing that is now failing on schedule. That combination produces two kinds of mold call: the sudden one behind a wall after a supply line lets go, and the slow one under the house that nobody notices for years. We handle both — containment, HEPA air scrubbing, safe removal, antimicrobial treatment, and the moisture repair that ends it — then our own crew rebuilds the drywall, trim, and flooring. See the full <a href="/mold-removal">mold removal</a> process, or read about the usual root cause in <a href="/water-damage-restoration-fort-mill-sc">water damage restoration in Fort Mill</a>.',
+        html: 'Fort Mill takes about 44 inches of rain a year onto York County clay that will not drain, and a large share of its housing stock went up in a single decade with plumbing that is now failing on schedule. That combination produces two kinds of mold call: the sudden one behind a wall after a supply line lets go, and the slow one under the house that nobody notices for years. We handle both — containment, HEPA air scrubbing, safe removal, antimicrobial treatment, and the moisture repair that ends it — then our own crew rebuilds the drywall, trim, and flooring. See the full <a href="/mold-removal">mold removal</a> process, or read about the usual root cause in <a href="/">water damage restoration in Fort Mill</a>.',
       },
       { tag: "h2", html: "Why Fort Mill Homes Get Mold" },
       { tag: "h3", html: "Black Mold in Fort Mill Crawl Spaces" },
@@ -622,7 +622,7 @@ export const moldLocations: Record<string, MoldLocation> = {
         {
           title: "Water Damage Restoration in Fort Mill",
           text: "Most Fort Mill mold starts with water. We extract, dry, and rebuild.",
-          href: "/water-damage-restoration-fort-mill-sc",
+          href: "/",
         },
         {
           title: "Crawl Space Encapsulation",

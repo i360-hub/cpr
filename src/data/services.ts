@@ -2,7 +2,9 @@
 // Drives: header nav, homepage services grid, related-services blocks, sitemap.
 // title / h1Lines / metaDescription are ported VERBATIM from the live site
 // (clean scrape source). h1Lines[] renders with a <br> between lines to match
-// the original two-line hero H1 exactly. Homepage H1/title are ranking-locked.
+// the original two-line hero H1 exactly. The homepage title/H1/meta are NOT the
+// Duda originals: since 2026-09-13 the homepage is also the Fort Mill water damage
+// page (the old Fort Mill URL 301s here), and they target that query.
 
 export type ServiceGroup = "water" | "moisture";
 
@@ -18,10 +20,10 @@ export interface Service {
 
 export const homepage = {
   slug: "",
-  title: "24/7 Water Damage Restoration & Rebuild | Carolina Pro",
-  h1Lines: ["Water Damage Restoration & Full Rebuild — One Team, Start to Finish"],
+  title: "Water Damage Restoration Fort Mill SC | Carolina Pro",
+  h1Lines: ["Water Damage Restoration in Fort Mill, SC — One Team From Extraction to Rebuild"],
   metaDescription:
-    "24/7 water damage restoration, structural drying, and full rebuild — one team start to finish. SC licensed, insured, IICRC certified. Call (980) 277-3700.",
+    "Fort Mill's 24/7 water damage team — extraction, structural drying & full rebuild by one local crew. SC licensed, IICRC certified. Call (980) 277-3700.",
 } as const;
 
 export const services: Service[] = [

@@ -1,5 +1,6 @@
 ---
-// Service-areas hub — lists all 21 city pages, grouped by state, from locations.ts.
+// Service-areas hub — lists every city page, grouped by state, from locations.ts.
+// Fort Mill leads the SC group and links to / (the homepage is the Fort Mill page).
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PageHeader from "@components/layout/PageHeader.astro";
 import SectionHeader from "@components/ui/SectionHeader.astro";
@@ -12,8 +13,16 @@ import { publishedMoldLocationList } from "@data/moldLocations";
 import { site } from "@data/site";
 import { waterCta } from "@data/ctaCopy";
 
-const sc = locationList.filter((l) => l.state === "SC");
-const nc = locationList.filter((l) => l.state === "NC");
+const cityCard = (l: { name: string; state: string; slug: string }) => ({
+  name: l.name,
+  state: l.state,
+  href: `/water-damage-restoration-${l.slug}`,
+});
+const sc = [
+  { name: "Fort Mill", state: "SC", href: "/" },
+  ...locationList.filter((l) => l.state === "SC").map(cityCard),
+];
+const nc = locationList.filter((l) => l.state === "NC").map(cityCard);
 const groups = [
   { state: "South Carolina", cities: sc },
   { state: "North Carolina", cities: nc },
@@ -46,7 +55,7 @@ const groups = [
             <ul class="areas-grid" role="list">
               {g.cities.map((c) => (
                 <li>
-                  <a href={`/water-damage-restoration-${c.slug}`} class="areas-card">
+                  <a href={c.href} class="areas-card">
                     <span class="areas-card__dot" aria-hidden="true" />
                     <span class="areas-card__name">{c.name}, {c.state}</span>
                     <Icon name="arrow" class="areas-card__arrow" />

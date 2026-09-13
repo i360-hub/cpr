@@ -10,6 +10,7 @@ interface Props {
   intro?: string;
   neighborhoods: string[];
   viewAllHref?: string;
+  viewAllLabel?: string;
 }
 const {
   city,
@@ -17,6 +18,7 @@ const {
   intro = `We respond to water damage calls across all of ${city}, including:`,
   neighborhoods,
   viewAllHref = "/service-areas",
+  viewAllLabel = "View all service areas across Charlotte and York County",
 } = Astro.props;
 ---
 
@@ -36,7 +38,7 @@ const {
       }
     </ul>
 
-    <a href={viewAllHref} class="hood__all">View all service areas across Charlotte and York County <Icon name="arrow" /></a>
+    <a href={viewAllHref} class="hood__all">{viewAllLabel} <Icon name="arrow" /></a>
   </div>
 </section>
 

@@ -33,69 +33,6 @@ export interface Location {
 }
 
 export const locations: Record<string, Location> = {
-  "fort-mill-sc": {
-    slug: 'fort-mill-sc', name: 'Fort Mill', state: 'SC',
-    title: 'Water Damage Restoration Fort Mill SC | 24/7 Crews',
-    h1: 'Fort Mill\'s Trusted 24/7 Water Damage Restoration Team',
-    metaDescription: 'Fort Mill\'s #1 water damage team. On-site fast with extraction, drying & full rebuild under one roof. Direct insurance billing. Call 980-277-3700 now.',
-    heroTag: '🚨 24/7 Emergency Dispatch — Fort Mill', heroSub: 'Crews on the ground in 25-35 minutes across Fort Mill, Tega Cay, and southern Charlotte. We handle the water removal, structural drying, mold prevention, and full rebuild — start to finish with one dedicated project manager. Direct insurance billing through Xactimate.', heroTrust: ['Top-Rated in Fort Mill', '25-35 Min Response', 'Licensed, Insured & IICRC', 'Direct Insurance Billing'],
-    body: [
-      { tag: 'h2', html: '24/7 Water Damage Restoration in Fort Mill, SC' },
-      { tag: 'p', html: 'Got water where it shouldn\'t be? We\'re <a href="/about-carolina-pro-restoration">Carolina Pro Restoration</a>, and we\'re about 25 to 35 minutes from anywhere in Fort Mill. Our crew shows up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call. We answer the phone 24 hours a day, 7 days a week, including holidays. Call <a href="tel:9802773700">980-277-3700</a> and we\'ll dispatch a team right away.' },
-      { tag: 'p', html: 'Fort Mill sits in York County, South Carolina, where homes deal with around 44 inches of rain per year. That\'s more than the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Fort Mill and nearby <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
-      { tag: 'h3', html: 'Why Fort Mill Homes Are at Risk' },
-      { tag: 'p', html: 'Many Fort Mill neighborhoods were built in the early 2000s during the housing boom. Subdivisions like Baxter Village, Regent Park, and Springfield used Dura-PEX plumbing that has a history of pinhole leaks and fitting failures after 15 to 20 years. If your home was built between 2001 and 2010, your plumbing is entering the failure window right now. We see multiple calls per month from these neighborhoods for supply line failures behind walls and under slab foundations.' },
-      { tag: 'p', html: 'Fort Mill also sits near Sugar Creek and tributary streams that rise fast during heavy rain events. Hurricane Helene in 2024 pushed water into homes along low-lying streets and caused significant crawlspace flooding in older neighborhoods closer to downtown. The clay-heavy soil in York County doesn\'t drain well, which means even moderate rain can pool around foundations and seep into basements and crawlspaces.' },
-      { tag: 'hood', html: '' },
-      { tag: 'h3', html: 'What Happens When You Call Us' },
-      { tag: 'p', html: 'Our IICRC-certified crew arrives within 25 to 35 minutes, identifies every wet area with thermal cameras, extracts the water, and sets up a full drying system. We treat all affected surfaces with antimicrobial solution to prevent <a href="/mold-removal">mold</a> before it starts. <a href="/water-damage-restoration">See our full restoration process →</a> If mold has already taken hold, see our <a href="/mold-removal-fort-mill-sc">mold removal in Fort Mill</a> service.' },
-      { tag: 'h3', html: 'Sewage Cleanup & Basement Flooding in Fort Mill' },
-      { tag: 'p', html: 'Not all water damage is clean water. When a sewer line backs up or a septic system fails, you\'re dealing with a Category 3 event — contaminated water that needs the right protective gear and antimicrobial treatment, not a mop. Our <a href="/sewage-cleanup">sewage cleanup</a> crew handles the extraction, removes anything porous the sewage touched, and disinfects the space before drying — full sewage damage cleanup, start to finish. We also do <a href="/basement-flooding">basement flood cleanup</a> throughout Fort Mill, from finished basements that take on water during storms to crawlspaces that fill once the clay soil stops draining. Call <a href="tel:9802773700">980-277-3700</a> any hour and we\'ll be there in 25 to 35 minutes.' },
-      { tag: 'h3', html: 'Insurance & Xactimate Documentation' },
-      { tag: 'p', html: 'We write every estimate in Xactimate, take all damage photos, send daily moisture reports, and bill your insurance directly — on covered work you pay your deductible and nothing beyond it. <a href="/about-carolina-pro-restoration">Learn more about how we work →</a>' },
-      { tag: 'h2', html: 'Common Water Damage Problems in Fort Mill Neighborhoods' },
-      { tag: 'h3', html: 'Baxter Village — Dura-PEX Plumbing Failures' },
-      { tag: 'p', html: 'Baxter Village was built between 2001 and 2008. Many of these homes used Dura-PEX piping, which is known for developing pinhole leaks at the fittings. Homeowners in Baxter frequently call us for water damage behind walls that went unnoticed for days. If you see a drop in water pressure or a warm spot on a wall, call us at <a href="tel:9802773700">980-277-3700</a> before the damage spreads into the subfloor.' },
-      { tag: 'h3', html: 'Regent Park & Springfield — Crawlspace Moisture' },
-      { tag: 'p', html: 'Homes in Regent Park and Springfield sit on crawlspace foundations over York County\'s red clay soil. After heavy rain, that clay holds water against the foundation for days. We regularly pull wet insulation and treat mold growth in crawlspaces throughout these neighborhoods. If you smell must or dampness in your home, there\'s a good chance moisture is building underneath. Our team uses thermal imaging to check without tearing anything out.' },
-      { tag: 'h3', html: 'Tego & Riverwalk — Storm Drainage Issues' },
-      { tag: 'p', html: 'The newer sections along Tego and Riverwalk sit lower in the terrain and rely on stormwater retention ponds. During heavy rainfall events — especially back-to-back storms — those ponds overflow and water backs into yards, garages, and ground-level living spaces. Hurricane Helene in 2024 exposed this problem across several streets. We respond to <a href="/storm-damage">flood damage calls</a> in these areas with truck-mounted pumps that can remove thousands of gallons per hour.' },
-      { tag: 'h3', html: 'Downtown Fort Mill — Aging Pipes in Pre-2000 Homes' },
-      { tag: 'p', html: 'Homes closer to downtown Fort Mill were built in the 1960s through 1990s with galvanized steel or copper plumbing that corrodes from the inside over time. We see burst pipes, slow slab leaks, and water heater failures in this area regularly. Rusty water when you first turn on the faucet is the warning sign. If a pipe lets go, shut off your main valve and call us immediately — we can be there in under 30 minutes.' },
-      { tag: 'h2', html: 'We Handle Your Insurance — You Handle Your Family' },
-      { tag: 'p', html: 'Dealing with water damage is stressful enough without fighting your insurance company. We use Xactimate, the same estimating software your adjuster uses, so your claim moves fast with no surprises.' }
-    ],
-    stats: [
-      { number: '44 in', label: 'Rain Per Year' },
-      { number: '25-35 min', label: 'Response Time' },
-      { number: '8%', label: 'Properties at Flood Risk' }
-    ],
-    faqTitle: 'Fort Mill Water Damage FAQs', faqSub: 'Answers for Fort Mill, Tega Cay, and York County homeowners.',
-    faq: [
-      { q: 'How fast can you get to my house in Fort Mill?', a: 'Our crew is typically at your door in 25 to 35 minutes. Our shop is at 3650 Centre Circle in Fort Mill, and we keep trucks running through Fort Mill, Tega Cay, and Indian Land around the clock. Call <a href="tel:9802773700">980-277-3700</a> any time — we answer 24/7.' },
-      { q: 'My home in Baxter Village has Dura-PEX plumbing. Should I be worried?', a: 'Yes — Dura-PEX fittings installed between 2001 and 2008 are known to develop pinhole leaks. We get calls from Baxter Village, Regent Park, and Springfield every month for supply line failures behind walls. Watch for low water pressure, warm spots on walls, or a spike in your water bill. If a fitting fails, shut off your main valve and call us immediately. We can extract the water, dry the structure, and rebuild the damaged areas.' },
-      { q: 'Will mold grow after water damage in my Fort Mill home?', a: 'Mold can start growing within 48 hours in Fort Mill\'s humid climate, especially in crawlspaces over York County\'s clay soil. That is why fast water removal and professional drying are critical. We treat surfaces with antimicrobial solution during every job. If mold is already present, we contain the area, remove it safely, and clean the air with HEPA scrubbers. <a href="/mold-removal">Learn more about our mold removal process.</a>' },
-      { q: 'Does Fort Mill flood during heavy rain?', a: 'Parts of Fort Mill are flood-prone, especially areas near Sugar Creek and its tributaries. York County receives about 44 inches of rain per year, and the clay-heavy soil does not drain well. Crawlspaces and basements in low-lying neighborhoods near downtown and along creek corridors are at the highest risk. Hurricane Helene in 2024 caused significant crawlspace flooding in several Fort Mill neighborhoods. <a href="/storm-damage">Learn about our flood damage services.</a>' },
-      { q: 'What Fort Mill neighborhoods do you respond to most?', a: 'We respond to water damage calls throughout Fort Mill, but the neighborhoods we serve most frequently include Baxter Village, Regent Park, Springfield, Kingsley, Massey, Catawba Plantation, Sutton Hall, and the older homes near downtown Fort Mill and Tom Hall Street. We also cover Tega Cay, Indian Land, and Rock Hill.' },
-      { q: 'Is crawlspace flooding common in Fort Mill?', a: 'Yes. Fort Mill sits on clay-heavy York County soil that does not absorb water well. During heavy rain, water pools around foundations and seeps into crawlspaces and basements. Homes near Sugar Creek and its tributaries are especially at risk. We pump standing water, set commercial dehumidifiers in tight spaces, treat with antimicrobial solution, and repair structural damage including floor joists and subfloor. <a href="/basement-flooding">See our basement and crawlspace services.</a>' },
-      { q: 'Do you also serve Tega Cay, Indian Land, and Rock Hill?', a: 'Yes. We are based in Fort Mill and respond across all of York County. <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a> are all within our core service area with typical response times under 40 minutes. We also serve <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>, <a href="/water-damage-restoration-pineville-nc">Pineville</a>, <a href="/water-damage-restoration-ballantyne-nc">Ballantyne</a>, and <a href="/water-damage-restoration-clover-sc">Clover</a>.' },
-      { q: 'Will my insurance cover water damage from a burst pipe in Fort Mill?', a: 'In most cases, yes. Homeowners insurance typically covers water damage from sudden and accidental events like burst pipes, supply line failures, and appliance leaks. Flood damage from rising water usually requires a separate flood policy. We write the estimate in Xactimate, document everything with photos and daily moisture readings, and bill your insurance directly, so on covered work you pay your deductible and nothing beyond it. <a href="/water-damage-restoration">See how we handle the insurance process.</a>' }
-    ],
-    nearby: [
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
-      { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' }
-    ],
-    reviewsTitle: 'What Fort Mill Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Fort Mill, Tega Cay, and the surrounding area.',
-    finalCta: 'Water Damage in Fort Mill Right Now? We Are Ready.', contactHeading: 'Request a Fort Mill Inspection', contactDesc: 'Fill out this short form and our Fort Mill crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
-    areaTitle: 'Your Local Water Damage Team in Fort Mill', areaSub: 'We are not a distant call center. We are locally owned and based right here in Fort Mill — 3650 Centre Circle, Suite I.', areaInfoHeading: 'Fast Response Across York County', areaInfoBlurb: 'Our trucks reach all of Fort Mill and surrounding cities in under 35 minutes. The rest of York County and south Charlotte metro in under an hour.',
-    neighborhoods: { intro: 'We respond to water damage calls across all of Fort Mill, including:', items: ['Baxter Village', 'Regent Park', 'Springfield', 'Kingsley', 'Massey', 'Catawba Plantation', 'Sutton Hall', 'Downtown Fort Mill'] },
-  },
   "rock-hill-sc": {
     slug: 'rock-hill-sc', name: 'Rock Hill', state: 'SC',
     title: 'Water Damage Restoration Rock Hill SC | 24/7 Response',
@@ -105,7 +42,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Rock Hill, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Rock Hill in about 25 to 40 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Rock Hill is the largest city in York County, South Carolina, with a population over 74,000. The area receives roughly 47 inches of rain per year — well above the national average. Clay-heavy soil across Rock Hill drains poorly, which means even moderate rain pools around foundations and seeps into basements and crawlspaces. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Rock Hill and nearby <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
+      { tag: 'p', html: 'Rock Hill is the largest city in York County, South Carolina, with a population over 74,000. The area receives roughly 47 inches of rain per year — well above the national average. Clay-heavy soil across Rock Hill drains poorly, which means even moderate rain pools around foundations and seeps into basements and crawlspaces. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Rock Hill and nearby <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
       { tag: 'h3', html: 'Why Rock Hill Homes Are at Risk' },
       { tag: 'p', html: 'Rock Hill has seen rapid growth over the past two decades, with large subdivisions built during the 2000s housing boom across the India Hook, Riverwalk, and Manchester Village areas. Many of these homes used polybutylene or early PEX plumbing that is now entering the failure window after 15 to 20 years. We see multiple calls per month from these neighborhoods for supply line failures behind walls and under slab foundations.' },
       { tag: 'p', html: 'Rock Hill also sits along the Catawba River basin and multiple tributary creeks that rise fast during heavy rain events. Hurricane Helene in 2024 pushed water into homes along low-lying streets and caused significant crawlspace flooding in older neighborhoods. The clay-heavy soil throughout York County doesn\'t drain well, and the city\'s stormwater infrastructure is under increasing pressure as new development adds impervious surface area that concentrates runoff.' },
@@ -141,7 +78,7 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
       { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
@@ -162,7 +99,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Tega Cay, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Tega Cay in about 20 to 30 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Tega Cay sits on a peninsula surrounded by Lake Wylie in York County, South Carolina. That lakefront location means elevated humidity year-round and a water table that sits close to the surface. The area receives roughly 47 inches of rain per year. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Tega Cay and nearby <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
+      { tag: 'p', html: 'Tega Cay sits on a peninsula surrounded by Lake Wylie in York County, South Carolina. That lakefront location means elevated humidity year-round and a water table that sits close to the surface. The area receives roughly 47 inches of rain per year. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Tega Cay and nearby <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
       { tag: 'h3', html: 'Why Tega Cay Homes Are at Risk' },
       { tag: 'p', html: 'Tega Cay was originally developed in the 1970s, and many of the original homes on the peninsula still have copper or galvanized steel plumbing that has been corroding from the inside for over 40 years. These older pipes are prone to pinhole leaks, burst fittings, and slab leaks that go undetected until water is already behind walls and under flooring.' },
       { tag: 'p', html: 'The peninsula\'s proximity to Lake Wylie keeps the water table high. After heavy rain, groundwater pushes against foundations and seeps into crawlspaces — especially in homes without proper encapsulation. In February 2020, heavy rains triggered a sewage spill in Tega Cay that reached Lake Wylie, caused power outages, road closings, and localized flooding across multiple streets. The city\'s stormwater infrastructure has been under pressure as new construction — including the Windhaven subdivision by Lennar — adds impervious surface area that concentrates runoff.' },
@@ -198,7 +135,7 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
       { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
@@ -219,7 +156,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Indian Land, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Indian Land in about 20 to 35 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Indian Land is one of the fastest-growing communities in the Charlotte metro area, sitting in the northern panhandle of Lancaster County, South Carolina. The area receives roughly 47 inches of rain per year. Lancaster County\'s population has grown over 12% since 2020, and thousands of new homes have been built on freshly graded lots where stormwater drainage hasn\'t caught up with development. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Indian Land and nearby <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
+      { tag: 'p', html: 'Indian Land is one of the fastest-growing communities in the Charlotte metro area, sitting in the northern panhandle of Lancaster County, South Carolina. The area receives roughly 47 inches of rain per year. Lancaster County\'s population has grown over 12% since 2020, and thousands of new homes have been built on freshly graded lots where stormwater drainage hasn\'t caught up with development. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Indian Land and nearby <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
       { tag: 'h3', html: 'Why Indian Land Homes Are at Risk' },
       { tag: 'p', html: 'Indian Land has exploded with new construction over the past decade. Master-planned communities like Sun City Carolina Lakes, Bridgemill, Cheswick, and Lancaster Crossings were built on land that was recently cleared and graded. Fresh construction on graded lots concentrates stormwater runoff, and many of these neighborhoods have experienced drainage complaints and localized flooding within their first few years. Homes built between 2015 and 2022 are also now entering the window where builder-grade plumbing fittings and water heater connections begin to fail.' },
       { tag: 'p', html: 'Indian Land also sits on clay-heavy soil typical of the Carolina Piedmont. This soil doesn\'t absorb water well, which means even moderate rain pools around foundations and pushes into crawlspaces. The rapid pace of development has outpaced stormwater infrastructure in parts of the community, and Hurricane Helene in 2024 exposed vulnerabilities in newer subdivisions where retention ponds and drainage easements couldn\'t handle the volume.' },
@@ -255,7 +192,7 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
       { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
@@ -276,7 +213,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Clover, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Clover in about 20 to 35 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Clover is a town of roughly 7,500 residents in northwestern York County, South Carolina, about 22 miles from our Fort Mill headquarters. The area receives approximately 44 inches of rain per year, and 6.2% of properties — around 205 — face meaningful flood risk over 30 years according to First Street Foundation data. Crowders Creek and its tributaries cut through residential areas north and west of town, creating seasonal flooding pressure after heavy rain events. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Clover and nearby <a href="/water-damage-restoration-lake-wylie-sc">Lake Wylie</a>, <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
+      { tag: 'p', html: 'Clover is a town of roughly 7,500 residents in northwestern York County, South Carolina, about 22 miles from our Fort Mill headquarters. The area receives approximately 44 inches of rain per year, and 6.2% of properties — around 205 — face meaningful flood risk over 30 years according to First Street Foundation data. Crowders Creek and its tributaries cut through residential areas north and west of town, creating seasonal flooding pressure after heavy rain events. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Clover and nearby <a href="/water-damage-restoration-lake-wylie-sc">Lake Wylie</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
       { tag: 'h3', html: 'Why Clover Homes Are at Risk' },
       { tag: 'p', html: 'Clover\'s housing stock spans two distinct eras that create different water damage profiles. The historic core of town — along Main Street, Kings Mountain Street, and the neighborhoods surrounding Clover High School — contains 1950s through 1980s ranch homes and bungalows built on crawlspace foundations with original galvanized and copper plumbing well past its expected lifespan. These homes sit over York County\'s red-clay Piedmont soil, which holds moisture against foundations and crawlspace walls year-round. Pinhole leaks, corroded fittings, and slow drips behind drywall are common in this older housing stock.' },
       { tag: 'p', html: 'The newer side of Clover — subdivisions like Shepherds Trace, Penley Place, and developments along the Highway 321 corridor — features homes built from the mid-2000s through the 2020s as part of the Charlotte metro growth wave. Builder-grade PEX fittings, water heater connections, and appliance supply lines in these homes are now entering their first failure window at 10 to 20 years old. Clover\'s low-lying terrain along Crowders Creek compounds the problem: stormwater runoff from newly developed land concentrates in residential areas during heavy rain. Hurricane Helene in 2024 brought flash flooding to neighborhoods across northwestern York County, overwhelming crawlspaces and ground-level entries.' },
@@ -313,7 +250,7 @@ export const locations: Record<string, Location> = {
     nearby: [
       { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
       { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
       { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
@@ -333,7 +270,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Lancaster, SC' },
       { tag: 'p', html: 'Got water where it shouldn\'t be? We\'re Carolina Pro Restoration, and we\'re about 35 to 45 minutes from anywhere in Lancaster. Our crew shows up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call. We answer the phone 24 hours a day, 7 days a week, including holidays. Call <a href="tel:9802773700">980-277-3700</a> and we\'ll dispatch a team right away.' },
-      { tag: 'p', html: 'Lancaster sits in Lancaster County, South Carolina, where homes deal with around 45 inches of rain per year. That\'s above the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Lancaster and nearby <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, and <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>.' },
+      { tag: 'p', html: 'Lancaster sits in Lancaster County, South Carolina, where homes deal with around 45 inches of rain per year. That\'s above the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Lancaster and nearby <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, and <a href="/">Fort Mill</a>.' },
       { tag: 'h3', html: 'Why Lancaster Homes Are at Risk' },
       { tag: 'p', html: 'Lancaster is one of the fastest-growing areas in the Charlotte metro. New subdivisions like Edgewater, Basildon, and Tree Tops were built on cleared land with clay-heavy soil that doesn\'t drain well. When grading isn\'t done right — and we see this often — rainwater pools against foundations and seeps into garages, crawlspaces, and ground-level rooms. We get calls from new-construction neighborhoods after every heavy rain event.' },
       { tag: 'p', html: 'Older parts of Lancaster near downtown were built in the 1950s through 1980s. Many of those homes still have galvanized steel or copper plumbing that corrodes from the inside over time. Cane Creek and its tributaries run through the heart of Lancaster County and rise fast during storms. Hurricane Helene in 2024 brought heavy wind and rain to Lancaster County, and FEMA included the county in its major disaster declaration. The clay soil holds water for days after storms, pushing moisture into basements and crawlspaces long after the rain stops.' },
@@ -373,7 +310,7 @@ export const locations: Record<string, Location> = {
       { label: 'Lancaster, SC', href: '/water-damage-restoration-lancaster-sc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
       { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
@@ -392,7 +329,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in York, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in York in about 25 to 40 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'York is the county seat of York County, South Carolina, with a population of roughly 9,800 residents. The city sits about 20 miles west of our Fort Mill headquarters via SC-5. The area receives approximately 45 inches of rain per year, and 5% of properties — around 217 — face meaningful flood risk over 30 years according to First Street Foundation data. Turkey Creek and its tributaries run through residential and commercial areas in and around York, creating seasonal flooding pressure after heavy rain events. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout York and nearby <a href="/water-damage-restoration-clover-sc">Clover</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, and <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>.' },
+      { tag: 'p', html: 'York is the county seat of York County, South Carolina, with a population of roughly 9,800 residents. The city sits about 20 miles west of our Fort Mill headquarters via SC-5. The area receives approximately 45 inches of rain per year, and 5% of properties — around 217 — face meaningful flood risk over 30 years according to First Street Foundation data. Turkey Creek and its tributaries run through residential and commercial areas in and around York, creating seasonal flooding pressure after heavy rain events. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout York and nearby <a href="/water-damage-restoration-clover-sc">Clover</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, and <a href="/">Fort Mill</a>.' },
       { tag: 'h3', html: 'Why York Homes Are at Risk' },
       { tag: 'p', html: 'York\'s housing stock reflects its long history as the county seat. The downtown historic district and surrounding residential blocks along Congress Street, East Jefferson Street, and North Roosevelt Street contain homes dating from the early 1900s through the 1970s — many built on crawlspace foundations with original galvanized and cast-iron plumbing well past its expected lifespan. These older homes sit over York County\'s red-clay Piedmont soil, which holds moisture against foundations and crawlspace walls year-round. Pinhole leaks, corroded fittings, and slow drips behind plaster and drywall are common in this aging housing stock.' },
       { tag: 'p', html: 'On the outskirts, York has seen steady growth with newer subdivisions like Glenmoor, Olde York Farms, and developments along the SC-5 and SC-161 corridors built from the 2000s through the 2020s. Builder-grade PEX fittings, water heater connections, and appliance supply lines in these homes are now entering their first failure window at 5 to 20 years old. York\'s terrain along Turkey Creek and its tributaries compounds the problem: stormwater runoff from newly developed land concentrates in low-lying residential areas during heavy rain. Turkey Creek Road flooding forced closures and bridge repairs during storms in 2018, and Hurricane Helene in 2024 brought additional flash flooding across central York County.' },
@@ -430,7 +367,7 @@ export const locations: Record<string, Location> = {
       { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
       { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
@@ -449,7 +386,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Lake Wylie, SC' },
       { tag: 'p', html: 'Water rising in your home and no idea where to start? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Lake Wylie in about 15 to 25 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Lake Wylie is a lakefront community of roughly 8,800 residents straddling the York County shoreline of the Catawba River, just 11 miles from our Fort Mill headquarters. The area receives about 47 inches of rain per year, and a staggering 24.2% of properties — nearly 1,400 — carry flood risk over the next 30 years according to First Street Foundation data. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Lake Wylie and nearby <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
+      { tag: 'p', html: 'Lake Wylie is a lakefront community of roughly 8,800 residents straddling the York County shoreline of the Catawba River, just 11 miles from our Fort Mill headquarters. The area receives about 47 inches of rain per year, and a staggering 24.2% of properties — nearly 1,400 — carry flood risk over the next 30 years according to First Street Foundation data. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Lake Wylie and nearby <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
       { tag: 'h3', html: 'Why Lake Wylie Homes Are at Risk' },
       { tag: 'p', html: 'Lake Wylie\'s biggest vulnerability is its geography. The community sits directly on the Catawba River reservoir, and many homes were built on sloped lakefront lots with crawlspaces that sit below or near the seasonal water table. When the lake level rises — controlled by Duke Energy\'s Catawba-Wateree dam system — groundwater pushes into crawlspaces, saturating insulation, floor joists, and subfloor sheathing before homeowners notice.' },
       { tag: 'p', html: 'Much of Lake Wylie\'s housing stock was built between the late 1980s and early 2000s during the area\'s first major residential boom. These homes are now entering the 25-to-40-year window where water heaters fail, supply line fittings corrode, and polybutylene or early PEX connections begin to leak. Older lakefront properties carry additional risk from outdated well and septic systems that back up during heavy rain. York County\'s red-clay Piedmont soil drains poorly, channeling stormwater runoff directly toward low-lying homes along the shoreline and cove inlets. Hurricane Helene in 2024 pushed lake levels well above normal pool elevation, flooding crawlspaces and ground-level structures across the community.' },
@@ -486,7 +423,7 @@ export const locations: Record<string, Location> = {
     nearby: [
       { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
       { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
       { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
@@ -506,7 +443,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Charlotte, NC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Charlotte in about 25 to 45 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Charlotte is the largest city in North Carolina with a population of over 870,000, sprawling across Mecklenburg County. The city receives roughly 44 inches of rain per year, and nearly 10% of properties are at risk of flooding — driven by Little Sugar Creek, Briar Creek, McAlpine Creek, and dozens of smaller tributaries that cut through residential neighborhoods. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Charlotte and nearby <a href="/water-damage-restoration-pineville-nc">Pineville</a>, <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
+      { tag: 'p', html: 'Charlotte is the largest city in North Carolina with a population of over 870,000, sprawling across Mecklenburg County. The city receives roughly 44 inches of rain per year, and nearly 10% of properties are at risk of flooding — driven by Little Sugar Creek, Briar Creek, McAlpine Creek, and dozens of smaller tributaries that cut through residential neighborhoods. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Charlotte and nearby <a href="/water-damage-restoration-pineville-nc">Pineville</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
       { tag: 'h3', html: 'Why Charlotte Homes Are at Risk' },
       { tag: 'p', html: 'Charlotte\'s housing stock spans nearly a century. Older neighborhoods like Dilworth, Plaza Midwood, and NoDa have homes from the 1920s through 1960s with aging galvanized and copper plumbing well past its lifespan. Mid-century ranch homes in areas like Cotswold and Montclaire carry original pipes prone to pinhole leaks and fitting failures. Meanwhile, rapid new construction across south Charlotte, Ballantyne, and Steele Creek has used builder-grade PEX fittings and water heater connections now entering their first failure window.' },
       { tag: 'p', html: 'Charlotte is also crisscrossed by creek floodplains. Little Sugar Creek, Briar Creek, and McAlpine Creek cut through dense residential areas, and the city has bought out over 700 flood-prone properties over the past two decades. Clay-heavy Piedmont soil doesn\'t absorb water well, and Charlotte\'s massive impervious surface area — roads, parking lots, rooftops — concentrates stormwater runoff into neighborhoods during heavy rain. Hurricane Helene in 2024 exposed these vulnerabilities across Mecklenburg County, flooding crawlspaces, streets, and ground-level units.' },
@@ -543,7 +480,7 @@ export const locations: Record<string, Location> = {
     nearby: [
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
@@ -563,7 +500,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Pineville, NC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Pineville in about 15 to 25 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Pineville is a town of roughly 12,000 residents in southern Mecklenburg County, North Carolina, sitting right on the South Carolina state line about 8 miles from our Fort Mill headquarters. The area receives approximately 43 inches of rain per year, and 9% of properties face meaningful flood risk according to First Street Foundation data. McAlpine Creek and Little Sugar Creek tributaries cut through residential and commercial areas across Pineville, creating seasonal flooding pressure on homes and ground-level units. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Pineville and nearby <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
+      { tag: 'p', html: 'Pineville is a town of roughly 12,000 residents in southern Mecklenburg County, North Carolina, sitting right on the South Carolina state line about 8 miles from our Fort Mill headquarters. The area receives approximately 43 inches of rain per year, and 9% of properties face meaningful flood risk according to First Street Foundation data. McAlpine Creek and Little Sugar Creek tributaries cut through residential and commercial areas across Pineville, creating seasonal flooding pressure on homes and ground-level units. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Pineville and nearby <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
       { tag: 'h3', html: 'Why Pineville Homes Are at Risk' },
       { tag: 'p', html: 'Pineville\'s housing stock is a mix of two eras that create very different water damage risks. The older core of town — along Pineville-Matthews Road and near downtown — contains 1970s and 1980s ranch homes and split-levels with original copper and galvanized plumbing well past its lifespan. These homes sit on crawlspace foundations over Mecklenburg County\'s clay-heavy Piedmont soil, which holds moisture against foundations year-round. Pinhole leaks, corroded fittings, and slow drips behind drywall are common in this housing stock.' },
       { tag: 'p', html: 'The newer side of Pineville — townhome communities and apartment complexes built along the Highway 51 and Park Road corridors during the 2010s retail boom — carries a different risk. Builder-grade PEX fittings, water heater connections, and dishwasher supply lines in these units are now entering their first failure window. Pineville\'s low-lying terrain along McAlpine Creek and its tributaries compounds the problem: stormwater runoff from the massive retail and commercial corridor concentrates in residential areas during heavy rain. Hurricane Helene in 2024 flooded crawlspaces, parking garages, and ground-level units across southern Mecklenburg County.' },
@@ -599,7 +536,7 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
@@ -620,7 +557,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Ballantyne, NC' },
       { tag: 'p', html: 'When a supply line snaps at 2 a.m. or overnight rain fills your crawlspace before sunrise, you need a live person on the phone — not a recording. Carolina Pro Restoration picks up every call around the clock and rolls a fully loaded crew to Ballantyne in 15 to 25 minutes via I-77 and Johnston Rd. We show up with truck-mounted extractors, commercial-grade dehumidifiers, and thermal imaging that pinpoints every hidden moisture pocket behind walls and under flooring. One phone call sets the entire project in motion. Dial <a href="tel:9802773700">980-277-3700</a> and we are on the way.' },
-      { tag: 'p', html: 'Ballantyne spans roughly 2,000 acres on Charlotte\'s southern edge in Mecklenburg County, sitting just north of the South Carolina state line. Over 25,000 residents call this master-planned community home, and the Charlotte metro averages about 44 inches of rainfall each year. Most of that runoff funnels through McMullen Creek and its network of tributaries, which cut directly through Ballantyne\'s subdivisions and greenway trails. When storms stall over south Charlotte, the creek surges quickly — and crawlspaces, finished basements, and ground-level rooms take on water before homeowners realize it. We respond to burst pipes, appliance overflows, <a href="/sewage-cleanup">sewage backups</a>, crawlspace flooding, and storm damage across Ballantyne and the surrounding areas of <a href="/water-damage-restoration-pineville-nc">Pineville</a>, <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
+      { tag: 'p', html: 'Ballantyne spans roughly 2,000 acres on Charlotte\'s southern edge in Mecklenburg County, sitting just north of the South Carolina state line. Over 25,000 residents call this master-planned community home, and the Charlotte metro averages about 44 inches of rainfall each year. Most of that runoff funnels through McMullen Creek and its network of tributaries, which cut directly through Ballantyne\'s subdivisions and greenway trails. When storms stall over south Charlotte, the creek surges quickly — and crawlspaces, finished basements, and ground-level rooms take on water before homeowners realize it. We respond to burst pipes, appliance overflows, <a href="/sewage-cleanup">sewage backups</a>, crawlspace flooding, and storm damage across Ballantyne and the surrounding areas of <a href="/water-damage-restoration-pineville-nc">Pineville</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
       { tag: 'h3', html: 'Why Ballantyne Homes Are Vulnerable to Water Damage' },
       { tag: 'p', html: 'Around 8% of Ballantyne properties carry some degree of flood risk — and that number keeps inching upward. McMullen Creek threads through the center of the neighborhood, fed by tributaries draining from the subdivisions surrounding Ballantyne Commons Parkway and Johnston Road. During sustained downpours, the creek has jumped its banks from the Ballantyne Country Club area to communities near the Palisades. In August 2025, heavy rainfall swamped Johnston Road and Ballantyne Commons Parkway, closing streets and pushing water into homes along the creek corridor.' },
       { tag: 'p', html: 'Decades of rapid growth have made the problem worse. Most of Ballantyne was developed in the 1990s and 2000s on top of Piedmont red clay — a soil type that absorbs water slowly and channels runoff straight into the creek system. The sheer volume of rooftops, driveways, and commercial parking lots means stormwater reaches McMullen Creek faster than the channel was designed to carry. Homes in the lower-lying pockets near the greenway, especially those with slab foundations or finished basements, account for the majority of emergency calls we take from this area.' },
@@ -660,7 +597,7 @@ export const locations: Record<string, Location> = {
       { label: 'Ballantyne, NC', href: '/water-damage-restoration-ballantyne-nc' },
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
       { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
@@ -721,7 +658,7 @@ export const locations: Record<string, Location> = {
       { label: 'Gastonia, NC', href: '/water-damage-restoration-gastonia-nc' },
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' }
     ],
@@ -782,7 +719,7 @@ export const locations: Record<string, Location> = {
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Weddington, NC', href: '/water-damage-restoration-weddington-nc' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' }
+      { label: 'Fort Mill, SC', href: '/' }
     ],
     reviewsTitle: 'What Matthews Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Matthews, Mint Hill, and the surrounding area.',
     finalCta: 'Water Damage in Matthews Right Now? We Are Ready.', contactHeading: 'Request a Matthews Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -841,7 +778,7 @@ export const locations: Record<string, Location> = {
       { label: 'Stallings, NC', href: '/water-damage-restoration-stallings-nc' },
       { label: 'Monroe, NC', href: '/water-damage-restoration-monroe-nc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' }
+      { label: 'Fort Mill, SC', href: '/' }
     ],
     reviewsTitle: 'What Mint Hill Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Mint Hill, Matthews, and the surrounding area.',
     finalCta: 'Water Damage in Mint Hill Right Now? We Are Ready.', contactHeading: 'Request a Mint Hill Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -898,7 +835,7 @@ export const locations: Record<string, Location> = {
       { label: 'Gastonia, NC', href: '/water-damage-restoration-gastonia-nc' },
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' }
     ],
@@ -959,7 +896,7 @@ export const locations: Record<string, Location> = {
       { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
       { label: 'Matthews, NC', href: '/water-damage-restoration-matthews-nc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' }
+      { label: 'Fort Mill, SC', href: '/' }
     ],
     reviewsTitle: 'What Monroe Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Monroe, Indian Trail, and the surrounding area.',
     finalCta: 'Water Damage in Monroe Right Now? We Are Ready.', contactHeading: 'Request a Monroe Inspection', contactDesc: 'Fill out this short form and our Monroe crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -1018,7 +955,7 @@ export const locations: Record<string, Location> = {
       { label: 'Weddington, NC', href: '/water-damage-restoration-weddington-nc' },
       { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' }
+      { label: 'Fort Mill, SC', href: '/' }
     ],
     reviewsTitle: 'What Stallings Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Stallings, Indian Trail, and the surrounding area.',
     finalCta: 'Water Damage in Stallings Right Now? We Are Ready.', contactHeading: 'Request a Stallings Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -1033,7 +970,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Waxhaw, NC' },
       { tag: 'p', html: 'Water spreading through your home and you don\'t know where to start? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Waxhaw in about 20 to 35 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Waxhaw is a fast-growing town of roughly 20,500 residents in southern Union County, North Carolina, about 15 miles east of our Fort Mill headquarters via Highway 16 and Highway 75. The area receives approximately 44 inches of rain per year, and 9.1% of properties — around 743 — face meaningful flood risk according to First Street Foundation data. Twelvemile Creek and its tributaries cut through residential areas across western Waxhaw, creating seasonal flooding pressure on homes built near low-lying land. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Waxhaw and nearby <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, <a href="/water-damage-restoration-fort-mill-sc">Fort Mill</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
+      { tag: 'p', html: 'Waxhaw is a fast-growing town of roughly 20,500 residents in southern Union County, North Carolina, about 15 miles east of our Fort Mill headquarters via Highway 16 and Highway 75. The area receives approximately 44 inches of rain per year, and 9.1% of properties — around 743 — face meaningful flood risk according to First Street Foundation data. Twelvemile Creek and its tributaries cut through residential areas across western Waxhaw, creating seasonal flooding pressure on homes built near low-lying land. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Waxhaw and nearby <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
       { tag: 'h3', html: 'Why Waxhaw Homes Are at Risk' },
       { tag: 'p', html: 'Waxhaw has experienced explosive growth over the past two decades, and the housing stock reflects it. The majority of homes were built between 2003 and 2020 during the town\'s rapid expansion from a rural crossroads into one of Union County\'s largest communities. These homes are now 5 to 22 years old — entering the window where builder-grade water heaters fail, PEX fittings and supply line connections deteriorate, and dishwasher and washing machine hoses give out. Subdivisions like Cureton, Providence Downs, Millbridge, and Kensington experienced some of the fastest build-out timelines in the Charlotte metro, meaning entire streets have plumbing of the same age hitting the same failure point.' },
       { tag: 'p', html: 'Waxhaw also sits on Union County\'s red-clay Piedmont soil, which absorbs water poorly and channels runoff toward foundations and crawlspaces during heavy rain. Twelvemile Creek\'s floodplain winds through the western side of town, and newer subdivisions built on graded farmland often have drainage issues that weren\'t apparent during construction. Hurricane Helene in 2024 saturated the region, flooding crawlspaces and overwhelming storm drains across southern Union County.' },
@@ -1074,7 +1011,7 @@ export const locations: Record<string, Location> = {
     nearby: [
       { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
@@ -1138,7 +1075,7 @@ export const locations: Record<string, Location> = {
       { label: 'Matthews, NC', href: '/water-damage-restoration-matthews-nc' },
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' }
+      { label: 'Fort Mill, SC', href: '/' }
     ],
     reviewsTitle: 'What Weddington Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Weddington, Waxhaw, and the surrounding area.',
     finalCta: 'Water Damage in Weddington Right Now? We Are Ready.', contactHeading: 'Request a Weddington Inspection', contactDesc: 'Fill out this short form and our Weddington crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -1194,7 +1131,7 @@ export const locations: Record<string, Location> = {
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
       { label: 'Lancaster, SC', href: '/water-damage-restoration-lancaster-sc' },
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' }
@@ -1255,7 +1192,7 @@ export const locations: Record<string, Location> = {
       { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
       { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
-      { label: 'Fort Mill, SC', href: '/water-damage-restoration-fort-mill-sc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' }
     ],
     reviewsTitle: 'What Gastonia Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Gastonia, Belmont, and Gaston County.',

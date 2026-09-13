@@ -1,7 +1,9 @@
 ---
 // Dynamic Tier-2 city page template. Renders the lighter city stack from
-// locations.ts. Produces /water-damage-restoration-fort-mill-sc, …-rock-hill-sc,
+// locations.ts. Produces /water-damage-restoration-rock-hill-sc, …-tega-cay-sc,
 // etc. at their exact live URLs. Titles/H1 are ranking-locked (verbatim).
+// Fort Mill has no page here: it was merged into the homepage (2026-09-13) and
+// its old URL 301s to / in worker.js.
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/widgets/Hero.astro";
 import StatStrip from "@components/widgets/StatStrip.astro";
@@ -15,7 +17,6 @@ import ContactForm from "@components/widgets/ContactForm.astro";
 import ActionShot from "@components/widgets/ActionShot.astro";
 import { locations } from "@data/locations";
 import { reviewsForCity } from "@data/reviews";
-import { site } from "@data/site";
 import { mapEmbed, mapsLink } from "@data/maps";
 import type { ImageMetadata } from "astro";
 // City heroes: "local home-character" scenes, bucketed by each area's character.
@@ -24,7 +25,6 @@ import heroHistoric from "@assets/images/hero-city-historic.jpg";
 import heroSuburb from "@assets/images/hero-city-suburb.jpg";
 import heroMetro from "@assets/images/hero-city-metro.jpg";
 import imgCharlotte from "@assets/images/organic/cpr-van-jobsite.jpg";
-import imgFortMill from "@assets/images/organic/fortmill-drying-equipment.jpg";
 import imgRockHill from "@assets/images/organic/cpr-crew-onsite.jpg";
 import imgThermal from "@assets/images/organic/thermal-imaging.jpg";
 import imgCrawlEncap from "@assets/images/organic/crawlspace-encapsulation.jpg";
@@ -42,14 +42,6 @@ const cityActionShots: Record<string, { image: ImageMetadata; alt: string; eyebr
     eyebrow: "Serving Charlotte & the metro",
     heading: "A local crew across Charlotte and south Mecklenburg",
     text: "From Ballantyne and SouthPark to Uptown, we respond fast for water damage, mold, and storm cleanup — and handle the full rebuild. Based just across the state line in Fort Mill.",
-    light: true,
-  },
-  "fort-mill-sc": {
-    image: imgFortMill,
-    alt: "Commercial air movers and dehumidifiers drying a Fort Mill, SC home after water damage",
-    eyebrow: "Based right here in Fort Mill",
-    heading: "Fort Mill's own water-damage crew",
-    text: "We're headquartered in Fort Mill, and our trucks roll out with commercial air movers and dehumidifiers to dry your home fast — then our own crew rebuilds everything we remove.",
     light: true,
   },
   "rock-hill-sc": {
@@ -101,7 +93,7 @@ const cityHero: Record<string, ImageMetadata> = {
   "rock-hill-sc": heroHistoric, "gastonia-nc": heroHistoric, "mount-holly-nc": heroHistoric,
   "york-sc": heroHistoric, "lancaster-sc": heroHistoric, "belmont-nc": heroHistoric, "monroe-nc": heroHistoric,
   // Fast-growing new-build suburbs
-  "fort-mill-sc": heroSuburb, "indian-land-sc": heroSuburb, "waxhaw-nc": heroSuburb,
+  "indian-land-sc": heroSuburb, "waxhaw-nc": heroSuburb,
   "weddington-nc": heroSuburb, "indian-trail-nc": heroSuburb, "stallings-nc": heroSuburb,
   // Charlotte metro
   "charlotte-nc": heroMetro, "ballantyne-nc": heroMetro, "pineville-nc": heroMetro,
@@ -116,14 +108,10 @@ const { city } = Astro.params;
 const loc = locations[city];
 const heroImg = cityHero[city] ?? heroSuburb;
 
-// Map: Fort Mill shows the real branded HQ pin; every other city shows a
-// keyless, city-centered Google embed (no API key that can silently break).
-const cityMapSrc =
-  city === "fort-mill-sc"
-    ? site.mapEmbedSrc
-    : mapEmbed(`${loc.name}, ${loc.state}`, 12);
-const cityMapLink =
-  city === "fort-mill-sc" ? site.mapLink : mapsLink(`${loc.name}, ${loc.state}`);
+// Map: a keyless, city-centered Google embed (no API key that can silently
+// break). The branded HQ pin lives on the homepage, which is the Fort Mill page.
+const cityMapSrc = mapEmbed(`${loc.name}, ${loc.state}`, 12);
+const cityMapLink = mapsLink(`${loc.name}, ${loc.state}`);
 
 // The neighborhoods chip grid renders mid-body (at the "hood" marker), matching
 // the live page order. Split the editorial body around it.
