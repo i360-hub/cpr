@@ -6,12 +6,14 @@ export type Cell = "yes" | "no" | "sometimes";
 
 export interface ServicePageData {
   hero: { emergencyTag: string; subtitle: string; trustSignals: string[]; secondaryCta?: string };
-  timeline: { title: string; sub: string; ctaLabel: string; cards: { badge: string; title: string; text: string; resolve?: boolean }[] };
-  signs: { title: string; sub: string; note: string; signs: string[] };
-  scenarios: { title: string; sub: string; ctaLabel: string; scenarios: { icon: string; title: string; text: string; linkLabel: string; href: string }[] };
+  // timeline/signs/scenarios/categories/differentiators are optional: a page that
+  // leads with a direct answer (basement-flooding) drops them to stay scannable.
+  timeline?: { title: string; sub: string; ctaLabel: string; cards: { badge: string; title: string; text: string; resolve?: boolean }[] };
+  signs?: { title: string; sub: string; note: string; signs: string[] };
+  scenarios?: { title: string; sub: string; ctaLabel: string; scenarios: { icon: string; title: string; text: string; linkLabel: string; href: string }[] };
   process: { title: string; sub: string; ctaLabel: string; steps: { title: string; text: string }[] };
-  categories: { title: string; sub: string; note: string; categories: { key: string; number: string; risk: string; name: string; desc: string; sources: string[] }[] };
-  differentiators: { title: string; sub: string; rows: { feature: string; others: Cell; cpr: Cell }[] };
+  categories?: { title: string; sub: string; note: string; categories: { key: string; number: string; risk: string; name: string; desc: string; sources: string[] }[] };
+  differentiators?: { title: string; sub: string; rows: { feature: string; others: Cell; cpr: Cell }[] };
   insurance: { title: string; desc: string; points: string[] };
   faqTitle: string; faqSub: string; faqCtaLabel: string;
   faq: { q: string; a: string }[];
@@ -38,6 +40,16 @@ export interface ServicePageData {
    *  above the service-area map — the parent→child signal for the five
    *  /mold-removal-{town} pages, which are NOT nested under this URL. */
   townLinks?: { title: string; text: string; href: string }[];
+  /** Local-cause prose rendered after the cost section (basement-flooding). */
+  causes?: { tag: string; html: string }[];
+  /** ProofStrip items override (the widget default describes a Charlotte-metro footprint). */
+  proof?: { icon: string; label: string; detail: string }[];
+  /** ServiceArea city links override (defaults to the footer list). */
+  areaCities?: { label: string; href: string }[];
+  /** Drop the reviews band (the page's structure is set by its search intent). */
+  hideReviews?: boolean;
+  /** Service JSON-LD override: a more specific serviceType and a narrower areaServed. */
+  serviceSchema?: { serviceType: string; areaServed: string[] };
 }
 
 export const servicePages: Record<string, ServicePageData> = {
@@ -296,72 +308,114 @@ export const servicePages: Record<string, ServicePageData> = {
     areaTitle: 'We Respond Across the Charlotte Metro and Carolinas', areaSub: 'Based in Fort Mill, SC, with crews across York County and the south Charlotte area. A burst pipe spreads fast, so pick your city below and call us right away.', areaInfoHeading: 'Fast Help When a Pipe Bursts', areaInfoBlurb: 'Our trucks reach most of York County and south Charlotte in under an hour. We are on call 24/7 to stop the water and dry your home.',
   },
   "basement-flooding": {
-    hero: { emergencyTag: '🚨 24/7 Emergency Basement Flooding Response', subtitle: 'Standing water in your basement from heavy rain, a failed sump pump, a sewer backup, or a burst pipe? We pump out the water, dry the structure, and rebuild what we tear out — one certified crew from cleanup to rebuild. We work directly with your insurance, so covered work is handled with no surprises.', trustSignals: ['40+ 5-Star Google Reviews', 'SC Licensed & Fully Insured', 'IICRC Certified Technicians', 'Direct Insurance Billing'], secondaryCta: 'Request a Free Assessment' },
-    timeline: { title: 'What Happens After Your Basement Floods', sub: 'A flooded basement only gets worse the longer it sits. Here\'s how the damage spreads when water isn\'t pumped out fast.', ctaLabel: 'The sooner we pump it out, the less you lose. Call anytime — we\'re here 24/7.', cards: [
-      { badge: '0 – 60 Minutes', title: 'Water Pools on the Floor', text: 'Rain, a failed sump pump, or a burst pipe sends water across the slab. It seeps into boxes, carpet, and the bottom of drywall within minutes.' },
-      { badge: '1 – 24 Hours', title: 'Water Wicks Up the Walls', text: 'Drywall and baseboards soak it up and swell. Stored items get ruined. If a sewer line backed up, the water carries germs you can\'t see.' },
-      { badge: '24 – 48 Hours', title: 'Mold and Musty Smell Set In', text: 'A damp, dark basement is where mold grows fastest. It spreads behind walls and under flooring. The musty smell can reach the whole house.' },
-      { badge: 'Our Response', title: 'We Pump It Out and Dry It', text: 'Truck-mounted pumps clear the standing water fast. Commercial dehumidifiers and fans dry the slab and walls. An antimicrobial spray helps stop mold before it starts.', resolve: true }
-    ] },
-    signs: { title: 'Signs Your Basement Is Flooding', sub: 'A wet basement only gets worse with time. Standing water turns into mold and rot fast. If you spot any of these, call us right away.', note: 'Not sure how bad it is? The inspection is free — we\'ll find every wet spot.', signs: ['Standing water on the floor', 'Water seeping in along the walls', 'Damp spots where the wall meets the floor', 'Musty or damp smell', 'A sump pump that won\'t keep up', 'Mold or mildew on walls', 'Cracks in the foundation walls', 'White, chalky residue on concrete', 'Water backing up from a floor drain', 'Wet carpet or soggy stored boxes', 'Rust on appliances or metal legs', 'Heavy humidity or condensation'] },
-    scenarios: { title: 'How Did Your Basement Flood?', sub: 'It doesn\'t matter how the water got in. We pump it out, dry the space, and stop mold before it starts. Here\'s what we see in flooded basements every week.', ctaLabel: 'Water in your basement right now? Don\'t wait — the damage doubles every day.', scenarios: [
-      { icon: 'storm', title: 'Heavy Rain & Storm Runoff', text: 'A hard storm can push water down the walls and across the floor in minutes. We pump it out, set up drying gear, and protect what you store down there before the damage spreads.', linkLabel: 'Get help now', href: '/contact-us' },
-      { icon: 'droplet', title: 'Foundation & Wall Seepage', text: 'Water finds cracks in the foundation and seeps in low and slow. We dry it out and clean up the mess — then point you to waterproofing so it never comes back.', linkLabel: 'Learn more', href: '/waterproofing' },
-      { icon: 'droplet', title: 'Sump Pump Failure', text: 'When the sump pump dies or loses power during a storm, the pit overflows fast. We extract the standing water, dry the slab and walls, and stop mold from taking hold.', linkLabel: 'Get help now', href: '/contact-us' },
-      { icon: 'hazard', title: 'Sewer Backup', text: 'A basement sewer backup is a biohazard — it carries bacteria and viruses. We remove the waste in full protective gear, sanitize every surface, and replace anything that can\'t be saved.', linkLabel: 'Learn more', href: '/sewage-cleanup' },
-      { icon: 'droplet', title: 'Burst Pipes & Water Heater Leaks', text: 'Pipes and water heaters often sit in the basement, so a break can dump hundreds of gallons before anyone notices. We pull out the water, strip wet materials, and dry the structure. Most policies cover this — we handle the claim for you.', linkLabel: 'Learn more', href: '/water-damage-restoration' },
-      { icon: 'mold', title: 'Lingering Damp & Mold', text: 'Basements stay damp long after the water is gone, and mold loves it. We run dehumidifiers, dry hidden cavities, and treat the space so spores never get a foothold.', linkLabel: 'Learn more', href: '/mold-removal' }
-    ] },
-    process: { title: 'How We Clean Up a Flooded Basement', sub: 'Every flooded basement follows the same proven steps. Here\'s what our IICRC-certified crew does at each stage — and why it matters for your home and your insurance claim.', ctaLabel: 'Every step is documented. Every reading is logged. Your claim stays on track from day one.', steps: [
-      { title: 'Make the Area Safe and Stop the Water', text: 'A wet basement near power can be dangerous. We cut the power to the area first, then stop the water. If a pipe burst, we shut the supply. If the sump pump failed, we set a backup pump. Stopping the water keeps the basement from flooding again while we dry it.' },
-      { title: 'Find Every Wet Spot', text: 'We scan the walls, floors, and behind finished surfaces with thermal cameras and moisture meters to map where the water went. Basements hide water in block walls and under flooring. That map guides where we place the gear — and it gives your adjuster the proof they need to approve the claim.' },
-      { title: 'Pump Out the Water and Dry It', text: 'We use truck-mounted extractors that move over 200 gallons an hour to clear standing water fast, then set commercial dehumidifiers and fans based on the moisture map. Drying the slab and walls fast helps stop mold before it starts.' },
-      { title: 'Daily Checks and Insurance Photos', text: 'We come back every day to log the moisture readings. Those daily logs, plus time-stamped photos, give your insurance company the proof they need to process the claim without delays or denials.' },
-      { title: 'Repair Damage and Plan Long-Term Fixes', text: 'Once the basement hits target dryness, we remove what\'s ruined and rebuild it — drywall, trim, flooring, and more. We also clean and protect your stored items. Then we point you to basement waterproofing so it does not flood again.' }
-    ] },
-    categories: { title: 'Common Causes of Basement Flooding', sub: 'Knowing how the water got in helps us stop it, dry your basement the right way, and tell you what your insurance is likely to cover. Here are the causes we see most.', note: 'Why this matters: The cause of the flooding decides your insurance coverage and the safe steps we follow. A sudden burst pipe is usually covered, while groundwater or storm flooding often needs a separate flood policy. We document everything from day one, so your claim is clear — and we point you to waterproofing for a lasting fix.', categories: [
-      { key: 'clean', number: 'Rain & Seepage', risk: 'Common', name: 'Heavy Rain & Wall Seepage', desc: 'After a big storm, water pools around the foundation and pushes through cracks in walls and floors. It often starts slow, so it is easy to miss until the carpet is wet. The long-term fix is waterproofing.', sources: ['Wet foundation walls', 'Cracks in concrete', 'Damp corners', 'Water after storms', 'Musty smell'] },
-      { key: 'grey', number: 'Pump & Pipe', risk: 'Often Hidden', name: 'Sump Pump & Pipe Failure', desc: 'A sump pump that quits during a storm, or a pipe that bursts behind a wall, can flood a basement fast. A sudden burst pipe is usually covered by insurance. We extract the water and dry the space quickly.', sources: ['Sump pump failure', 'Power loss in storms', 'Burst water lines', 'Frozen pipes', 'Water heater leaks'] },
-      { key: 'black', number: 'Sewer Backup', risk: 'Most Urgent', name: 'Sewer Backup & Flood Water', desc: 'Sewer backups and rising flood water carry waste, bacteria, and chemicals. This is the most dangerous kind. It needs protective gear, safe disposal, and full sanitizing. Do not try to clean it yourself.', sources: ['Sewer line backups', 'Clogged main drains', 'Rising groundwater', 'Storm flooding', 'Septic overflow'] }
-    ] },
-    differentiators: { title: 'What Sets a Full-Service Basement Flood Team Apart', sub: 'Most companies only do the emergency part — they pump out the water and leave. Then you hire a second contractor for drying, a third for drywall, and a fourth to fix what caused the flood. Carolina Pro Restoration handles the whole job with one crew and one project manager.', rows: [
-      { feature: 'Emergency basement water pump-out', others: 'yes', cpr: 'yes' },
-      { feature: 'Structural drying with daily monitoring', others: 'sometimes', cpr: 'yes' },
-      { feature: 'Drywall, paint, trim & flooring rebuild', others: 'no', cpr: 'yes' },
-      { feature: 'IICRC certified technicians', others: 'sometimes', cpr: 'yes' },
-      { feature: 'Mold prevention treatment after drying', others: 'no', cpr: 'yes' },
-      { feature: 'Direct insurance billing (Xactimate)', others: 'sometimes', cpr: 'yes' },
-      { feature: 'One dedicated project manager', others: 'no', cpr: 'yes' },
-      { feature: 'IICRC certified and fully insured', others: 'sometimes', cpr: 'yes' },
-      { feature: 'Locally owned & operated', others: 'sometimes', cpr: 'yes' }
-    ] },
-    insurance: { title: 'Your Basement Flooding Claim, Handled From Day One', desc: 'A burst pipe in your basement is usually covered. Groundwater and surface flooding often need a separate flood policy. We help you sort out what applies, then write the claim the way your adjuster expects. Adjusters use Xactimate to price every job, so we write every line in Xactimate from the start — no back-and-forth that delays your payout.', points: ['Damage photos taken when we arrive and every day after', 'Moisture readings logged daily on walls, floors, and framing', 'Xactimate estimate written to match your adjuster', 'We talk to your adjuster directly — you stay out of the middle', 'We bill your insurance directly — you pay your deductible, not the balance'] },
-    guide: [
-      { tag: 'h2', html: 'Who to Call When Your Basement Floods' },
-      { tag: 'p', html: 'Call a water damage restoration company \u2014 not a plumber, and not a general contractor. A plumber fixes the pipe. A contractor rebuilds the room. Neither one owns the part that decides how bad this gets: pulling the water out and drying the structure before mold starts, which is a 24-to-48-hour window. A restoration company shows up with extraction equipment, commercial dehumidifiers, and moisture meters, and it is the only one of the three that bills your insurance carrier directly for the mitigation.' },
-      { tag: 'p', html: 'If water is still rising, or if there is any chance it is sewage, call before you go down there. We answer 24 hours a day at <a href="tel:9802773700" style="font-weight:bold;">(980) 277-3700</a>.' },
-      { tag: 'h3', html: 'Use one company for both halves of the job' },
-      { tag: 'p', html: 'Most basement floods end in demolition \u2014 wet drywall and insulation come out, and something has to go back in. Companies that only do mitigation dry the space and hand you off to find a contractor, and that handoff is where weeks disappear. We do the cleanup and the <a href="/reconstruction">rebuild</a> under one contract, so the crew that pulls the water out is the crew that puts the basement back.' },
-      { tag: 'p', html: 'We reach flooded basements across <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>, <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>. If your home sits on a crawl space rather than a basement, see <a href="/crawlspace">crawl space water damage</a> instead.' },
-      { tag: 'h2', html: 'What to Do in the First 24 Hours' },
-      { tag: 'h3', html: 'The first hour' },
-      { tag: 'li', html: 'Kill power to the basement at the breaker before anyone goes down the stairs. If the panel is in the basement and you would have to stand in water to reach it, call the utility or an electrician \u2014 not worth it.' },
-      { tag: 'li', html: 'Stop the source if you can reach it safely: the main shutoff for a supply line, the breaker for a sump pump that has failed on.' },
-      { tag: 'li', html: 'Stay out of the water entirely if it is discolored, smells, or has any chance of being sewage.' },
-      { tag: 'li', html: 'Get what you can up off the floor. Cardboard wicks water upward within minutes, and anything absorbent sitting in it is on a clock.' },
-      { tag: 'li', html: 'Photograph and video everything before you move more than you have to. Your adjuster wants to see it as found.' },
-      { tag: 'h3', html: 'The first 24 hours' },
-      { tag: 'li', html: 'Get the standing water out. A shop vac handles a puddle; more than an inch or two needs a pump and a truck-mounted extractor.' },
-      { tag: 'li', html: 'Pull up wet carpet and pad. Pad is a sponge and almost never comes back. Carpet sometimes does, if it is lifted fast.' },
-      { tag: 'li', html: 'Open the wall cavities where water wicked up. Water climbs drywall about an inch an hour, so a wall that feels dry at eye level can be soaked behind the baseboard.' },
-      { tag: 'li', html: 'Run dehumidification, not just fans. Fans push wet air around a closed basement; a dehumidifier takes the water out of it.' },
-      { tag: 'li', html: 'Do not close anything back up until moisture readings say the framing and subfloor are actually dry.' },
-      { tag: 'p', html: 'Key takeaway: the first day decides whether this is a drying job or a demolition and a rebuild. Mold starts in 24 to 48 hours on anything still damp.' },
+    hero: {
+      emergencyTag: '🚨 24/7 Basement Flood Help — Fort Mill',
+      subtitle: 'Call a water damage restoration company first — before your insurer, and alongside a plumber if a pipe is still leaking. The water has to come out and the structure has to dry before anything else matters. In Fort Mill and York County, that\'s Carolina Pro Restoration at <a href="tel:9802773700">(980) 277-3700</a>, 24/7.',
+      trustSignals: ['40+ 5-Star Google Reviews', 'SC Licensed & Fully Insured', 'IICRC Certified Technicians', 'Direct Insurance Billing'],
+      secondaryCta: 'Request a Free Assessment',
+    },
+    proof: [
+      { icon: 'shield', label: 'BBB Accredited', detail: 'Accredited Business in Good Standing' },
+      { icon: 'check', label: 'SC Licensed & Insured', detail: 'IICRC Certified Technicians' },
+      { icon: 'clock', label: 'Xactimate Estimates', detail: 'Same Software Your Adjuster Uses' },
+      { icon: 'pin', label: 'Based in Fort Mill', detail: 'York & Lancaster Counties · 24/7' },
     ],
+    guide: [
+      { tag: 'h2', html: 'Who to Call, by Situation' },
+      { tag: 'h3', html: '1. Water is still coming in from a pipe' },
+      { tag: 'p', html: 'Shut off the main water valve, then call us. We extract the water, dry the structure, and repair the damage — see <a href="/burst-pipe-repair">burst pipe repair</a>. If the source needs a plumber, we\'ll tell you on site.' },
+      { tag: 'h3', html: '2. Sewage or a floor drain backed up' },
+      { tag: 'p', html: 'Call a restoration company, not a plumber alone. A plumber can clear the line, but sewage is Category 3 black water — a biohazard that needs protective gear, removal of everything porous it touched, and disinfection. Keep people out, don\'t flush or run water, and see <a href="/sewage-cleanup">sewage cleanup</a>.' },
+      { tag: 'h3', html: '3. Standing water after rain, a failed sump pump, or groundwater' },
+      { tag: 'p', html: 'Call a restoration company. The water needs pumping and dehumidifiers before mold starts in 24 to 48 hours. Once it\'s dry, <a href="/waterproofing">basement waterproofing</a> deals with how it got in.' },
+      { tag: 'h3', html: '4. Water near the electrical panel, or you smell gas' },
+      { tag: 'p', html: 'Don\'t go down the stairs. If you smell gas, leave the house and call 911 or your gas company from outside. If water is near the panel or outlets and you can\'t cut power without standing in it, call your power company. Once it\'s safe, call us.' },
+      { tag: 'h3', html: '5. When to call your insurance company' },
+      { tag: 'p', html: 'After the water is stopped and documented, not before you act — waiting on a claim number while water sits makes the loss bigger. We photograph everything as found, log daily moisture readings, write the estimate in Xactimate, and bill your carrier directly.' },
+      { tag: 'h2', html: 'What to Do in the First Hour' },
+      { tag: 'li', html: 'Cut power to the basement at the breaker — only if you can reach the panel without standing in water.' },
+      { tag: 'li', html: 'Stop the source if it\'s safe to reach: the main shutoff for a supply line, or the breaker for a failed sump pump.' },
+      { tag: 'li', html: 'Stay out of water that is discolored, smells, or could be sewage.' },
+      { tag: 'li', html: 'Lift what you can off the floor — cardboard wicks water up within minutes.' },
+      { tag: 'li', html: 'Photograph the damage before moving much — your adjuster wants to see it as found.' },
+      { tag: 'li', html: 'Call us at <a href="tel:9802773700">(980) 277-3700</a>. We answer 24 hours a day, and our rates are the same at 2am, on a Sunday, or on a holiday.' },
+      { tag: 'p', html: 'We serve <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>. If your home sits on a crawl space rather than a basement, see <a href="/crawlspace">crawl space water damage</a> instead.' },
+    ],
+    process: {
+      title: 'How We Clean Up a Flooded Basement',
+      sub: 'The same five steps on every job, each one documented for your insurance claim.',
+      ctaLabel: 'Every step is documented, so your claim stays on track from day one.',
+      steps: [
+        { title: 'Make It Safe and Stop the Water', text: 'We cut power to the wet area and stop the source — a broken line, or a backup pump if the sump failed.' },
+        { title: 'Map Every Wet Spot', text: 'Thermal cameras and moisture meters show where water went inside walls and under flooring — the drying plan and your adjuster\'s proof.' },
+        { title: 'Pump Out and Dry', text: 'Truck-mounted extractors clear the water, then commercial dehumidifiers and air movers dry the slab and framing. Antimicrobial treatment helps stop mold.' },
+        { title: 'Check Daily Until It\'s Dry', text: 'We log moisture readings and photos daily. Most basements dry in three to five days, and nothing is closed up until the readings say dry.' },
+        { title: 'Rebuild What Came Out', text: 'Our own crew replaces the drywall, trim, and flooring that came out, with one project manager start to finish.' },
+      ],
+    },
+    costDetail: [
+      { tag: 'h3', html: 'What moves the number' },
+      { tag: 'p', html: '<strong>Finished or unfinished.</strong> A finished basement adds drywall, insulation, trim, and flooring that absorb water and come out, so the same flood costs two to three times more — nearly all of it rebuild.' },
+      { tag: 'p', html: '<strong>The water category.</strong> Clean supply-line water (Category 1) can often be dried in place. Contaminated water (Category 2) means porous materials come out; with sewage (Category 3), everything porous it touched goes.' },
+      { tag: 'p', html: '<strong>How high the flood cut goes.</strong> We cut drywall to the height moisture reached — commonly two feet, sometimes four.' },
+      { tag: 'p', html: '<strong>What doesn\'t move it:</strong> the hour you call. Waiting until Monday does, because Monday is on the far side of the mold window.' },
+    ],
+    causes: [
+      { tag: 'h2', html: 'Common Causes of Basement Flooding in York County' },
+      { tag: 'p', html: 'Basements are less common around Fort Mill than crawl spaces and slab foundations, so the ones we see are often finished lower levels — which is why a flood here tends to mean a rebuild, not just a dry-out. The causes come down to four things.' },
+      { tag: 'h3', html: 'Clay soil that holds water against the walls' },
+      { tag: 'p', html: 'York County\'s red clay drains slowly. After heavy rain it stays saturated for days and pushes water through foundation cracks and the seam where wall meets slab — often a damp corner and a musty smell before it\'s standing water.' },
+      { tag: 'h3', html: 'Sump pumps that fail when the storm hits' },
+      { tag: 'p', html: 'Summer thunderstorms and the tropical systems that reach the Carolinas in late summer and fall bring the heaviest rain — and the power outages that stop a sump pump right when it\'s needed. A battery backup is the fix.' },
+      { tag: 'h3', html: 'Water heaters and supply lines' },
+      { tag: 'p', html: 'A failed water heater or a split washer hose can dump hundreds of gallons before anyone goes downstairs. Fort Mill homes built in the early 2000s with Dura-PEX plumbing are now in their fitting-failure years.' },
+      { tag: 'h3', html: 'Sewer and drain backups' },
+      { tag: 'p', html: 'Heavy rain can overload sewer lines and push water back up through a basement floor drain, and roots or a clog in the main line do the same in dry weather. Either way it\'s Category 3 water — call before you clean.' },
+    ],
+    insurance: {
+      title: 'Your Basement Flooding Insurance Claim',
+      desc: 'Coverage depends on where the water came from. A sudden failure inside the house — a burst supply line, a failed water heater, a washer hose — is usually covered. Groundwater and surface flooding from outside generally need a separate flood policy, and sump pump failure or sewer backup is often covered only with that endorsement. We tell you which applies before work starts.',
+      points: ['Damage photos taken when we arrive and every day after', 'Moisture readings logged daily on walls, floors, and framing', 'Xactimate estimate written to match your adjuster', 'We talk to your adjuster directly — you stay out of the middle', 'We bill your insurance directly — you pay your deductible, not the balance'],
+    },
+    faqTitle: 'Basement Flooding FAQs',
+    faqSub: 'Straight answers for Fort Mill and York County homeowners.',
+    faqCtaLabel: 'Have a question we did not cover? Call us — we are available 24/7.',
+    faq: [
+      { q: 'Who do I call when my basement floods?', a: 'Call a water damage restoration company first. The water has to be out and the structure drying within 24 to 48 hours to keep mold from starting. If a pipe is still leaking, shut off the main and call a plumber alongside us. In Fort Mill and York County, call Carolina Pro Restoration at (980) 277-3700, 24/7.' },
+      { q: 'Should I call a plumber or a restoration company for a flooded basement?', a: 'Usually both, for different jobs. A plumber fixes the source, like a broken pipe or a clogged sewer line. A restoration company removes the water, dries the basement, and repairs the damage. If you only call one, call the restoration company — we\'ll tell you on site whether you also need a plumber.' },
+      { q: 'Who do I call for a flooded basement at night or on a weekend?', a: 'The same 24/7 line: (980) 277-3700. We answer around the clock, including holidays, and our rates are the same at 2am as they are on a Tuesday afternoon.' },
+      { q: 'Should I call my insurance company before a restoration company?', a: 'No. Stop the water and get it out first — your policy expects you to prevent further damage. Take photos, call us, and then open the claim. We document the loss and bill your insurance directly, so on covered work you pay your deductible and nothing beyond it.' },
+      { q: 'What does it cost to clean up a flooded basement?', a: 'An unfinished basement with clean water caught early usually runs $2,000 to $5,000 for extraction and drying. A finished basement with multiple rooms affected typically runs $5,000 to $15,000 for cleanup and rebuild together. Sewage, or water that sat for days, starts around $15,000. The inspection that produces your firm number is free.' },
+      { q: 'Does homeowners insurance cover a flooded basement?', a: 'It depends on the cause. A sudden burst pipe or failed appliance is usually covered. Groundwater, heavy rain coming in from outside, or a rising creek usually needs a separate flood policy. Sump pump failure and sewer backup are often covered only if you added that endorsement.' },
+    ],
+    hideReviews: true,
+    reviewsTitle: 'Trusted by Fort Mill Homeowners',
+    reviewsSub: 'Rated 4.9 stars across 40+ Google reviews.',
+    finalCta: 'Water in Your Basement? Call Our Team Now.',
+    contactHeading: 'Get Basement Flooding Help Now',
+    contactDesc: 'A flooded basement only gets worse the longer it sits. Call or text for a fast response, or send us the details and we\'ll get right back to you.',
+    areaTitle: 'Basement Flood Cleanup Across York & Lancaster Counties',
+    areaSub: 'Based in Fort Mill, SC, with crews across York and Lancaster counties.',
+    areaInfoHeading: 'Fast Help When Your Basement Floods',
+    areaInfoBlurb: 'Our trucks reach Fort Mill and the surrounding towns in under 35 minutes, and the rest of York County in under an hour, day or night.',
+    areaCities: [
+      { label: 'Fort Mill, SC', href: '/' },
+      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
+      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
+      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
+      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
+      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
+      { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
+      { label: 'Lancaster, SC', href: '/water-damage-restoration-lancaster-sc' },
+    ],
+    serviceSchema: {
+      serviceType: 'Basement Flooding Cleanup',
+      areaServed: ['Fort Mill, SC', 'Tega Cay, SC', 'Rock Hill, SC', 'Indian Land, SC', 'Lake Wylie, SC', 'Clover, SC', 'York, SC', 'Lancaster, SC'],
+    },
     cost: {
       title: 'What a Flooded Basement Costs to Fix',
       sub: 'Typical Carolinas ranges to help you plan \u2014 not a quote. Your exact price comes after the free inspection, in writing, before any work starts.',
-      note: 'These are typical ranges, not a quote. The three things that move the number most are whether the basement is finished, how contaminated the water is, and how high we have to cut the drywall. Insurance usually covers a sudden failure inside the house and generally does not cover groundwater coming in from outside. Financing is available.',
+      note: 'Typical ranges, not a quote. What moves the number is below. Financing is available.',
       rows: [
         { name: 'Emergency assessment with moisture mapping', range: 'Free' },
         { name: 'Water extraction and structural drying \u2014 unfinished basement, clean water, caught early', range: '$2,000\u2013$5,000' },
@@ -374,40 +428,12 @@ export const servicePages: Record<string, ServicePageData> = {
         { name: 'Foundation crack repair', range: '$400\u2013$1,500 per crack' },
       ],
     },
-    costDetail: [
-      { tag: 'h3', html: 'What actually moves the number' },
-      { tag: 'p', html: 'Three things, in order of how much they matter.' },
-      { tag: 'p', html: 'Finished versus unfinished. An unfinished basement is a slab, block walls, and mechanicals \u2014 usually extraction and drying, and often nothing else. A finished basement adds drywall, insulation, trim, flooring, and sometimes cabinets, nearly all of which absorb water and most of which come out. The same volume of water costs two to three times more in a finished space, and almost all of that gap is the rebuild, not the drying.' },
-      { tag: 'p', html: 'The water category. Clean water from a supply line is Category 1, and most materials can be dried in place. Water that has picked up contaminants \u2014 a washing machine discharge, a sump pump pulling from the drain tile \u2014 is Category 2, and porous materials start coming out. Sewage is Category 3, and everything porous it touched leaves the building: drywall, insulation, carpet, and pad. See <a href="/sewage-cleanup">sewage cleanup</a> for what that involves.' },
-      { tag: 'p', html: 'How high the flood cut goes. This is the one homeowners underestimate. We cut to the height the moisture actually reached, not to a standard line \u2014 commonly two feet, sometimes four, occasionally the full wall where water wicked that far. Every extra foot is more board, more insulation, more tape and texture, and more paint.' },
-      { tag: 'h3', html: 'What does not move it' },
-      { tag: 'p', html: 'The hour you call. Our rates are the same at 2am, on a Sunday, and on a holiday. Waiting until Monday does change the number, because Monday is on the far side of the mold window.' },
-      { tag: 'h3', html: 'Where insurance lands' },
-      { tag: 'p', html: 'A sudden, accidental failure inside the house \u2014 a burst supply line, a failed water heater, a washing machine hose \u2014 is usually covered, and we bill your carrier directly so you pay your deductible and nothing beyond it. Groundwater and surface flooding entering from outside generally are not covered by a standard homeowners policy and need separate flood coverage. Sump pump failure sits between the two and depends on whether you carry that endorsement. We tell you which one you are looking at during the free inspection, before any work starts \u2014 and if the way water is getting in needs its own fix, that is <a href="/waterproofing">basement waterproofing</a>, quoted separately.' },
-    ],
-    faqTitle: 'Understanding Basement Flooding', faqSub: 'Plain answers to the questions homeowners ask most about flooded basements, drying, mold, and insurance.', faqCtaLabel: 'Have a question we did not cover? Call us — we are available 24/7.',
-    faq: [
-      { q: 'Who should I call when my basement floods \u2014 a plumber or a restoration company?', a: 'A restoration company, first. A plumber stops the leak but does not dry the structure, and a general contractor rebuilds but does not do the mitigation or bill the carrier for it. We handle extraction, drying, and the rebuild, and we will tell you if you also need a plumber for the source.' },
-      { q: 'What does it cost to clean up a flooded basement?', a: 'An unfinished basement with clean water caught early is usually $2,000 to $5,000 for extraction and drying. A finished basement with multiple rooms affected typically runs $5,000 to $15,000 for cleanup and rebuild together. Sewage, or water that sat for days, starts around $15,000. The cost table above breaks the ranges out, and the inspection that produces your firm number is free.' },
-      { q: 'Is it cheaper if my basement is unfinished?', a: 'Considerably. An unfinished basement is mostly a drying job. A finished one means drywall, insulation, trim, and flooring come out and go back, and that rebuild is where two to three times the cost comes from \u2014 not the drying.' },
-      { q: 'Does insurance cover a flooded basement?', a: 'It depends on the cause. A sudden burst pipe or a failed appliance is almost always covered by your homeowners policy. Groundwater seepage, heavy rain that floods from outside, or a rising creek usually needs a separate flood policy. Sump pump failure and sewer backup are often covered only if you added that rider. We document the source with photos and a written scope so your claim is clear, and we file it for you. See our <a href="/water-damage-restoration">water damage restoration</a> page for more on the claims process.' },
-      { q: 'What should I do first when my basement floods?', a: 'Stay safe first. If water is near outlets, the panel, or the furnace, do not step in. Shut off power to the basement at the breaker only if you can reach it without touching water. Then find the source if you can, like a main water valve for a burst pipe. Move small items up off the floor, take a few photos for your claim, and call us. We are available 24/7 and start pulling out water as soon as we arrive.' },
-      { q: 'Is flood water in my basement a health risk?', a: 'It can be. Clean water from a supply line is low risk at first. But groundwater, storm water, and sewer backup carry bacteria and waste that can make you sick. Any water that sits more than a day or two also grows mold fast. We treat the basement as unsafe until we know the source, wear proper gear, and use an EPA-registered antimicrobial. If sewage is involved, see our <a href="/sewage-cleanup">sewage cleanup</a> service.' },
-      { q: 'How fast can you respond to a flooded basement?', a: 'We answer the phone 24/7 and aim to be on site fast, day or night. A flooded basement is an emergency because every hour the water sits, it soaks deeper into walls, framing, and stored items, and the mold risk climbs. The sooner we start extraction, the more we can save and the lower your final cost. One call gets a crew moving.' },
-      { q: 'What is your process for cleaning up a flooded basement?', a: 'First we find and stop the source. Then we pump and extract the standing water with truck-mounted equipment. Next we remove soaked materials that cannot be saved, like wet drywall, carpet, and pad. We treat surfaces with an antimicrobial, then set commercial dehumidifiers and air movers to dry the framing and concrete. We check moisture daily until everything is back to normal, then handle the rebuild.' },
-      { q: 'How long does it take to dry out a basement?', a: 'Most basements dry in three to five days, but it depends on how much water there was, how long it sat, and how wet the concrete and framing got. Concrete and block walls hold water and can take longer. We measure moisture every day at several points and keep the equipment running until each reading is back to normal. You get a final drying report before we start any rebuild.' },
-      { q: 'How do you stop mold and keep my basement from flooding again?', a: 'Speed stops mold. We pull out the water fast, treat the surfaces, and dry everything below 50 percent humidity, checking readings daily. If mold has already started, see our <a href="/mold-removal">mold removal</a> service. For the long-term fix so it does not happen again, we point you to <a href="/waterproofing">basement waterproofing</a>, which can add drainage, a sump pump, and sealed walls to keep water out for good.' },
-      { q: 'Do you handle the rebuild, or just the cleanup?', a: 'We do both. Cleanup is the emergency part: water removal, taking out ruined materials, drying, and mold treatment. The rebuild is putting your basement back together with new drywall, paint, flooring, and trim. Most companies only do the cleanup and hand you off to a contractor. We do it all with one crew and one project manager, which keeps the job on schedule and your claim simple.' }
-    ],
     related: { title: 'Related Services', sub: 'Other ways the Carolina Pro Restoration team can protect your home.', cards: [
       { title: 'Waterproofing', text: 'Stop water from getting into the basement in the first place.', href: '/waterproofing' },
       { title: 'Crawl Space Encapsulation', text: 'Seal out the moisture under your home for good.', href: '/crawlspace' },
       { title: 'Water Damage Restoration', text: 'Full dry-out and rebuild after a basement flood.', href: '/water-damage-restoration' },
       { title: 'Mold Removal', text: 'Remove the mold that standing water leaves behind.', href: '/mold-removal' }
     ] },
-    reviewsTitle: 'Trusted by Homeowners and Property Managers', reviewsSub: 'Rated 4.9 stars across 40+ Google reviews. From flooded basement cleanup to full structural drying, here is what people say about working with Carolina Pro Restoration.',
-    finalCta: 'Water in Your Basement? Talk to Our Team Now.', contactHeading: 'Get Basement Flooding Help Now', contactDesc: 'A flooded basement only gets worse the longer it sits. Call or text for a fast response, or send us the details and we\'ll get right back to you.',
-    areaTitle: 'We Respond Across the Charlotte Metro and Carolinas', areaSub: 'Based in Fort Mill, SC, we pump out and dry flooded basements across York County and south Charlotte. Pick your city below for local help.', areaInfoHeading: 'Fast Help When Your Basement Floods', areaInfoBlurb: 'A flooded basement gets worse by the hour. Our trucks reach most of York County and south Charlotte in under an hour, day or night.',
   },
   "mold-removal": {
     hero: { emergencyTag: '🛡️ Healthy Air Starts With Proper Mold Removal', subtitle: 'Found mold in a bathroom, basement, crawl space, or behind a wall? We test, contain the area, scrub the air with HEPA filters, safely remove what is damaged, and fix the moisture source so it does not come back. IICRC certified crews who protect your home and your family\'s health.', trustSignals: ['40+ 5-Star Google Reviews', 'SC Licensed & Fully Insured', 'IICRC Certified Technicians', 'BBB Accredited Business'], secondaryCta: 'Request a Free Inspection' },

@@ -131,12 +131,12 @@ const pageUrl = `${origin}/${service}`;
 const serviceSchema = {
   "@type": "Service",
   "@id": `${pageUrl}#service`,
-  serviceType: svc.gridTitle,
-  name: svc.gridTitle,
+  serviceType: data.serviceSchema?.serviceType ?? svc.gridTitle,
+  name: data.serviceSchema?.serviceType ?? svc.gridTitle,
   url: pageUrl,
   description: svc.metaDescription,
   provider: { "@id": `${origin}/#business` },
-  areaServed: site.schema.areaServed.map((c) => ({ "@type": "City", name: c.name })),
+  areaServed: (data.serviceSchema?.areaServed ?? site.schema.areaServed.map((c) => c.name)).map((name) => ({ "@type": "City", name })),
   mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
 };
 ---
@@ -151,13 +151,13 @@ const serviceSchema = {
     imageAlt={`Carolina Pro Restoration — ${svc.gridTitle}`}
     secondaryCta={{ label: data.hero.secondaryCta ?? "Request Free Inspection", href: "#contact" }}
   />
-  <ProofStrip />
+  <ProofStrip items={data.proof} />
   {/* Actionable "what do I do right now / who do I call" prose, deliberately high
       on the page. Only pages that define `guide` render it. */}
   {data.guide && <LocalContent blocks={data.guide} />}
-  <Timeline title={data.timeline.title} sub={data.timeline.sub} ctaLabel={data.timeline.ctaLabel} cards={data.timeline.cards} />
-  <WarningSigns title={data.signs.title} sub={data.signs.sub} note={data.signs.note} signs={data.signs.signs} ctaLabel={data.signsCtaLabel} />
-  <Scenarios title={data.scenarios.title} sub={data.scenarios.sub} ctaLabel={data.scenarios.ctaLabel} scenarios={data.scenarios.scenarios} />
+  {data.timeline && <Timeline title={data.timeline.title} sub={data.timeline.sub} ctaLabel={data.timeline.ctaLabel} cards={data.timeline.cards} />}
+  {data.signs && <WarningSigns title={data.signs.title} sub={data.signs.sub} note={data.signs.note} signs={data.signs.signs} ctaLabel={data.signsCtaLabel} />}
+  {data.scenarios && <Scenarios title={data.scenarios.title} sub={data.scenarios.sub} ctaLabel={data.scenarios.ctaLabel} scenarios={data.scenarios.scenarios} />}
   <ProcessSteps title={data.process.title} sub={data.process.sub} ctaLabel={data.process.ctaLabel} steps={processSteps} />
   {actionShot && <ActionShot image={actionShot.img} alt={actionShot.alt} heading={actionShot.heading} text={actionShot.text} />}
   {service === "water-damage-restoration" && (
@@ -173,17 +173,20 @@ const serviceSchema = {
       afterPos="center 78%"
     />
   )}
-  <WaterCategories
-    title={data.categories.title}
-    sub={data.categories.sub}
-    note={data.categories.note}
-    categories={data.categories.categories}
-  />
+  {data.categories && (
+    <WaterCategories
+      title={data.categories.title}
+      sub={data.categories.sub}
+      note={data.categories.note}
+      categories={data.categories.categories}
+    />
+  )}
   {data.cost && <CostTable title={data.cost.title} sub={data.cost.sub} note={data.cost.note} rows={data.cost.rows} />}
   {data.costDetail && <LocalContent blocks={data.costDetail} light />}
-  <Differentiators title={data.differentiators.title} sub={data.differentiators.sub} rows={data.differentiators.rows} />
+  {data.causes && <LocalContent blocks={data.causes} />}
+  {data.differentiators && <Differentiators title={data.differentiators.title} sub={data.differentiators.sub} rows={data.differentiators.rows} />}
   <InsuranceCard title={data.insurance.title} desc={data.insurance.desc} points={data.insurance.points} />
-  <Reviews reviews={reviewsFor(service)} title={data.reviewsTitle} sub={data.reviewsSub} />
+  {!data.hideReviews && <Reviews reviews={reviewsFor(service)} title={data.reviewsTitle} sub={data.reviewsSub} />}
   <Faq title={data.faqTitle} sub={data.faqSub} ctaLabel={data.faqCtaLabel} items={data.faq} />
   {townLinks.length > 0 && (
     <RelatedServices
@@ -197,6 +200,7 @@ const serviceSchema = {
     sub={data.areaSub}
     infoHeading={data.areaInfoHeading}
     infoBlurb={data.areaInfoBlurb}
+    cities={data.areaCities}
   />
   <FinalCta heading={data.finalCta} secondaryLabel={data.finalCtaSecondaryLabel} />
   <ContactForm

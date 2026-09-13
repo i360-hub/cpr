@@ -72,10 +72,10 @@ export const services: Service[] = [
     navLabel: "Basement Flooding",
     gridTitle: "Basement Flooding",
     group: "water",
-    title: "Basement Flooding Cleanup | Charlotte Area 24/7",
-    h1Lines: ["Basement Flooding in", "Fort Mill & Charlotte"],
+    title: "Who to Call When Your Basement Floods | Fort Mill SC 24/7",
+    h1Lines: ["Who to Call When Your Basement Floods"],
     metaDescription:
-      "Get expert 24/7 basement flooding cleanup and restoration in Charlotte, NC with Carolina Pro Restoration. Fast response. Learn more today!",
+      "Basement flooding in Fort Mill? Call a water damage restoration crew first — here's why, what to do in the first hour, and what it costs. (980) 277-3700.",
   },
   {
     slug: "mold-removal",
