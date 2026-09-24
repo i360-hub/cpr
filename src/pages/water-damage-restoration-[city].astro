@@ -15,6 +15,7 @@ import ServiceArea from "@components/widgets/ServiceArea.astro";
 import FinalCta from "@components/widgets/FinalCta.astro";
 import ContactForm from "@components/widgets/ContactForm.astro";
 import ActionShot from "@components/widgets/ActionShot.astro";
+import CostTable from "@components/widgets/CostTable.astro";
 import { locations } from "@data/locations";
 import { reviewsForCity } from "@data/reviews";
 import { mapEmbed, mapsLink } from "@data/maps";
@@ -113,11 +114,19 @@ const heroImg = cityHero[city] ?? heroSuburb;
 const cityMapSrc = mapEmbed(`${loc.name}, ${loc.state}`, 12);
 const cityMapLink = mapsLink(`${loc.name}, ${loc.state}`);
 
-// The neighborhoods chip grid renders mid-body (at the "hood" marker), matching
-// the live page order. Split the editorial body around it.
-const hoodIdx = loc.body.findIndex((b) => b.tag === "hood");
-const bodyBefore = hoodIdx >= 0 ? loc.body.slice(0, hoodIdx) : loc.body;
-const bodyAfter = hoodIdx >= 0 ? loc.body.slice(hoodIdx + 1) : [];
+// The editorial body can carry two markers: "hood" (neighborhoods chip grid,
+// matching the live page order) and "cost" (the town's cost table, for pages
+// rewritten to the Phase 3 standard). Split the body into segments at them.
+type Seg = { kind: "blocks"; blocks: { tag: string; html: string }[] } | { kind: "hood" | "cost" };
+const segs: Seg[] = [];
+let cur: { tag: string; html: string }[] = [];
+for (const b of loc.body) {
+  if (b.tag === "hood" || b.tag === "cost") {
+    segs.push({ kind: "blocks", blocks: cur }, { kind: b.tag });
+    cur = [];
+  } else cur.push(b);
+}
+segs.push({ kind: "blocks", blocks: cur });
 
 const faqSchema = [
   {
@@ -169,9 +178,17 @@ const cityServiceSchema = {
     secondaryCta={{ label: waterCta.inspection, href: "#contact" }}
   />
   <StatStrip stats={loc.stats} />
-  <LocalContent blocks={bodyBefore} />
-  {loc.neighborhoods && <Neighborhoods city={loc.name} intro={loc.neighborhoods.intro} neighborhoods={loc.neighborhoods.items} />}
-  {bodyAfter.length > 0 && <LocalContent blocks={bodyAfter} />}
+  {
+    segs.map((sg) =>
+      sg.kind === "blocks" ? (
+        sg.blocks.length > 0 && <LocalContent blocks={sg.blocks} />
+      ) : sg.kind === "hood" ? (
+        loc.neighborhoods && <Neighborhoods city={loc.name} intro={loc.neighborhoods.intro} neighborhoods={loc.neighborhoods.items} />
+      ) : (
+        loc.cost && <CostTable title={loc.cost.title} sub={loc.cost.sub} note={loc.cost.note} rows={loc.cost.rows} />
+      )
+    )
+  }
   {cityActionShots[city] && <ActionShot {...cityActionShots[city]} />}
   <Reviews reviews={reviewsForCity(city)} title={loc.reviewsTitle} sub={loc.reviewsSub} />
   <Faq title={loc.faqTitle} sub={loc.faqSub} items={loc.faq} />

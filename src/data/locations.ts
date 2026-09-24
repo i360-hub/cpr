@@ -30,6 +30,8 @@ export interface Location {
   areaInfoHeading: string;
   areaInfoBlurb: string;
   neighborhoods?: { intro: string; items: string[] };
+  /** Town-level cost table, rendered at the body's "cost" marker. */
+  cost?: { title: string; sub: string; note: string; rows: { name: string; range: string }[] };
 }
 
 export const locations: Record<string, Location> = {
@@ -38,57 +40,71 @@ export const locations: Record<string, Location> = {
     title: 'Water Damage Restoration Rock Hill SC | 24/7 Response',
     h1: 'Rock Hill\'s Trusted 24/7 Water Damage Restoration Team',
     metaDescription: 'Rock Hill water damage experts. We extract, dry & rebuild — one team, one project manager. IICRC certified. Insurance billed direct. Call 980-277-3700.',
-    heroTag: '🚨 24/7 Emergency Dispatch — Rock Hill', heroSub: 'Crews on the ground in 25-40 minutes across Rock Hill, Fort Mill, and southern York County. We handle the water removal, structural drying, mold prevention, and full rebuild — start to finish with one dedicated project manager. Direct insurance billing through Xactimate.', heroTrust: ['Top-Rated in Rock Hill', '25-40 Min Response', 'Licensed, Insured & IICRC', 'Direct Insurance Billing'],
+    heroTag: '🚨 24/7 Emergency Dispatch — Rock Hill', heroSub: 'Our Fort Mill shop is 8 miles up I-77, so most Rock Hill calls get a truck at the curb in 25 to 40 minutes, day or night. One local crew pulls the water out, dries the house, and rebuilds what had to come out — with the estimate written in Xactimate and billed straight to your insurer.', heroTrust: ['Top-Rated in Rock Hill', '25-40 Min Response', 'Licensed, Insured & IICRC', 'Direct Insurance Billing'],
     body: [
-      { tag: 'h2', html: '24/7 Water Damage Restoration in Rock Hill, SC' },
-      { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Rock Hill in about 25 to 40 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Rock Hill is the largest city in York County, South Carolina, with a population over 74,000. The area receives roughly 47 inches of rain per year — well above the national average. Clay-heavy soil across Rock Hill drains poorly, which means even moderate rain pools around foundations and seeps into basements and crawlspaces. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Rock Hill and nearby <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
-      { tag: 'h3', html: 'Why Rock Hill Homes Are at Risk' },
-      { tag: 'p', html: 'Rock Hill has seen rapid growth over the past two decades, with large subdivisions built during the 2000s housing boom across the India Hook, Riverwalk, and Manchester Village areas. Many of these homes used polybutylene or early PEX plumbing that is now entering the failure window after 15 to 20 years. We see multiple calls per month from these neighborhoods for supply line failures behind walls and under slab foundations.' },
-      { tag: 'p', html: 'Rock Hill also sits along the Catawba River basin and multiple tributary creeks that rise fast during heavy rain events. Hurricane Helene in 2024 pushed water into homes along low-lying streets and caused significant crawlspace flooding in older neighborhoods. The clay-heavy soil throughout York County doesn\'t drain well, and the city\'s stormwater infrastructure is under increasing pressure as new development adds impervious surface area that concentrates runoff.' },
-      { tag: 'h3', html: 'What Happens When You Call Us' },
-      { tag: 'p', html: 'Our IICRC-certified crew arrives fast, maps every wet area using thermal cameras and moisture meters, extracts standing water with commercial-grade equipment, and sets up a full drying system with dehumidifiers and air movers. We treat affected surfaces with antimicrobial solution to prevent <a href="/mold-removal">mold growth</a> before it starts. Every step is documented with photos and moisture readings from day one. If mold has already taken hold, see our <a href="/mold-removal-rock-hill-sc">mold removal in Rock Hill</a> service.' },
-      { tag: 'h3', html: 'Insurance & Xactimate Documentation' },
-      { tag: 'p', html: 'We write every estimate in Xactimate — the same software your insurance adjuster uses. That means no surprises, no back-and-forth, and no delays on your claim. We take the damage photos, send daily moisture reports, communicate directly with your adjuster, and bill your insurance company directly, so on covered work you pay your deductible and nothing beyond it.' },
-      { tag: 'h2', html: 'Common Water Damage Problems in Rock Hill Neighborhoods' },
-      { tag: 'h3', html: 'India Hook — Aging Plumbing & Crawlspace Flooding' },
-      { tag: 'p', html: 'India Hook is one of Rock Hill\'s oldest residential areas, with many homes built in the 1970s and 1980s on crawlspace foundations. Original galvanized and copper plumbing in these homes is well past its expected lifespan, leading to pinhole leaks, burst fittings, and slow drips behind walls that go undetected for months. The clay soil holds moisture against foundations, and crawlspaces frequently have standing water, saturated insulation, and active mold growth. If you smell dampness or notice soft spots in your flooring, call <a href="tel:9802773700">980-277-3700</a> before it spreads.' },
-      { tag: 'h3', html: 'Riverwalk & Lake Wylie Area — Waterfront Humidity Damage' },
-      { tag: 'p', html: 'Homes in the Riverwalk development and along the Lake Wylie shoreline deal with constant elevated humidity from the Catawba River and lake. Moisture migrates through foundations and into crawlspaces, warping hardwood floors, swelling baseboards, and feeding hidden mold colonies behind drywall. Our team uses thermal imaging to identify moisture intrusion points without tearing anything out first.' },
-      { tag: 'h3', html: 'Manchester Village & Massey — Boom-Era Plumbing Failures' },
-      { tag: 'p', html: 'Subdivisions like Manchester Village, Massey, and Waterford built during the early 2000s housing boom used polybutylene or early PEX plumbing that is now 15 to 20 years old and entering the failure window. We see multiple calls per month from these neighborhoods for supply line bursts behind walls, under-slab leaks, and water heater failures that flood garages and first floors. We respond to <a href="/storm-damage">flood damage calls</a> with truck-mounted pumps that can extract thousands of gallons per hour.' },
-      { tag: 'h3', html: 'Downtown & Old Town — Storm Drainage & Sewer Backups' },
-      { tag: 'p', html: 'Older neighborhoods near downtown Rock Hill and along the Cherry Road corridor have aging stormwater and sewer infrastructure that backs up during heavy rain events. Rock Hill\'s clay-heavy soil compounds the problem — water pools fast and has nowhere to go. Sewage backups require Category 3 water remediation: full extraction, removal of contaminated materials, antimicrobial treatment, and air scrubbing. We handle the entire process and document it for your insurance claim.' },
-      { tag: 'h2', html: 'We Handle Your Insurance — You Handle Your Family' },
-      { tag: 'p', html: 'Dealing with water damage is stressful enough without fighting your insurance company. We use Xactimate, the same estimating software your adjuster uses, so your claim moves fast with no surprises.' }
+      { tag: 'h2', html: 'Water Damage Restoration in Rock Hill, SC' },
+      { tag: 'p', html: 'If water is coming in right now, shut off the main valve and call <a href="tel:9802773700">(980) 277-3700</a>. We pick up 24 hours a day. Carolina Pro Restoration is based in <a href="/">Fort Mill</a>, and a Rock Hill call usually has a crew at the door in 25 to 40 minutes. The first truck carries pumps, a truck-mounted extractor, commercial dehumidifiers, and a thermal camera, so drying starts on the first visit instead of the second.' },
+      { tag: 'p', html: 'Most Rock Hill water damage starts one of three ways. A water heater, supply line, or washer hose gives out in a house built during the 2000s boom. An old drain line backs up in a mill-era home near downtown. Or a hard rain sits on red clay with nowhere to go and finds the crawl space. Each one calls for a different first move, a different drying plan, and a different conversation with your insurer. Here is what we see in each part of the city, and what it costs to fix.' },
+      { tag: 'h2', html: 'What Causes Water Damage in Rock Hill Homes' },
+      { tag: 'h3', html: 'Boom-era houses are on their second or third water heater' },
+      { tag: 'p', html: 'A big share of Rock Hill\'s housing went up between the late 1990s and 2008, in neighborhoods like Manchester Village, Massey, and Waterford. The plumbing parts that fail first — water heaters, braided supply lines under sinks and toilets, washing machine hoses, ice-maker lines — are now 15 to 25 years old. A tank water heater is built to last roughly 10 to 12 years, so many of these homes are on a replacement that is itself getting old.' },
+      { tag: 'p', html: 'Where the heater sits decides how big the job gets. A tank that splits in the garage floods the garage and the room beside it. A tank or a washer upstairs sends water through the floor, into the ceiling below, and down the inside of the walls on both levels. That is two floors to dry, not one, and it is the single biggest reason two leaks of the same size end up with very different bills.' },
+      { tag: 'h3', html: 'Slab leaks that never make a puddle' },
+      { tag: 'p', html: 'Many of the same neighborhoods were built on a concrete slab, with water lines running under or through it. A pinhole leak down there does not flood a room. It shows up as a warm spot on the floor, a water bill that jumps for no reason, the sound of running water when every tap is off, or flooring that starts to lift near one wall. We map the wet area with thermal imaging and moisture meters before anyone breaks concrete, so your plumber opens the slab in one spot instead of guessing at five.' },
+      { tag: 'h3', html: 'Old Town and the mill villages: old drain lines under crawl spaces' },
+      { tag: 'p', html: 'The houses around downtown, Oakland Avenue, and Rock Hill\'s old textile mill villages are mostly older crawl-space homes, many from before 1960. Their drain lines are often cast iron or clay pipe that cracks, sags, and lets tree roots in with age. When the main drain clogs, wastewater comes back up through the lowest fixture in the house — usually a tub, a shower, or a floor drain — and runs across the floor into the subfloor and the crawl space below.' },
+      { tag: 'p', html: 'That is Category 3 water, and it is handled as a biohazard. Carpet, pad, and the drywall it touched come out, the framing is cleaned and treated, and the air is scrubbed before anything goes back in. Our <a href="/sewage-cleanup">sewage cleanup</a> page walks through that job step by step.' },
+      { tag: 'h3', html: 'Red clay and summer storms' },
+      { tag: 'p', html: 'York County\'s red clay takes in very little water. In a heavy summer thunderstorm, rain runs across the yard toward the house instead of soaking into the ground. Where a lot slopes the wrong way, or a downspout empties right next to the foundation, water collects against the block and seeps into the crawl space or a ground-level room. When Hurricane Helene came through in 2024, low-lying streets and older crawl-space homes across the area took on water this way — from the ground, not from a pipe.' },
+      { tag: 'p', html: 'Water under a house is easy to miss. The usual clues are a damp smell from the floor vents, a floor that feels soft or bouncy, or a crawl space door that is wet on the inside. We pump the crawl space, pull out soaked insulation, and dry the joists and subfloor with dehumidifiers sized for the space. If the same crawl space keeps taking water, <a href="/crawlspace">crawl space encapsulation</a> is the long-term fix.' },
+      { tag: 'h3', html: 'Near the Catawba River, drying takes longer' },
+      { tag: 'p', html: 'Riverwalk and the neighborhoods on the city\'s east side sit close to the Catawba River, and India Hook sits up near Lake Wylie. Flooding in these areas rarely comes from the water itself. The problem is the air: it stays damp most of the year, so wet framing gives up its moisture slowly. A leak here can take a day or two longer to dry than the same leak across town. We leave the equipment in place and log moisture readings every day until the wood is back to normal — not until a set number of days has passed.' },
+      { tag: 'h2', html: 'Who to Call First in Rock Hill' },
+      { tag: 'p', html: 'For a burst pipe, a failed water heater, or a leaking appliance, shut the main valve and call us. We stop the damage and dry the house; your plumber repairs the pipe itself, and we can work alongside them the same day. For a sewage backup, stop using water in the house and call us, then call your water and sewer provider — the City of Rock Hill for most homes inside city limits — if you think the clog may be in the public line. The city generally handles the main in the street; the line from your house to the main is usually the owner\'s. For rain or groundwater coming in, call us before you try to clean it up, and take photos first.' },
+      { tag: 'p', html: 'If water is near outlets, a panel, or a gas appliance, stay out of the room and call your utility or 911 first.' },
+      { tag: 'cost', html: '' },
+      { tag: 'h2', html: 'How a Rock Hill Job Runs, Start to Finish' },
+      { tag: 'p', html: 'Day one: we stop the source, pull out the standing water, and scan every wall and floor near the leak so nothing wet gets missed. Wet carpet pad, baseboards, and the bottom of any soaked drywall come out that day. Drying equipment goes in, placed from the moisture map. Photos and readings start the same hour, because your adjuster will ask for them.' },
+      { tag: 'p', html: 'Days two through five: we come back every day to take readings and move equipment as areas dry. When every reading is back to normal, you get a written drying report. Then the same company rebuilds — drywall, insulation, trim, paint, and flooring — with one project manager from the first call to the final walk-through. You do not have to find a second contractor or explain the job twice.' },
+      { tag: 'h2', html: 'Your Insurance Claim in Rock Hill' },
+      { tag: 'p', html: 'A sudden, accidental failure inside the house — a burst pipe, a split water heater, a washer hose — is usually covered by a standard homeowners policy. Rain or groundwater coming in from outside usually is not, unless you carry flood coverage. We write the estimate in Xactimate, the same software adjusters use, share the photos and daily readings with your adjuster, and bill the carrier directly. On a covered claim you pay your deductible and nothing beyond it. If mold has already started by the time you call, see <a href="/mold-removal-rock-hill-sc">mold removal in Rock Hill</a>.' }
     ],
+    cost: {
+      title: 'What Water Damage Restoration Costs in Rock Hill',
+      sub: 'Typical ranges to help you plan — not a quote. Your price comes after the on-site assessment, in writing, before any work starts.',
+      note: 'What moves the price most in Rock Hill: whether the water came through a ceiling (two floors to dry instead of one), whether it is clean water or sewage, and how long it sat before drying started. On a covered claim you pay your deductible and nothing beyond it. Financing is available.',
+      rows: [
+        { name: 'One room, clean water, caught the same day — extraction and drying', range: '$1,500–$4,000' },
+        { name: 'Upstairs water heater or washer leak through the ceiling — two floors to dry', range: '$4,000–$10,000' },
+        { name: 'Slab leak — locating the wet area, drying, flooring removal (plumbing repair is separate)', range: '$3,000–$9,000' },
+        { name: 'Crawl space water after a storm — pump-out, insulation removal, drying', range: '$1,500–$5,000' },
+        { name: 'Sewage backup in a crawl-space home (Category 3)', range: '$4,000–$12,000' },
+        { name: 'Rebuild after drying — drywall, insulation, trim, paint, flooring, per room', range: '$1,500–$4,000' }
+      ]
+    },
     stats: [
       { number: '47 in', label: 'Rain Per Year' },
       { number: '25-40 min', label: 'Response Time' },
       { number: '1,576', label: 'Properties at Flood Risk' }
     ],
-    faqTitle: 'Rock Hill Water Damage FAQs', faqSub: 'Common questions from Rock Hill homeowners dealing with water damage, mold, and insurance claims.',
+    faqTitle: 'Rock Hill Water Damage FAQs', faqSub: 'Straight answers to what Rock Hill homeowners ask us most.',
     faq: [
-      { q: 'How fast can Carolina Pro Restoration reach my Rock Hill home?', a: 'Our crews are based in Fort Mill, about 8 miles from Rock Hill. Most Rock Hill calls receive a technician within 25 to 40 minutes, 24/7.' },
-      { q: 'My Rock Hill home was built in the early 2000s. Is the plumbing a risk?', a: 'Yes. Many homes built during the 2000s housing boom in subdivisions like Manchester Village, Massey, and India Hook used polybutylene or early PEX plumbing that is now entering the failure window after 15–20 years. We see pinhole leaks and fitting failures regularly. A thermal-camera scan can reveal hidden moisture before it becomes visible damage.' },
-      { q: 'Does Rock Hill\'s clay soil increase water damage risk?', a: 'Absolutely. York County\'s clay-heavy soil drains poorly, which means even moderate rain pools around foundations and seeps into basements and crawlspaces. After heavy storms, groundwater pressure against foundations is a major source of water intrusion in Rock Hill homes.' },
-      { q: 'Will Carolina Pro Restoration bill my insurance company directly?', a: 'Yes. We use Xactimate — the same estimating software your adjuster uses — photograph all damage, send daily moisture reports, communicate directly with the adjuster, and bill the carrier directly, so on covered work you pay your deductible and nothing beyond it.' },
-      { q: 'What should I do immediately if my Rock Hill home floods?', a: 'Shut off the water supply. Turn off electricity to affected areas if it\'s safe to do so. Move valuables to a dry area. Call <a href="tel:9802773700" style="color:#d32f2f;font-weight:700;text-decoration:none;">980-277-3700</a> immediately. Never use a household vacuum on standing water — it\'s an electrocution risk.' },
-      { q: 'How quickly does mold grow after water damage in Rock Hill?', a: 'Mold spores can germinate within 24–48 hours. Visible colonies appear in 3–5 days. Rock Hill\'s clay soil traps moisture around foundations, keeping humidity high even after the visible water is gone. Fast extraction and professional dehumidification are the only reliable way to prevent growth.' }
+      { q: 'My water heater is upstairs in my Rock Hill home. What happens if it fails?', a: 'The water goes down, not out. It soaks the floor, drips through the ceiling below, and runs inside the walls on both levels. Shut the cold-water valve on top of the heater or the main valve, turn off the heater\'s power or gas, and call <a href="tel:9802773700">(980) 277-3700</a>. Expect drying on two floors and ceiling drywall below the leak to come down.' },
+      { q: 'How do I know if I have a slab leak?', a: 'Watch for a warm spot on a tile or wood floor, a water bill that jumps with no change in use, the sound of running water with every tap off, or flooring lifting near one wall. Turn off every fixture and check your water meter; if it still moves, water is going somewhere. We find the wet area with thermal imaging before anyone breaks concrete.' },
+      { q: 'Sewage came up through my tub. Is that the city\'s problem or mine?', a: 'It depends where the clog is. The City of Rock Hill generally maintains the main in the street, and the line from your house to the main is usually the owner\'s. Either way the cleanup inside your home is the same: stop running water, keep people and pets out of the area, and call us. Sewage is Category 3 water and needs full sanitizing.' },
+      { q: 'Does insurance cover water in my crawl space after a storm?', a: 'Usually not under a standard homeowners policy, because rain and groundwater coming in from outside are typically excluded unless you carry flood coverage. A pipe that bursts under the house is different — that is usually covered. We document the source with photos and a written scope so you know which one you are dealing with before any work starts.' },
+      { q: 'How long does it take to dry out a house in Rock Hill?', a: 'Most jobs take three to five days of drying. Homes near the Catawba River and Lake Wylie can take a day or two longer because the air stays humid. We measure moisture every day and pull the equipment when the readings say the framing is dry, not on a fixed schedule.' },
+      { q: 'Can you start before my adjuster comes out?', a: 'Yes, and you should. Most policies expect you to take reasonable steps to stop further damage. We photograph everything as we find it, save samples of removed materials when needed, and keep daily moisture logs, so the adjuster sees exactly what happened even after the water is gone.' }
     ],
     nearby: [
       { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
       { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' }
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Rock Hill Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Rock Hill, Fort Mill, and York County.',
     finalCta: 'Water Damage in Rock Hill Right Now? We Are Ready.', contactHeading: 'Request a Rock Hill Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
-    areaTitle: 'Your Local Water Damage Team in Rock Hill', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just 8 miles from Rock Hill.', areaInfoHeading: 'Fast Response Across Rock Hill & York County', areaInfoBlurb: 'Our trucks reach all of Rock Hill in under 40 minutes. Fort Mill, Tega Cay, Indian Land, and south Charlotte metro in under an hour.',
+    areaTitle: 'Your Local Water Damage Team in Rock Hill', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just 8 miles from Rock Hill.', areaInfoHeading: 'Fast Response Across Rock Hill & York County', areaInfoBlurb: 'Our trucks reach all of Rock Hill in under 40 minutes — India Hook, Riverwalk, Old Town, and the Cherry Road corridor included.',
   },
   "tega-cay-sc": {
     slug: 'tega-cay-sc', name: 'Tega Cay', state: 'SC',
@@ -99,7 +115,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Tega Cay, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Tega Cay in about 20 to 30 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Tega Cay sits on a peninsula surrounded by Lake Wylie in York County, South Carolina. That lakefront location means elevated humidity year-round and a water table that sits close to the surface. The area receives roughly 47 inches of rain per year. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Tega Cay and nearby <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
+      { tag: 'p', html: 'Tega Cay sits on a peninsula surrounded by Lake Wylie in York County, South Carolina. That lakefront location means elevated humidity year-round and a water table that sits close to the surface. The area receives roughly 47 inches of rain per year. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Tega Cay and nearby <a href="/">Fort Mill</a>, Indian Land, and Rock Hill.' },
       { tag: 'h3', html: 'Why Tega Cay Homes Are at Risk' },
       { tag: 'p', html: 'Tega Cay was originally developed in the 1970s, and many of the original homes on the peninsula still have copper or galvanized steel plumbing that has been corroding from the inside for over 40 years. These older pipes are prone to pinhole leaks, burst fittings, and slab leaks that go undetected until water is already behind walls and under flooring.' },
       { tag: 'p', html: 'The peninsula\'s proximity to Lake Wylie keeps the water table high. After heavy rain, groundwater pushes against foundations and seeps into crawlspaces — especially in homes without proper encapsulation. In February 2020, heavy rains triggered a sewage spill in Tega Cay that reached Lake Wylie, caused power outages, road closings, and localized flooding across multiple streets. The city\'s stormwater infrastructure has been under pressure as new construction — including the Windhaven subdivision by Lennar — adds impervious surface area that concentrates runoff.' },
@@ -135,16 +151,12 @@ export const locations: Record<string, Location> = {
     nearby: [
       { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
-      { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' }
+      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Tega Cay Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Tega Cay, Lake Wylie, and York County.',
     finalCta: 'Water Damage in Tega Cay Right Now? We Are Ready.', contactHeading: 'Request a Tega Cay Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
-    areaTitle: 'Your Local Water Damage Team in Tega Cay', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just 10 minutes from the Tega Cay peninsula.', areaInfoHeading: 'Fast Response Across the Lake Wylie Peninsula', areaInfoBlurb: 'Our trucks reach all of Tega Cay in under 30 minutes. Fort Mill, Rock Hill, Indian Land, and south Charlotte metro in under an hour.',
+    areaTitle: 'Your Local Water Damage Team in Tega Cay', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just 10 minutes from the Tega Cay peninsula.', areaInfoHeading: 'Fast Response Across the Lake Wylie Peninsula', areaInfoBlurb: 'Our trucks reach all of Tega Cay in under 30 minutes. Fort Mill, Rock Hill, and Indian Land in under an hour.',
   },
   "indian-land-sc": {
     slug: 'indian-land-sc', name: 'Indian Land', state: 'SC',
@@ -155,7 +167,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Indian Land, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Indian Land in about 20 to 35 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Indian Land is one of the fastest-growing communities in the Charlotte metro area, sitting in the northern panhandle of Lancaster County, South Carolina. The area receives roughly 47 inches of rain per year. Lancaster County\'s population has grown over 12% since 2020, and thousands of new homes have been built on freshly graded lots where stormwater drainage hasn\'t caught up with development. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Indian Land and nearby <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
+      { tag: 'p', html: 'Indian Land is one of the fastest-growing communities in the Charlotte metro area, sitting in the northern panhandle of Lancaster County, South Carolina. The area receives roughly 47 inches of rain per year. Lancaster County\'s population has grown over 12% since 2020, and thousands of new homes have been built on freshly graded lots where stormwater drainage hasn\'t caught up with development. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Indian Land and nearby <a href="/">Fort Mill</a>, Tega Cay, and Rock Hill.' },
       { tag: 'h3', html: 'Why Indian Land Homes Are at Risk' },
       { tag: 'p', html: 'Indian Land has exploded with new construction over the past decade. Master-planned communities like Sun City Carolina Lakes, Bridgemill, Cheswick, and Lancaster Crossings were built on land that was recently cleared and graded. Fresh construction on graded lots concentrates stormwater runoff, and many of these neighborhoods have experienced drainage complaints and localized flooding within their first few years. Homes built between 2015 and 2022 are also now entering the window where builder-grade plumbing fittings and water heater connections begin to fail.' },
       { tag: 'p', html: 'Indian Land also sits on clay-heavy soil typical of the Carolina Piedmont. This soil doesn\'t absorb water well, which means even moderate rain pools around foundations and pushes into crawlspaces. The rapid pace of development has outpaced stormwater infrastructure in parts of the community, and Hurricane Helene in 2024 exposed vulnerabilities in newer subdivisions where retention ponds and drainage easements couldn\'t handle the volume.' },
@@ -192,16 +204,12 @@ export const locations: Record<string, Location> = {
     nearby: [
       { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
-      { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' }
+      { label: 'Lancaster, SC', href: '/water-damage-restoration-lancaster-sc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Indian Land Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Indian Land, Fort Mill, and Lancaster County.',
     finalCta: 'Water Damage in Indian Land Right Now? We Are Ready.', contactHeading: 'Request a Indian Land Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
-    areaTitle: 'Your Local Water Damage Team in Indian Land', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just minutes from Indian Land.', areaInfoHeading: 'Fast Response Across Indian Land & Lancaster County', areaInfoBlurb: 'Our trucks reach all of Indian Land in under 35 minutes. Fort Mill, Tega Cay, Rock Hill, and south Charlotte metro in under an hour.',
+    areaTitle: 'Your Local Water Damage Team in Indian Land', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just minutes from Indian Land.', areaInfoHeading: 'Fast Response Across Indian Land & Lancaster County', areaInfoBlurb: 'Our trucks reach all of Indian Land in under 35 minutes. Fort Mill, Tega Cay, and Rock Hill in under an hour.',
   },
   "clover-sc": {
     slug: 'clover-sc', name: 'Clover', state: 'SC',
@@ -212,7 +220,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Clover, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Clover in about 20 to 35 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Clover is a town of roughly 7,500 residents in northwestern York County, South Carolina, about 22 miles from our Fort Mill headquarters. The area receives approximately 44 inches of rain per year, and 6.2% of properties — around 205 — face meaningful flood risk over 30 years according to First Street Foundation data. Crowders Creek and its tributaries cut through residential areas north and west of town, creating seasonal flooding pressure after heavy rain events. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Clover and nearby <a href="/water-damage-restoration-lake-wylie-sc">Lake Wylie</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
+      { tag: 'p', html: 'Clover is a town of roughly 7,500 residents in northwestern York County, South Carolina, about 22 miles from our Fort Mill headquarters. The area receives approximately 44 inches of rain per year, and 6.2% of properties — around 205 — face meaningful flood risk over 30 years according to First Street Foundation data. Crowders Creek and its tributaries cut through residential areas north and west of town, creating seasonal flooding pressure after heavy rain events. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Clover and nearby <a href="/water-damage-restoration-lake-wylie-sc">Lake Wylie</a>, <a href="/">Fort Mill</a>, and Rock Hill.' },
       { tag: 'h3', html: 'Why Clover Homes Are at Risk' },
       { tag: 'p', html: 'Clover\'s housing stock spans two distinct eras that create different water damage profiles. The historic core of town — along Main Street, Kings Mountain Street, and the neighborhoods surrounding Clover High School — contains 1950s through 1980s ranch homes and bungalows built on crawlspace foundations with original galvanized and copper plumbing well past its expected lifespan. These homes sit over York County\'s red-clay Piedmont soil, which holds moisture against foundations and crawlspace walls year-round. Pinhole leaks, corroded fittings, and slow drips behind drywall are common in this older housing stock.' },
       { tag: 'p', html: 'The newer side of Clover — subdivisions like Shepherds Trace, Penley Place, and developments along the Highway 321 corridor — features homes built from the mid-2000s through the 2020s as part of the Charlotte metro growth wave. Builder-grade PEX fittings, water heater connections, and appliance supply lines in these homes are now entering their first failure window at 10 to 20 years old. Clover\'s low-lying terrain along Crowders Creek compounds the problem: stormwater runoff from newly developed land concentrates in residential areas during heavy rain. Hurricane Helene in 2024 brought flash flooding to neighborhoods across northwestern York County, overwhelming crawlspaces and ground-level entries.' },
@@ -248,13 +256,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
-      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' }
+      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Clover Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Clover, Lake Wylie, and York County.',
     finalCta: 'Water Damage in Clover Right Now? We Are Ready.', contactHeading: 'Request a Clover Inspection', contactDesc: 'Fill out this short form and our Clover crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -269,7 +273,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Lancaster, SC' },
       { tag: 'p', html: 'Got water where it shouldn\'t be? We\'re Carolina Pro Restoration, and we\'re about 35 to 45 minutes from anywhere in Lancaster. Our crew shows up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call. We answer the phone 24 hours a day, 7 days a week, including holidays. Call <a href="tel:9802773700">980-277-3700</a> and we\'ll dispatch a team right away.' },
-      { tag: 'p', html: 'Lancaster sits in Lancaster County, South Carolina, where homes deal with around 45 inches of rain per year. That\'s above the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Lancaster and nearby <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, and <a href="/">Fort Mill</a>.' },
+      { tag: 'p', html: 'Lancaster sits in Lancaster County, South Carolina, where homes deal with around 45 inches of rain per year. That\'s above the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Lancaster and nearby <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, Rock Hill, and <a href="/">Fort Mill</a>.' },
       { tag: 'h3', html: 'Why Lancaster Homes Are at Risk' },
       { tag: 'p', html: 'Lancaster is one of the fastest-growing areas in the Charlotte metro. New subdivisions like Edgewater, Basildon, and Tree Tops were built on cleared land with clay-heavy soil that doesn\'t drain well. When grading isn\'t done right — and we see this often — rainwater pools against foundations and seeps into garages, crawlspaces, and ground-level rooms. We get calls from new-construction neighborhoods after every heavy rain event.' },
       { tag: 'p', html: 'Older parts of Lancaster near downtown were built in the 1950s through 1980s. Many of those homes still have galvanized steel or copper plumbing that corrodes from the inside over time. Cane Creek and its tributaries run through the heart of Lancaster County and rise fast during storms. Hurricane Helene in 2024 brought heavy wind and rain to Lancaster County, and FEMA included the county in its major disaster declaration. The clay soil holds water for days after storms, pushing moisture into basements and crawlspaces long after the rain stops.' },
@@ -307,17 +311,13 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Lancaster, SC', href: '/water-damage-restoration-lancaster-sc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' }
+      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Lancaster Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Lancaster, Indian Land, and the surrounding area.',
     finalCta: 'Water Damage in Lancaster Right Now? We Are Ready.', contactHeading: 'Request a Lancaster Inspection', contactDesc: 'Fill out this short form and our Lancaster crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
-    areaTitle: 'Your Local Water Damage Team Serving Lancaster', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — 3650 Centre Circle, Suite I — just 27 miles from downtown Lancaster.', areaInfoHeading: 'Fast Response Across Lancaster County', areaInfoBlurb: 'Our trucks reach all of Lancaster and surrounding cities in under 45 minutes. The rest of Lancaster County and south Charlotte metro in under an hour.',
+    areaTitle: 'Your Local Water Damage Team Serving Lancaster', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — 3650 Centre Circle, Suite I — just 27 miles from downtown Lancaster.', areaInfoHeading: 'Fast Response Across Lancaster County', areaInfoBlurb: 'Our trucks reach all of Lancaster and surrounding cities in under 45 minutes. The rest of Lancaster County in under an hour.',
   },
   "york-sc": {
     slug: 'york-sc', name: 'York', state: 'SC',
@@ -328,7 +328,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in York, SC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in York in about 25 to 40 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'York is the county seat of York County, South Carolina, with a population of roughly 9,800 residents. The city sits about 20 miles west of our Fort Mill headquarters via SC-5. The area receives approximately 45 inches of rain per year, and 5% of properties — around 217 — face meaningful flood risk over 30 years according to First Street Foundation data. Turkey Creek and its tributaries run through residential and commercial areas in and around York, creating seasonal flooding pressure after heavy rain events. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout York and nearby <a href="/water-damage-restoration-clover-sc">Clover</a>, <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>, and <a href="/">Fort Mill</a>.' },
+      { tag: 'p', html: 'York is the county seat of York County, South Carolina, with a population of roughly 9,800 residents. The city sits about 20 miles west of our Fort Mill headquarters via SC-5. The area receives approximately 45 inches of rain per year, and 5% of properties — around 217 — face meaningful flood risk over 30 years according to First Street Foundation data. Turkey Creek and its tributaries run through residential and commercial areas in and around York, creating seasonal flooding pressure after heavy rain events. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout York and nearby <a href="/water-damage-restoration-clover-sc">Clover</a>, Rock Hill, and <a href="/">Fort Mill</a>.' },
       { tag: 'h3', html: 'Why York Homes Are at Risk' },
       { tag: 'p', html: 'York\'s housing stock reflects its long history as the county seat. The downtown historic district and surrounding residential blocks along Congress Street, East Jefferson Street, and North Roosevelt Street contain homes dating from the early 1900s through the 1970s — many built on crawlspace foundations with original galvanized and cast-iron plumbing well past its expected lifespan. These older homes sit over York County\'s red-clay Piedmont soil, which holds moisture against foundations and crawlspace walls year-round. Pinhole leaks, corroded fittings, and slow drips behind plaster and drywall are common in this aging housing stock.' },
       { tag: 'p', html: 'On the outskirts, York has seen steady growth with newer subdivisions like Glenmoor, Olde York Farms, and developments along the SC-5 and SC-161 corridors built from the 2000s through the 2020s. Builder-grade PEX fittings, water heater connections, and appliance supply lines in these homes are now entering their first failure window at 5 to 20 years old. York\'s terrain along Turkey Creek and its tributaries compounds the problem: stormwater runoff from newly developed land concentrates in low-lying residential areas during heavy rain. Turkey Creek Road flooding forced closures and bridge repairs during storms in 2018, and Hurricane Helene in 2024 brought additional flash flooding across central York County.' },
@@ -364,13 +364,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
-      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' }
+      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What York Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in York, Clover, and York County.',
     finalCta: 'Water Damage in York Right Now? We Are Ready.', contactHeading: 'Request a York Inspection', contactDesc: 'Fill out this short form and our York crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -385,7 +381,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Lake Wylie, SC' },
       { tag: 'p', html: 'Water rising in your home and no idea where to start? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Lake Wylie in about 15 to 25 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Lake Wylie is a lakefront community of roughly 8,800 residents straddling the York County shoreline of the Catawba River, just 11 miles from our Fort Mill headquarters. The area receives about 47 inches of rain per year, and a staggering 24.2% of properties — nearly 1,400 — carry flood risk over the next 30 years according to First Street Foundation data. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Lake Wylie and nearby <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-rock-hill-sc">Rock Hill</a>.' },
+      { tag: 'p', html: 'Lake Wylie is a lakefront community of roughly 8,800 residents straddling the York County shoreline of the Catawba River, just 11 miles from our Fort Mill headquarters. The area receives about 47 inches of rain per year, and a staggering 24.2% of properties — nearly 1,400 — carry flood risk over the next 30 years according to First Street Foundation data. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Lake Wylie and nearby <a href="/water-damage-restoration-tega-cay-sc">Tega Cay</a>, <a href="/">Fort Mill</a>, and Rock Hill.' },
       { tag: 'h3', html: 'Why Lake Wylie Homes Are at Risk' },
       { tag: 'p', html: 'Lake Wylie\'s biggest vulnerability is its geography. The community sits directly on the Catawba River reservoir, and many homes were built on sloped lakefront lots with crawlspaces that sit below or near the seasonal water table. When the lake level rises — controlled by Duke Energy\'s Catawba-Wateree dam system — groundwater pushes into crawlspaces, saturating insulation, floor joists, and subfloor sheathing before homeowners notice.' },
       { tag: 'p', html: 'Much of Lake Wylie\'s housing stock was built between the late 1980s and early 2000s during the area\'s first major residential boom. These homes are now entering the 25-to-40-year window where water heaters fail, supply line fittings corrode, and polybutylene or early PEX connections begin to leak. Older lakefront properties carry additional risk from outdated well and septic systems that back up during heavy rain. York County\'s red-clay Piedmont soil drains poorly, channeling stormwater runoff directly toward low-lying homes along the shoreline and cove inlets. Hurricane Helene in 2024 pushed lake levels well above normal pool elevation, flooding crawlspaces and ground-level structures across the community.' },
@@ -421,17 +417,13 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
-      { label: 'York, SC', href: '/water-damage-restoration-york-sc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' }
+      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Lake Wylie Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Lake Wylie, Tega Cay, and York County.',
     finalCta: 'Water Damage in Lake Wylie Right Now? We Are Ready.', contactHeading: 'Request a Lake Wylie Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
-    areaTitle: 'Your Local Water Damage Team in Lake Wylie', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just minutes from the Lake Wylie community.', areaInfoHeading: 'Fast Response Across Lake Wylie & York County', areaInfoBlurb: 'Our trucks reach all of Lake Wylie in under 25 minutes. Tega Cay, Clover, Fort Mill, Rock Hill, and south Charlotte metro in under an hour.',
+    areaTitle: 'Your Local Water Damage Team in Lake Wylie', areaSub: 'We are not a distant call center. We are locally owned and based in Fort Mill — just minutes from the Lake Wylie community.', areaInfoHeading: 'Fast Response Across Lake Wylie & York County', areaInfoBlurb: 'Our trucks reach all of Lake Wylie in under 25 minutes. Tega Cay, Clover, Fort Mill, and Rock Hill in under an hour.',
   },
   "charlotte-nc": {
     slug: 'charlotte-nc', name: 'Charlotte', state: 'NC',
@@ -499,7 +491,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Pineville, NC' },
       { tag: 'p', html: 'Water in your home and no idea what to do? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Pineville in about 15 to 25 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Pineville is a town of roughly 12,000 residents in southern Mecklenburg County, North Carolina, sitting right on the South Carolina state line about 8 miles from our Fort Mill headquarters. The area receives approximately 43 inches of rain per year, and 9% of properties face meaningful flood risk according to First Street Foundation data. McAlpine Creek and Little Sugar Creek tributaries cut through residential and commercial areas across Pineville, creating seasonal flooding pressure on homes and ground-level units. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Pineville and nearby <a href="/">Fort Mill</a>, <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
+      { tag: 'p', html: 'Pineville is a town of roughly 12,000 residents in southern Mecklenburg County, North Carolina, sitting right on the South Carolina state line about 8 miles from our Fort Mill headquarters. The area receives approximately 43 inches of rain per year, and 9% of properties face meaningful flood risk according to First Street Foundation data. McAlpine Creek and Little Sugar Creek tributaries cut through residential and commercial areas across Pineville, creating seasonal flooding pressure on homes and ground-level units. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Pineville and nearby <a href="/">Fort Mill</a>, Charlotte, and Indian Land.' },
       { tag: 'h3', html: 'Why Pineville Homes Are at Risk' },
       { tag: 'p', html: 'Pineville\'s housing stock is a mix of two eras that create very different water damage risks. The older core of town — along Pineville-Matthews Road and near downtown — contains 1970s and 1980s ranch homes and split-levels with original copper and galvanized plumbing well past its lifespan. These homes sit on crawlspace foundations over Mecklenburg County\'s clay-heavy Piedmont soil, which holds moisture against foundations year-round. Pinhole leaks, corroded fittings, and slow drips behind drywall are common in this housing stock.' },
       { tag: 'p', html: 'The newer side of Pineville — townhome communities and apartment complexes built along the Highway 51 and Park Road corridors during the 2010s retail boom — carries a different risk. Builder-grade PEX fittings, water heater connections, and dishwasher supply lines in these units are now entering their first failure window. Pineville\'s low-lying terrain along McAlpine Creek and its tributaries compounds the problem: stormwater runoff from the massive retail and commercial corridor concentrates in residential areas during heavy rain. Hurricane Helene in 2024 flooded crawlspaces, parking garages, and ground-level units across southern Mecklenburg County.' },
@@ -536,12 +528,8 @@ export const locations: Record<string, Location> = {
     nearby: [
       { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
-      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' }
+      { label: 'Ballantyne, NC', href: '/water-damage-restoration-ballantyne-nc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Pineville Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Pineville, Fort Mill, and Mecklenburg County.',
     finalCta: 'Water Damage in Pineville Right Now? We Are Ready.', contactHeading: 'Request a Pineville Inspection', contactDesc: 'Fill out this short form and our Pineville crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -556,7 +544,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Ballantyne, NC' },
       { tag: 'p', html: 'When a supply line snaps at 2 a.m. or overnight rain fills your crawlspace before sunrise, you need a live person on the phone — not a recording. Carolina Pro Restoration picks up every call around the clock and rolls a fully loaded crew to Ballantyne in 15 to 25 minutes via I-77 and Johnston Rd. We show up with truck-mounted extractors, commercial-grade dehumidifiers, and thermal imaging that pinpoints every hidden moisture pocket behind walls and under flooring. One phone call sets the entire project in motion. Dial <a href="tel:9802773700">980-277-3700</a> and we are on the way.' },
-      { tag: 'p', html: 'Ballantyne spans roughly 2,000 acres on Charlotte\'s southern edge in Mecklenburg County, sitting just north of the South Carolina state line. Over 25,000 residents call this master-planned community home, and the Charlotte metro averages about 44 inches of rainfall each year. Most of that runoff funnels through McMullen Creek and its network of tributaries, which cut directly through Ballantyne\'s subdivisions and greenway trails. When storms stall over south Charlotte, the creek surges quickly — and crawlspaces, finished basements, and ground-level rooms take on water before homeowners realize it. We respond to burst pipes, appliance overflows, <a href="/sewage-cleanup">sewage backups</a>, crawlspace flooding, and storm damage across Ballantyne and the surrounding areas of <a href="/water-damage-restoration-pineville-nc">Pineville</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
+      { tag: 'p', html: 'Ballantyne spans roughly 2,000 acres on Charlotte\'s southern edge in Mecklenburg County, sitting just north of the South Carolina state line. Over 25,000 residents call this master-planned community home, and the Charlotte metro averages about 44 inches of rainfall each year. Most of that runoff funnels through McMullen Creek and its network of tributaries, which cut directly through Ballantyne\'s subdivisions and greenway trails. When storms stall over south Charlotte, the creek surges quickly — and crawlspaces, finished basements, and ground-level rooms take on water before homeowners realize it. We respond to burst pipes, appliance overflows, <a href="/sewage-cleanup">sewage backups</a>, crawlspace flooding, and storm damage across Ballantyne and the surrounding areas of <a href="/water-damage-restoration-pineville-nc">Pineville</a>, <a href="/">Fort Mill</a>, and Charlotte.' },
       { tag: 'h3', html: 'Why Ballantyne Homes Are Vulnerable to Water Damage' },
       { tag: 'p', html: 'Around 8% of Ballantyne properties carry some degree of flood risk — and that number keeps inching upward. McMullen Creek threads through the center of the neighborhood, fed by tributaries draining from the subdivisions surrounding Ballantyne Commons Parkway and Johnston Road. During sustained downpours, the creek has jumped its banks from the Ballantyne Country Club area to communities near the Palisades. In August 2025, heavy rainfall swamped Johnston Road and Ballantyne Commons Parkway, closing streets and pushing water into homes along the creek corridor.' },
       { tag: 'p', html: 'Decades of rapid growth have made the problem worse. Most of Ballantyne was developed in the 1990s and 2000s on top of Piedmont red clay — a soil type that absorbs water slowly and channels runoff straight into the creek system. The sheer volume of rooftops, driveways, and commercial parking lots means stormwater reaches McMullen Creek faster than the channel was designed to carry. Homes in the lower-lying pockets near the greenway, especially those with slab foundations or finished basements, account for the majority of emergency calls we take from this area.' },
@@ -594,13 +582,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Ballantyne, NC', href: '/water-damage-restoration-ballantyne-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' }
+      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Ballantyne Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Ballantyne, south Charlotte, and the surrounding area.',
     finalCta: 'Water Damage in Ballantyne Right Now? We Are Ready.', contactHeading: 'Request a Ballantyne Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -615,7 +599,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Belmont, NC' },
       { tag: 'p', html: 'Water inside your house does not wait, and neither do we. Carolina Pro Restoration runs crews into Belmont from our Fort Mill headquarters every day and night of the year. Our average arrival time to Belmont is 40 to 50 minutes — and we show up loaded with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras so the job starts the same hour we arrive. Call <a href="tel:9802773700">980-277-3700</a> right now and we will get a team moving.' },
-      { tag: 'p', html: 'Belmont is a growing city of about 16,000 people in Gaston County, North Carolina, sitting on a peninsula between the Catawba River and the South Fork Catawba River. That location means water is never far away. The area gets roughly 43 inches of rain per year, and the dense Piedmont clay underneath most Belmont properties drains poorly. We respond to burst pipes, water heater failures, appliance leaks, <a href="/sewage-cleanup">sewage backups</a>, crawlspace flooding, and storm damage across Belmont and nearby <a href="/water-damage-restoration-mount-holly-nc">Mount Holly</a>, <a href="/water-damage-restoration-gastonia-nc">Gastonia</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
+      { tag: 'p', html: 'Belmont is a growing city of about 16,000 people in Gaston County, North Carolina, sitting on a peninsula between the Catawba River and the South Fork Catawba River. That location means water is never far away. The area gets roughly 43 inches of rain per year, and the dense Piedmont clay underneath most Belmont properties drains poorly. We respond to burst pipes, water heater failures, appliance leaks, <a href="/sewage-cleanup">sewage backups</a>, crawlspace flooding, and storm damage across Belmont and nearby <a href="/water-damage-restoration-mount-holly-nc">Mount Holly</a>, Gastonia, and Charlotte.' },
       { tag: 'h3', html: 'Why Belmont Homes Face Serious Water Damage Risk' },
       { tag: 'p', html: 'Belmont\'s housing stock spans more than a century. The old mill villages near downtown — built in the early 1900s through the 1940s — still use galvanized steel and cast iron drain lines that corrode and crack from the inside out. Many of these homes sit on pier-and-beam foundations where moisture collects underneath for weeks before anyone notices. A slow leak under one of these older homes can rot floor joists and feed mold growth before you ever see a stain on the ceiling.' },
       { tag: 'p', html: 'Newer subdivisions like McLean, Riverwalk, and the Villages at Cramerton Mills were built from the mid-2000s through today. These homes typically use PEX plumbing, but the Piedmont red clay soil they sit on creates a different problem. Clay expands when it gets wet and shrinks when it dries. That movement cracks foundations, pushes water against basement walls, and overwhelms French drains that were sized for normal rain — not the heavy downpours Gaston County gets several times a year. The Catawba River and South Fork Catawba River border the city on two sides, and both rose fast during Hurricane Helene in 2024, flooding low-lying areas near the water.' },
@@ -653,13 +637,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Belmont, NC', href: '/water-damage-restoration-belmont-nc' },
-      { label: 'Mount Holly, NC', href: '/water-damage-restoration-mount-holly-nc' },
-      { label: 'Gastonia, NC', href: '/water-damage-restoration-gastonia-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' }
+      { label: 'Mount Holly, NC', href: '/water-damage-restoration-mount-holly-nc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Belmont Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Belmont, Gaston County, and the surrounding area.',
     finalCta: 'Water Damage in Belmont Right Now? We Are Ready.', contactHeading: 'Request a Belmont Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -674,7 +654,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Matthews, NC' },
       { tag: 'p', html: 'Got water where it shouldn\'t be? We\'re Carolina Pro Restoration, and we\'re about 30 to 40 minutes from anywhere in Matthews. Our crew shows up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call. We answer the phone 24 hours a day, 7 days a week, including holidays. Call <a href="tel:9802773700">980-277-3700</a> and we\'ll dispatch a team right away.' },
-      { tag: 'p', html: 'Matthews sits in Mecklenburg County, North Carolina, where homes deal with around 44 inches of rain per year. That\'s close to the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Matthews and nearby <a href="/water-damage-restoration-mint-hill-nc">Mint Hill</a>, <a href="/water-damage-restoration-indian-trail-nc">Indian Trail</a>, and <a href="/water-damage-restoration-stallings-nc">Stallings</a>.' },
+      { tag: 'p', html: 'Matthews sits in Mecklenburg County, North Carolina, where homes deal with around 44 inches of rain per year. That\'s close to the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Matthews and nearby <a href="/water-damage-restoration-mint-hill-nc">Mint Hill</a>, Indian Trail, and Stallings.' },
       { tag: 'h3', html: 'Why Matthews Homes Are at Risk' },
       { tag: 'p', html: 'The mean year a Matthews home was built is 1991, according to the town\'s own housing assessment. That means a large share of homes are 30 to 50 years old, with plumbing, water heaters, and supply lines that are well past their expected lifespan. Many homes built in the 1970s through mid-1990s used polybutylene piping — a gray plastic pipe known for cracking and failing without warning. We get calls every month from Matthews homeowners who come home to water pouring from a wall or ceiling because a polybutylene fitting let go.' },
       { tag: 'p', html: 'Matthews also sits along Four Mile Creek and near McAlpine Creek, both of which rise fast during heavy rain. Tropical Storm Florence in 2018 pushed McAlpine Creek well above flood stage and sent water into homes and across roads in southeast Mecklenburg County. The clay-heavy soil in this area doesn\'t drain well, which means even moderate rain can pool around foundations and seep into basements and crawlspaces.' },
@@ -701,7 +681,7 @@ export const locations: Record<string, Location> = {
     ],
     faqTitle: 'Matthews Water Damage FAQs', faqSub: 'Answers for Matthews, Mint Hill, and Mecklenburg County homeowners.',
     faq: [
-      { q: 'How fast can you get to my house in Matthews?', a: 'Our crew is typically at your door in 30 to 40 minutes. We keep trucks running through Matthews, <a href="/water-damage-restoration-mint-hill-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Mint Hill</a>, and <a href="/water-damage-restoration-indian-trail-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Indian Trail</a> around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
+      { q: 'How fast can you get to my house in Matthews?', a: 'Our crew is typically at your door in 30 to 40 minutes. We keep trucks running through Matthews, Mint Hill, and Indian Trail around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
       { q: 'My Matthews home has polybutylene plumbing. Should I be worried?', a: 'Yes — polybutylene pipes installed from the 1970s through the mid-1990s are known to crack and fail without warning. Many Matthews homes still have them. Watch for a drop in water pressure, discolored water, or an unexplained jump in your water bill. If a pipe fails, shut off your main valve and call us immediately. We can extract the water, dry the structure, and rebuild the damaged areas.' },
       { q: 'Do you bill my homeowners insurance directly?', a: 'Yes. We write every estimate in Xactimate, the same software your adjuster uses. We document the damage with photos and daily moisture readings, talk to your adjuster directly, and bill your insurance company. On covered work you pay your deductible and nothing beyond it.' },
       { q: 'What should I do right now if a pipe bursts or my house is flooding?', a: 'First, find your main water shut-off valve and turn off the water. If it is safe, turn off electricity to the wet rooms at the breaker box. Do not walk through standing water near electrical outlets. Then call us right away at <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a>. We will dispatch a crew immediately.' },
@@ -712,13 +692,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Matthews, NC', href: '/water-damage-restoration-matthews-nc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Mint Hill, NC', href: '/water-damage-restoration-mint-hill-nc' },
-      { label: 'Indian Trail, NC', href: '/water-damage-restoration-indian-trail-nc' },
-      { label: 'Stallings, NC', href: '/water-damage-restoration-stallings-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Weddington, NC', href: '/water-damage-restoration-weddington-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Fort Mill, SC', href: '/' }
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Matthews Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Matthews, Mint Hill, and the surrounding area.',
     finalCta: 'Water Damage in Matthews Right Now? We Are Ready.', contactHeading: 'Request a Matthews Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -733,7 +709,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Mint Hill, NC' },
       { tag: 'p', html: 'Got water where it shouldn\'t be? We\'re Carolina Pro Restoration, and we\'re about 35 to 45 minutes from anywhere in Mint Hill. Our crew shows up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call. We answer the phone 24 hours a day, 7 days a week, including holidays. Call <a href="tel:9802773700">980-277-3700</a> and we\'ll dispatch a team right away.' },
-      { tag: 'p', html: 'Mint Hill sits in Mecklenburg County, North Carolina, where homes deal with around 44 inches of rain per year. That\'s above the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Mint Hill and nearby <a href="/water-damage-restoration-matthews-nc">Matthews</a>, <a href="/water-damage-restoration-indian-trail-nc">Indian Trail</a>, and <a href="/water-damage-restoration-stallings-nc">Stallings</a>.' },
+      { tag: 'p', html: 'Mint Hill sits in Mecklenburg County, North Carolina, where homes deal with around 44 inches of rain per year. That\'s above the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Mint Hill and nearby <a href="/water-damage-restoration-matthews-nc">Matthews</a>, Indian Trail, and Stallings.' },
       { tag: 'h3', html: 'Why Mint Hill Homes Are at Risk' },
       { tag: 'p', html: 'The median year a Mint Hill home was built is 1991. That means a large share of the housing stock is 30 to 50 years old, with plumbing, water heaters, and supply lines well past their expected lifespan. Many homes built between the late 1970s and mid-1990s used polybutylene piping — a gray plastic pipe known for cracking and failing without warning. We get calls every month from Mint Hill homeowners who find water pouring from a wall or ceiling because a polybutylene fitting gave out.' },
       { tag: 'p', html: 'Mint Hill also sits within the Goose Creek watershed. Goose Creek, Stevens Creek, and Duck Creek all run through or near town and rise fast during heavy rain. The clay-heavy soil in Mecklenburg County doesn\'t drain well, which means even moderate storms can pool water around foundations and push moisture into crawlspaces and basements. Homes along lower-lying areas near these creeks face the highest risk.' },
@@ -760,7 +736,7 @@ export const locations: Record<string, Location> = {
     ],
     faqTitle: 'Mint Hill Water Damage FAQs', faqSub: 'Answers for Mint Hill, Matthews, and Mecklenburg County homeowners.',
     faq: [
-      { q: 'How fast can you get to my house in Mint Hill?', a: 'Our crew is typically at your door in 35 to 45 minutes. We keep trucks running through Mint Hill, <a href="/water-damage-restoration-matthews-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Matthews</a>, and <a href="/water-damage-restoration-indian-trail-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Indian Trail</a> around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
+      { q: 'How fast can you get to my house in Mint Hill?', a: 'Our crew is typically at your door in 35 to 45 minutes. We keep trucks running through Mint Hill, Matthews, and Indian Trail around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
       { q: 'My Mint Hill home has polybutylene plumbing. Should I be worried?', a: 'Yes — polybutylene pipes installed from the late 1970s through the mid-1990s are known to crack and fail without warning. Many Mint Hill homes still have them. Watch for a drop in water pressure, discolored water, or an unexplained jump in your water bill. If a pipe fails, shut off your main valve and call us immediately. We can extract the water, dry the structure, and rebuild the damaged areas.' },
       { q: 'Do you bill my homeowners insurance directly?', a: 'Yes. We write every estimate in Xactimate, the same software your adjuster uses. We document the damage with photos and daily moisture readings, talk to your adjuster directly, and bill your insurance company. On covered work you pay your deductible and nothing beyond it.' },
       { q: 'What should I do right now if a pipe bursts or my house is flooding?', a: 'First, find your main water shut-off valve and turn off the water. If it is safe, turn off electricity to the wet rooms at the breaker box. Do not walk through standing water near electrical outlets. Then call us right away at <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a>. We will dispatch a crew immediately.' },
@@ -771,13 +747,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Mint Hill, NC', href: '/water-damage-restoration-mint-hill-nc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Matthews, NC', href: '/water-damage-restoration-matthews-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Indian Trail, NC', href: '/water-damage-restoration-indian-trail-nc' },
-      { label: 'Stallings, NC', href: '/water-damage-restoration-stallings-nc' },
-      { label: 'Monroe, NC', href: '/water-damage-restoration-monroe-nc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/' }
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Mint Hill Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Mint Hill, Matthews, and the surrounding area.',
     finalCta: 'Water Damage in Mint Hill Right Now? We Are Ready.', contactHeading: 'Request a Mint Hill Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -792,7 +764,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Mount Holly, NC' },
       { tag: 'p', html: 'When a pipe bursts at 3 a.m. or a storm fills your crawlspace by morning, you need people — not a voicemail. Carolina Pro Restoration answers every call live, 24 hours a day, and dispatches a fully equipped crew to Mount Holly in 40 to 50 minutes. We bring truck-mounted extractors, commercial-grade dehumidifiers, and thermal imaging to find every pocket of moisture hiding in your walls and floors. One call starts the entire job. Dial <a href="tel:9802773700">980-277-3700</a> and we will be on the way.' },
-      { tag: 'p', html: 'Mount Holly sits on the east side of Gaston County along the Catawba River, with Mountain Island Lake forming much of the city\'s eastern boundary. Nearly 18,000 people live here, and the area picks up about 44 inches of rain a year. That rain funnels through Dutchman\'s Creek, Stanley Creek, and dozens of smaller tributaries straight into the Catawba — and when the river runs high, the water has nowhere to go. We handle burst pipes, appliance overflows, <a href="/sewage-cleanup">sewage backups</a>, crawlspace flooding, and storm damage throughout Mount Holly and the neighboring communities of <a href="/water-damage-restoration-belmont-nc">Belmont</a>, <a href="/water-damage-restoration-gastonia-nc">Gastonia</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
+      { tag: 'p', html: 'Mount Holly sits on the east side of Gaston County along the Catawba River, with Mountain Island Lake forming much of the city\'s eastern boundary. Nearly 18,000 people live here, and the area picks up about 44 inches of rain a year. That rain funnels through Dutchman\'s Creek, Stanley Creek, and dozens of smaller tributaries straight into the Catawba — and when the river runs high, the water has nowhere to go. We handle burst pipes, appliance overflows, <a href="/sewage-cleanup">sewage backups</a>, crawlspace flooding, and storm damage throughout Mount Holly and the neighboring communities of <a href="/water-damage-restoration-belmont-nc">Belmont</a>, Gastonia, and Charlotte.' },
       { tag: 'h3', html: 'Why Mount Holly Has One of the Highest Flood Risk Rates in the Region' },
       { tag: 'p', html: 'About 17% of properties in Mount Holly face some level of flood risk — more than double the rate in many neighboring cities. The reason is geography. The Catawba River borders the city on the east, Mountain Island Lake sits to the northeast, and Dutchman\'s Creek cuts through the middle of town. During Hurricane Helene in September 2024, the Catawba crested to near-record levels. Mountain Island Lake rose so fast that Gaston County issued mandatory evacuations for shoreline homes. Water shoulder-deep filled houses near the lake, and some structures were pushed off their foundations entirely.' },
       { tag: 'p', html: 'Older parts of Mount Holly near downtown were built for the textile mills in the early 1900s. Those homes often have galvanized steel water lines and cast iron drains that have been corroding for decades. The newer subdivisions on the north and east side of the city sit on Piedmont red clay — soil that swells when it\'s wet, presses against foundations, and holds moisture against crawlspace walls long after the rain stops.' },
@@ -830,13 +802,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Mount Holly, NC', href: '/water-damage-restoration-mount-holly-nc' },
-      { label: 'Belmont, NC', href: '/water-damage-restoration-belmont-nc' },
-      { label: 'Gastonia, NC', href: '/water-damage-restoration-gastonia-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' }
+      { label: 'Belmont, NC', href: '/water-damage-restoration-belmont-nc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Mount Holly Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Mount Holly, Gaston County, and the surrounding area.',
     finalCta: 'Water Damage in Mount Holly Right Now? We Are Ready.', contactHeading: 'Request a Mount Holly Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -851,7 +819,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Monroe, NC' },
       { tag: 'p', html: 'Water in your house and no idea what to do next? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Monroe in about 35 to 45 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Monroe is the Union County seat with over 40,000 residents and a housing stock that goes back to the early 1900s in some neighborhoods. The area gets around 45 inches of rain per year, and about 10% of properties face flood risk over the next 30 years according to First Street Foundation data. Richardson Creek and its tributaries cut through the city and have a documented history of overflowing during heavy storms. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Monroe and nearby <a href="/water-damage-restoration-indian-trail-nc">Indian Trail</a>, <a href="/water-damage-restoration-weddington-nc">Weddington</a>, and <a href="/water-damage-restoration-waxhaw-nc">Waxhaw</a>.' },
+      { tag: 'p', html: 'Monroe is the Union County seat with over 40,000 residents and a housing stock that goes back to the early 1900s in some neighborhoods. The area gets around 45 inches of rain per year, and about 10% of properties face flood risk over the next 30 years according to First Street Foundation data. Richardson Creek and its tributaries cut through the city and have a documented history of overflowing during heavy storms. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Monroe and nearby <a href="/water-damage-restoration-indian-trail-nc">Indian Trail</a>, Weddington, and Waxhaw.' },
       { tag: 'h3', html: 'Why Monroe Homes Are at Risk' },
       { tag: 'p', html: 'Monroe\'s housing stock is a mix of everything. Downtown and the South Monroe Historic District have homes from the 1920s through the 1960s with original galvanized and cast-iron plumbing that corrodes from the inside out. Neighborhoods like Parkside were built in the late 1980s with early polybutylene and CPVC supply lines now well past their expected lifespan. And Monroe\'s rapid growth over the last decade has added thousands of new homes with builder-grade PEX fittings, water heater connections, and appliance hookups that are entering their first failure window.' },
       { tag: 'p', html: 'Monroe also sits in the Rocky River watershed. Richardson Creek runs through the city and has flooded roads, yards, and crawlspaces during heavy storms — including documented sewer overflows into the creek. Union County\'s red-clay soil holds water against foundations instead of draining it away, which means even moderate rain can push moisture into basements and crawlspaces.' },
@@ -878,7 +846,7 @@ export const locations: Record<string, Location> = {
     ],
     faqTitle: 'Monroe Water Damage FAQs', faqSub: 'Answers for Monroe, Indian Trail, and Union County homeowners.',
     faq: [
-      { q: 'How fast can you get to my house in Monroe?', a: 'Our crew is typically at your door in 35 to 45 minutes. We keep trucks running through Monroe, <a href="/water-damage-restoration-indian-trail-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Indian Trail</a>, and <a href="/water-damage-restoration-weddington-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Weddington</a> around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
+      { q: 'How fast can you get to my house in Monroe?', a: 'Our crew is typically at your door in 35 to 45 minutes. We keep trucks running through Monroe, Indian Trail, and Weddington around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
       { q: 'My home near downtown Monroe has old galvanized plumbing. Should I be worried?', a: 'Yes — galvanized steel pipes installed before the 1970s corrode from the inside out and are the leading cause of burst pipes and slab leaks in older Monroe homes. Watch for rusty water, low pressure, or discolored spots on walls. If a pipe fails, shut off your main valve and call us immediately. We can extract the water, dry the structure, and rebuild the damaged areas.' },
       { q: 'Do you bill my homeowners insurance directly?', a: 'Yes. We write every estimate in Xactimate, the same software your adjuster uses. We document the damage with photos and daily moisture readings, talk to your adjuster directly, and bill your insurance company. On covered work you pay your deductible and nothing beyond it.' },
       { q: 'What should I do right now if a pipe bursts or my house is flooding?', a: 'First, find your main water shut-off valve and turn off the water. If it is safe, turn off electricity to the wet rooms at the breaker box. Do not walk through standing water near electrical outlets. Then call us right away at <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a>. We will dispatch a crew immediately.' },
@@ -889,13 +857,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Monroe, NC', href: '/water-damage-restoration-monroe-nc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Indian Trail, NC', href: '/water-damage-restoration-indian-trail-nc' },
-      { label: 'Weddington, NC', href: '/water-damage-restoration-weddington-nc' },
-      { label: 'Stallings, NC', href: '/water-damage-restoration-stallings-nc' },
-      { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
-      { label: 'Matthews, NC', href: '/water-damage-restoration-matthews-nc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/' }
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Monroe Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Monroe, Indian Trail, and the surrounding area.',
     finalCta: 'Water Damage in Monroe Right Now? We Are Ready.', contactHeading: 'Request a Monroe Inspection', contactDesc: 'Fill out this short form and our Monroe crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -910,7 +874,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Stallings, NC' },
       { tag: 'p', html: 'Got water where it shouldn\'t be? We\'re Carolina Pro Restoration, and we\'re about 35 to 45 minutes from anywhere in Stallings. Our crew shows up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call. We answer the phone 24 hours a day, 7 days a week, including holidays. Call <a href="tel:9802773700">980-277-3700</a> and we\'ll dispatch a team right away.' },
-      { tag: 'p', html: 'Stallings sits in Union County, North Carolina, where homes deal with around 44 inches of rain per year. That\'s more than the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Stallings and nearby <a href="/water-damage-restoration-indian-trail-nc">Indian Trail</a>, <a href="/water-damage-restoration-matthews-nc">Matthews</a>, and <a href="/water-damage-restoration-waxhaw-nc">Waxhaw</a>.' },
+      { tag: 'p', html: 'Stallings sits in Union County, North Carolina, where homes deal with around 44 inches of rain per year. That\'s more than the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Stallings and nearby <a href="/water-damage-restoration-indian-trail-nc">Indian Trail</a>, Matthews, and Waxhaw.' },
       { tag: 'h3', html: 'Why Stallings Homes Are at Risk' },
       { tag: 'p', html: 'Stallings grew fast between the mid-1990s and mid-2000s. The median home was built in 2002, and nearly 20% of the housing stock dates back before 1990. Older subdivisions like Stallings Park and Stevens Mill used copper and galvanized plumbing that corrodes from the inside over decades. Newer neighborhoods like Stonewood and Wendover at Curry Place went up during the era of early CPVC and PEX fittings that can fail after 15 to 20 years. We get calls from both ends of the timeline — old pipes that finally give out and newer fittings that crack at the joints.' },
       { tag: 'p', html: 'Stallings also sits in the Crooked Creek watershed, which runs through the heart of town. After heavy rain, Crooked Creek and its tributaries rise fast. The town\'s own stormwater department deals with erosion, sinkholes, and occasional flooding along natural drainage paths. The clay-heavy Union County soil doesn\'t drain well, which means even moderate rain can pool around foundations and push moisture into crawlspaces.' },
@@ -937,7 +901,7 @@ export const locations: Record<string, Location> = {
     ],
     faqTitle: 'Stallings Water Damage FAQs', faqSub: 'Answers for Stallings, Indian Trail, and Union County homeowners.',
     faq: [
-      { q: 'How fast can you get to my house in Stallings?', a: 'Our crew is typically at your door in 35 to 45 minutes. We run trucks through Stallings, <a href="/water-damage-restoration-indian-trail-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Indian Trail</a>, and <a href="/water-damage-restoration-matthews-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Matthews</a> around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
+      { q: 'How fast can you get to my house in Stallings?', a: 'Our crew is typically at your door in 35 to 45 minutes. We run trucks through Stallings, Indian Trail, and Matthews around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
       { q: 'My home in Stallings was built in the late 1990s. Is my plumbing at risk?', a: 'Yes — homes built between the mid-1990s and early 2000s in Stallings often used early CPVC or polybutylene supply lines that get brittle and crack over time. We get calls from neighborhoods like Stonewood and Stevens Mill regularly for supply line failures behind walls. Watch for low water pressure, warm spots on walls, or a rising water bill. If a line fails, shut off your main valve and call us immediately. We can extract the water, dry the structure, and rebuild the damaged areas.' },
       { q: 'Do you bill my homeowners insurance directly?', a: 'Yes. We write every estimate in Xactimate, the same software your adjuster uses. We document the damage with photos and daily moisture readings, talk to your adjuster directly, and bill your insurance company. On covered work you pay your deductible and nothing beyond it.' },
       { q: 'What should I do right now if a pipe bursts or my house is flooding?', a: 'First, find your main water shut-off valve and turn off the water. If it is safe, turn off electricity to the wet rooms at the breaker box. Do not walk through standing water near electrical outlets. Then call us right away at <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a>. We will dispatch a crew immediately.' },
@@ -948,13 +912,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Stallings, NC', href: '/water-damage-restoration-stallings-nc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Indian Trail, NC', href: '/water-damage-restoration-indian-trail-nc' },
-      { label: 'Matthews, NC', href: '/water-damage-restoration-matthews-nc' },
-      { label: 'Monroe, NC', href: '/water-damage-restoration-monroe-nc' },
-      { label: 'Weddington, NC', href: '/water-damage-restoration-weddington-nc' },
-      { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/' }
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Stallings Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Stallings, Indian Trail, and the surrounding area.',
     finalCta: 'Water Damage in Stallings Right Now? We Are Ready.', contactHeading: 'Request a Stallings Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -969,7 +929,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Waxhaw, NC' },
       { tag: 'p', html: 'Water spreading through your home and you don\'t know where to start? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Waxhaw in about 20 to 35 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Waxhaw is a fast-growing town of roughly 20,500 residents in southern Union County, North Carolina, about 15 miles east of our Fort Mill headquarters via Highway 16 and Highway 75. The area receives approximately 44 inches of rain per year, and 9.1% of properties — around 743 — face meaningful flood risk according to First Street Foundation data. Twelvemile Creek and its tributaries cut through residential areas across western Waxhaw, creating seasonal flooding pressure on homes built near low-lying land. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Waxhaw and nearby <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, <a href="/">Fort Mill</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
+      { tag: 'p', html: 'Waxhaw is a fast-growing town of roughly 20,500 residents in southern Union County, North Carolina, about 15 miles east of our Fort Mill headquarters via Highway 16 and Highway 75. The area receives approximately 44 inches of rain per year, and 9.1% of properties — around 743 — face meaningful flood risk according to First Street Foundation data. Twelvemile Creek and its tributaries cut through residential areas across western Waxhaw, creating seasonal flooding pressure on homes built near low-lying land. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Waxhaw and nearby <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, <a href="/">Fort Mill</a>, and Charlotte.' },
       { tag: 'h3', html: 'Why Waxhaw Homes Are at Risk' },
       { tag: 'p', html: 'Waxhaw has experienced explosive growth over the past two decades, and the housing stock reflects it. The majority of homes were built between 2003 and 2020 during the town\'s rapid expansion from a rural crossroads into one of Union County\'s largest communities. These homes are now 5 to 22 years old — entering the window where builder-grade water heaters fail, PEX fittings and supply line connections deteriorate, and dishwasher and washing machine hoses give out. Subdivisions like Cureton, Providence Downs, Millbridge, and Kensington experienced some of the fastest build-out timelines in the Charlotte metro, meaning entire streets have plumbing of the same age hitting the same failure point.' },
       { tag: 'p', html: 'Waxhaw also sits on Union County\'s red-clay Piedmont soil, which absorbs water poorly and channels runoff toward foundations and crawlspaces during heavy rain. Twelvemile Creek\'s floodplain winds through the western side of town, and newer subdivisions built on graded farmland often have drainage issues that weren\'t apparent during construction. Hurricane Helene in 2024 saturated the region, flooding crawlspaces and overwhelming storm drains across southern Union County.' },
@@ -1009,13 +969,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' },
-      { label: 'Tega Cay, SC', href: '/water-damage-restoration-tega-cay-sc' },
-      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' }
+      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Waxhaw Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Waxhaw, Marvin, and Union County.',
     finalCta: 'Water Damage in Waxhaw Right Now? We Are Ready.', contactHeading: 'Request a Waxhaw Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -1030,7 +986,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Weddington, NC' },
       { tag: 'p', html: 'Water spreading through your home and you don\'t know where to start? Call <a href="tel:9802773700">980-277-3700</a>. We\'re Carolina Pro Restoration, and our crew can be at your door in Weddington in about 25 to 35 minutes. We show up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call.' },
-      { tag: 'p', html: 'Weddington is a growing town of about 14,400 residents in southern Union County, North Carolina, about 13 miles from our Fort Mill headquarters. The area gets around 44 inches of rain per year, and 7.9% of properties face flood risk over the next 30 years according to First Street Foundation data. The East Fork of Twelvemile Creek cuts through residential areas across Weddington, creating flooding pressure on homes built near low-lying land. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Weddington and nearby <a href="/water-damage-restoration-waxhaw-nc">Waxhaw</a>, <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
+      { tag: 'p', html: 'Weddington is a growing town of about 14,400 residents in southern Union County, North Carolina, about 13 miles from our Fort Mill headquarters. The area gets around 44 inches of rain per year, and 7.9% of properties face flood risk over the next 30 years according to First Street Foundation data. The East Fork of Twelvemile Creek cuts through residential areas across Weddington, creating flooding pressure on homes built near low-lying land. We handle burst pipes, water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Weddington and nearby <a href="/water-damage-restoration-waxhaw-nc">Waxhaw</a>, Indian Land, and Charlotte.' },
       { tag: 'h3', html: 'Why Weddington Homes Are at Risk' },
       { tag: 'p', html: 'Weddington\'s housing stock is mostly from the late 1990s through the 2010s, with a median build year around 1998. Older neighborhoods like Weddington Heights and Longview used early CPVC supply lines that get brittle over time and crack without warning — especially in unconditioned attics and crawl spaces. Newer luxury subdivisions like Bromley, Atherton, and The Falls at Weddington have homes worth over $1 million with high-end finishes where every hour of unchecked water drives up repair costs fast. Builder-grade water heater connections and appliance fittings in these homes are now entering their first failure window.' },
       { tag: 'p', html: 'Weddington also sits on Union County\'s red-clay soil, which holds water against foundations instead of draining it away. The East Fork of Twelvemile Creek runs through town and has a documented history of flooding nearby homes during heavy storms. Hurricane Helene in 2024 saturated the region and overwhelmed storm drains across southern Union County.' },
@@ -1057,7 +1013,7 @@ export const locations: Record<string, Location> = {
     ],
     faqTitle: 'Weddington Water Damage FAQs', faqSub: 'Answers for Weddington, Waxhaw, and Union County homeowners.',
     faq: [
-      { q: 'How fast can you get to my house in Weddington?', a: 'Our crew is typically at your door in 25 to 35 minutes. We keep trucks running through Weddington, <a href="/water-damage-restoration-waxhaw-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Waxhaw</a>, and <a href="/water-damage-restoration-indian-land-sc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Indian Land</a> around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
+      { q: 'How fast can you get to my house in Weddington?', a: 'Our crew is typically at your door in 25 to 35 minutes. We keep trucks running through Weddington, Waxhaw, and Indian Land around the clock. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
       { q: 'My home in Weddington Heights has early CPVC plumbing. Should I be worried?', a: 'Yes — early CPVC supply lines installed between 1999 and 2008 get brittle over time and crack without warning. We get calls from Weddington Heights and Longview regularly for supply line failures behind walls. Watch for low water pressure or damp spots on walls. If a line cracks, shut off your main valve and call us immediately. We can extract the water, dry the structure, and rebuild the damaged areas.' },
       { q: 'Do you bill my homeowners insurance directly?', a: 'Yes. We write every estimate in Xactimate, the same software your adjuster uses. We document the damage with photos and daily moisture readings, talk to your adjuster directly, and bill your insurance company. On covered work you pay your deductible and nothing beyond it.' },
       { q: 'What should I do right now if a pipe bursts or my house is flooding?', a: 'First, find your main water shut-off valve and turn off the water. If it is safe, turn off electricity to the wet rooms at the breaker box. Do not walk through standing water near electrical outlets. Then call us right away at <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a>. We will dispatch a crew immediately.' },
@@ -1068,13 +1024,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Weddington, NC', href: '/water-damage-restoration-weddington-nc' },
+      { label: 'Fort Mill, SC', href: '/' },
       { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
-      { label: 'Stallings, NC', href: '/water-damage-restoration-stallings-nc' },
-      { label: 'Indian Trail, NC', href: '/water-damage-restoration-indian-trail-nc' },
-      { label: 'Matthews, NC', href: '/water-damage-restoration-matthews-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
-      { label: 'Fort Mill, SC', href: '/' }
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Weddington Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Weddington, Waxhaw, and the surrounding area.',
     finalCta: 'Water Damage in Weddington Right Now? We Are Ready.', contactHeading: 'Request a Weddington Inspection', contactDesc: 'Fill out this short form and our Weddington crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -1089,7 +1041,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Indian Trail, NC' },
       { tag: 'p', html: 'Got water where it shouldn\'t be? We\'re Carolina Pro Restoration, and we\'re about 35 to 45 minutes from anywhere in Indian Trail. Our crew shows up with truck-mounted extractors, commercial dehumidifiers, and FLIR thermal imaging cameras — everything needed to stop the damage and start drying your home the same hour you call. We answer the phone 24 hours a day, 7 days a week, including holidays. Call <a href="tel:9802773700">980-277-3700</a> and we\'ll dispatch a team right away.' },
-      { tag: 'p', html: 'Indian Trail sits in Union County, North Carolina, where homes deal with around 45 inches of rain per year. That\'s above the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Indian Trail and nearby <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>, <a href="/water-damage-restoration-waxhaw-nc">Waxhaw</a>, and <a href="/water-damage-restoration-indian-land-sc">Indian Land</a>.' },
+      { tag: 'p', html: 'Indian Trail sits in Union County, North Carolina, where homes deal with around 45 inches of rain per year. That\'s above the national average, and it keeps our phones ringing. We handle burst pipes, hot water heater failures, washing machine overflows, toilet supply line breaks, <a href="/sewage-cleanup">sewage backups</a>, and storm flooding throughout Indian Trail and nearby Charlotte, Waxhaw, and Indian Land.' },
       { tag: 'h3', html: 'Why Indian Trail Homes Are at Risk' },
       { tag: 'p', html: 'Indian Trail has grown fast. The town jumped from around 11,000 people in 2000 to over 43,000 today, and most of the housing was built during that boom. Subdivisions like Sun Valley, Hemby Acres, and Hemby Bridge went up in the late 1990s and early 2000s when polybutylene and early CPVC plumbing were still common. Those materials break down over time, and we get calls every month from these neighborhoods for supply line failures behind walls and under slab foundations.' },
       { tag: 'p', html: 'Indian Trail also sits in the Goose Creek and Crooked Creek watersheds — two waterways that rise fast during heavy rain. NOAA gauges along Goose Creek have hit flood stage multiple times, pushing water into yards, garages, and ground-level rooms. The clay-heavy Union County soil holds water against foundations for days, which means even a moderate storm can lead to crawlspace flooding and moisture problems underneath your home.' },
@@ -1127,13 +1079,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Indian Trail, NC', href: '/water-damage-restoration-indian-trail-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Waxhaw, NC', href: '/water-damage-restoration-waxhaw-nc' },
-      { label: 'Indian Land, SC', href: '/water-damage-restoration-indian-land-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Lancaster, SC', href: '/water-damage-restoration-lancaster-sc' },
-      { label: 'Rock Hill, SC', href: '/water-damage-restoration-rock-hill-sc' }
+      { label: 'Stallings, NC', href: '/water-damage-restoration-stallings-nc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Indian Trail Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Indian Trail, Stallings, and the surrounding area.',
     finalCta: 'Water Damage in Indian Trail Right Now? We Are Ready.', contactHeading: 'Request a Indian Trail Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
@@ -1148,7 +1096,7 @@ export const locations: Record<string, Location> = {
     body: [
       { tag: 'h2', html: '24/7 Water Damage Restoration in Gastonia, NC' },
       { tag: 'p', html: 'Gastonia is the biggest city in Gaston County — over 85,000 people — and it has some of the oldest housing stock on this side of Charlotte. When a pipe breaks at 2 a.m. or a storm pushes creek water into your crawlspace, you need someone local and fast. We\'re Carolina Pro Restoration. We dispatch out of Fort Mill and get to Gastonia in 35 to 45 minutes. Call <a href="tel:9802773700">980-277-3700</a> and a real person picks up, day or night.' },
-      { tag: 'p', html: 'Gaston County averages about 44 inches of rain a year. That rain feeds Long Creek and Catawba Creek, two waterways that cut through the middle of the city and jump their banks during hard storms. On top of that, roughly 8% of Gastonia properties sit in a flood-risk zone according to First Street Foundation. We deal with everything from <a href="/burst-pipe-repair">burst pipes</a> and water heater blowouts to <a href="/sewage-cleanup">sewage backups</a> and full-on storm flooding. We also cover <a href="/water-damage-restoration-belmont-nc">Belmont</a>, <a href="/water-damage-restoration-mount-holly-nc">Mount Holly</a>, and <a href="/water-damage-restoration-charlotte-nc">Charlotte</a>.' },
+      { tag: 'p', html: 'Gaston County averages about 44 inches of rain a year. That rain feeds Long Creek and Catawba Creek, two waterways that cut through the middle of the city and jump their banks during hard storms. On top of that, roughly 8% of Gastonia properties sit in a flood-risk zone according to First Street Foundation. We deal with everything from <a href="/burst-pipe-repair">burst pipes</a> and water heater blowouts to <a href="/sewage-cleanup">sewage backups</a> and full-on storm flooding. We also cover <a href="/water-damage-restoration-belmont-nc">Belmont</a>, Mount Holly, and Charlotte.' },
       { tag: 'h3', html: 'Why Gastonia\'s Housing Stock Is a Ticking Clock' },
       { tag: 'p', html: 'The median home in Gastonia was built in 1979. That puts the average house at over 45 years old. A huge chunk of the city — about a third of all housing — was built before 1960. These are homes with galvanized steel water lines, cast-iron drains, and clay sewer laterals that crack underground where you can\'t see them. Neighborhoods like York-Chester and Brookwood have plumbing from the 1920s and 1930s that was never designed to last this long.' },
       { tag: 'p', html: 'Then there\'s the soil. Gaston County sits on Piedmont red clay that holds water like a bowl. After a heavy rain, that clay pushes moisture against your foundation walls and into your crawlspace for days. NOAA tracks a flood gauge on Catawba Creek at East Hudson Boulevard in southwest Gastonia — it hit flood stage in July 2024 and again during Hurricane Helene in September 2024. If you live anywhere near that creek or the South Fork Catawba River on the west side of town, you already know how fast the water rises.' },
@@ -1175,7 +1123,7 @@ export const locations: Record<string, Location> = {
     ],
     faqTitle: 'Gastonia Water Damage FAQs', faqSub: 'Answers for Gastonia, Belmont, and Gaston County homeowners.',
     faq: [
-      { q: 'How fast can you get to my house in Gastonia?', a: 'We typically arrive in 35 to 45 minutes. We dispatch from Fort Mill and cover all of Gaston County around the clock. We also serve nearby <a href="/water-damage-restoration-belmont-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Belmont</a> and <a href="/water-damage-restoration-mount-holly-nc" style="color:#d32f2f;text-decoration:none;font-weight:600;">Mount Holly</a>. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
+      { q: 'How fast can you get to my house in Gastonia?', a: 'We typically arrive in 35 to 45 minutes. We dispatch from Fort Mill and cover all of Gaston County around the clock. We also serve nearby Belmont and Mount Holly. Call <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a> any time — we answer 24/7.' },
       { q: 'My Gastonia home was built before 1980. Is my plumbing at risk?', a: 'Very likely. The median Gastonia home was built in 1979, and about a third of the city\'s housing went up before 1960. That means galvanized steel supply lines, cast-iron drains, and in the oldest neighborhoods like York-Chester, clay sewer laterals that crack underground. If you notice rusty water, low pressure, or wet spots along a baseboard, call us before a full break happens.' },
       { q: 'Do you bill my homeowners insurance directly?', a: 'Yes. We write every estimate in Xactimate, the same software your adjuster uses. We document the damage with photos and daily moisture readings, talk to your adjuster directly, and bill your insurance company. On covered work you pay your deductible and nothing beyond it.' },
       { q: 'What should I do right now if a pipe bursts or my house is flooding?', a: 'First, find your main water shut-off valve and turn off the water. If it is safe, turn off electricity to the wet rooms at the breaker box. Do not walk through standing water near electrical outlets. Then call us right away at <a href="tel:9802773700" style="color:#d32f2f;text-decoration:none;font-weight:600;">980-277-3700</a>. We will dispatch a crew immediately.' },
@@ -1186,13 +1134,9 @@ export const locations: Record<string, Location> = {
     ],
     nearby: [
       { label: 'Gastonia, NC', href: '/water-damage-restoration-gastonia-nc' },
-      { label: 'Belmont, NC', href: '/water-damage-restoration-belmont-nc' },
-      { label: 'Mount Holly, NC', href: '/water-damage-restoration-mount-holly-nc' },
-      { label: 'Charlotte, NC', href: '/water-damage-restoration-charlotte-nc' },
-      { label: 'Pineville, NC', href: '/water-damage-restoration-pineville-nc' },
-      { label: 'Clover, SC', href: '/water-damage-restoration-clover-sc' },
       { label: 'Fort Mill, SC', href: '/' },
-      { label: 'Lake Wylie, SC', href: '/water-damage-restoration-lake-wylie-sc' }
+      { label: 'Belmont, NC', href: '/water-damage-restoration-belmont-nc' },
+      { label: 'All Service Areas', href: '/service-areas' }
     ],
     reviewsTitle: 'What Gastonia Homeowners Say', reviewsSub: 'Real reviews from homeowners and property managers in Gastonia, Belmont, and Gaston County.',
     finalCta: 'Water Damage in Gastonia Right Now? We Are Ready.', contactHeading: 'Request a Gastonia Inspection', contactDesc: 'Fill out this short form and our crew will call you back fast. For emergencies, call us directly — we pick up 24/7.',
