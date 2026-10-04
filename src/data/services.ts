@@ -82,10 +82,10 @@ export const services: Service[] = [
     navLabel: "Mold Removal",
     gridTitle: "Mold Removal",
     group: "moisture",
-    title: "Mold Removal & Remediation | Fort Mill & Charlotte",
-    h1Lines: ["Mold Removal in Fort Mill & Charlotte"],
+    title: "Mold Removal Fort Mill, SC | Carolina Pro Restoration",
+    h1Lines: ["Mold Removal in Fort Mill, SC"],
     metaDescription:
-      "Full containment, HEPA air scrubbing, post-remediation air testing & complete rebuild. IICRC certified. Fort Mill & Charlotte 24/7. (980) 277-3700.",
+      "Full containment, HEPA air scrubbing, post-remediation air testing & complete rebuild. IICRC certified. Fort Mill, SC 24/7. (980) 277-3700.",
   },
   {
     slug: "duct-cleaning",
