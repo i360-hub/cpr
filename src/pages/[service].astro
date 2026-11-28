@@ -79,14 +79,14 @@ const heroImg = heroImages[service] ?? heroGeneral;
 // Real on-the-job photo + blurb, per service.
 const actionShots: Record<string, { img: ImageMetadata; alt: string; heading: string; text: string }> = {
   "water-damage-restoration": { img: imgWaterExtraction, alt: "Carolina Pro Restoration technician extracting water from a home in Fort Mill, SC", heading: "We pull the water out — then dry it right", text: "Truck-mounted extraction, commercial air movers and dehumidifiers, and daily moisture readings until the structure is verified dry." },
-  "storm-damage": { img: imgStormMuckout, alt: "Carolina Pro Restoration technicians in hard hats clearing flood debris from a storm-damaged building", heading: "When the storm hits hard, we show up", text: "Flood muck-outs, fallen-tree and wind damage, emergency tarping and board-up — then the full rebuild. One IICRC-certified crew from the first debris haul to the final coat of paint." },
+  "storm-damage": { img: imgStormMuckout, alt: "Carolina Pro Restoration technicians in hard hats clearing flood debris from a storm-damaged building", heading: "When the storm hits hard, we show up", text: "Flood muck-outs, fallen-tree and wind damage, emergency tarping and board-up, then the full rebuild. One IICRC-certified crew from the first debris haul to the final coat of paint." },
   "sewage-cleanup": { img: imgFloodCrew, alt: "Technician removing contaminated water and debris in protective gear", heading: "Biohazard-safe sewage cleanup", text: "We remove the contaminated water and ruined materials in full PPE, disinfect every surface, dry the space, and rebuild what we tear out." },
-  "burst-pipe-repair": { img: imgWaterRepair, alt: "Technician opening a wall to repair burst-pipe water damage", heading: "Find the water, dry it, fix the damage", text: "We open the wall, dry the cavity, and repair everything the burst pipe touched — drywall, cabinets, and flooring." },
+  "burst-pipe-repair": { img: imgWaterRepair, alt: "Technician opening a wall to repair burst-pipe water damage", heading: "Find the water, dry it, fix the damage", text: "We open the wall, dry the cavity, and repair everything the burst pipe touched: drywall, cabinets, and flooring." },
   "basement-flooding": { img: imgFloodTech, alt: "Technician working in a flooded lower level", heading: "Pumped out, dried, and rebuilt", text: "Submersible pumps, full structural drying, and mold-prevention treatment for flooded basements and lower levels." },
   "mold-removal": { img: imgMoldPpe, alt: "Mold remediation specialist in full PPE treating a wall", heading: "IICRC-certified mold remediation", text: "Containment, HEPA air scrubbing, safe removal of affected materials, and fixing the moisture source so the mold does not come back." },
-  "duct-cleaning": { img: imgDuct, alt: "Technician cleaning HVAC ductwork", heading: "Cleaner air, whole-system clean", text: "We clean the full HVAC system and ductwork — not just one vent — to clear out mold, dust, pet dander, and allergens." },
+  "duct-cleaning": { img: imgDuct, alt: "Technician cleaning HVAC ductwork", heading: "Cleaner air, whole-system clean", text: "We clean the full HVAC system and ductwork, not just one vent, to clear out mold, dust, pet dander, and allergens." },
   "crawlspace": { img: imgCrawlVapor, alt: "Sealed crawl space with a heavy vapor barrier", heading: "A dry crawl space, sealed for good", text: "Standing water and debris removal, a heavy sealed vapor barrier, a right-sized dehumidifier, and mold and wood-rot treatment." },
-  "waterproofing": { img: imgCrawlFlood, alt: "Wet crawl space being waterproofed", heading: "Stop the water at the source", text: "We find exactly where water gets in and seal it — interior drains, sump pumps, crawl space sealing, and foundation waterproofing." },
+  "waterproofing": { img: imgCrawlFlood, alt: "Wet crawl space being waterproofed", heading: "Stop the water at the source", text: "We find exactly where water gets in and seal it: interior drains, sump pumps, crawl space sealing, and foundation waterproofing." },
 };
 const actionShot = actionShots[service];
 
@@ -167,8 +167,8 @@ const serviceSchema = {
       beforeAlt="Kitchen torn out during water damage restoration in Fort Mill, SC"
       afterAlt="The same kitchen fully restored and rebuilt"
       title="A Real Water Damage Rebuild"
-      sub="A Fort Mill kitchen — from tear-out and structural drying to a finished rebuild."
-      caption="Tear-out and drying (left) through complete rebuild (right) — Fort Mill, SC."
+      sub="A Fort Mill kitchen, from tear-out and structural drying to a finished rebuild."
+      caption="Fort Mill, SC: tear-out and drying (left) through complete rebuild (right)."
       ratio="1 / 1"
       afterPos="center 78%"
     />
@@ -191,7 +191,7 @@ const serviceSchema = {
   {townLinks.length > 0 && (
     <RelatedServices
       title="Mold Removal by Town"
-      sub="Local mold removal pages for the towns we serve most — each one covers what actually causes mold in that town, what it costs, and the free inspection."
+      sub="Local mold removal pages for the towns we serve most. Each one covers what causes mold in that town, what it costs, and the free inspection."
       cards={townLinks}
     />
   )}
