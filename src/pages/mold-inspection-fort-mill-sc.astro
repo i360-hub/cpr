@@ -3,10 +3,8 @@
 // and "mold testing fort mill sc" (GSC + live results, Nov 28 2026). Links up to the
 // /mold-removal hub and across to /mold-removal-fort-mill-sc.
 //
-// Pricing is deliberately left off this page. The site elsewhere offers a free
-// inspection, and the office has quoted mold testing at a range that depends on
-// rooms; until the owner confirms what is free and what is paid, this page only
-// says the price comes in writing before work starts.
+// The inspection is free; lab testing is billed separately (John, Nov 28 2026).
+// No testing price is named here until the owner confirms the current figure.
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/widgets/Hero.astro";
 import LocalContent from "@components/widgets/LocalContent.astro";
@@ -27,15 +25,15 @@ const path = "/mold-inspection-fort-mill-sc";
 const origin = Astro.site!.toString().replace(/\/$/, "");
 const pageUrl = `${origin}${path}`;
 
-const title = "Mold Inspection Fort Mill SC | Carolina Pro Restoration";
+const title = "Mold Inspection Fort Mill SC | Free | Carolina Pro";
 const description =
-  "Mold inspection in Fort Mill, SC from our local IICRC-certified crew. Moisture meters, thermal imaging, and lab testing when needed. Call (980) 277-3700.";
+  "Mold inspection in Fort Mill, SC is free from our local IICRC-certified crew. Moisture meters and thermal imaging; lab testing billed separately. Call (980) 277-3700.";
 
 const intro = [
   { tag: "h2", html: "Mold Inspection and Testing in Fort Mill, SC" },
   {
     tag: "p",
-    html: 'Our mold inspection in Fort Mill, SC starts from our own shop at 3650 Centre Circle, Suite I, here in Fort Mill. We are <a href="/about-carolina-pro-restoration">Carolina Pro Restoration</a>, an IICRC-certified crew that does the inspection, the <a href="/mold-removal-fort-mill-sc">mold removal</a>, and the rebuild afterward. Call <a href="tel:9802773700">980-277-3700</a> any hour.',
+    html: 'Our mold inspection in Fort Mill, SC starts from our own shop at 3650 Centre Circle, Suite I, here in Fort Mill. We are <a href="/about-carolina-pro-restoration">Carolina Pro Restoration</a>, an IICRC-certified crew that does the inspection (free), the <a href="/mold-removal-fort-mill-sc">mold removal</a>, and the rebuild afterward. Call <a href="tel:9802773700">980-277-3700</a> any hour.',
   },
   {
     tag: "p",
@@ -61,7 +59,7 @@ const intro = [
   },
   {
     tag: "p",
-    html: "When health concerns or an insurance claim call for it, we arrange lab air or surface sampling. Lab testing is priced by the number of rooms. You get the price for testing, and for any remediation and rebuild, in writing before work starts.",
+    html: "When health concerns or an insurance claim call for it, we arrange lab air or surface sampling. The inspection is free. Lab testing is not: it is billed separately and quoted based on your situation. You get that price, and the price for any remediation and rebuild, in writing before work starts.",
   },
   { tag: "h2", html: "If We Find Mold" },
   {
@@ -75,7 +73,7 @@ const inspectionPoints = [
   "Moisture meters and thermal imaging find damp behind walls and under floors, with no demolition",
   "We trace the moisture to its source, so the fix addresses the cause",
   "Photos and readings document what we find, which helps with an insurance claim",
-  "Lab air or surface sampling when health concerns or a claim call for it",
+  "Lab air or surface sampling when health concerns or a claim call for it, billed separately",
   "A written scope and price before any work begins",
 ];
 
@@ -121,13 +119,13 @@ const serviceSchema = {
   preloadImage={heroPreload(heroMold)}
 >
   <Hero
-    emergencyTag="Mold Inspection and Testing in Fort Mill, SC"
+    emergencyTag="Free Mold Inspection in Fort Mill, SC"
     h1Lines={["Mold Inspection in Fort Mill, SC"]}
     subtitle="Musty smell you cannot place, a stain that came back after a leak, or a crawl space that never feels dry? Our Fort Mill crew finds the mold, maps the moisture behind it, and tells you what it will take to fix it, in writing."
-    trustSignals={["Based in Fort Mill", "IICRC Certified", "Thermal Imaging", "BBB Accredited"]}
+    trustSignals={["Free Mold Inspection", "Based in Fort Mill", "IICRC Certified", "BBB Accredited"]}
     image={heroMold}
     imageAlt="Carolina Pro Restoration mold inspection crew serving Fort Mill, SC"
-    secondaryCta={{ label: "Request an Inspection", href: "#contact" }}
+    secondaryCta={{ label: "Request a Free Inspection", href: "#contact" }}
   />
   <LocalContent blocks={intro} />
   <ActionShot
@@ -155,16 +153,16 @@ const serviceSchema = {
     mapSrc={site.mapEmbedSrc}
     mapLink={site.mapLink}
   />
-  <FinalCta heading="Musty Smell or a Stain That Came Back? Book a Mold Inspection." secondaryLabel="Request an Inspection" />
+  <FinalCta heading="Musty Smell or a Stain That Came Back? Book a Mold Inspection." secondaryLabel="Request a Free Inspection" />
   <ContactForm
     heading="Request a Mold Inspection in Fort Mill"
     description="Tell us what you are seeing or smelling and our crew will call you back fast."
-    cardTitle="Request a Mold Inspection"
+    cardTitle="Request a Free Mold Inspection"
     formName="Fort Mill Mold Inspection Contact"
     trustItems={[
+      "Free mold inspection; lab testing billed separately",
       "IICRC-certified crew based in Fort Mill",
-      "Moisture meters and thermal imaging",
-      "Written scope and price before any work starts",
+            "Written scope and price before any work starts",
       "We fix the moisture source and rebuild what we remove",
     ]}
   />

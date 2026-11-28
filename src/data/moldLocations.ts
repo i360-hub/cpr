@@ -144,7 +144,7 @@ export const moldLocations: Record<string, MoldLocation> = {
         { name: "Multi-room or whole-basement remediation", range: "$6,000–$15,000" },
         { name: "Large-scale, HVAC-involved, or structural repair needed", range: "$10,000–$30,000" },
         { name: "Mold inspection with moisture mapping", range: "Free" },
-        { name: "Lab air-quality or surface sampling (when needed)", range: "$300–$600" },
+        { name: "Lab air-quality or surface sampling (when needed)", range: "Quoted per situation" },
       ],
     },
     costDetail: [
@@ -348,7 +348,7 @@ export const moldLocations: Record<string, MoldLocation> = {
         { name: "Multi-room or whole-basement remediation", range: "$6,000–$15,000" },
         { name: "Large-scale, HVAC-involved, or structural repair needed", range: "$10,000–$30,000" },
         { name: "Mold inspection with moisture mapping", range: "Free" },
-        { name: "Lab air-quality or surface sampling (when needed)", range: "$300–$600" },
+        { name: "Lab air-quality or surface sampling (when needed)", range: "Quoted per situation" },
       ],
     },
     costDetail: [
@@ -392,7 +392,7 @@ export const moldLocations: Record<string, MoldLocation> = {
     faq: [
       {
         q: "How much does mold removal cost in Pineville, NC?",
-        a: "Most Pineville mold removal jobs land between $600 and $8,000. A single small area such as a closet or one bathroom wall typically runs $600 to $1,500. A bathroom or laundry room with mold behind tile or drywall runs $1,200 to $3,500. Crawl space remediation runs $2,500 to $8,000. Multi-room or whole-basement work runs $6,000 to $15,000, and large jobs involving the HVAC system or structural repair can reach $30,000. Our inspection is free; lab air sampling, when needed, runs $300 to $600.",
+        a: "Most Pineville mold removal jobs land between $600 and $8,000. A single small area such as a closet or one bathroom wall typically runs $600 to $1,500. A bathroom or laundry room with mold behind tile or drywall runs $1,200 to $3,500. Crawl space remediation runs $2,500 to $8,000. Multi-room or whole-basement work runs $6,000 to $15,000, and large jobs involving the HVAC system or structural repair can reach $30,000. Our inspection is free; lab air sampling, when needed, is quoted based on your situation.",
       },
       {
         q: "Can mold be completely removed from a house?",
@@ -550,7 +550,7 @@ export const moldLocations: Record<string, MoldLocation> = {
         { name: "Multi-room or whole-basement remediation", range: "$6,000–$15,000" },
         { name: "Large-scale, HVAC-involved, or structural repair needed", range: "$10,000–$30,000" },
         { name: "Mold inspection with moisture mapping", range: "Free" },
-        { name: "Lab air-quality or surface sampling (when needed)", range: "$300–$600" },
+        { name: "Lab air-quality or surface sampling (when needed)", range: "Quoted per situation" },
       ],
     },
     costDetail: [
@@ -608,7 +608,7 @@ export const moldLocations: Record<string, MoldLocation> = {
       },
       {
         q: "How much does mold removal cost in Fort Mill?",
-        a: "Most Fort Mill jobs land between $600 and $8,000. A single small area such as a closet or one bathroom wall runs $600 to $1,500. A bathroom or laundry room with mold behind tile or drywall runs $1,200 to $3,500. Black mold removal in a crawl space runs $2,500 to $8,000. Multi-room work runs $6,000 to $15,000, and jobs involving the HVAC system or structural repair can reach $30,000. The inspection is free; lab sampling, when needed, is $300 to $600.",
+        a: "Most Fort Mill jobs land between $600 and $8,000. A single small area such as a closet or one bathroom wall runs $600 to $1,500. A bathroom or laundry room with mold behind tile or drywall runs $1,200 to $3,500. Black mold removal in a crawl space runs $2,500 to $8,000. Multi-room work runs $6,000 to $15,000, and jobs involving the HVAC system or structural repair can reach $30,000. The inspection is free; lab sampling, when needed, is quoted based on your situation.",
       },
       {
         q: "How fast can you get to my Fort Mill home?",
@@ -759,7 +759,7 @@ export const moldLocations: Record<string, MoldLocation> = {
         { name: "Multi-room or HVAC-involved remediation", range: "$6,000–$15,000" },
         { name: "Large-scale job with structural or slab repair", range: "$10,000–$30,000" },
         { name: "Mold inspection with moisture mapping", range: "Free" },
-        { name: "Lab air-quality or surface sampling (when needed)", range: "$300–$600" },
+        { name: "Lab air-quality or surface sampling (when needed)", range: "Quoted per situation" },
       ],
     },
     costDetail: [
@@ -816,7 +816,7 @@ export const moldLocations: Record<string, MoldLocation> = {
       },
       {
         q: "How much does mold removal cost in Indian Land, SC?",
-        a: "Most Indian Land jobs land between $600 and $8,000. A single small area such as a closet or one bathroom wall runs $600 to $1,500. A bathroom or laundry room with mold behind tile or drywall runs $1,200 to $3,500. Crawl space remediation runs $2,500 to $8,000. Multi-room or HVAC-involved work runs $6,000 to $15,000, and large jobs with structural or slab repair can reach $30,000. The inspection is free; lab sampling, when needed, is $300 to $600.",
+        a: "Most Indian Land jobs land between $600 and $8,000. A single small area such as a closet or one bathroom wall runs $600 to $1,500. A bathroom or laundry room with mold behind tile or drywall runs $1,200 to $3,500. Crawl space remediation runs $2,500 to $8,000. Multi-room or HVAC-involved work runs $6,000 to $15,000, and large jobs with structural or slab repair can reach $30,000. The inspection is free; lab sampling, when needed, is quoted based on your situation.",
       },
       {
         q: "Is mold covered under my builder's warranty?",
@@ -962,7 +962,7 @@ export const moldLocations: Record<string, MoldLocation> = {
         { name: "Multi-room or whole-basement remediation", range: "$6,000–$15,000" },
         { name: "Large-scale, HVAC-involved, or structural repair needed", range: "$10,000–$30,000" },
         { name: "Mold inspection with moisture and humidity mapping", range: "Free" },
-        { name: "Lab air-quality or surface sampling (when needed)", range: "$300–$600" },
+        { name: "Lab air-quality or surface sampling (when needed)", range: "Quoted per situation" },
       ],
     },
     costDetail: [
@@ -1018,7 +1018,7 @@ export const moldLocations: Record<string, MoldLocation> = {
       },
       {
         q: "How much does mold removal cost in Tega Cay, SC?",
-        a: "Most Tega Cay jobs land between $600 and $8,000. A single small area such as a closet or one bathroom wall runs $600 to $1,500. A bathroom or laundry room with mold behind tile or drywall runs $1,200 to $3,500. Crawl space remediation runs $2,500 to $8,000. Multi-room work runs $6,000 to $15,000, and large jobs involving the HVAC system or structural repair can reach $30,000. The inspection is free; lab sampling, when needed, is $300 to $600. Budget separately for humidity control if the crawl space is the source.",
+        a: "Most Tega Cay jobs land between $600 and $8,000. A single small area such as a closet or one bathroom wall runs $600 to $1,500. A bathroom or laundry room with mold behind tile or drywall runs $1,200 to $3,500. Crawl space remediation runs $2,500 to $8,000. Multi-room work runs $6,000 to $15,000, and large jobs involving the HVAC system or structural repair can reach $30,000. The inspection is free; lab sampling, when needed, is quoted based on your situation. Budget separately for humidity control if the crawl space is the source.",
       },
       {
         q: "I already had water damage repaired. Why is there mold now?",
@@ -1080,14 +1080,14 @@ export const moldLocations: Record<string, MoldLocation> = {
     slug: "lancaster-sc",
     name: "Lancaster",
     state: "SC",
-    title: "Mold Removal Lancaster SC | IICRC Certified Crew",
+    title: "Mold Removal Lancaster SC | Free Inspection",
     h1: "Mold Removal in Lancaster, SC",
     metaDescription:
-      "Mold removal in Lancaster, SC. Containment, HEPA scrubbing, the moisture repair, and we rebuild what we remove. IICRC certified. Call (980) 277-3700.",
-    heroTag: "Mold Inspection and Removal in Lancaster, SC",
+      "Mold removal in Lancaster, SC. Free inspection, IICRC-certified crews, the moisture repair, and we rebuild what we remove. Call (980) 277-3700.",
+    heroTag: "Free Mold Inspection in Lancaster, SC",
     heroSub:
       "Musty crawl space near Cane Creek, a damp garage in a new build, or a stain that keeps coming back in an older home near downtown? We find the moisture, remove the mold safely, fix what is feeding it, and rebuild what we take out. One crew, one project manager.",
-    heroTrust: ["IICRC Certified", "We Rebuild What We Remove", "35-45 Min From Fort Mill", "BBB Accredited"],
+    heroTrust: ["Free Mold Inspection", "IICRC Certified", "We Rebuild What We Remove", "BBB Accredited"],
     stats: [
       { number: "45 in", label: "Rain Per Year" },
       { number: "24-48 hrs", label: "For Mold to Take Hold" },
@@ -1097,7 +1097,7 @@ export const moldLocations: Record<string, MoldLocation> = {
       { tag: "h2", html: "Mold Removal in Lancaster, SC" },
       {
         tag: "p",
-        html: 'If you need mold removal in Lancaster, SC, we are <a href="/about-carolina-pro-restoration">Carolina Pro Restoration</a>, based in Fort Mill at 3650 Centre Circle, Suite I, about 27 miles from downtown Lancaster. Our IICRC-certified crews are usually there in 35 to 45 minutes. We contain the area, remove the mold, fix the moisture behind it, and then our own crew puts the drywall, paint, and flooring back. Call <a href="tel:9802773700">980-277-3700</a> any hour.',
+        html: 'If you need mold removal in Lancaster, SC, we are <a href="/about-carolina-pro-restoration">Carolina Pro Restoration</a>, based in Fort Mill at 3650 Centre Circle, Suite I, about 27 miles from downtown Lancaster. Our IICRC-certified crews are usually there in 35 to 45 minutes, and the inspection is free. We contain the area, remove the mold, fix the moisture behind it, and then our own crew puts the drywall, paint, and flooring back. Call <a href="tel:9802773700">980-277-3700</a> any hour.',
       },
       {
         tag: "p",
@@ -1127,7 +1127,7 @@ export const moldLocations: Record<string, MoldLocation> = {
       steps: [
         {
           title: "Inspect and Test the Mold",
-          text: "We check where Lancaster mold usually is: the crawl space first, then garages and ground-level rooms in newer builds, and walls and subfloor around old supply lines and water heaters. When health concerns or a claim call for it, we arrange lab air or surface sampling. You get a written scope.",
+          text: "We check where Lancaster mold usually is: the crawl space first, then garages and ground-level rooms in newer builds, and walls and subfloor around old supply lines and water heaters. When health concerns or a claim call for it, we arrange lab air or surface sampling, billed separately. The inspection is free and produces a written scope.",
         },
         {
           title: "Find the Moisture Source",
@@ -1149,14 +1149,16 @@ export const moldLocations: Record<string, MoldLocation> = {
     },
     cost: {
       title: "What Mold Removal Costs in Lancaster",
-      sub: "Typical Carolinas ranges to help you plan, not a quote. Your exact price comes in writing after we inspect, before any work starts.",
-      note: "These are typical ranges, not a quote. In Lancaster the biggest variable is usually the crawl space: its size, and whether the insulation and framing took on water. Insurance generally covers mold following a sudden covered event such as a burst pipe or a water heater failure, and generally excludes mold from long-term humidity or maintenance. Financing is available.",
+      sub: "Typical Carolinas ranges to help you plan, not a quote. Your exact price comes in writing after the free inspection, before any work starts.",
+      note: "These are typical ranges, not a quote. Lab testing, when needed, is billed separately and quoted based on your situation. In Lancaster the biggest variable is usually the crawl space: its size, and whether the insulation and framing took on water. Insurance generally covers mold following a sudden covered event such as a burst pipe or a water heater failure, and generally excludes mold from long-term humidity or maintenance. Financing is available.",
       rows: [
         { name: "Single small area (under 100 sq ft): closet, one bathroom wall", range: "$600–$1,500" },
         { name: "Bathroom or laundry room, mold behind tile or drywall", range: "$1,200–$3,500" },
         { name: "Crawl space remediation and treatment", range: "$2,500–$8,000" },
         { name: "Multi-room or HVAC-involved remediation", range: "$6,000–$15,000" },
         { name: "Large-scale job with structural or slab repair", range: "$10,000–$30,000" },
+        { name: "Mold inspection with moisture mapping", range: "Free" },
+        { name: "Lab air-quality or surface sampling (when needed)", range: "Quoted per situation" },
       ],
     },
     costDetail: [
@@ -1167,14 +1169,14 @@ export const moldLocations: Record<string, MoldLocation> = {
       },
     ],
     inspection: {
-      title: "Mold Inspection in Lancaster",
+      title: "Free Mold Inspection in Lancaster",
       desc: "The visible spot is almost never the whole problem. The inspection finds how far the growth goes and what is feeding it, before you spend anything on the wrong wall.",
       points: [
         "We check crawl spaces, garages and ground-level rooms, and walls around older plumbing",
         "Moisture meters and thermal imaging find damp behind walls and under floors, with no demolition",
         "Photos and readings document the moisture source",
         "You get a written scope and price for remediation and rebuild together, before any work begins",
-        "Lab air or surface sampling when health concerns or a claim call for it",
+        "Lab air or surface sampling when health concerns or a claim call for it, billed separately",
         "Financing available",
       ],
     },
@@ -1239,21 +1241,13 @@ export const moldLocations: Record<string, MoldLocation> = {
     ],
     reviewsTitle: "What Our Customers Say",
     reviewsSub: "Real reviews from homeowners and property managers across Lancaster County, Fort Mill, and York County.",
-    finalCta: "Mold in Your Lancaster Home? Start With an Inspection.",
-    contactHeading: "Request a Lancaster Mold Inspection",
+    finalCta: "Mold in Your Lancaster Home? Start With the Free Inspection.",
+    contactHeading: "Request a Free Lancaster Mold Inspection",
     contactDesc: "Tell us what you are seeing or smelling and our crew will call you back fast. If there is work to do, we rebuild what we remove.",
     areaTitle: "Your Mold Removal Team Serving Lancaster",
     areaSub: "We are locally owned and based in Fort Mill (3650 Centre Circle, Suite I), about 27 miles from downtown Lancaster.",
     areaInfoHeading: "Mold Inspections and Removal Across Lancaster County",
     areaInfoBlurb: "Our trucks reach Lancaster in 35 to 45 minutes for mold inspection, testing, removal, and the rebuild afterward.",
-    ctaLabel: "Request an Inspection",
-    contactCardTitle: "Request a Mold Inspection",
-    contactTrustItems: [
-      "IICRC-certified remediation crews",
-      "Containment, negative air, and HEPA scrubbing on every job",
-      "We fix the moisture source and rebuild what we remove",
-      "Written scope and price before any work starts",
-    ],
   },
 };
 
