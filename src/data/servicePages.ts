@@ -491,14 +491,16 @@ export const servicePages: Record<string, ServicePageData> = {
       { title: 'Water Damage Restoration', text: 'Most mold starts with water. We fix the water problem, too.', href: '/water-damage-restoration' },
       { title: 'Basement Flooding', text: 'Flooded basements are a top mold source. We clean and dry them.', href: '/basement-flooding' },
       { title: 'Crawl Space Encapsulation', text: 'Seal a damp crawl space so mold cannot return.', href: '/crawlspace' },
-      { title: 'Air Duct Cleaning', text: 'Clear mold and spores out of your HVAC ducts and air.', href: '/duct-cleaning' }
+      { title: 'Air Duct Cleaning', text: 'Clear mold and spores out of your HVAC ducts and air.', href: '/duct-cleaning' },
+      { title: 'Mold Inspection in Fort Mill', text: 'Find the mold and the moisture behind it before anything gets torn out.', href: '/mold-inspection-fort-mill-sc' }
     ] },
     townLinks: [
       { title: 'Mold Removal in Rock Hill, SC', text: 'York County clay, damp crawl spaces, and boom-era plumbing failures.', href: '/mold-removal-rock-hill-sc' },
       { title: 'Mold Removal in Fort Mill, SC', text: 'Black mold under the house and Dura-PEX leaks behind the wall. We are based here.', href: '/mold-removal-fort-mill-sc' },
       { title: 'Mold Removal in Tega Cay, SC', text: 'Lake Wylie humidity, a high water table, and crawl spaces that never dry.', href: '/mold-removal-tega-cay-sc' },
       { title: 'Mold Removal in Indian Land, SC', text: 'Newer builds, tight envelopes, and HVAC condensation you cannot see.', href: '/mold-removal-indian-land-sc' },
-      { title: 'Mold Removal in Pineville, NC', text: 'Creek flooding, 1970s crawl space homes, and Highway 51 townhomes.', href: '/mold-removal-pineville-nc' }
+      { title: 'Mold Removal in Pineville, NC', text: 'Creek flooding, 1970s crawl space homes, and Highway 51 townhomes.', href: '/mold-removal-pineville-nc' },
+      { title: 'Mold Removal in Lancaster, SC', text: 'Cane Creek crawl spaces, clay-soil new builds, and galvanized pipes near downtown.', href: '/mold-removal-lancaster-sc' }
     ],
     reviewsTitle: 'Trusted by Homeowners and Property Managers', reviewsSub: 'Rated 4.9 stars across 40+ Google reviews. From mold inspections to safe removal and cleaner air, here is what people say about working with Carolina Pro Restoration.',
     finalCta: 'Worried About Mold? Get a Professional Inspection.', contactHeading: 'Get Mold Removal Help', contactDesc: 'Worried about mold in your home? The sooner you act, the better. Call or text us, or send the details and we\'ll get right back to you with next steps.',

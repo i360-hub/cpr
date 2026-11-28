@@ -46,6 +46,10 @@ export interface MoldLocation {
   areaSub: string;
   areaInfoHeading: string;
   areaInfoBlurb: string;
+  /** Optional overrides for the inspection CTA wording (defaults keep the free-inspection offer). */
+  ctaLabel?: string;
+  contactCardTitle?: string;
+  contactTrustItems?: string[];
 }
 
 // Shared five steps, matching /mold-removal exactly in order and intent. Each
@@ -620,6 +624,11 @@ export const moldLocations: Record<string, MoldLocation> = {
       sub: "Mold is a moisture problem. These are the services that fix what is causing it.",
       cards: [
         {
+          title: "Mold Inspection in Fort Mill",
+          text: "Find the mold and the moisture behind it before anything gets torn out.",
+          href: "/mold-inspection-fort-mill-sc",
+        },
+        {
           title: "Water Damage Restoration in Fort Mill",
           text: "Most Fort Mill mold starts with water. We extract, dry, and rebuild.",
           href: "/",
@@ -1067,6 +1076,185 @@ export const moldLocations: Record<string, MoldLocation> = {
     areaInfoBlurb:
       "We cover all of Tega Cay and the Lake Wylie shoreline for mold inspection, testing, removal, and the humidity control that keeps it from coming back.",
   },
+  "lancaster-sc": {
+    slug: "lancaster-sc",
+    name: "Lancaster",
+    state: "SC",
+    title: "Mold Removal Lancaster SC | IICRC Certified Crew",
+    h1: "Mold Removal in Lancaster, SC",
+    metaDescription:
+      "Mold removal in Lancaster, SC. Containment, HEPA scrubbing, the moisture repair, and we rebuild what we remove. IICRC certified. Call (980) 277-3700.",
+    heroTag: "Mold Inspection and Removal in Lancaster, SC",
+    heroSub:
+      "Musty crawl space near Cane Creek, a damp garage in a new build, or a stain that keeps coming back in an older home near downtown? We find the moisture, remove the mold safely, fix what is feeding it, and rebuild what we take out. One crew, one project manager.",
+    heroTrust: ["IICRC Certified", "We Rebuild What We Remove", "35-45 Min From Fort Mill", "BBB Accredited"],
+    stats: [
+      { number: "45 in", label: "Rain Per Year" },
+      { number: "24-48 hrs", label: "For Mold to Take Hold" },
+      { number: "35-45 min", label: "Response Time" },
+    ],
+    body: [
+      { tag: "h2", html: "Mold Removal in Lancaster, SC" },
+      {
+        tag: "p",
+        html: 'If you need mold removal in Lancaster, SC, we are <a href="/about-carolina-pro-restoration">Carolina Pro Restoration</a>, based in Fort Mill at 3650 Centre Circle, Suite I, about 27 miles from downtown Lancaster. Our IICRC-certified crews are usually there in 35 to 45 minutes. We contain the area, remove the mold, fix the moisture behind it, and then our own crew puts the drywall, paint, and flooring back. Call <a href="tel:9802773700">980-277-3700</a> any hour.',
+      },
+      {
+        tag: "p",
+        html: 'Lancaster County gets around 45 inches of rain a year, and most of it lands on clay-heavy soil that holds water instead of draining. That keeps crawl spaces and ground-level rooms damp long after a storm passes, and mold takes hold in damp material within 24 to 48 hours. See the full <a href="/mold-removal">mold removal</a> process, or read about the water problems that usually come first in <a href="/water-damage-restoration-lancaster-sc">water damage restoration in Lancaster</a>.',
+      },
+      { tag: "h2", html: "Why Lancaster Homes Get Mold" },
+      { tag: "h3", html: "Crawl Spaces Along the Cane Creek Corridor" },
+      {
+        tag: "p",
+        html: "Homes near Cane Creek and its tributaries sit in some of the lowest terrain in Lancaster County. The creek rises fast in heavy rain, and the clay keeps water pooled around foundations for days afterward. This is where we most often pull wet insulation and treat mold in crawl spaces. A musty smell inside the house is often the first sign that moisture has been building underneath. We check with thermal imaging before anything gets torn out.",
+      },
+      { tag: "h3", html: "New Builds in Tree Tops and Edgewater" },
+      {
+        tag: "p",
+        html: "Tree Tops, the 55-and-over community Lennar built on the west side of Lancaster, and Edgewater, the large True Homes community, were both built on cleared land with clay-heavy soil. Homeowners in Tree Tops have reported water pooling against foundations from poor grading, and the lower sections of Edgewater see water backing into garages and ground-level rooms when stormwater systems fill up during back-to-back storms. Water that sits against a slab edge or a garage wall for days is how mold starts in a house that is only a few years old.",
+      },
+      { tag: "h3", html: "Older Homes Near Downtown and Springdale" },
+      {
+        tag: "p",
+        html: "The Springdale area and the neighborhoods closer to downtown Lancaster have a median construction year around 1970. Many of these homes still have galvanized steel plumbing that corrodes from the inside, and we see slow slab leaks and water heater failures in them regularly. A slow leak does not flood a room. It keeps one wall cavity or one section of subfloor wet for weeks, and the mold is established before anyone sees a stain. Rusty water when you first turn on a faucet is a warning sign worth acting on.",
+      },
+    ],
+    process: {
+      title: PROCESS_TITLE,
+      sub: "The same five steps on every Lancaster job. Step five includes putting your house back together.",
+      ctaLabel: "One crew from the first inspection to the final coat of paint. Call anytime.",
+      steps: [
+        {
+          title: "Inspect and Test the Mold",
+          text: "We check where Lancaster mold usually is: the crawl space first, then garages and ground-level rooms in newer builds, and walls and subfloor around old supply lines and water heaters. When health concerns or a claim call for it, we arrange lab air or surface sampling. You get a written scope.",
+        },
+        {
+          title: "Find the Moisture Source",
+          text: "Mold needs water. Moisture meters and FLIR thermal imaging trace it to the cause: creek water under the house, grading that sends rain toward the foundation, or a corroded galvanized line leaking inside a wall. Thermal imaging finds the wet cavity without cutting a hole to look for it.",
+        },
+        {
+          title: "Seal Off the Area",
+          text: "We build containment with plastic sheeting and run negative air machines so spores stay in the work area. HEPA air scrubbers run the whole time we are on site.",
+        },
+        {
+          title: "Remove Mold and Treat Surfaces",
+          text: "Drywall, insulation, and subfloor too contaminated to save comes out and gets bagged inside containment. Everything that stays gets HEPA vacuumed, and the framing gets an antimicrobial treatment. Bleach cannot reach mold inside porous material like drywall and wood.",
+        },
+        {
+          title: "Repair the Source and Verify",
+          text: "We fix the cause first, then rebuild the drywall, trim, paint, and flooring with our own crew. You do not hire a second contractor to close the wall. A final moisture and visual check confirms it is dry and clean before we close the job.",
+        },
+      ],
+    },
+    cost: {
+      title: "What Mold Removal Costs in Lancaster",
+      sub: "Typical Carolinas ranges to help you plan, not a quote. Your exact price comes in writing after we inspect, before any work starts.",
+      note: "These are typical ranges, not a quote. In Lancaster the biggest variable is usually the crawl space: its size, and whether the insulation and framing took on water. Insurance generally covers mold following a sudden covered event such as a burst pipe or a water heater failure, and generally excludes mold from long-term humidity or maintenance. Financing is available.",
+      rows: [
+        { name: "Single small area (under 100 sq ft): closet, one bathroom wall", range: "$600–$1,500" },
+        { name: "Bathroom or laundry room, mold behind tile or drywall", range: "$1,200–$3,500" },
+        { name: "Crawl space remediation and treatment", range: "$2,500–$8,000" },
+        { name: "Multi-room or HVAC-involved remediation", range: "$6,000–$15,000" },
+        { name: "Large-scale job with structural or slab repair", range: "$10,000–$30,000" },
+      ],
+    },
+    costDetail: [
+      { tag: "h3", html: "What moves the price in Lancaster" },
+      {
+        tag: "p",
+        html: "<strong>Affected square footage</strong> sets the baseline. Pricing follows how much material comes out and goes back, not the size of the visible stain. <strong>Containment</strong> is second: one sealed room is simple, several rooms take more equipment and more days. <strong>Whether the moisture source needs its own repair</strong> is third. Clearing mold from a crawl space near Cane Creek is one number; drying it and stopping the water that keeps getting in is another. We price them separately so you can see what you are paying for.",
+      },
+    ],
+    inspection: {
+      title: "Mold Inspection in Lancaster",
+      desc: "The visible spot is almost never the whole problem. The inspection finds how far the growth goes and what is feeding it, before you spend anything on the wrong wall.",
+      points: [
+        "We check crawl spaces, garages and ground-level rooms, and walls around older plumbing",
+        "Moisture meters and thermal imaging find damp behind walls and under floors, with no demolition",
+        "Photos and readings document the moisture source",
+        "You get a written scope and price for remediation and rebuild together, before any work begins",
+        "Lab air or surface sampling when health concerns or a claim call for it",
+        "Financing available",
+      ],
+    },
+    neighborhoods: {
+      title: "Mold Removal Across Lancaster",
+      intro: "Our IICRC-certified mold crews work across Lancaster and Lancaster County, including:",
+      items: ["Tree Tops", "Edgewater", "Springdale", "Downtown Lancaster", "Cane Creek corridor"],
+    },
+    faqTitle: "Lancaster Mold Removal FAQs",
+    faqSub: "Straight answers for Lancaster and Lancaster County homeowners.",
+    faq: [
+      {
+        q: "How fast can you get to my house in Lancaster?",
+        a: "Usually 35 to 45 minutes. We dispatch from our shop in Fort Mill, about 27 miles from downtown Lancaster. Call 980-277-3700 any time.",
+      },
+      {
+        q: "My crawl space took on water after a storm and was pumped out. Do I still need to worry about mold?",
+        a: "Yes. Pumping removes the standing water, not the moisture in the insulation, the framing, and the clay underneath. Lancaster clay holds water for days, and mold takes hold in damp material within 24 to 48 hours. We check the crawl space with moisture meters and thermal imaging, remove wet insulation and growth, and dry the space to a verified standard.",
+      },
+      {
+        q: "Do you rebuild after mold removal, or do I need a second contractor?",
+        a: 'We rebuild. Most remediation companies remove the contaminated material and leave, and you are left hiring a drywall contractor, a painter, and a flooring installer. We do remediation and <a href="/reconstruction">reconstruction</a> with one crew and one project manager.',
+      },
+      {
+        q: "Will insurance cover mold in my Lancaster home?",
+        a: "Insurance generally covers mold that follows a sudden covered event, such as a burst pipe or a water heater failure, and generally excludes mold from long-term humidity or maintenance. Our inspection documents the moisture source with photos and readings, which is what your adjuster will look at.",
+      },
+    ],
+    related: {
+      title: "Related Services in Lancaster",
+      sub: "Mold is a moisture problem. These are the services that fix what is causing it.",
+      cards: [
+        {
+          title: "Water Damage Restoration in Lancaster",
+          text: "Burst pipes, water heater failures, and storm flooding. We extract, dry, and rebuild.",
+          href: "/water-damage-restoration-lancaster-sc",
+        },
+        {
+          title: "Crawl Space Encapsulation",
+          text: "Seal a damp crawl space so clay soil stops feeding mold.",
+          href: "/crawlspace",
+        },
+        {
+          title: "Waterproofing",
+          text: "Stop water at the foundation before it reaches the framing.",
+          href: "/waterproofing",
+        },
+        {
+          title: "Mold Removal in Indian Land",
+          text: "Newer builds, tight envelopes, and HVAC condensation.",
+          href: "/mold-removal-indian-land-sc",
+        },
+      ],
+    },
+    nearby: [
+      { label: "Lancaster, SC", href: "/mold-removal-lancaster-sc" },
+      { label: "Indian Land, SC", href: "/mold-removal-indian-land-sc" },
+      { label: "Fort Mill, SC", href: "/mold-removal-fort-mill-sc" },
+      { label: "Rock Hill, SC", href: "/mold-removal-rock-hill-sc" },
+      { label: "Tega Cay, SC", href: "/mold-removal-tega-cay-sc" },
+      { label: "All Mold Removal", href: "/mold-removal" },
+    ],
+    reviewsTitle: "What Our Customers Say",
+    reviewsSub: "Real reviews from homeowners and property managers across Lancaster County, Fort Mill, and York County.",
+    finalCta: "Mold in Your Lancaster Home? Start With an Inspection.",
+    contactHeading: "Request a Lancaster Mold Inspection",
+    contactDesc: "Tell us what you are seeing or smelling and our crew will call you back fast. If there is work to do, we rebuild what we remove.",
+    areaTitle: "Your Mold Removal Team Serving Lancaster",
+    areaSub: "We are locally owned and based in Fort Mill (3650 Centre Circle, Suite I), about 27 miles from downtown Lancaster.",
+    areaInfoHeading: "Mold Inspections and Removal Across Lancaster County",
+    areaInfoBlurb: "Our trucks reach Lancaster in 35 to 45 minutes for mold inspection, testing, removal, and the rebuild afterward.",
+    ctaLabel: "Request an Inspection",
+    contactCardTitle: "Request a Mold Inspection",
+    contactTrustItems: [
+      "IICRC-certified remediation crews",
+      "Containment, negative air, and HEPA scrubbing on every job",
+      "We fix the moisture source and rebuild what we remove",
+      "Written scope and price before any work starts",
+    ],
+  },
 };
 
 export const moldLocationList = Object.values(moldLocations);
@@ -1100,6 +1288,7 @@ export const publishedMoldTowns: string[] = [
   "fort-mill-sc",
   "indian-land-sc",
   "tega-cay-sc",
+  "lancaster-sc",
 ];
 
 export const isMoldTownPublished = (slug: string) => publishedMoldTowns.includes(slug);

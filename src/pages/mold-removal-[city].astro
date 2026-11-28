@@ -151,7 +151,7 @@ const townServiceSchema = {
     trustSignals={loc.heroTrust}
     image={heroMold}
     imageAlt={`Carolina Pro Restoration mold removal crew serving ${loc.name}, ${loc.state}`}
-    secondaryCta={{ label: "Request a Free Inspection", href: "#contact" }}
+    secondaryCta={{ label: loc.ctaLabel ?? "Request a Free Inspection", href: "#contact" }}
   />
   <StatStrip stats={loc.stats} />
   <LocalContent blocks={loc.body} />
@@ -179,13 +179,13 @@ const townServiceSchema = {
     mapSrc={townMapSrc}
     mapLink={townMapLink}
   />
-  <FinalCta heading={loc.finalCta} secondaryLabel="Request a Free Inspection" />
+  <FinalCta heading={loc.finalCta} secondaryLabel={loc.ctaLabel ?? "Request a Free Inspection"} />
   <ContactForm
     heading={loc.contactHeading}
     description={loc.contactDesc}
-    cardTitle="Request a Free Mold Inspection"
+    cardTitle={loc.contactCardTitle ?? "Request a Free Mold Inspection"}
     formName={`${loc.name} Mold Removal Contact`}
-    trustItems={[
+    trustItems={loc.contactTrustItems ?? [
       "Free mold inspection, no cost, no pressure",
       "IICRC-certified remediation crews",
       "Containment, negative air, and HEPA scrubbing on every job",

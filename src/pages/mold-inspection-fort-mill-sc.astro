@@ -1,0 +1,171 @@
+---
+// Mold Inspection — Fort Mill. Buyer-intent page for "mold inspection fort mill sc"
+// and "mold testing fort mill sc" (GSC + live results, Nov 28 2026). Links up to the
+// /mold-removal hub and across to /mold-removal-fort-mill-sc.
+//
+// Pricing is deliberately left off this page. The site elsewhere offers a free
+// inspection, and the office has quoted mold testing at a range that depends on
+// rooms; until the owner confirms what is free and what is paid, this page only
+// says the price comes in writing before work starts.
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/widgets/Hero.astro";
+import LocalContent from "@components/widgets/LocalContent.astro";
+import ActionShot from "@components/widgets/ActionShot.astro";
+import InsuranceCard from "@components/widgets/InsuranceCard.astro";
+import Reviews from "@components/widgets/Reviews.astro";
+import RelatedServices from "@components/widgets/RelatedServices.astro";
+import ServiceArea from "@components/widgets/ServiceArea.astro";
+import FinalCta from "@components/widgets/FinalCta.astro";
+import ContactForm from "@components/widgets/ContactForm.astro";
+import { reviewsForCity } from "@data/reviews";
+import { site } from "@data/site";
+import heroMold from "@assets/images/hero-mold-removal.jpg";
+import imgThermal from "@assets/images/organic/thermal-imaging.jpg";
+import { heroPreload } from "@lib/images";
+
+const path = "/mold-inspection-fort-mill-sc";
+const origin = Astro.site!.toString().replace(/\/$/, "");
+const pageUrl = `${origin}${path}`;
+
+const title = "Mold Inspection Fort Mill SC | Carolina Pro Restoration";
+const description =
+  "Mold inspection in Fort Mill, SC from our local IICRC-certified crew. Moisture meters, thermal imaging, and lab testing when needed. Call (980) 277-3700.";
+
+const intro = [
+  { tag: "h2", html: "Mold Inspection and Testing in Fort Mill, SC" },
+  {
+    tag: "p",
+    html: 'Our mold inspection in Fort Mill, SC starts from our own shop at 3650 Centre Circle, Suite I, here in Fort Mill. We are <a href="/about-carolina-pro-restoration">Carolina Pro Restoration</a>, an IICRC-certified crew that does the inspection, the <a href="/mold-removal-fort-mill-sc">mold removal</a>, and the rebuild afterward. Call <a href="tel:9802773700">980-277-3700</a> any hour.',
+  },
+  {
+    tag: "p",
+    html: "An inspection answers three questions: where the mold is, how far it has spread, and what is feeding it. The stain you can see is almost never the whole problem, and cleaning it without finding the water behind it is why mold comes back.",
+  },
+  { tag: "h2", html: "Where We Look in a Fort Mill Home" },
+  {
+    tag: "p",
+    html: "The crawl space comes first. York County clay holds rainwater against the foundation for days, and Fort Mill takes about 44 inches of rain a year, so crawl spaces stay damp between storms. After that we check bathroom and laundry walls, closets on exterior walls, and anywhere a supply line has failed.",
+  },
+  {
+    tag: "p",
+    html: "In Baxter Village, Regent Park, Springfield, Kingsley, and Sutton Hall, many homes from the 2001 to 2008 boom have Dura-PEX supply lines whose fittings are known to develop pinhole leaks after 15 to 20 years. A pinhole wets one wall or one cabinet base for weeks before anyone notices. Low water pressure, a warm patch on a wall, or a water bill that climbed for no reason is a good reason to get it checked.",
+  },
+  {
+    tag: "p",
+    html: "Homes near Sugar Creek and in the older neighborhoods closer to downtown took on crawl space water during Hurricane Helene in 2024. A crawl space that was pumped out but never properly dried is worth inspecting even if nothing smells yet.",
+  },
+  { tag: "h2", html: "How the Inspection Works" },
+  {
+    tag: "p",
+    html: "We map the moisture with moisture meters and FLIR thermal imaging, which finds a wet wall cavity without cutting a hole to look for it. We trace the water to its cause: a failed fitting, standing water under the house, a dryer venting into a wall, or indoor humidity that never drops below 60%. Photos and readings document what we find.",
+  },
+  {
+    tag: "p",
+    html: "When health concerns or an insurance claim call for it, we arrange lab air or surface sampling. Lab testing is priced by the number of rooms. You get the price for testing, and for any remediation and rebuild, in writing before work starts.",
+  },
+  { tag: "h2", html: "If We Find Mold" },
+  {
+    tag: "p",
+    html: 'You get a written scope. If the job goes ahead, we seal off the area with containment and negative air, run HEPA scrubbers, remove what is too contaminated to save, treat the framing, and fix the moisture source. Then our own crew puts the drywall, trim, paint, and flooring back, so you are not hiring a second contractor. See how <a href="/mold-removal">mold removal</a> works from start to finish.',
+  },
+];
+
+const inspectionPoints = [
+  "Crawl space, bathroom and laundry walls, closets on exterior walls, and around supply lines",
+  "Moisture meters and thermal imaging find damp behind walls and under floors, with no demolition",
+  "We trace the moisture to its source, so the fix addresses the cause",
+  "Photos and readings document what we find, which helps with an insurance claim",
+  "Lab air or surface sampling when health concerns or a claim call for it",
+  "A written scope and price before any work begins",
+];
+
+const related = [
+  { title: "Mold Removal in Fort Mill", text: "Containment, safe removal, and the rebuild afterward.", href: "/mold-removal-fort-mill-sc" },
+  { title: "Crawl Space Encapsulation", text: "Seal a damp crawl space so clay soil stops feeding mold.", href: "/crawlspace" },
+  { title: "Air Duct Cleaning", text: "When the HVAC system has been spreading spores through the house.", href: "/duct-cleaning" },
+  { title: "Water Damage Restoration", text: "Most mold starts with water. We extract, dry, and rebuild.", href: "/" },
+];
+
+const cities = [
+  { label: "Mold Removal in Fort Mill", href: "/mold-removal-fort-mill-sc" },
+  { label: "Mold Removal in Tega Cay", href: "/mold-removal-tega-cay-sc" },
+  { label: "Mold Removal in Rock Hill", href: "/mold-removal-rock-hill-sc" },
+  { label: "Mold Removal in Indian Land", href: "/mold-removal-indian-land-sc" },
+  { label: "All Mold Removal", href: "/mold-removal" },
+];
+
+const serviceSchema = {
+  "@type": "Service",
+  "@id": `${pageUrl}#service`,
+  serviceType: "Mold Inspection",
+  name: "Mold Inspection in Fort Mill, SC",
+  url: pageUrl,
+  description,
+  provider: { "@id": `${origin}/#business` },
+  areaServed: { "@type": "City", name: "Fort Mill, SC" },
+  isRelatedTo: { "@id": `${origin}/mold-removal#service` },
+  mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  schema={[serviceSchema]}
+  breadcrumb={[
+    { name: "Mold Removal", item: `${origin}/mold-removal` },
+    { name: "Mold Inspection in Fort Mill", item: pageUrl },
+  ]}
+  reviews={reviewsForCity("fort-mill-sc")}
+  preloadImage={heroPreload(heroMold)}
+>
+  <Hero
+    emergencyTag="Mold Inspection and Testing in Fort Mill, SC"
+    h1Lines={["Mold Inspection in Fort Mill, SC"]}
+    subtitle="Musty smell you cannot place, a stain that came back after a leak, or a crawl space that never feels dry? Our Fort Mill crew finds the mold, maps the moisture behind it, and tells you what it will take to fix it, in writing."
+    trustSignals={["Based in Fort Mill", "IICRC Certified", "Thermal Imaging", "BBB Accredited"]}
+    image={heroMold}
+    imageAlt="Carolina Pro Restoration mold inspection crew serving Fort Mill, SC"
+    secondaryCta={{ label: "Request an Inspection", href: "#contact" }}
+  />
+  <LocalContent blocks={intro} />
+  <ActionShot
+    image={imgThermal}
+    alt="A technician using a thermal imaging camera to find hidden moisture in a Fort Mill, SC home"
+    eyebrow="Based right here in Fort Mill"
+    heading="We find the moisture you can't see"
+    text="Thermal imaging and moisture meters map every damp wall cavity and section of subfloor before anyone opens a wall."
+    light={true}
+  />
+  <InsuranceCard
+    title="What the Inspection Covers"
+    desc="The goal is a clear answer: where the mold is, what is feeding it, and what it takes to fix."
+    points={inspectionPoints}
+  />
+  <Reviews reviews={reviewsForCity("fort-mill-sc")} title="What Fort Mill Homeowners Say" />
+  <RelatedServices title="Related Services" sub="Mold is a moisture problem. These are the services that fix what is causing it." cards={related} />
+  <ServiceArea
+    title="Your Local Mold Team in Fort Mill"
+    sub="We are locally owned and based in Fort Mill at 3650 Centre Circle, Suite I."
+    infoHeading="Mold Inspections Across Fort Mill and York County"
+    infoBlurb="We inspect homes across Fort Mill, Tega Cay, Rock Hill, and Indian Land."
+    citiesLabel="Mold Removal by Town"
+    cities={cities}
+    mapSrc={site.mapEmbedSrc}
+    mapLink={site.mapLink}
+  />
+  <FinalCta heading="Musty Smell or a Stain That Came Back? Book a Mold Inspection." secondaryLabel="Request an Inspection" />
+  <ContactForm
+    heading="Request a Mold Inspection in Fort Mill"
+    description="Tell us what you are seeing or smelling and our crew will call you back fast."
+    cardTitle="Request a Mold Inspection"
+    formName="Fort Mill Mold Inspection Contact"
+    trustItems={[
+      "IICRC-certified crew based in Fort Mill",
+      "Moisture meters and thermal imaging",
+      "Written scope and price before any work starts",
+      "We fix the moisture source and rebuild what we remove",
+    ]}
+  />
+</BaseLayout>
